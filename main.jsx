@@ -2,39 +2,46 @@ import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
 
-const WHATSAPP_NUMBER = "5599999999999";
-const BRAND = "Império Supremo";
+const WHATSAPP_NUMBER = "5511919411086";
+const BRAND = "Império Digital";
 
 const productsBase = [
-  { id: 1, title: "10 Passos para Começar uma Barbearia de Destaque", niche: "Marketing Digital", price: 13, oldPrice: 27, badge: "Mais vendido", rating: 4.9, reviews: 128, cover: "💈", desc: "E-book completo", status: "Ativo", url: "#" },
-  { id: 2, title: "Guia para Sair do Alcoolismo", niche: "Saúde", price: 7, oldPrice: 17, badge: "Novo", rating: 4.8, reviews: 96, cover: "🕯️", desc: "E-book completo", status: "Ativo", url: "#" },
-  { id: 3, title: "Vestibular de Destaque", niche: "Desenvolvimento Pessoal", price: 13, oldPrice: 27, badge: "Hot", rating: 4.9, reviews: 74, cover: "🎓", desc: "Material completo", status: "Ativo", url: "#" },
-  { id: 4, title: "Reeducação Alimentar", niche: "Emagrecimento", price: 9, oldPrice: 19, badge: "", rating: 4.7, reviews: 63, cover: "🥗", desc: "Guia completo", status: "Ativo", url: "#" },
-  { id: 5, title: "Guia de Pedras Preciosas", niche: "Finanças", price: 9, oldPrice: 19, badge: "Guia", rating: 4.6, reviews: 41, cover: "💎", desc: "Aprenda oportunidades", status: "Ativo", url: "#" },
-  { id: 6, title: "Vendas Digitais", niche: "Marketing Digital", price: 13, oldPrice: 29, badge: "Hot", rating: 5.0, reviews: 110, cover: "📈", desc: "Venda online", status: "Ativo", url: "#" },
-  { id: 7, title: "Assistência Técnica Celular", niche: "Negócios", price: 13, oldPrice: 29, badge: "Renda", rating: 4.8, reviews: 78, cover: "📱", desc: "Comece uma profissão", status: "Ativo", url: "#" },
-  { id: 8, title: "Corte e Costura", niche: "Negócios", price: 13, oldPrice: 29, badge: "Criativo", rating: 4.8, reviews: 39, cover: "🧵", desc: "Transforme habilidade em renda", status: "Ativo", url: "#" },
-  { id: 9, title: "Ferro Velho de Destaque", niche: "Negócios", price: 9, oldPrice: 19, badge: "B2B", rating: 4.7, reviews: 22, cover: "♻️", desc: "Reciclagem lucrativa", status: "Ativo", url: "#" },
-  { id: 10, title: "Confeitaria de Sucesso", niche: "Negócios", price: 13, oldPrice: 29, badge: "Doce", rating: 4.9, reviews: 58, cover: "🧁", desc: "Doces como negócio", status: "Ativo", url: "#" },
-  { id: 11, title: "Começar no Ramo da Estética", niche: "Desenvolvimento Pessoal", price: 9, oldPrice: 19, badge: "Beauty", rating: 4.8, reviews: 44, cover: "✨", desc: "Mercado da beleza", status: "Ativo", url: "#" },
-  { id: 12, title: "Cultivo de Cannabis", niche: "Relacionamento", price: 9, oldPrice: 19, badge: "Guia", rating: 4.5, reviews: 19, cover: "🌿", desc: "Guia introdutório", status: "Ativo", url: "#" }
+  { id: 1, title: "10 Passos para Começar uma Barbearia de Destaque", niche: "Negócios", price: 13, oldPrice: 27, badge: "Mais vendido", rating: 4.9, reviews: 128, cover: "/capas/barbearia.png", desc: "Guia completo para abrir sua barbearia do jeito certo.", status: "Ativo", url: "#" },
+  { id: 2, title: "Plano Devocional Transformador", niche: "Desenvolvimento Pessoal", price: 13, oldPrice: 27, badge: "Fé", rating: 4.9, reviews: 82, cover: "/capas/devocional.png", desc: "30 dias para renovar sua fé, encontrar paz e se aproximar de Deus.", status: "Ativo", url: "#" },
+  { id: 3, title: "10 Passos para Passar no Vestibular da Faculdade Pública", niche: "Educação", price: 13, oldPrice: 27, badge: "Hot", rating: 4.9, reviews: 74, cover: "/capas/vestibular.png", desc: "Estratégias, plano de estudos e foco para conquistar sua vaga.", status: "Ativo", url: "#" },
+  { id: 4, title: "Os 7 Passos para a Reeducação Alimentar", niche: "Emagrecimento", price: 9, oldPrice: 19, badge: "Saúde", rating: 4.7, reviews: 63, cover: "/capas/reeducacao-alimentar.png", desc: "Guia prático para comer melhor, ter mais energia e mudar hábitos.", status: "Ativo", url: "#" },
+  { id: 5, title: "Como Começar a Trabalhar com Pedras Preciosas", niche: "Negócios", price: 9, oldPrice: 19, badge: "Premium", rating: 4.6, reviews: 41, cover: "/capas/pedras-preciosas.png", desc: "Aprenda sobre gemas, lapidação, joias e oportunidades no mercado.", status: "Ativo", url: "#" },
+  { id: 6, title: "Como Começar a Trabalhar com Vendas Digitais", niche: "Marketing Digital", price: 13, oldPrice: 29, badge: "Hot", rating: 5.0, reviews: 110, cover: "/capas/vendas-digitais.png", desc: "Guia para criar seu negócio digital e vender todos os dias.", status: "Ativo", url: "#" },
+  { id: 7, title: "10 Passos para Iniciar no Ramo de Assistência Técnica de Celular", niche: "Negócios", price: 13, oldPrice: 29, badge: "Renda", rating: 4.8, reviews: 78, cover: "/capas/assistencia-celular.png", desc: "Aprenda a começar uma profissão técnica com demanda constante.", status: "Ativo", url: "#" },
+  { id: 8, title: "10 Passos para Iniciar no Ramo de Corte e Costura", niche: "Negócios", price: 13, oldPrice: 29, badge: "Criativo", rating: 4.8, reviews: 39, cover: "/capas/corte-costura.png", desc: "Transforme habilidade em renda com corte, costura e criação.", status: "Ativo", url: "#" },
+  { id: 9, title: "Como Começar um Ferro Velho de Destaque", niche: "Negócios", price: 9, oldPrice: 19, badge: "B2B", rating: 4.7, reviews: 22, cover: "/capas/ferro-velho.png", desc: "Guia para transformar sucata em negócio lucrativo e sustentável.", status: "Ativo", url: "#" },
+  { id: 10, title: "10 Passos para Iniciar no Ramo da Confeitaria", niche: "Negócios", price: 13, oldPrice: 29, badge: "Doce", rating: 4.9, reviews: 58, cover: "/capas/confeitaria.png", desc: "Transforme doces em lucro com um passo a passo simples.", status: "Ativo", url: "#" }
 ];
 
 const categories = [
   ["Todos", "▦"],
   ["Marketing Digital", "🚀"],
-  ["Saúde", "♡"],
+  ["Educação", "🎓"],
   ["Emagrecimento", "🍎"],
-  ["Finanças", "🟡"],
   ["Desenvolvimento Pessoal", "🧠"],
-  ["Negócios", "💼"],
-  ["Relacionamento", "♡"]
+  ["Negócios", "💼"]
 ];
 
 const money = (v) => Number(v || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
-function openUrl(url) {
-  window.open(url || "#", "_blank", "noopener,noreferrer");
+function openUrl(url, productTitle = "") {
+  if (url && url !== "#") {
+    window.open(url, "_blank", "noopener,noreferrer");
+    return;
+  }
+
+  const text = encodeURIComponent(
+    productTitle
+      ? `Olá! Vim pela loja Império Digital e quero comprar este e-book: ${productTitle}`
+      : "Olá! Vim pela loja Império Digital e quero saber mais sobre os e-books."
+  );
+
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank", "noopener,noreferrer");
 }
 
 function ProductCard({ p }) {
@@ -45,14 +52,14 @@ function ProductCard({ p }) {
   };
 
   return (
-    <article className="overflow-hidden rounded-2xl bg-white shadow-[0_18px_45px_rgba(15,23,42,0.10)] ring-1 ring-zinc-200 transition duration-300 hover:-translate-y-1 hover:shadow-[0_25px_70px_rgba(15,23,42,0.16)]">
-      <div className="relative grid h-44 place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_30%,#2a2a2a_0%,#090909_62%,#000_100%)]">
+    <article className="group overflow-hidden rounded-2xl bg-white shadow-[0_18px_45px_rgba(15,23,42,0.10)] ring-1 ring-zinc-200 transition duration-300 hover:-translate-y-1 hover:shadow-[0_25px_70px_rgba(15,23,42,0.16)]">
+      <div className="relative h-80 overflow-hidden bg-zinc-950">
         {p.badge && (
           <span className={`absolute left-4 top-4 rounded-full px-3 py-1.5 text-[11px] font-black uppercase text-white ${badgeColors[p.badge] || "bg-zinc-900"}`}>
             {p.badge}
           </span>
         )}
-        <div className="text-7xl drop-shadow-[0_18px_35px_rgba(255,255,255,.15)]">{p.cover}</div>
+        <img src={p.cover} alt={p.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
       </div>
 
       <div className="p-5">
@@ -69,7 +76,7 @@ function ProductCard({ p }) {
           <span className="pb-1 text-sm font-semibold text-zinc-400 line-through">{money(p.oldPrice)}</span>
         </div>
 
-        <button onClick={() => openUrl(p.url)} className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-[#d60000] px-4 py-4 text-sm font-black uppercase text-white shadow-lg shadow-red-200 transition hover:bg-[#b80000]">
+        <button onClick={() => openUrl(p.url, p.title)} className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-[#d60000] px-4 py-4 text-sm font-black uppercase text-white shadow-lg shadow-red-200 transition hover:bg-[#b80000]">
           🛒 Comprar agora
         </button>
       </div>
@@ -91,7 +98,7 @@ function StoreFront({ openAdmin }) {
     });
   }, [query, category]);
 
-  const whatsappText = encodeURIComponent("Olá! Vim pela loja Império Supremo e quero saber mais sobre os e-books.");
+  const whatsappText = encodeURIComponent("Olá! Vim pela loja Império Digital e quero saber mais sobre os e-books.");
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappText}`;
 
   return (
@@ -124,7 +131,7 @@ function StoreFront({ openAdmin }) {
           >
             <div className="grid h-14 w-14 place-items-center rounded-xl bg-[#d60000] text-3xl text-white shadow-xl shadow-red-200">🚀</div>
             <div>
-              <p className="text-2xl font-black leading-none">Império Supremo</p>
+              <p className="text-2xl font-black leading-none">Império Digital</p>
               <p className="mt-1 text-sm font-semibold text-zinc-500">Loja Digital de Alta Conversão</p>
             </div>
           </div>
