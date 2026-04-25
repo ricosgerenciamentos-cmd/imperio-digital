@@ -41,7 +41,6 @@ function wa(product){
 function App(){
   const [intent, setIntent] = useState('Todos');
   const [search, setSearch] = useState('');
-
   const bestSellers = products.filter(p => bestSellerIds.includes(p.id));
 
   const filtered = useMemo(() => products.filter(p => {
@@ -55,7 +54,7 @@ function App(){
       <Header search={search} setSearch={setSearch} />
       <Hero bestSellers={bestSellers} />
       <Categories />
-      <MainShelf bestSellers={bestSellers} />
+      <Featured bestSellers={bestSellers} />
       <IntentFilters intent={intent} setIntent={setIntent} />
       <Catalog products={filtered} />
       <Testimonials />
@@ -69,25 +68,12 @@ function App(){
 function Header({ search, setSearch }){
   return (
     <header className="topbar">
-      <a className="brand" href="#top">
-        <span className="brandIcon">♛</span>
-        <span><b>IMPÉRIO</b><small>DIGITAL</small></span>
-      </a>
-
+      <a className="brand" href="#top"><span className="brandIcon">♛</span><span><b>IMPÉRIO</b><small>DIGITAL</small></span></a>
       <nav className="nav">
-        <a className="active" href="#top">Início</a>
-        <a href="#categorias">Categorias</a>
-        <a href="#catalogo">Todos os Ebooks</a>
-        <a href="#sobre">Sobre Nós</a>
-        <a href="#faq">Perguntas</a>
-        <a href={wa()} target="_blank" rel="noreferrer">Contato</a>
+        <a className="active" href="#top">Início</a><a href="#categorias">Categorias</a><a href="#catalogo">Todos os Ebooks</a><a href="#sobre">Sobre Nós</a><a href="#faq">Perguntas</a><a href={wa()} target="_blank" rel="noreferrer">Contato</a>
       </nav>
-
       <div className="topActions">
-        <label className="searchBox">
-          <span>⌕</span>
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Buscar ebooks" />
-        </label>
+        <label className="searchBox"><span>⌕</span><input value={search} onChange={e => setSearch(e.target.value)} placeholder="Buscar ebooks" /></label>
         <span className="cart">▢<i>0</i></span>
         <a className="accountBtn" href="#catalogo">👤 Meus Ebooks</a>
       </div>
@@ -102,184 +88,77 @@ function Hero({ bestSellers }){
         <p className="kicker">CONHECIMENTO QUE TRANSFORMA ♛</p>
         <h1>Aprenda hoje.<br/><span>Transforme</span> sua vida.</h1>
         <p className="heroLead">Ebooks práticos, diretos e completos para você aprender, empreender e mudar de vida com mais conhecimento e autonomia.</p>
-
-        <div className="heroTrust">
-          <span>🛡️<b>Compra 100%<br/>Segura</b></span>
-          <span>☁️<b>Download<br/>Imediato</b></span>
-          <span>🏅<b>Conteúdo de<br/>Qualidade</b></span>
-          <span>🎧<b>Suporte<br/>Dedicado</b></span>
-        </div>
-
+        <div className="heroTrust"><span>🛡️<b>Compra 100%<br/>Segura</b></span><span>☁️<b>Download<br/>Imediato</b></span><span>🏅<b>Conteúdo de<br/>Qualidade</b></span><span>🎧<b>Suporte<br/>Dedicado</b></span></div>
         <a href="#catalogo" className="primaryBtn">🛒 VER TODOS OS EBOOKS</a>
       </div>
-
       <div className="heroArt">
         <div className="tabletExact">
           <div className="tabletHeader"><span>☰</span><b>Império Digital</b><span>⌕</span></div>
-          <div className="tabletProducts">
-            {bestSellers.concat(products.filter(p => !p.hiddenHome).slice(4,9)).map(p => <img key={p.id} src={p.img} alt={p.title} />)}
-          </div>
+          <div className="tabletProducts">{bestSellers.concat(products.filter(p => !p.hiddenHome).slice(4,9)).map(p => <img key={p.id} src={p.img} alt={p.title} />)}</div>
         </div>
         <div className="books"></div>
         <div className="mugExact"><span>♛</span><b>IMPÉRIO</b><small>DIGITAL</small></div>
       </div>
-
       <PhoneMock product={bestSellers[0]} />
     </section>
   );
 }
 
 function Categories(){
-  return (
-    <section id="categorias" className="categoriesExact">
-      <h2>NAVEGUE POR <span>CATEGORIAS</span></h2>
-      <div className="categoryRow">
-        {categories.map(c => <a key={c.name} href="#catalogo" className="catCard"><b>{c.icon}</b><span>{c.name}</span></a>)}
-      </div>
-    </section>
-  );
+  return <section id="categorias" className="categoriesExact"><h2>NAVEGUE POR <span>CATEGORIAS</span></h2><div className="categoryRow">{categories.map(c => <a key={c.name} href="#catalogo" className="catCard"><b>{c.icon}</b><span>{c.name}</span></a>)}</div></section>;
 }
 
-function MainShelf({ bestSellers }){
+function Featured({ bestSellers }){
+  const featured = bestSellers.concat(products.filter(p => [5,6].includes(p.id)));
   return (
     <section id="mais-vendidos" className="shelfWrap">
       <button className="circleArrow left">‹</button>
-
       <div className="shelfMain">
-        <p className="redLabel">MAIS VENDIDOS</p>
-        <h2>EBOOKS EM DESTAQUE</h2>
-        <p className="sectionSub">Os favoritos de quem quer aprender e mudar de vida</p>
-        <div className="featuredCards">
-          {bestSellers.concat(products.filter(p => [5,6].includes(p.id))).map(p => <SmallProduct key={p.id} product={p} />)}
-        </div>
+        <p className="redLabel">MAIS VENDIDOS</p><h2>EBOOKS EM DESTAQUE</h2><p className="sectionSub">Os favoritos de quem quer aprender e mudar de vida</p>
+        <div className="featuredCards">{featured.map(p => <SmallProduct key={p.id} product={p} />)}</div>
         <a className="outlineBtn" href="#catalogo">📦 VER TODOS OS EBOOKS</a>
       </div>
-
       <TrustSide />
-      <PhoneMock product={bestSellers[0]} lower />
       <button className="circleArrow right">›</button>
     </section>
   );
 }
 
 function SmallProduct({ product }){
-  return (
-    <article className="smallCard">
-      <img src={product.img} alt={product.title} />
-      <div>
-        <h3>{product.title}</h3>
-        <p>{product.desc}</p>
-        <small>De {product.oldPrice}</small>
-        <strong>{product.price}</strong>
-        <a href={product.link} target="_blank" rel="noreferrer">QUERO ESTE</a>
-      </div>
-    </article>
-  );
+  return <article className="smallCard"><img src={product.img} alt={product.title} /><div><h3>{product.title}</h3><p>{product.desc}</p><small>De {product.oldPrice}</small><strong>{product.price}</strong><a href={product.link} target="_blank" rel="noreferrer">QUERO ESTE</a></div></article>;
 }
 
 function TrustSide(){
-  return (
-    <aside className="trustSide">
-      <TrustItem icon="🛡️" title="Compra 100% Segura" text="Seus dados protegidos com criptografia e plataformas confiáveis." />
-      <TrustItem icon="☁️" title="Acesso Imediato" text="Após a confirmação, você recebe o acesso na hora." />
-      <TrustItem icon="🏅" title="Conteúdo Atualizado" text="Ebooks completos, práticos e sempre atualizados." />
-      <TrustItem icon="🎧" title="Suporte Dedicado" text="Estamos prontos para te ajudar sempre que precisar." />
-    </aside>
-  );
+  return <aside className="trustSide"><TrustItem icon="🛡️" title="Compra 100% Segura" text="Seus dados protegidos pela Kiwify." /><TrustItem icon="☁️" title="Acesso Imediato" text="Após a confirmação, você recebe o acesso." /><TrustItem icon="🏅" title="Conteúdo Atualizado" text="Ebooks completos, práticos e diretos." /><TrustItem icon="🎧" title="Suporte Dedicado" text="Atendimento rápido pelo WhatsApp." /></aside>;
 }
 
 function TrustItem({ icon, title, text }){
   return <div className="trustItem"><span>{icon}</span><div><b>{title}</b><p>{text}</p></div></div>;
 }
 
-function PhoneMock({ product, lower }) {
-  return (
-    <aside className={lower ? 'phoneExact phoneLower' : 'phoneExact'}>
-      <div className="phoneInner">
-        <div className="phoneNav"><span>☰</span><b>♛ IMPÉRIO <small>DIGITAL</small></b><span>▢</span></div>
-        <p className="phoneKicker">CONHECIMENTO QUE TRANSFORMA</p>
-        <h2>Aprenda hoje.<br/><span>Transforme</span> sua vida.</h2>
-        <p>Ebooks práticos, diretos e completos para você aprender, empreender e mudar de vida.</p>
-        <ul>
-          <li>🛡️ Compra 100% Segura</li>
-          <li>☁️ Download Imediato</li>
-          <li>🏅 Conteúdo de Qualidade</li>
-          <li>🎧 Suporte Dedicado</li>
-        </ul>
-        <a className="phoneButton" href="#catalogo">🛒 VER TODOS OS EBOOKS</a>
-        <div className="phoneTitle"><b>CATEGORIAS</b><a href="#categorias">Ver todas</a></div>
-        <div className="phoneCats"><span>💼<br/>Negócios</span><span>🎓<br/>Educação</span><span>💚<br/>Saúde</span></div>
-        <div className="phoneTitle"><b>MAIS VENDIDOS</b></div>
-        <div className="phoneProduct"><img src={product.img} alt={product.title}/><div><b>{product.title}</b><small>{product.price}</small><a href={product.link} target="_blank" rel="noreferrer">QUERO ESTE</a></div></div>
-        <div className="dots"><i></i><i></i><i></i><i></i></div>
-      </div>
-    </aside>
-  );
+function PhoneMock({ product }) {
+  return <aside className="phoneExact"><div className="phoneInner"><div className="phoneNav"><span>☰</span><b>♛ IMPÉRIO <small>DIGITAL</small></b><span>▢</span></div><p className="phoneKicker">CONHECIMENTO QUE TRANSFORMA</p><h2>Aprenda hoje.<br/><span>Transforme</span> sua vida.</h2><p>Ebooks práticos, diretos e completos para você aprender, empreender e mudar de vida.</p><ul><li>🛡️ Compra 100% Segura</li><li>☁️ Download Imediato</li><li>🏅 Conteúdo de Qualidade</li><li>🎧 Suporte Dedicado</li></ul><a className="phoneButton" href="#catalogo">🛒 VER TODOS OS EBOOKS</a><div className="phoneTitle"><b>CATEGORIAS</b><a href="#categorias">Ver todas</a></div><div className="phoneCats"><span>💼<br/>Negócios</span><span>🎓<br/>Educação</span><span>💚<br/>Saúde</span></div><div className="phoneTitle"><b>MAIS VENDIDOS</b></div><div className="phoneProduct"><img src={product.img} alt={product.title}/><div><b>{product.title}</b><small>{product.price}</small><a href={product.link} target="_blank" rel="noreferrer">QUERO ESTE</a></div></div><div className="dots"><i></i><i></i><i></i><i></i></div></div></aside>;
 }
 
 function IntentFilters({ intent, setIntent }){
   const icons = ['✨','💼','💚','🎓','📋','🌿'];
-  return (
-    <section id="intencoes" className="intentWrap">
-      <h2>ESCOLHA PELO SEU <span>OBJETIVO</span></h2>
-      <div className="intentRow">
-        {intents.map((item, i) => <button key={item} onClick={() => setIntent(item)} className={intent === item ? 'selected' : ''}><b>{icons[i]}</b>{item}</button>)}
-      </div>
-    </section>
-  );
+  return <section id="intencoes" className="intentWrap"><h2>ESCOLHA PELO SEU <span>OBJETIVO</span></h2><div className="intentRow">{intents.map((item, i) => <button key={item} onClick={() => setIntent(item)} className={intent === item ? 'selected' : ''}><b>{icons[i]}</b>{item}</button>)}</div></section>;
 }
 
 function Catalog({ products }){
-  return (
-    <section id="catalogo" className="catalogExact">
-      <p className="redLabel">CATÁLOGO COMPLETO</p>
-      <h2>Todos os Ebooks</h2>
-      <p className="sectionSub">Escolha o produto ideal para seu momento</p>
-      <div className="catalogGrid">
-        {products.map(p => <BigProduct key={p.id} product={p} />)}
-      </div>
-    </section>
-  );
+  return <section id="catalogo" className="catalogExact"><p className="redLabel">CATÁLOGO COMPLETO</p><h2>Todos os Ebooks</h2><p className="sectionSub">Escolha o produto ideal para seu momento</p><div className="catalogGrid">{products.map(p => <BigProduct key={p.id} product={p} />)}</div></section>;
 }
 
 function BigProduct({ product }){
-  return (
-    <article className="bigCard">
-      <div className="bigImage"><img src={product.img} alt={product.title}/><span>{product.tag}</span></div>
-      <div className="bigBody">
-        <h3>{product.title}</h3>
-        <p>{product.desc}</p>
-        <div className="priceBox"><small>De {product.oldPrice}</small><strong>Por {product.price}</strong><em>Oferta de lançamento</em></div>
-        <a className="buyNow" href={product.link} target="_blank" rel="noreferrer">COMPRAR AGORA</a>
-        <a className="whats" href={wa(product)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a>
-      </div>
-    </article>
-  );
+  return <article className="bigCard"><div className="bigImage"><img src={product.img} alt={product.title}/><span>{product.tag}</span></div><div className="bigBody"><h3>{product.title}</h3><p>{product.desc}</p><div className="priceBox"><small>De {product.oldPrice}</small><strong>Por {product.price}</strong><em>Oferta de lançamento</em></div><a className="buyNow" href={product.link} target="_blank" rel="noreferrer">COMPRAR AGORA</a><a className="whats" href={wa(product)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a></div></article>;
 }
 
 function Testimonials(){
-  return (
-    <section className="testExact">
-      <button className="circleArrow left">‹</button>
-      <h2>O QUE NOSSOS <span>CLIENTES</span> DIZEM</h2>
-      <div className="testRow">
-        <blockquote><b>Carlos M.</b><span>★★★★★</span><p>“O ebook de Barbearia mudou meu negócio! Conteúdo prático e direto ao ponto.”</p></blockquote>
-        <blockquote><b>Juliana S.</b><span>★★★★★</span><p>“O de Reeducação Alimentar me ajudou a transformar minha vida.”</p></blockquote>
-        <blockquote><b>Rafael T.</b><span>★★★★★</span><p>“Vendas Digitais abriu minha mente para novas oportunidades.”</p></blockquote>
-      </div>
-      <button className="circleArrow right">›</button>
-    </section>
-  );
+  return <section className="testExact"><h2>O QUE NOSSOS <span>CLIENTES</span> DIZEM</h2><div className="testRow"><blockquote><b>Carlos M.</b><span>★★★★★</span><p>“O ebook de Barbearia mudou meu negócio! Conteúdo prático e direto ao ponto.”</p></blockquote><blockquote><b>Juliana S.</b><span>★★★★★</span><p>“O de Reeducação Alimentar me ajudou a transformar minha vida.”</p></blockquote><blockquote><b>Rafael T.</b><span>★★★★★</span><p>“Vendas Digitais abriu minha mente para novas oportunidades.”</p></blockquote></div></section>;
 }
 
 function FinalCTA(){
-  return (
-    <section className="finalExact" id="sobre">
-      <div className="finalIcon">♛</div>
-      <div><h2>INVISTA EM VOCÊ. COLHA RESULTADOS!</h2><p>Conhecimento é o único investimento que sempre gera retorno.</p></div>
-      <a href="#catalogo">COMECE AGORA →</a>
-    </section>
-  );
+  return <section className="finalExact" id="sobre"><div className="finalIcon">♛</div><div><h2>INVISTA EM VOCÊ. COLHA RESULTADOS!</h2><p>Conhecimento é o único investimento que sempre gera retorno.</p></div><a href="#catalogo">COMECE AGORA →</a></section>;
 }
 
 function Footer(){
