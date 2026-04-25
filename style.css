@@ -1,8 +1,73 @@
+.proofBar{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  padding:34px 42px;
+  background:#fff;
+  border-top:1px solid #eee;
+  border-bottom:1px solid #eee;
+}
+
+.proofBar div{
+  border:1px solid #eee;
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 12px 30px rgba(0,0,0,.05);
+}
+
+.proofBar b{
+  font-size:17px;
+}
+
+.proofBar p{
+  color:#666;
+  margin-bottom:0;
+}
+
+.bestSellers{
+  padding:66px 42px;
+  background:#f7f7f8;
+  text-align:center;
+}
+
+.bestGrid{
+  margin-top:30px;
+}
+
 .priceBox small{
   display:block;
   color:#999;
   text-decoration:line-through;
   font-size:14px;
   font-weight:800;
-  margin-bottom:2px;
+}
+
+.priceBox strong{
+  display:block;
+  color:#e10600;
+  font-size:30px;
+  font-weight:1000;
+}
+
+.priceBox em{
+  display:inline-block;
+  margin-top:6px;
+  background:#fff1f0;
+  color:#e10600;
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:12px;
+  font-style:normal;
+  font-weight:950;
+}
+
+@media(max-width:760px){
+  .proofBar{
+    grid-template-columns:1fr;
+    padding:24px 18px;
+  }
+
+  .bestSellers{
+    padding:44px 18px;
+  }
 }
