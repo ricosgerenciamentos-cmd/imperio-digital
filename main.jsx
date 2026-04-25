@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
+import "./style.css";
 
 const WHATSAPP_NUMBER = "5599999999999";
 const BRAND = "Império Supremo";
