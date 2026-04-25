@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { createRoot } from "react-dom/client";
 
 const WHATSAPP_NUMBER = "5599999999999";
 const BRAND = "Império Supremo";
@@ -240,7 +241,7 @@ function LoginPage({ onLogin, goStore }) {
   );
 }
 
-export default function App() {
+function App() {
   const [route, setRoute] = useState(window.location.pathname === "/admin" ? "/login" : window.location.pathname || "/");
   const [isLogged, setIsLogged] = useState(false);
   const [products, setProducts] = useState(initialProducts);
@@ -269,4 +270,7 @@ export default function App() {
   }
 
   return <StoreFront products={products} openAdmin={openAdmin} />;
+  }
+
+  createRoot(document.getElementById("root")).render(<App />);
 }
