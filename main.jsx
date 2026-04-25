@@ -5,366 +5,602 @@ import "./style.css";
 const WHATSAPP_NUMBER = "5511919411086";
 const BRAND = "Império Digital";
 
+// TROQUE OS LINKS abaixo pelos seus checkouts da Kiwify
 const productsBase = [
-  { id: 1, title: "10 Passos para Começar uma Barbearia de Destaque", niche: "Negócios", price: 13, oldPrice: 27, badge: "Mais vendido", rating: 4.9, reviews: 128, cover: "/barbearia.png", desc: "Guia completo para abrir sua barbearia do jeito certo.", status: "Ativo", url: "#" },
-  { id: 2, title: "Plano Devocional Transformador", niche: "Desenvolvimento Pessoal", price: 13, oldPrice: 27, badge: "Fé", rating: 4.9, reviews: 82, cover: "/devocional.png", desc: "30 dias para renovar sua fé, encontrar paz e se aproximar de Deus.", status: "Ativo", url: "#" },
-  { id: 3, title: "10 Passos para Passar no Vestibular da Faculdade Pública", niche: "Educação", price: 13, oldPrice: 27, badge: "Hot", rating: 4.9, reviews: 74, cover: "/vestibular.png", desc: "Estratégias, plano de estudos e foco para conquistar sua vaga.", status: "Ativo", url: "#" },
-  { id: 4, title: "Os 7 Passos para a Reeducação Alimentar", niche: "Emagrecimento", price: 9, oldPrice: 19, badge: "Saúde", rating: 4.7, reviews: 63, cover: "/reeducacao-alimentar.png", desc: "Guia prático para comer melhor, ter mais energia e mudar hábitos.", status: "Ativo", url: "#" },
-  { id: 5, title: "Como Começar a Trabalhar com Pedras Preciosas", niche: "Negócios", price: 9, oldPrice: 19, badge: "Premium", rating: 4.6, reviews: 41, cover: "/pedras-preciosas.png", desc: "Aprenda sobre gemas, lapidação, joias e oportunidades no mercado.", status: "Ativo", url: "#" },
-  { id: 6, title: "Como Começar a Trabalhar com Vendas Digitais", niche: "Marketing Digital", price: 13, oldPrice: 29, badge: "Hot", rating: 5.0, reviews: 110, cover: "/vendas-digitais.png", desc: "Guia para criar seu negócio digital e vender todos os dias.", status: "Ativo", url: "#" },
-  { id: 7, title: "10 Passos para Iniciar no Ramo de Assistência Técnica de Celular", niche: "Negócios", price: 13, oldPrice: 29, badge: "Renda", rating: 4.8, reviews: 78, cover: "/assistencia-celular.png", desc: "Aprenda a começar uma profissão técnica com demanda constante.", status: "Ativo", url: "#" },
-  { id: 8, title: "10 Passos para Iniciar no Ramo de Corte e Costura", niche: "Negócios", price: 13, oldPrice: 29, badge: "Criativo", rating: 4.8, reviews: 39, cover: "/corte-costura.png", desc: "Transforme habilidade em renda com corte, costura e criação.", status: "Ativo", url: "#" },
-  { id: 9, title: "Como Começar um Ferro Velho de Destaque", niche: "Negócios", price: 9, oldPrice: 19, badge: "B2B", rating: 4.7, reviews: 22, cover: "/ferro-velho.png", desc: "Guia para transformar sucata em negócio lucrativo e sustentável.", status: "Ativo", url: "#" },
-  { id: 10, title: "10 Passos para Iniciar no Ramo da Confeitaria", niche: "Negócios", price: 13, oldPrice: 29, badge: "Doce", rating: 4.9, reviews: 58, cover: "/confeitaria.png", desc: "Transforme doces em lucro com um passo a passo simples.", status: "Ativo", url: "#" }
+  {
+    id: 1,
+    title: "Assistência Técnica de Celular do Zero ao Lucro",
+    shortTitle: "Assistência Técnica de Celular",
+    category: "Profissões",
+    niche: "Renda Extra",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "MAIS LUCRATIVO",
+    image: "/assistencia-celular.png",
+    checkout: "#",
+    description:
+      "Aprenda como começar no mercado de conserto de celulares, montar sua bancada, atender clientes e transformar conhecimento em renda.",
+    highlights: ["Profissão em alta", "Baixo investimento", "Comece do zero"],
+  },
+  {
+    id: 2,
+    title: "10 Passos para Começar uma Barbearia de Destaque",
+    shortTitle: "Barbearia de Destaque",
+    category: "Profissões",
+    niche: "Negócios",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "MAIS VENDIDO",
+    image: "/barbearia.png",
+    checkout: "#",
+    description:
+      "Guia prático para abrir uma barbearia com posicionamento forte, visual profissional e estratégia para atrair clientes.",
+    highlights: ["Negócio físico", "Alta procura", "Passo a passo"],
+  },
+  {
+    id: 3,
+    title: "Vendas Digitais do Zero: Guia Prático Para Lucrar Online",
+    shortTitle: "Vendas Digitais do Zero",
+    category: "Negócios",
+    niche: "Digital",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "HOT",
+    image: "/vendas-digitais.png",
+    checkout: "#",
+    description:
+      "Aprenda como escolher nicho, montar estrutura, atrair clientes e fazer suas primeiras vendas pela internet.",
+    highlights: ["Mercado digital", "Renda online", "Para iniciantes"],
+  },
+  {
+    id: 4,
+    title: "Reeducação Alimentar: 7 Passos Para Uma Vida Saudável",
+    shortTitle: "Reeducação Alimentar",
+    category: "Saúde",
+    niche: "Bem-estar",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "SAÚDE",
+    image: "/reeducacao-alimentar.png",
+    checkout: "#",
+    description:
+      "Transforme sua relação com a comida, ganhe mais energia e crie hábitos saudáveis sem dietas malucas.",
+    highlights: ["Sem sofrimento", "Vida saudável", "Hábitos reais"],
+  },
+  {
+    id: 5,
+    title: "10 Passos para Passar no Vestibular da Faculdade Pública",
+    shortTitle: "Passe no Vestibular",
+    category: "Educação",
+    niche: "Estudos",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "EDUCAÇÃO",
+    image: "/vestibular.png",
+    checkout: "#",
+    description:
+      "Organize seus estudos com estratégia, foco, simulados, revisão e preparação emocional para conquistar sua vaga.",
+    highlights: ["Plano de estudo", "Foco total", "Aprovação"],
+  },
+  {
+    id: 6,
+    title: "Império da Estética: Do Zero ao Sucesso no Mercado da Beleza",
+    shortTitle: "Império da Estética",
+    category: "Profissões",
+    niche: "Beleza",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "BELEZA",
+    image: "/estetica.png",
+    checkout: "#",
+    description:
+      "Descubra como começar no ramo da estética, escolher especialidade, atrair clientes e crescer com profissionalismo.",
+    highlights: ["Mercado forte", "Clientes locais", "Alta demanda"],
+  },
+  {
+    id: 7,
+    title: "Costura Lucrativa do Zero",
+    shortTitle: "Costura Lucrativa",
+    category: "Profissões",
+    niche: "Criativo",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "CRIATIVO",
+    image: "/corte-costura.png",
+    checkout: "#",
+    description:
+      "Aprenda corte e costura do básico ao prático e descubra como transformar sua habilidade em renda trabalhando de casa.",
+    highlights: ["Trabalhe de casa", "Habilidade prática", "Renda extra"],
+  },
+  {
+    id: 8,
+    title: "Império dos Doces: Como Criar uma Confeitaria Lucrativa do Zero",
+    shortTitle: "Império dos Doces",
+    category: "Profissões",
+    niche: "Confeitaria",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "DOCE RENDA",
+    image: "/confeitaria.png",
+    checkout: "#",
+    description:
+      "Transforme sua paixão por doces em renda, aprendendo produtos, planejamento, fornecedores, divulgação e vendas.",
+    highlights: ["Comece em casa", "Baixo custo", "Venda todos os dias"],
+  },
+  {
+    id: 9,
+    title: "Do Zero ao Lucro com Pedras Preciosas",
+    shortTitle: "Pedras Preciosas",
+    category: "Negócios",
+    niche: "Premium",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "PREMIUM",
+    image: "/pedras-preciosas.png",
+    checkout: "#",
+    description:
+      "Conheça o mercado de gemas, lapidação, ourivesaria, ferramentas e oportunidades para criar joias e vender melhor.",
+    highlights: ["Nicho curioso", "Mercado premium", "Joias e gemas"],
+  },
+  {
+    id: 10,
+    title: "Império da Sucata: Como Montar um Ferro Velho Lucrativo do Zero",
+    shortTitle: "Império da Sucata",
+    category: "Negócios",
+    niche: "Reciclagem",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "SUSTENTÁVEL",
+    image: "/ferro-velho.png",
+    checkout: "#",
+    description:
+      "Aprenda como estruturar um ferro velho profissional, atender empresas, cuidar de licenças e organizar a operação.",
+    highlights: ["B2B", "Reciclagem", "Negócio real"],
+  },
+  {
+    id: 11,
+    title: "Negócio Organizado em 30 Minutos",
+    shortTitle: "Negócio Organizado",
+    category: "Organização",
+    niche: "Produtividade",
+    price: 13.9,
+    oldPrice: 29,
+    badge: "ORGANIZAÇÃO",
+    image: "/negocio-organizado.png",
+    checkout: "#",
+    description:
+      "Um checklist semanal para organizar tarefas, prioridades, finanças e rotina do seu negócio sem complicação.",
+    highlights: ["30 min por semana", "Mais clareza", "Menos estresse"],
+  },
+  {
+    id: 12,
+    title: "Como Organizar Suas Tarefas Diárias",
+    shortTitle: "Tarefas Diárias",
+    category: "Organização",
+    niche: "Produtividade",
+    price: 13.9,
+    oldPrice: 29,
+    badge: "FOCO",
+    image: "/tarefas-diarias.png",
+    checkout: "#",
+    description:
+      "Pare de apagar incêndios e aprenda um sistema simples para organizar sua rotina, tarefas e compromissos.",
+    highlights: ["Mais foco", "Rotina leve", "Sem esquecer tarefas"],
+  },
+  {
+    id: 13,
+    title: "10 Passos Para Sair do Alcoolismo: Guia Prático para a Sobriedade",
+    shortTitle: "Guia da Sobriedade",
+    category: "Saúde",
+    niche: "Transformação",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "TRANSFORMAÇÃO",
+    image: "/alcoolismo.png",
+    checkout: "#",
+    description:
+      "Um guia de apoio com passos práticos para buscar ajuda, reconstruir hábitos e caminhar rumo a uma vida sóbria.",
+    highlights: ["Apoio emocional", "Mudança de vida", "Passos práticos"],
+  },
+  {
+    id: 14,
+    title: "Guia Visual: 10 Passos para Começar um Cultivo Saudável de Cannabis",
+    shortTitle: "Cultivo Saudável",
+    category: "Especial",
+    niche: "Cultivo",
+    price: 19.9,
+    oldPrice: 47,
+    badge: "ESPECIAL",
+    image: "/cannabis.png",
+    checkout: "#",
+    description:
+      "Conteúdo específico sobre cultivo saudável e responsável, indicado apenas para regiões e situações permitidas por lei.",
+    highlights: ["Nicho específico", "Guia visual", "Uso responsável"],
+  },
 ];
 
-const categories = [
-  ["Todos", "▦"],
-  ["Marketing Digital", "🚀"],
-  ["Educação", "🎓"],
-  ["Emagrecimento", "🍎"],
-  ["Desenvolvimento Pessoal", "🧠"],
-  ["Negócios", "💼"]
-];
+const categories = ["Todos", "Profissões", "Negócios", "Saúde", "Educação", "Organização", "Especial"];
 
-const money = (v) => Number(v || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-
-function openUrl(url, productTitle = "") {
-  if (url && url !== "#") {
-    window.open(url, "_blank", "noopener,noreferrer");
-    return;
-  }
-
-  const text = encodeURIComponent(
-    productTitle
-      ? `Olá! Vim pela loja Império Digital e quero comprar este e-book: ${productTitle}`
-      : "Olá! Vim pela loja Império Digital e quero saber mais sobre os e-books."
-  );
-
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank", "noopener,noreferrer");
+function money(value) {
+  return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
-function ProductCard({ p }) {
-  const badgeColors = {
-    "Mais vendido": "bg-red-600",
-    "Novo": "bg-green-500",
-    "Hot": "bg-orange-500",
-  };
+function whatsappLink(product = null) {
+  const msg = product
+    ? `Olá! Tenho interesse no ebook: ${product.title}. Pode me passar mais informações?`
+    : `Olá! Tenho interesse nos ebooks do ${BRAND}. Pode me ajudar?`;
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+function App() {
+  const [activeCategory, setActiveCategory] = useState("Todos");
+  const [search, setSearch] = useState("");
+
+  const featured = productsBase.slice(0, 7);
+
+  const filteredProducts = useMemo(() => {
+    return productsBase.filter((product) => {
+      const categoryMatch = activeCategory === "Todos" || product.category === activeCategory;
+      const searchMatch = `${product.title} ${product.category} ${product.niche}`
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      return categoryMatch && searchMatch;
+    });
+  }, [activeCategory, search]);
 
   return (
-    <article className="group overflow-hidden rounded-2xl bg-white shadow-[0_18px_45px_rgba(15,23,42,0.10)] ring-1 ring-zinc-200 transition duration-300 hover:-translate-y-1 hover:shadow-[0_25px_70px_rgba(15,23,42,0.16)]">
-      <div className="relative h-80 overflow-hidden bg-zinc-950">
-        {p.badge && (
-          <span className={`absolute left-4 top-4 rounded-full px-3 py-1.5 text-[11px] font-black uppercase text-white ${badgeColors[p.badge] || "bg-zinc-900"}`}>
-            {p.badge}
-          </span>
-        )}
-        <img src={p.cover} alt={p.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+    <main className="min-h-screen bg-slate-950 text-white">
+      <Header search={search} setSearch={setSearch} />
+      <Hero />
+      <TrustBar />
+      <Featured products={featured} />
+      <Catalog
+        products={filteredProducts}
+        activeCategory={activeCategory}
+        setActiveCategory={setActiveCategory}
+      />
+      <WhyBuy />
+      <Faq />
+      <Footer />
+      <StickyCta />
+    </main>
+  );
+}
+
+function Header({ search, setSearch }) {
+  return (
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
+        <a href="#top" className="flex min-w-fit items-center gap-3">
+          <div className="grid h-12 w-12 place-items-center rounded-2xl bg-red-600 text-2xl shadow-lg shadow-red-600/30">
+            🚀
+          </div>
+          <div>
+            <h1 className="text-xl font-black leading-none tracking-tight">{BRAND}</h1>
+            <p className="text-xs font-semibold text-slate-400">Loja Digital de Alta Conversão</p>
+          </div>
+        </a>
+
+        <div className="hidden flex-1 md:block">
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full rounded-2xl border border-white/10 bg-white px-5 py-4 text-sm font-semibold text-slate-900 outline-none transition focus:border-red-500 focus:ring-4 focus:ring-red-500/20"
+            placeholder="Buscar oportunidades, profissões, saúde, organização..."
+          />
+        </div>
+
+        <a
+          href="#catalogo"
+          className="ml-auto hidden rounded-2xl bg-white px-5 py-4 text-sm font-black text-slate-950 transition hover:scale-105 md:block"
+        >
+          Ver Catálogo
+        </a>
+
+        <a
+          href={whatsappLink()}
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-2xl bg-red-600 px-5 py-4 text-sm font-black text-white shadow-lg shadow-red-600/30 transition hover:scale-105"
+        >
+          Comprar Agora
+        </a>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section id="top" className="relative overflow-hidden border-b border-white/10">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,.28),transparent_34%),radial-gradient(circle_at_top_right,rgba(250,204,21,.18),transparent_30%)]" />
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-[1.05fr_.95fr] md:py-20">
+        <div className="flex flex-col justify-center">
+          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-xs font-black uppercase tracking-wide text-red-200">
+            🔥 Ebooks práticos com acesso imediato
+          </div>
+
+          <h2 className="max-w-4xl text-4xl font-black tracking-tight md:text-6xl">
+            Aprenda uma habilidade, organize sua vida e comece a evoluir hoje.
+          </h2>
+
+          <p className="mt-5 max-w-2xl text-lg font-medium leading-relaxed text-slate-300 md:text-xl">
+            Catálogo completo com ebooks diretos ao ponto sobre profissões, renda extra, saúde, estudos e organização.
+            Escolha seu guia, compre com segurança e receba acesso imediato.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="#catalogo"
+              className="rounded-2xl bg-red-600 px-8 py-4 text-center text-base font-black text-white shadow-xl shadow-red-600/30 transition hover:scale-105"
+            >
+              Ver Todos os Ebooks
+            </a>
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-2xl border border-white/15 bg-white/10 px-8 py-4 text-center text-base font-black text-white transition hover:bg-white/20"
+            >
+              Falar no WhatsApp
+            </a>
+          </div>
+
+          <div className="mt-8 grid max-w-xl grid-cols-3 gap-3 text-center">
+            <Metric value="14" label="Ebooks" />
+            <Metric value="100%" label="Digital" />
+            <Metric value="24h" label="Acesso" />
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="absolute -inset-4 rounded-[2.5rem] bg-red-600/20 blur-3xl" />
+          <div className="relative rounded-[2rem] border border-white/10 bg-white/10 p-3 shadow-2xl backdrop-blur">
+            <div className="grid grid-cols-2 gap-3">
+              {productsBase.slice(0, 4).map((product) => (
+                <div key={product.id} className="overflow-hidden rounded-3xl border border-white/10 bg-slate-900">
+                  <img src={product.image} alt={product.shortTitle} className="h-56 w-full object-cover" />
+                </div>
+              ))}
+            </div>
+            <div className="mt-3 rounded-3xl bg-white p-5 text-slate-950">
+              <p className="text-sm font-black uppercase text-red-600">Mais vendidos em destaque</p>
+              <p className="mt-1 text-2xl font-black">Profissões, negócios, saúde e estudos em um só lugar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Metric({ value, label }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/10 p-4">
+      <p className="text-2xl font-black text-white">{value}</p>
+      <p className="text-xs font-bold uppercase text-slate-400">{label}</p>
+    </div>
+  );
+}
+
+function TrustBar() {
+  const items = ["Compra segura", "Entrega digital", "Acesso imediato", "Conteúdo prático", "Suporte no WhatsApp"];
+  return (
+    <section className="border-b border-white/10 bg-slate-900/70">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-3 px-4 py-5 md:grid-cols-5">
+        {items.map((item) => (
+          <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm font-black">
+            ✅ {item}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Featured({ products }) {
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-12">
+      <div className="mb-6 flex items-end justify-between gap-4">
+        <div>
+          <p className="text-sm font-black uppercase tracking-wide text-red-400">Produtos campeões</p>
+          <h3 className="mt-1 text-3xl font-black md:text-4xl">Comece por estes ebooks</h3>
+        </div>
+        <a href="#catalogo" className="hidden text-sm font-black text-red-300 hover:text-red-200 md:block">
+          Ver catálogo completo →
+        </a>
+      </div>
+
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {products.map((product, index) => (
+          <ProductCard key={product.id} product={product} index={index} featured />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Catalog({ products, activeCategory, setActiveCategory }) {
+  return (
+    <section id="catalogo" className="border-t border-white/10 bg-white py-12 text-slate-950">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="mb-6">
+          <p className="text-sm font-black uppercase tracking-wide text-red-600">Catálogo completo</p>
+          <h3 className="mt-1 text-3xl font-black md:text-4xl">Escolha seu próximo passo</h3>
+        </div>
+
+        <div className="mb-7 flex gap-2 overflow-x-auto pb-2">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`min-w-fit rounded-full px-5 py-3 text-sm font-black transition ${
+                activeCategory === category
+                  ? "bg-red-600 text-white shadow-lg shadow-red-600/20"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {products.map((product, index) => (
+            <ProductCard key={product.id} product={product} index={index} light />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProductCard({ product, index, light = false }) {
+  return (
+    <article
+      className={`group overflow-hidden rounded-[1.6rem] border shadow-xl transition hover:-translate-y-1 hover:shadow-2xl ${
+        light ? "border-slate-200 bg-white" : "border-white/10 bg-slate-900"
+      }`}
+    >
+      <div className="relative overflow-hidden bg-slate-950">
+        <img
+          src={product.image}
+          alt={product.title}
+          className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div className="absolute left-3 top-3 rounded-full bg-red-600 px-3 py-2 text-xs font-black text-white shadow-lg">
+          {index < 3 ? `TOP ${index + 1}` : product.badge}
+        </div>
       </div>
 
       <div className="p-5">
-        <h3 className="min-h-[52px] text-lg font-black leading-tight text-zinc-950">{p.title}</h3>
-        <p className="mt-2 text-sm text-zinc-500">{p.desc}</p>
-        <div className="mt-4 flex items-center gap-2 text-sm">
-          <span className="text-amber-400">★</span>
-          <strong>{p.rating}</strong>
-          <span className="text-zinc-500">({p.reviews})</span>
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <span className={`rounded-full px-3 py-1 text-xs font-black ${light ? "bg-slate-100" : "bg-white/10"}`}>
+            {product.category}
+          </span>
+          <span className="text-xs font-black text-red-500">{product.niche}</span>
         </div>
 
-        <div className="mt-4 flex items-end gap-4">
-          <strong className="text-2xl font-black text-[#d60000]">{money(p.price)}</strong>
-          <span className="pb-1 text-sm font-semibold text-zinc-400 line-through">{money(p.oldPrice)}</span>
+        <h4 className="min-h-[56px] text-xl font-black leading-tight">{product.shortTitle}</h4>
+        <p className={`mt-3 min-h-[72px] text-sm font-medium leading-relaxed ${light ? "text-slate-600" : "text-slate-300"}`}>
+          {product.description}
+        </p>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {product.highlights.slice(0, 2).map((highlight) => (
+            <span key={highlight} className={`rounded-full px-3 py-1 text-xs font-bold ${light ? "bg-red-50 text-red-700" : "bg-red-500/10 text-red-200"}`}>
+              {highlight}
+            </span>
+          ))}
         </div>
 
-        <button onClick={() => openUrl(p.url, p.title)} className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-[#d60000] px-4 py-4 text-sm font-black uppercase text-white shadow-lg shadow-red-200 transition hover:bg-[#b80000]">
-          🛒 Comprar agora
-        </button>
+        <div className="mt-5 flex items-end justify-between">
+          <div>
+            <p className={`text-xs font-bold line-through ${light ? "text-slate-400" : "text-slate-500"}`}>{money(product.oldPrice)}</p>
+            <p className="text-2xl font-black text-red-600">{money(product.price)}</p>
+          </div>
+          <p className={`text-right text-xs font-bold ${light ? "text-slate-500" : "text-slate-400"}`}>Acesso<br />imediato</p>
+        </div>
+
+        <div className="mt-5 grid grid-cols-2 gap-2">
+          <a
+            href={product.checkout}
+            target={product.checkout === "#" ? "_self" : "_blank"}
+            rel="noreferrer"
+            className="rounded-2xl bg-red-600 px-4 py-3 text-center text-sm font-black text-white shadow-lg shadow-red-600/20 transition hover:scale-105"
+          >
+            Comprar
+          </a>
+          <a
+            href={whatsappLink(product)}
+            target="_blank"
+            rel="noreferrer"
+            className={`rounded-2xl px-4 py-3 text-center text-sm font-black transition hover:scale-105 ${
+              light ? "bg-slate-100 text-slate-950" : "bg-white/10 text-white"
+            }`}
+          >
+            WhatsApp
+          </a>
+        </div>
       </div>
     </article>
   );
 }
 
-function StoreFront({ openAdmin }) {
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("Todos");
-
-  const activeProducts = productsBase.filter((p) => p.status === "Ativo");
-  const filtered = useMemo(() => {
-    const term = query.toLowerCase().trim();
-    return activeProducts.filter((p) => {
-      const matchesCategory = category === "Todos" || p.niche === category;
-      const matchesSearch = p.title.toLowerCase().includes(term) || p.niche.toLowerCase().includes(term);
-      return matchesCategory && matchesSearch;
-    });
-  }, [query, category]);
-
-  const whatsappText = encodeURIComponent("Olá! Vim pela loja Império Digital e quero saber mais sobre os e-books.");
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappText}`;
+function WhyBuy() {
+  const items = [
+    ["🎯", "Direto ao ponto", "Guias práticos para aplicar sem enrolação."],
+    ["📲", "Compra rápida", "Checkout simples e entrega digital."],
+    ["🚀", "Vários nichos", "Escolha entre profissão, saúde, estudos e organização."],
+  ];
 
   return (
-    <main className="min-h-screen bg-[#f6f7fb] text-zinc-950">
-      <div className="bg-[#d60000] text-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-center gap-6 px-4 py-3 text-center text-sm font-black uppercase tracking-wide lg:justify-between">
-          <span className="mx-auto">🔥 Ofertas ativas • E-books + Produtos afiliados • Entrega imediata</span>
-          <div className="hidden items-center gap-3 lg:flex">
-            <span className="font-semibold normal-case">Oferta expira em:</span>
-            {["02 Horas", "18 Min", "47 Seg"].map((item) => (
-              <span key={item} className="rounded-lg bg-[#7a0000] px-3 py-1 text-xs leading-tight">{item}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center gap-5 px-4 py-5">
-          <div
-            className="flex min-w-fit cursor-pointer select-none items-center gap-3"
-            onClick={() => {
-              const now = Date.now();
-              window.__adminClicks = (window.__adminClicks || []).filter((t) => now - t < 1800);
-              window.__adminClicks.push(now);
-              if (window.__adminClicks.length >= 7) {
-                openAdmin();
-                window.__adminClicks = [];
-              }
-            }}
-          >
-            <div className="grid h-14 w-14 place-items-center rounded-xl bg-[#d60000] text-3xl text-white shadow-xl shadow-red-200">🚀</div>
-            <div>
-              <p className="text-2xl font-black leading-none">Império Digital</p>
-              <p className="mt-1 text-sm font-semibold text-zinc-500">Loja Digital de Alta Conversão</p>
-            </div>
-          </div>
-
-          <div className="relative hidden flex-1 md:block">
-            <span className="absolute left-5 top-1/2 -translate-y-1/2 text-xl text-zinc-400">⌕</span>
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Buscar oportunidades, e-books e ofertas..."
-              className="w-full rounded-full border border-zinc-200 bg-zinc-50 px-14 py-4 text-sm font-medium outline-none transition focus:border-[#d60000] focus:bg-white"
-            />
-          </div>
-
-          <button className="hidden h-14 w-14 place-items-center rounded-full border border-zinc-200 bg-white text-2xl shadow-sm lg:grid">🛒</button>
-          <a href="#catalogo" className="rounded-xl bg-[#d60000] px-8 py-4 text-sm font-black text-white shadow-lg shadow-red-200 transition hover:bg-[#b80000]">
-            Comprar Agora
-          </a>
-        </div>
-      </header>
-
-      <section className="relative overflow-hidden bg-[#060606]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_45%,rgba(220,0,0,.50)_0%,rgba(122,0,0,.22)_24%,rgba(0,0,0,.88)_58%,#050505_100%)]" />
-        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "linear-gradient(115deg, transparent 0%, transparent 47%, rgba(255,0,0,.25) 47.2%, transparent 49%), radial-gradient(circle at 72% 42%, rgba(255,0,0,.45), transparent 24%)" }} />
-
-        <div className="relative mx-auto grid min-h-[560px] max-w-7xl items-center gap-10 px-4 py-12 lg:grid-cols-[1fr_.9fr]">
-          <div>
-            <p className="inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-black uppercase tracking-wide text-red-400 ring-1 ring-white/10">
-              Mais vendas • Impacto • Energia
-            </p>
-
-            <h1 className="mt-7 max-w-3xl text-5xl font-black leading-[0.98] tracking-[-0.055em] text-white md:text-7xl">
-              Produtos digitais que resolvem problemas e <span className="text-[#ff1f1f]">vendem todos os dias.</span>
-            </h1>
-
-            <p className="mt-6 max-w-2xl text-xl font-medium leading-8 text-white/80">
-              Catálogo profissional com os melhores produtos próprios e ofertas afiliadas em uma única estrutura.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a href="#catalogo" className="flex items-center justify-center gap-3 rounded-xl bg-[#d60000] px-10 py-5 text-sm font-black uppercase text-white shadow-[0_18px_45px_rgba(214,0,0,.35)] transition hover:bg-[#ff1111]">
-                🛒 Ver catálogo
-              </a>
-              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 rounded-xl border border-white/40 bg-black/20 px-10 py-5 text-sm font-black uppercase text-white transition hover:bg-white hover:text-black">
-                ☎ Falar no WhatsApp
-              </a>
-            </div>
-
-            <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                ["🛡️", "Compra 100% Segura", "Seus dados protegidos"],
-                ["⚡", "Entrega Imediata", "Acesso após confirmação"],
-                ["🏅", "Satisfação Garantida", "7 dias de garantia"],
-                ["🎧", "Suporte Especializado", "Atendimento rápido"],
-              ].map(([icon, title, text]) => (
-                <div key={title} className="flex items-center gap-3 rounded-2xl bg-white/5 p-3 ring-1 ring-white/10">
-                  <div className="grid h-11 w-11 place-items-center rounded-full bg-white/10 text-xl">{icon}</div>
-                  <div>
-                    <p className="text-sm font-black text-white">{title}</p>
-                    <p className="text-xs text-white/60">{text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative hidden min-h-[500px] lg:block">
-            <div className="absolute left-10 top-24 rotate-[-12deg] rounded-3xl border border-red-500/30 bg-red-950/40 p-5 text-center text-white shadow-[0_0_40px_rgba(255,0,0,.25)]">
-              <div className="text-4xl">📚</div>
-              <p className="mt-2 text-xs font-black uppercase">E-books</p>
-            </div>
-            <div className="absolute right-4 top-36 rotate-[14deg] rounded-3xl border border-red-500/30 bg-red-950/40 p-5 text-center text-white shadow-[0_0_40px_rgba(255,0,0,.25)]">
-              <div className="text-4xl">▶️</div>
-              <p className="mt-2 text-xs font-black uppercase">Cursos</p>
-            </div>
-            <div className="absolute left-0 bottom-24 rotate-[-10deg] rounded-3xl border border-red-500/30 bg-red-950/40 p-5 text-center text-white shadow-[0_0_40px_rgba(255,0,0,.25)]">
-              <div className="text-4xl">▦</div>
-              <p className="mt-2 text-xs font-black uppercase">Planilhas</p>
-            </div>
-
-            <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-600/25 blur-3xl" />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[46%] text-[15rem] drop-shadow-[0_40px_80px_rgba(255,0,0,.35)]">
-              🚀
-            </div>
-            <div className="absolute bottom-2 left-1/2 h-32 w-[500px] -translate-x-1/2 rounded-[100%] bg-white/25 blur-3xl" />
-          </div>
-        </div>
-      </section>
-
-      <section className="relative z-20 -mt-7 px-4">
-        <div className="mx-auto flex max-w-7xl gap-3 overflow-x-auto rounded-2xl bg-white p-3 shadow-[0_18px_45px_rgba(15,23,42,.12)] ring-1 ring-zinc-200">
-          {categories.map(([name, icon]) => (
-            <button
-              key={name}
-              onClick={() => setCategory(name)}
-              className={`flex min-w-fit items-center gap-2 rounded-xl px-5 py-3 text-sm font-black transition ${
-                category === name ? "bg-red-50 text-[#d60000]" : "text-zinc-800 hover:bg-zinc-50"
-              }`}
-            >
-              <span>{icon}</span>
-              {name}
-            </button>
-          ))}
-          <button className="ml-auto hidden min-w-fit items-center gap-2 rounded-xl bg-zinc-50 px-5 py-3 text-sm font-black text-zinc-800 lg:flex">▦ Mais Categorias</button>
-        </div>
-      </section>
-
-      <section id="catalogo" className="mx-auto max-w-7xl px-4 py-10 pb-28">
-        <div className="mb-6 flex items-end justify-between">
-          <div>
-            <p className="text-lg font-black uppercase text-zinc-900">🚀 Produtos em destaque</p>
-          </div>
-          <a href="#catalogo" className="hidden text-sm font-semibold text-zinc-600 hover:text-[#d60000] md:block">Ver todos os produtos →</a>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {filtered.slice(0, 8).map((p) => <ProductCard key={p.id} p={p} />)}
-        </div>
-
-        <div className="mt-10 grid gap-4 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-zinc-200 md:grid-cols-4">
-          {[
-            ["🛡️", "Compra 100% Segura", "Seus dados protegidos"],
-            ["☁️", "Acesso Imediato", "Após a confirmação"],
-            ["🏅", "Satisfação Garantida", "7 dias de garantia"],
-            ["🎧", "Suporte Especializado", "Atendimento rápido"],
-          ].map(([icon, title, text]) => (
-            <div key={title} className="flex items-center gap-4">
-              <div className="text-3xl">{icon}</div>
-              <div>
-                <p className="font-black">{title}</p>
-                <p className="text-sm text-zinc-500">{text}</p>
-              </div>
+    <section className="bg-slate-950 px-4 py-14">
+      <div className="mx-auto max-w-7xl">
+        <h3 className="text-3xl font-black md:text-4xl">Por que comprar no Império Digital?</h3>
+        <div className="mt-7 grid gap-4 md:grid-cols-3">
+          {items.map(([icon, title, text]) => (
+            <div key={title} className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6">
+              <div className="text-4xl">{icon}</div>
+              <h4 className="mt-4 text-xl font-black">{title}</h4>
+              <p className="mt-2 font-medium leading-relaxed text-slate-300">{text}</p>
             </div>
           ))}
         </div>
-      </section>
-
-      <a href={whatsappUrl} target="_blank" rel="noreferrer" className="fixed bottom-28 right-6 z-50 grid h-16 w-16 place-items-center rounded-full bg-green-500 text-3xl text-white shadow-2xl transition hover:scale-105">
-        ☎
-      </a>
-
-      <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 overflow-hidden rounded-t-xl bg-white shadow-[0_-15px_50px_rgba(15,23,42,.16)]">
-        <a href={whatsappUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 px-4 py-4 text-sm font-black text-zinc-950">
-          <span className="grid h-11 w-11 place-items-center rounded-full bg-green-500 text-xl text-white">☎</span>
-          <span className="hidden sm:block">Falar no WhatsApp<br /><small className="font-semibold text-zinc-500">Atendimento rápido</small></span>
-        </a>
-        <a href="#catalogo" className="flex items-center justify-center gap-3 bg-[#d60000] px-4 py-4 text-sm font-black uppercase text-white">
-          🛒 Ver catálogo
-          <span className="hidden normal-case opacity-90 sm:inline">Ver todos os produtos</span>
-        </a>
       </div>
-    </main>
+    </section>
   );
 }
 
-function LoginPage({ onLogin, goStore }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  function submitLogin() {
-    if (email.trim().toLowerCase() === "admin@imperiodigital.com" && password === "admin123") onLogin();
-    else alert("E-mail ou senha incorretos.");
-  }
+function Faq() {
+  const faqs = [
+    ["Como recebo o ebook?", "Após a compra, você recebe o acesso digital pelo checkout da Kiwify."],
+    ["Posso acessar pelo celular?", "Sim. Os ebooks são digitais e podem ser acessados pelo celular, tablet ou computador."],
+    ["Tenho suporte?", "Sim. Você pode chamar no WhatsApp para tirar dúvidas sobre a compra."],
+  ];
 
   return (
-    <main className="grid min-h-screen place-items-center bg-[#f6f7fb] px-4">
-      <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl">
-        <button onClick={goStore} className="mb-6 text-sm font-black text-[#d60000]">← Voltar para loja</button>
-        <div className="text-4xl">🔐</div>
-        <h1 className="mt-4 text-3xl font-black">Entrar no Admin</h1>
-        <p className="mt-2 text-sm text-zinc-500">Área privada do catálogo.</p>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="admin@imperiodigital.com" className="mt-6 w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none" />
-        <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Senha" type="password" className="mt-3 w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none" />
-        <button onClick={submitLogin} className="mt-5 w-full rounded-2xl bg-[#d60000] px-4 py-4 font-black text-white">Entrar</button>
-        <div className="mt-5 rounded-2xl bg-zinc-50 p-4 text-sm text-zinc-600">
-          <p><b>E-mail:</b> admin@imperiodigital.com</p>
-          <p><b>Senha:</b> admin123</p>
+    <section className="bg-white px-4 py-14 text-slate-950">
+      <div className="mx-auto max-w-4xl">
+        <h3 className="text-center text-3xl font-black md:text-4xl">Dúvidas Frequentes</h3>
+        <div className="mt-7 space-y-3">
+          {faqs.map(([q, a]) => (
+            <details key={q} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <summary className="cursor-pointer text-lg font-black">{q}</summary>
+              <p className="mt-3 font-medium leading-relaxed text-slate-600">{a}</p>
+            </details>
+          ))}
         </div>
       </div>
-    </main>
+    </section>
   );
 }
 
-function AdminPanel({ products, setProducts, openStore, onLogout }) {
+function Footer() {
   return (
-    <main className="min-h-screen bg-[#0f1115] p-6 text-white">
-      <div className="mx-auto max-w-5xl">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-black">Painel Admin</h1>
-            <p className="text-zinc-400">Controle privado da loja.</p>
-          </div>
-          <div className="flex gap-3">
-            <button onClick={openStore} className="rounded-xl bg-white px-4 py-3 font-black text-zinc-950">Ver loja</button>
-            <button onClick={onLogout} className="rounded-xl border border-white/20 px-4 py-3 font-black">Sair</button>
-          </div>
-        </div>
-        <div className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-6">
-          <p className="text-xl font-black">Produtos cadastrados: {products.length}</p>
-          <p className="mt-2 text-zinc-400">Versão premium visual publicada. Próximo passo: conectar CRUD real no Supabase.</p>
-        </div>
-      </div>
-    </main>
+    <footer className="border-t border-white/10 bg-slate-950 px-4 py-10 pb-28 text-center md:pb-10">
+      <h3 className="text-2xl font-black">{BRAND}</h3>
+      <p className="mt-2 text-sm font-medium text-slate-400">Ebooks práticos para quem quer aprender, evoluir e comprar com facilidade.</p>
+      <p className="mt-5 text-xs text-slate-500">© {new Date().getFullYear()} {BRAND}. Todos os direitos reservados.</p>
+    </footer>
   );
 }
 
-function App() {
-  const [route, setRoute] = useState(window.location.pathname === "/admin" ? "/login" : window.location.pathname || "/");
-  const [isLogged, setIsLogged] = useState(false);
-  const [products, setProducts] = useState(productsBase);
-
-  function navigate(path) {
-    window.history.pushState({}, "", path);
-    setRoute(path);
-  }
-
-  function openAdmin() {
-    navigate(isLogged ? "/admin" : "/login");
-  }
-
-  function logout() {
-    setIsLogged(false);
-    navigate("/");
-  }
-
-  if (route === "/login") return <LoginPage onLogin={() => { setIsLogged(true); navigate("/admin"); }} goStore={() => navigate("/")} />;
-
-  if (route === "/admin") {
-    if (!isLogged) return <LoginPage onLogin={() => { setIsLogged(true); navigate("/admin"); }} goStore={() => navigate("/")} />;
-    return <AdminPanel products={products} setProducts={setProducts} openStore={() => navigate("/")} onLogout={logout} />;
-  }
-
-  return <StoreFront products={products} openAdmin={openAdmin} />;
+function StickyCta() {
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-slate-950/95 p-3 backdrop-blur-xl md:hidden">
+      <div className="grid grid-cols-2 gap-2">
+        <a href={whatsappLink()} target="_blank" rel="noreferrer" className="rounded-2xl bg-green-500 px-4 py-3 text-center text-sm font-black text-white">
+          WhatsApp
+        </a>
+        <a href="#catalogo" className="rounded-2xl bg-red-600 px-4 py-3 text-center text-sm font-black text-white">
+          Ver Catálogo
+        </a>
+      </div>
+    </div>
+  );
 }
 
 createRoot(document.getElementById("root")).render(<App />);
