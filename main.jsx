@@ -1,7 +1,3 @@
-// ULTRA FINAL - use este arquivo em src/main.jsx
-// Mantive seus produtos, preços e links. Versão pensada para conversão, mobile e tráfego pago.
-// Se já existe um main.jsx, substitua tudo por este conteúdo.
-
 import React, { useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
