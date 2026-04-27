@@ -305,13 +305,31 @@ function CheckoutPage(){
 function ThankYouPage(){
   const [order,setOrder] = useState(null);
   React.useEffect(()=>{setOrder(JSON.parse(localStorage.getItem('imperio_last_order') || 'null'))},[]);
-  return <main className="thanksPage"><section>
-    <div>✅</div><p className="red">PEDIDO RECEBIDO</p><h1>Obrigado pela compra!</h1>
-    <span>Se o pagamento foi aprovado, seu acesso será liberado. Esta é a primeira versão com checkout próprio.</span>
-    {order?.cart?.length > 0 && <div className="thanksProducts">{order.cart.map(item=><article key={item.id}><img src={item.img} alt={item.title}/><b>{item.title}</b><a href={item.link} target="_blank" rel="noreferrer">Abrir acesso atual</a></article>)}</div>}
-    <a className="thanksBtn" href="/">Voltar para o site</a>
-  </section></main>
+
+  const ebookLink = '/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf';
+
+  return <main className="thanksPage">
+    <section>
+      <div>✅</div>
+      <p className="red">COMPRA APROVADA</p>
+      <h1>Seu ebook está liberado!</h1>
+      <span>Obrigado pela compra. Clique no botão abaixo para baixar seu ebook agora.</span>
+
+      <div className="thanksProducts">
+        <article>
+          <img src="/vendas-digitais.png" alt="Ganhe Seus Primeiros R$10 Online Hoje"/>
+          <b>Ganhe Seus Primeiros R$10 Online Hoje</b>
+          <a href={ebookLink} download>Baixar Ebook Agora</a>
+        </article>
+      </div>
+
+      <a className="thanksBtn" href={ebookLink} download>📥 Baixar meu ebook</a>
+      <a className="thanksBtn" href={wa()} target="_blank" rel="noreferrer">💬 Falar com suporte</a>
+      <a className="thanksBtn" href="/">Voltar para o site</a>
+    </section>
+  </main>
 }
+
 
 function CartDrawer({cart,open,setOpen,removeFromCart}){
   const total = cart.reduce((sum,p)=>sum + priceNumber(p.price),0);
