@@ -46,6 +46,7 @@ function App(){
     <TopNotice />
     <Header search={search} setSearch={setSearch}/>
     <Hero best={best}/>
+    <MicroR1 />
     <TrustBar/>
     <Best best={best}/>
     <Filters filter={filter} setFilter={setFilter}/>
@@ -94,6 +95,33 @@ function Phone({product}){return <aside className="phone"><div className="screen
   <div className="phoneCats"><span>💼 Negócios</span><span>🎓 Educação</span><span>💚 Saúde</span></div>
   <h3>MAIS VENDIDO</h3><div className="phoneCard"><img src={product.img} alt={product.title}/><div><b>{product.title}</b><strong>{product.price}</strong><a href={product.link}>QUERO ESTE</a></div></div>
 </div></aside>}
+
+
+function MicroR1(){return <section id="r1" className="microR1">
+  <div className="microR1Badge">🔥 NOVA ÁREA • PRODUTOS DIGITAIS ACESSÍVEIS</div>
+  <div className="microR1Wrap">
+    <div className="microR1Copy">
+      <p>COMECE COM POUCO</p>
+      <h2>Produtos digitais <span>a partir de R$1</span></h2>
+      <b>Escolha, compre e receba na hora.</b>
+      <small>Uma vitrine criada para ofertas rápidas, produtos baratos e entrada em massa de novos clientes no Império Digital.</small>
+      <div className="microR1Actions">
+        <a href="#catalogo">Ver produtos</a>
+        <a href="#best">Mais vendidos</a>
+      </div>
+    </div>
+    <div className="microR1Card">
+      <div className="microR1Top">OFERTA DE ENTRADA</div>
+      <strong>R$1+</strong>
+      <p>Produtos rápidos, práticos e acessíveis</p>
+      <ul>
+        <li>⚡ Acesso imediato</li>
+        <li>🛡️ Compra segura</li>
+        <li>📚 Conteúdo direto ao ponto</li>
+      </ul>
+    </div>
+  </div>
+</section>}
 
 function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pela Kiwify</b><p>Checkout protegido.</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação.</p></div><div>🎧<b>Suporte no WhatsApp</b><p>Atendimento rápido.</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança.</p></div></section>}
 
