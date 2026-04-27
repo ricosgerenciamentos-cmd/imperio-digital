@@ -19,17 +19,31 @@ export default async function handler(req, res) {
       { id: 2, title: 'Barbearia', price: 13 },
       { id: 3, title: 'Vendas Digitais', price: 14 },
       { id: 4, title: 'Reeducação Alimentar', price: 13 },
-      { id: 5, title: 'Vestibular', price: 17 }
+      { id: 5, title: 'Vestibular', price: 9 },
+      { id: 6, title: 'Estética', price: 13 },
+      { id: 7, title: 'Corte e Costura', price: 13 },
+      { id: 8, title: 'Confeitaria', price: 13 },
+      { id: 9, title: 'Pedras Preciosas', price: 14 },
+      { id: 10, title: 'Ferro Velho', price: 14 },
+      { id: 11, title: 'Negócio Organizado', price: 9 },
+      { id: 12, title: 'Tarefas Diárias', price: 13 },
+      { id: 13, title: 'Guia da Sobriedade', price: 9 }
     ];
 
-    const { items, customer } = req.body;
+    const { items, cart, customer } = req.body;
 
-    if (!items || !Array.isArray(items) || items.length === 0) {
+    const receivedItems = Array.isArray(items)
+      ? items
+      : Array.isArray(cart)
+        ? cart.map(item => ({ id: item.id, qty: 1 }))
+        : [];
+
+    if (receivedItems.length === 0) {
       return res.status(400).json({ error: 'Carrinho vazio' });
     }
 
-    const cart = items.map((item) => {
-      const found = PRODUCTS.find((p) => p.id === item.id);
+    const mercadoPagoItems = receivedItems.map((item) => {
+      const found = PRODUCTS.find((p) => p.id === Number(item.id));
       if (!found) throw new Error('Produto inválido');
 
       return {
@@ -40,7 +54,7 @@ export default async function handler(req, res) {
       };
     });
 
-    const total = cart.reduce((sum, item) => {
+    const total = mercadoPagoItems.reduce((sum, item) => {
       return sum + item.unit_price * item.quantity;
     }, 0);
 
@@ -51,15 +65,15 @@ export default async function handler(req, res) {
     const baseUrl = process.env.SITE_URL || 'https://imperio-digital-gray.vercel.app';
 
     const body = {
-      items: cart,
+      items: mercadoPagoItems,
       payer: {
         name: customer?.name || '',
         email: customer?.email || ''
       },
       back_urls: {
-        success: baseUrl,
-        failure: baseUrl,
-        pending: baseUrl
+        success: `${baseUrl}/obrigado`,
+        failure: `${baseUrl}/checkout`,
+        pending: `${baseUrl}/obrigado`
       },
       auto_return: 'approved'
     };
