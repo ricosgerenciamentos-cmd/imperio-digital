@@ -45,6 +45,7 @@ function waCart(cart){
 }
 
 function App(){
+  const path = window.location.pathname;
   const [filter,setFilter] = useState('todos');
   const [search,setSearch] = useState('');
   const [cart,setCart] = useState([]);
@@ -64,6 +65,9 @@ function App(){
     const bySearch = `${p.title} ${p.cat} ${p.intent} ${p.tag}`.toLowerCase().includes(search.toLowerCase());
     return byFilter && bySearch;
   }), [filter,search]);
+
+  if(path === '/checkout') return <CheckoutPage />;
+  if(path === '/obrigado') return <ThankYouPage />;
 
   return <main>
     <TopNotice />
@@ -211,6 +215,73 @@ function Testimonials(){return <section className="test"><h2>O que nossos <span>
 function FinalCTA(){return <section className="final"><div>♛</div><section><h2>Invista em você. Comece hoje.</h2><p>Escolha um ebook, acesse agora e dê o próximo passo.</p></section><a href="#best">Comprar Agora →</a></section>}
 function Footer(){return <footer><span>♛ IMPÉRIO DIGITAL</span><b>Compra segura • Acesso imediato • Suporte WhatsApp • Garantia 7 dias</b></footer>}
 
+
+function CheckoutPage(){
+  const [cart,setCart] = useState([]);
+  const [customer,setCustomer] = useState({name:'',email:'',whatsapp:''});
+  const [loading,setLoading] = useState(false);
+  const [error,setError] = useState('');
+
+  React.useEffect(()=>{setCart(JSON.parse(localStorage.getItem('imperio_cart') || '[]'))},[]);
+  const total = cart.reduce((sum,p)=>sum + priceNumber(p.price),0);
+
+  async function finishCheckout(e){
+    e.preventDefault();
+    setError('');
+    if(cart.length === 0) return setError('Seu carrinho está vazio.');
+    if(total < 3) return setError('Compra mínima de R$3,00 para finalizar no checkout.');
+    if(!customer.name || !customer.email || !customer.whatsapp) return setError('Preencha nome, email e WhatsApp.');
+
+    try{
+      setLoading(true);
+      const res = await fetch('/api/create-preference',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cart,customer})});
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.error || 'Erro ao criar pagamento.');
+      localStorage.setItem('imperio_last_order', JSON.stringify({cart,customer,total}));
+      window.location.href = data.init_point;
+    }catch(err){
+      setError(err.message || 'Erro inesperado.');
+    }finally{
+      setLoading(false);
+    }
+  }
+
+  return <main className="checkoutPage">
+    <a className="checkoutLogo" href="/">♛ IMPÉRIO <span>DIGITAL</span></a>
+    <section className="checkoutShell">
+      <form className="checkoutForm" onSubmit={finishCheckout}>
+        <p className="red">CHECKOUT SEGURO</p>
+        <h1>Finalize sua compra</h1>
+        <span className="checkoutLead">Preencha seus dados e pague com Pix ou cartão pelo Mercado Pago.</span>
+        <label>Nome completo<input value={customer.name} onChange={e=>setCustomer({...customer,name:e.target.value})} placeholder="Seu nome"/></label>
+        <label>Email<input type="email" value={customer.email} onChange={e=>setCustomer({...customer,email:e.target.value})} placeholder="seuemail@exemplo.com"/></label>
+        <label>WhatsApp<input value={customer.whatsapp} onChange={e=>setCustomer({...customer,whatsapp:e.target.value})} placeholder="(11) 99999-9999"/></label>
+        {error && <div className="checkoutError">{error}</div>}
+        <button disabled={loading}>{loading ? 'Gerando pagamento...' : 'Pagar com Mercado Pago'}</button>
+        <small>🔒 Pagamento protegido. Você será redirecionado ao ambiente seguro do Mercado Pago.</small>
+      </form>
+      <aside className="checkoutSummary">
+        <h2>Resumo do pedido</h2>
+        {cart.length === 0 ? <p>Seu carrinho está vazio.</p> : cart.map(item=><div className="summaryItem" key={item.id}><img src={item.img} alt={item.title}/><div><b>{item.title}</b><span>{item.price}</span></div></div>)}
+        <div className="summaryTotal"><span>Total</span><strong>R$ {total.toFixed(2).replace('.',',')}</strong></div>
+        <em>Compra mínima: R$3,00</em>
+        <a href="/">Continuar comprando</a>
+      </aside>
+    </section>
+  </main>
+}
+
+function ThankYouPage(){
+  const [order,setOrder] = useState(null);
+  React.useEffect(()=>{setOrder(JSON.parse(localStorage.getItem('imperio_last_order') || 'null'))},[]);
+  return <main className="thanksPage"><section>
+    <div>✅</div><p className="red">PEDIDO RECEBIDO</p><h1>Obrigado pela compra!</h1>
+    <span>Se o pagamento foi aprovado, seu acesso será liberado. Esta é a primeira versão com checkout próprio.</span>
+    {order?.cart?.length > 0 && <div className="thanksProducts">{order.cart.map(item=><article key={item.id}><img src={item.img} alt={item.title}/><b>{item.title}</b><a href={item.link} target="_blank" rel="noreferrer">Abrir acesso atual</a></article>)}</div>}
+    <a className="thanksBtn" href="/">Voltar para o site</a>
+  </section></main>
+}
+
 function CartDrawer({cart,open,setOpen,removeFromCart}){
   const total = cart.reduce((sum,p)=>sum + priceNumber(p.price),0);
   return <div className={open ? "cartOverlay open" : "cartOverlay"}>
@@ -241,8 +312,8 @@ function CartDrawer({cart,open,setOpen,removeFromCart}){
 
       <div className="cartFooter">
         <div><span>Total aproximado</span><strong>R$ {total.toFixed(2).replace('.',',')}</strong></div>
-        {cart.length > 0 && <a href={waCart(cart)} target="_blank" rel="noreferrer">Finalizar pedido</a>}
-        <small>Pedido finalizado pelo WhatsApp. Para pagamento único automático, a próxima etapa é integrar checkout próprio.</small>
+        {cart.length > 0 && <button className="checkoutNow" onClick={()=>{localStorage.setItem('imperio_cart', JSON.stringify(cart)); window.location.href='/checkout';}}>Finalizar compra</button>}
+        <small>Pagamento único pelo Mercado Pago. Pix e cartão no checkout seguro.</small>
       </div>
     </aside>
   </div>
