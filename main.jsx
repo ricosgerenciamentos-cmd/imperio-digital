@@ -69,31 +69,47 @@ function Header({search,setSearch}){return <header className="header">
   <a className="headBtn" href="#best">Comprar Agora</a>
 </header>}
 
-function Hero({best}){return <section id="top" className="hero">
+function Hero({best}){return <section id="top" className="hero heroPremium">
   <div className="copy">
-    <p className="eyebrow">CONHECIMENTO QUE TRANSFORMA ♛</p>
-    <h1>Aprenda hoje.<br/><span>Transforme</span> sua vida.</h1>
+    <p className="eyebrow">⚡ CONHECIMENTO QUE TRANSFORMA</p>
+    <h1>Aprenda hoje.<br/><span>Transforme</span><br/>sua vida.</h1>
     <p className="lead">Ebooks práticos, acessíveis e diretos para aprender, empreender, organizar sua rotina e cuidar melhor de você.</p>
-    <div className="socialProof"><b>⭐ 4.9/5</b><span>+1.000 acessos entregues</span><span>Compra protegida</span></div>
-    <div className="heroTrust"><span>🛡️ Compra segura</span><span>⚡ Acesso imediato</span><span>🎧 Suporte WhatsApp</span><span>🏅 Garantia 7 dias</span></div>
-    <div className="actions"><a className="primary pulse" href="#best">Comprar Agora</a><a className="secondary" href="#catalogo">Ver catálogo</a></div>
+
+    <div className="heroTrust premiumTrust">
+      <span>🛡️ <b>Compra segura</b><small>Protegido pela Kiwify</small></span>
+      <span>⚡ <b>Acesso imediato</b><small>Baixe na hora</small></span>
+      <span>🏅 <b>Conteúdo de qualidade</b><small>Selecionado para você</small></span>
+      <span>🎧 <b>Suporte dedicado</b><small>No WhatsApp</small></span>
+    </div>
+
+    <div className="socialProof premiumProof">
+      <b>⭐ 4.9/5</b>
+      <span>+1.000 acessos entregues</span>
+    </div>
+
+    <div className="actions">
+      <a className="primary pulse" href="#r1">Comprar agora por R$1</a>
+      <a className="secondary" href={wa()} target="_blank" rel="noreferrer">Falar no WhatsApp</a>
+    </div>
+    <p className="secureLine">🔒 Compra segura • Ambiente protegido • Privacidade garantida</p>
   </div>
-  <div className="scene">
-    <div className="tablet"><div className="tabletTop">☰ <b>Império Digital</b> ⌕</div><div className="tabletGrid">{best.concat(products.filter(p=>!p.hidden).slice(4,9)).map(p=><img key={p.id} src={p.img} alt={p.title}/>)}</div></div>
-    <div className="mug">♛<b>IMPÉRIO</b><small>DIGITAL</small></div>
+
+  <div className="phoneStage">
+    <div className="orbit"></div>
+    <Phone product={best[0]}/>
+    <div className="floatNote noteOne">🆕 Novos produtos<br/>toda semana</div>
+    <div className="floatNote noteTwo">🏷️ Produtos a partir<br/>de R$1</div>
+    <div className="floatNote noteThree">🔒 Compra segura<br/>e protegida</div>
   </div>
-  <Phone product={best[0]}/>
 </section>}
 
-function Phone({product}){return <aside className="phone"><div className="screen">
-  <div className="phoneNav">☰ <b>♛ IMPÉRIO <small>DIGITAL</small></b> ▢</div>
-  <p className="phoneTiny">CONHECIMENTO QUE TRANSFORMA</p><h2>Aprenda hoje.<br/><span>Transforme</span> sua vida.</h2>
-  <p>Ebooks práticos para mudar de vida com conhecimento.</p>
-  <ul><li>🛡️ Compra segura</li><li>⚡ Acesso imediato</li><li>🏅 Conteúdo de qualidade</li><li>🎧 Suporte dedicado</li></ul>
-  <a className="phoneBtn" href="#best">COMPRAR AGORA</a>
-  <h3>CATEGORIAS <a href="#catalogo">Ver todas</a></h3>
-  <div className="phoneCats"><span>💼 Negócios</span><span>🎓 Educação</span><span>💚 Saúde</span></div>
-  <h3>MAIS VENDIDO</h3><div className="phoneCard"><img src={product.img} alt={product.title}/><div><b>{product.title}</b><strong>{product.price}</strong><a href={product.link}>QUERO ESTE</a></div></div>
+function Phone({product}){return <aside className="phone premiumPhone"><div className="screen">
+  <div className="phoneNav">☰ <b>♛ IMPÉRIO <small>DIGITAL</small></b> 🛒</div>
+  <h3 className="phoneSectionTitle">MAIS VENDIDOS <a href="#best">Ver todos</a></h3>
+  <div className="phoneProductGrid">
+    {products.filter(p=>!p.hidden).slice(0,6).map(p=><img key={p.id} src={p.img} alt={p.title}/>)}
+  </div>
+  <a className="phoneBtn" href="#catalogo">VER TODOS OS EBOOKS</a>
 </div></aside>}
 
 
