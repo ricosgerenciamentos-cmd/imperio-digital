@@ -32,9 +32,32 @@ function wa(p){
   return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(txt)}`;
 }
 
+
+function priceNumber(price){
+  return Number(String(price).replace(/[^\d,]/g,'').replace(',','.')) || 0;
+}
+
+function waCart(cart){
+  const total = cart.reduce((sum,p)=>sum + priceNumber(p.price),0);
+  const itens = cart.map((p,i)=>`${i+1}. ${p.title} - ${p.price}`).join('\n');
+  const txt = `Olá! Quero finalizar meu pedido no Império Digital:\n\n${itens}\n\nTotal aproximado: R$ ${total.toFixed(2).replace('.',',')}`;
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(txt)}`;
+}
+
 function App(){
   const [filter,setFilter] = useState('todos');
   const [search,setSearch] = useState('');
+  const [cart,setCart] = useState([]);
+  const [cartOpen,setCartOpen] = useState(false);
+
+  function addToCart(product){
+    setCart(current => current.some(item => item.id === product.id) ? current : [...current, product]);
+    setCartOpen(true);
+  }
+
+  function removeFromCart(id){
+    setCart(current => current.filter(item => item.id !== id));
+  }
   const best = products.filter(p => bestIds.includes(p.id));
   const list = useMemo(() => products.filter(p => {
     const byFilter = filter === 'todos' ? !p.hidden : p.intent === filter;
@@ -44,29 +67,31 @@ function App(){
 
   return <main>
     <TopNotice />
-    <Header search={search} setSearch={setSearch}/>
+    <Header search={search} setSearch={setSearch} cartCount={cart.length} setCartOpen={setCartOpen}/>
     <Hero best={best}/>
     <MicroR1 />
     <TrustBar/>
-    <Best best={best}/>
+    <Best best={best} addToCart={addToCart}/>
     <Filters filter={filter} setFilter={setFilter}/>
-    <Catalog list={list}/>
+    <Catalog list={list} addToCart={addToCart}/>
     <OfferBanner/>
     <AffiliateSystem/>
     <FAQ/>
     <Testimonials/>
     <FinalCTA/>
     <Footer/>
+    <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
     <FloatingButtons/>
   </main>
 }
 
 function TopNotice(){return <div className="notice">🔥 Oferta especial de lançamento • Acesso imediato • Compra segura pela Kiwify • Suporte no WhatsApp</div>}
 
-function Header({search,setSearch}){return <header className="header">
+function Header({search,setSearch,cartCount,setCartOpen}){return <header className="header">
   <a className="logo" href="#top"><span>♛</span><div><b>IMPÉRIO</b><small>DIGITAL</small></div></a>
   <nav><a href="#top">Início</a><a href="#best">Mais vendidos</a><a href="#catalogo">Ebooks</a><a href="#afiliados">Afiliados</a><a href="#faq">Perguntas</a><a href={wa()} target="_blank" rel="noreferrer">Contato</a></nav>
   <label className="search"><span>⌕</span><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar ebook"/></label>
+  <button className="cartBtn" onClick={()=>setCartOpen(true)}>🛒 <span>{cartCount}</span></button>
   <a className="headBtn" href="#best">Comprar Agora</a>
 </header>}
 
@@ -150,13 +175,13 @@ function MicroR1(){return <section id="r1" className="microR1">
 
 function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pela Kiwify</b><p>Checkout protegido.</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação.</p></div><div>🎧<b>Suporte no WhatsApp</b><p>Atendimento rápido.</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança.</p></div></section>}
 
-function Best({best}){return <section id="best" className="best"><p className="red">MAIS VENDIDOS DA SEMANA</p><h2>Escolha seu ebook e comece hoje</h2><p className="sub">Produtos com maior potencial para compra rápida.</p><div className="bestGrid">{best.map(p=><Product p={p} compact key={p.id}/>)}</div></section>}
+function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS VENDIDOS DA SEMANA</p><h2>Escolha seu ebook e comece hoje</h2><p className="sub">Produtos com maior potencial para compra rápida.</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
 
 function Filters({filter,setFilter}){return <section className="filters"><h2>Escolha pelo seu <span>objetivo</span></h2><div>{filters.map(([id,label])=><button key={id} onClick={()=>setFilter(id)} className={filter===id?'active':''}>{label}</button>)}</div></section>}
 
-function Catalog({list}){return <section id="catalogo" className="catalog"><p className="red">CATÁLOGO COMPLETO</p><h2>Todos os Ebooks</h2><p className="sub">Produtos low ticket, diretos e prontos para acesso.</p><div className="grid">{list.map(p=><Product p={p} key={p.id}/>)}</div></section>}
+function Catalog({list,addToCart}){return <section id="catalogo" className="catalog"><p className="red">CATÁLOGO COMPLETO</p><h2>Todos os Ebooks</h2><p className="sub">Produtos low ticket, diretos e prontos para acesso.</p><div className="grid">{list.map(p=><Product p={p} addToCart={addToCart} key={p.id}/>)}</div></section>}
 
-function Product({p,compact}){return <article className={compact?'card compact':'card'}><div className="imgWrap"><img src={p.img} alt={p.title}/><span>{p.tag}</span></div><div className="body"><h3>{p.title}</h3><p>{p.desc}</p><small>De {p.old}</small><strong>Por {p.price}</strong><em>Oferta de lançamento</em><a className="buy" href={p.link} target="_blank" rel="noreferrer">COMPRAR AGORA</a><a className="zap" href={wa(p)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a></div></article>}
+function Product({p,compact,addToCart}){return <article className={compact?'card compact':'card'}><div className="imgWrap"><img src={p.img} alt={p.title}/><span>{p.tag}</span></div><div className="body"><h3>{p.title}</h3><p>{p.desc}</p><small>De {p.old}</small><strong>Por {p.price}</strong><em>Oferta de lançamento</em><button className="cartAdd" onClick={()=>addToCart(p)}>Adicionar ao carrinho</button><a className="buy" href={p.link} target="_blank" rel="noreferrer">COMPRAR AGORA</a><a className="zap" href={wa(p)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a></div></article>}
 
 function OfferBanner(){return <section className="offer"><b>🔥 Preço promocional por tempo limitado</b><span>Escolha seu ebook, compre com segurança e receba o acesso imediatamente.</span><a href="#best">Ver mais vendidos</a></section>}
 
@@ -185,6 +210,44 @@ function Testimonials(){return <section className="test"><h2>O que nossos <span>
 
 function FinalCTA(){return <section className="final"><div>♛</div><section><h2>Invista em você. Comece hoje.</h2><p>Escolha um ebook, acesse agora e dê o próximo passo.</p></section><a href="#best">Comprar Agora →</a></section>}
 function Footer(){return <footer><span>♛ IMPÉRIO DIGITAL</span><b>Compra segura • Acesso imediato • Suporte WhatsApp • Garantia 7 dias</b></footer>}
+
+function CartDrawer({cart,open,setOpen,removeFromCart}){
+  const total = cart.reduce((sum,p)=>sum + priceNumber(p.price),0);
+  return <div className={open ? "cartOverlay open" : "cartOverlay"}>
+    <div className="cartBackdrop" onClick={()=>setOpen(false)}></div>
+    <aside className="cartDrawer">
+      <div className="cartHeader">
+        <div>
+          <p>Seu carrinho</p>
+          <h2>{cart.length} produto{cart.length === 1 ? '' : 's'}</h2>
+        </div>
+        <button onClick={()=>setOpen(false)}>×</button>
+      </div>
+
+      {cart.length === 0 ? <div className="cartEmpty">
+        <b>Seu carrinho está vazio.</b>
+        <span>Escolha um ebook e adicione ao carrinho.</span>
+        <a href="#catalogo" onClick={()=>setOpen(false)}>Ver produtos</a>
+      </div> : <div className="cartItems">
+        {cart.map(item=><div className="cartItem" key={item.id}>
+          <img src={item.img} alt={item.title}/>
+          <div>
+            <b>{item.title}</b>
+            <span>{item.price}</span>
+          </div>
+          <button onClick={()=>removeFromCart(item.id)}>Remover</button>
+        </div>)}
+      </div>}
+
+      <div className="cartFooter">
+        <div><span>Total aproximado</span><strong>R$ {total.toFixed(2).replace('.',',')}</strong></div>
+        {cart.length > 0 && <a href={waCart(cart)} target="_blank" rel="noreferrer">Finalizar pedido</a>}
+        <small>Pedido finalizado pelo WhatsApp. Para pagamento único automático, a próxima etapa é integrar checkout próprio.</small>
+      </div>
+    </aside>
+  </div>
+}
+
 function FloatingButtons(){return <><a className="floatZap" href={wa()} target="_blank" rel="noreferrer">💬</a><div className="mobile"><a href={wa()} target="_blank" rel="noreferrer">WhatsApp</a><a href="#best">Comprar</a></div></>}
 
 createRoot(document.getElementById('root')).render(<App/>);
