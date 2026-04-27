@@ -98,24 +98,34 @@ function Phone({product}){return <aside className="phone"><div className="screen
 
 
 function MicroR1(){return <section id="r1" className="microR1">
-  <div className="microR1Badge">🔥 NOVA ÁREA • PRODUTOS DIGITAIS ACESSÍVEIS</div>
+  <div className="microR1Badge">🔥 OFERTA POR TEMPO LIMITADO • NOVOS PRODUTOS TODA SEMANA</div>
+
   <div className="microR1Wrap">
     <div className="microR1Copy">
       <p>COMECE COM POUCO</p>
       <h2>Produtos digitais <span>a partir de R$1</span></h2>
       <b>Escolha, compre e receba na hora.</b>
       <small>Uma vitrine criada para ofertas rápidas, produtos baratos e entrada em massa de novos clientes no Império Digital.</small>
+
+      <div className="microR1Proof">
+        <span>📥 +1.000 downloads</span>
+        <span>⭐ Clientes satisfeitos</span>
+        <span>⚡ Acesso imediato</span>
+      </div>
+
       <div className="microR1Actions">
-        <a href="#catalogo">Ver produtos</a>
-        <a href="#best">Mais vendidos</a>
+        <a href="#catalogo">Comprar agora por R$1</a>
+        <a href="#best">Ver mais vendidos</a>
       </div>
     </div>
+
     <div className="microR1Card">
       <div className="microR1Top">OFERTA DE ENTRADA</div>
       <strong>R$1+</strong>
       <p>Produtos rápidos, práticos e acessíveis</p>
       <ul>
-        <li>⚡ Acesso imediato</li>
+        <li>⏳ Oferta por tempo limitado</li>
+        <li>🆕 Novos produtos toda semana</li>
         <li>🛡️ Compra segura</li>
         <li>📚 Conteúdo direto ao ponto</li>
       </ul>
