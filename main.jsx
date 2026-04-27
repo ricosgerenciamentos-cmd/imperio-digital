@@ -265,7 +265,7 @@ function CheckoutPage(){
 
     try{
       setLoading(true);
-      const res = await fetch('/api/create-preference',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cart,customer})});
+      const res = await fetch('/api/create-preference',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items: cart.map(item => ({id: item.id, qty: 1})), customer})});
       const data = await res.json();
       if(!res.ok) throw new Error(data.error || 'Erro ao criar pagamento.');
       localStorage.setItem('imperio_last_order', JSON.stringify({cart,customer,total}));
