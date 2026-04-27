@@ -5,6 +5,7 @@ import './style.css';
 const WHATSAPP = '5511919411086';
 
 const products = [
+  { id:15, title:'Ganhe Seus Primeiros R$10 Online Hoje', cat:'Renda Extra', intent:'ganhar', tag:'🔥 R$0,50', img:'/vendas-digitais.png', price:'R$ 0,50', old:'R$ 19,90', link:'/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf', desc:'Aprenda formas simples e reais de fazer renda extra online usando apenas o celular, mesmo começando do zero.' },
   { id:1, title:'Assistência Técnica de Celular', cat:'Negócios', intent:'ganhar', tag:'Mais vendido', img:'/assistencia-celular.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/PjRqOei', desc:'Aprenda a iniciar no ramo de assistência técnica com um guia direto e prático.' },
   { id:2, title:'Barbearia', cat:'Negócios', intent:'ganhar', tag:'Top vendas', img:'/barbearia.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/ynz7UXJ', desc:'Do planejamento à gestão para começar uma barbearia de destaque.' },
   { id:3, title:'Vendas Digitais', cat:'Negócios', intent:'ganhar', tag:'Digital', img:'/vendas-digitais.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/tAqlMeI', desc:'Estratégias simples para vender todos os dias pela internet.' },
@@ -25,7 +26,7 @@ const filters = [
   ['todos','Todos'], ['ganhar','Ganhar dinheiro'], ['saude','Saúde'], ['estudar','Estudos'], ['organizar','Organização'], ['nicho','Nicho específico']
 ];
 
-const bestIds = [1,2,3,4];
+const bestIds = [15,1,2,3];
 
 function wa(p){
   const txt = p ? `Olá! Tenho interesse no ebook ${p.title}` : 'Olá! Quero conhecer os ebooks do Império Digital';
@@ -73,6 +74,7 @@ function App(){
     <TopNotice />
     <Header search={search} setSearch={setSearch} cartCount={cart.length} setCartOpen={setCartOpen}/>
     <Hero best={best}/>
+    <FeaturedMicroEbook addToCart={addToCart}/>
     <MicroR1 />
     <TrustBar/>
     <Best best={best} addToCart={addToCart}/>
@@ -142,6 +144,35 @@ function Phone({product}){return <aside className="phone premiumPhone"><div clas
   <a className="phoneBtn" href="#catalogo">VER TODOS OS EBOOKS</a>
 </div></aside>}
 
+
+
+function FeaturedMicroEbook({addToCart}){
+  const ebook = products.find(p=>p.id === 15);
+  return <section id="ebook050" className="featured050">
+    <div className="featured050Card">
+      <div className="featured050Copy">
+        <p>🔥 TESTE DE OFERTA • RENDA EXTRA</p>
+        <h2>Ganhe seus primeiros R$10 online hoje</h2>
+        <span>Um guia rápido para iniciantes descobrirem formas simples e reais de começar a fazer renda extra pela internet usando apenas o celular.</span>
+        <div className="featured050Bullets">
+          <b>✅ Ideal para iniciantes</b>
+          <b>⚡ Acesso imediato</b>
+          <b>📱 Comece pelo celular</b>
+          <b>💰 Apenas R$0,50</b>
+        </div>
+        <div className="featured050Actions">
+          <button onClick={()=>addToCart(ebook)}>Comprar por R$0,50</button>
+          <a href="#catalogo">Ver outros ebooks</a>
+        </div>
+      </div>
+      <div className="featured050Price">
+        <small>De R$19,90 por</small>
+        <strong>R$0,50</strong>
+        <span>Oferta teste por tempo limitado</span>
+      </div>
+    </div>
+  </section>
+}
 
 function MicroR1(){return <section id="r1" className="microR1">
   <div className="microR1Badge">🔥 OFERTA POR TEMPO LIMITADO • NOVOS PRODUTOS TODA SEMANA</div>
@@ -229,7 +260,7 @@ function CheckoutPage(){
     e.preventDefault();
     setError('');
     if(cart.length === 0) return setError('Seu carrinho está vazio.');
-    if(total < 3) return setError('Compra mínima de R$3,00 para finalizar no checkout.');
+    if(total < 0.5) return setError('Compra mínima de R$0,50 para finalizar no checkout.');
     if(!customer.name || !customer.email || !customer.whatsapp) return setError('Preencha nome, email e WhatsApp.');
 
     try{
@@ -264,7 +295,7 @@ function CheckoutPage(){
         <h2>Resumo do pedido</h2>
         {cart.length === 0 ? <p>Seu carrinho está vazio.</p> : cart.map(item=><div className="summaryItem" key={item.id}><img src={item.img} alt={item.title}/><div><b>{item.title}</b><span>{item.price}</span></div></div>)}
         <div className="summaryTotal"><span>Total</span><strong>R$ {total.toFixed(2).replace('.',',')}</strong></div>
-        <em>Compra mínima: R$3,00</em>
+        <em>Compra mínima: R$0,50</em>
         <a href="/">Continuar comprando</a>
       </aside>
     </section>
@@ -322,4 +353,3 @@ function CartDrawer({cart,open,setOpen,removeFromCart}){
 function FloatingButtons(){return <><a className="floatZap" href={wa()} target="_blank" rel="noreferrer">💬</a><div className="mobile"><a href={wa()} target="_blank" rel="noreferrer">WhatsApp</a><a href="#best">Comprar</a></div></>}
 
 createRoot(document.getElementById('root')).render(<App/>);
-
