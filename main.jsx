@@ -52,6 +52,7 @@ function App(){
     <Filters filter={filter} setFilter={setFilter}/>
     <Catalog list={list}/>
     <OfferBanner/>
+    <AffiliateSystem/>
     <FAQ/>
     <Testimonials/>
     <FinalCTA/>
@@ -64,7 +65,7 @@ function TopNotice(){return <div className="notice">🔥 Oferta especial de lan�
 
 function Header({search,setSearch}){return <header className="header">
   <a className="logo" href="#top"><span>♛</span><div><b>IMPÉRIO</b><small>DIGITAL</small></div></a>
-  <nav><a href="#top">Início</a><a href="#best">Mais vendidos</a><a href="#catalogo">Ebooks</a><a href="#faq">Perguntas</a><a href={wa()} target="_blank" rel="noreferrer">Contato</a></nav>
+  <nav><a href="#top">Início</a><a href="#best">Mais vendidos</a><a href="#catalogo">Ebooks</a><a href="#afiliados">Afiliados</a><a href="#faq">Perguntas</a><a href={wa()} target="_blank" rel="noreferrer">Contato</a></nav>
   <label className="search"><span>⌕</span><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar ebook"/></label>
   <a className="headBtn" href="#best">Comprar Agora</a>
 </header>}
@@ -158,6 +159,25 @@ function Catalog({list}){return <section id="catalogo" className="catalog"><p cl
 function Product({p,compact}){return <article className={compact?'card compact':'card'}><div className="imgWrap"><img src={p.img} alt={p.title}/><span>{p.tag}</span></div><div className="body"><h3>{p.title}</h3><p>{p.desc}</p><small>De {p.old}</small><strong>Por {p.price}</strong><em>Oferta de lançamento</em><a className="buy" href={p.link} target="_blank" rel="noreferrer">COMPRAR AGORA</a><a className="zap" href={wa(p)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a></div></article>}
 
 function OfferBanner(){return <section className="offer"><b>🔥 Preço promocional por tempo limitado</b><span>Escolha seu ebook, compre com segurança e receba o acesso imediatamente.</span><a href="#best">Ver mais vendidos</a></section>}
+
+
+function AffiliateSystem(){return <section id="afiliados" className="affiliate">
+  <div className="affiliateCopy">
+    <p className="red">SISTEMA DE AFILIADOS INTERNO</p>
+    <h2>Venda produtos do Império Digital e ganhe comissão</h2>
+    <span>Estrutura pensada para transformar o site em um marketplace: criadores, afiliados e produtos digitais em uma única plataforma.</span>
+  </div>
+  <div className="affiliateGrid">
+    <div><b>1</b><h3>Afiliado se cadastra</h3><p>Recebe um link único para divulgar produtos selecionados.</p></div>
+    <div><b>2</b><h3>Cliente compra</h3><p>A venda acontece pelo checkout do produto com rastreamento do afiliado.</p></div>
+    <div><b>3</b><h3>Comissão é registrada</h3><p>O painel mostra vendas, cliques, conversão e saldo acumulado.</p></div>
+  </div>
+  <div className="affiliateCTA">
+    <strong>Próxima fase:</strong>
+    <span>Área de login, links únicos, painel de comissões e ranking de afiliados.</span>
+    <a href={wa()} target="_blank" rel="noreferrer">Quero vender como afiliado</a>
+  </div>
+</section>}
 
 function FAQ(){return <section id="faq" className="faq"><h2>Perguntas rápidas</h2><div><details open><summary>Como recebo o ebook?</summary><p>Após a compra na Kiwify, o acesso chega automaticamente no seu e-mail.</p></details><details><summary>É seguro comprar?</summary><p>Sim. O pagamento é feito pela Kiwify, com checkout protegido.</p></details><details><summary>Tem suporte?</summary><p>Sim. Você pode tirar dúvidas pelo WhatsApp.</p></details></div></section>}
 
