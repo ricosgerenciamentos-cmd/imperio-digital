@@ -99,7 +99,6 @@ function Phone({product}){return <aside className="phone"><div className="screen
 
 function MicroR1(){return <section id="r1" className="microR1">
   <div className="microR1Badge">🔥 OFERTA POR TEMPO LIMITADO • NOVOS PRODUTOS TODA SEMANA</div>
-
   <div className="microR1Wrap">
     <div className="microR1Copy">
       <p>COMECE COM POUCO</p>
@@ -118,7 +117,6 @@ function MicroR1(){return <section id="r1" className="microR1">
         <a href="#best">Ver mais vendidos</a>
       </div>
     </div>
-
     <div className="microR1Card">
       <div className="microR1Top">OFERTA DE ENTRADA</div>
       <strong>R$1+</strong>
