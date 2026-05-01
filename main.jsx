@@ -59,6 +59,20 @@ function App(){
   const [search,setSearch] = useState('');
   const [cart,setCart] = useState([]);
   const [cartOpen,setCartOpen] = useState(false);
+  const [logoClicks,setLogoClicks] = useState(0);
+  const [testMode,setTestMode] = useState(() => localStorage.getItem('imperio_test_mode') === 'true');
+
+  function handleLogoSecretClick(e){
+    e.preventDefault();
+    const next = logoClicks + 1;
+    setLogoClicks(next);
+
+    if(next >= 7){
+      localStorage.setItem('imperio_test_mode', 'true');
+      setTestMode(true);
+      setLogoClicks(0);
+    }
+  }
 
   function addToCart(product){
     setCart(current => current.some(item => item.id === product.id) ? current : [...current, product]);
@@ -81,7 +95,7 @@ function App(){
 
   return <main>
     <TopNotice />
-    <Header search={search} setSearch={setSearch} cartCount={cart.length} setCartOpen={setCartOpen}/>
+    <Header search={search} setSearch={setSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={handleLogoSecretClick}/>
     <Hero best={best}/>
     <FeaturedMicroEbook addToCart={addToCart}/>
     <ValueLadder addToCart={addToCart}/>
@@ -97,13 +111,14 @@ function App(){
     <Footer/>
     <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
     <FloatingButtons/>
+    {testMode && <TestModePanel setTestMode={setTestMode}/>}
   </main>
 }
 
 function TopNotice(){return <div className="notice">🔥 Oferta especial de lançamento • Acesso imediato • Compra segura pelo Mercado Pago • Suporte no WhatsApp</div>}
 
-function Header({search,setSearch,cartCount,setCartOpen}){return <header className="header">
-  <a className="logo" href="#top"><span>♛</span><div><b>IMPÉRIO</b><small>DIGITAL</small></div></a>
+function Header({search,setSearch,cartCount,setCartOpen,onLogoSecretClick}){return <header className="header">
+  <a className="logo" href="#top" onClick={onLogoSecretClick} title="Império Digital"><span>♛</span><div><b>IMPÉRIO</b><small>DIGITAL</small></div></a>
   <nav><a href="#top">Início</a><a href="#best">Mais vendidos</a><a href="#catalogo">Ebooks</a><a href="#afiliados">Afiliados</a><a href="#faq">Perguntas</a><a href={wa()} target="_blank" rel="noreferrer">Contato</a></nav>
   <label className="search"><span>⌕</span><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar ebook"/></label>
   <button className="cartBtn" onClick={()=>setCartOpen(true)}>🛒 <span>{cartCount}</span></button>
@@ -584,6 +599,45 @@ function CartDrawer({cart,open,setOpen,removeFromCart}){
       </div>
     </aside>
   </div>
+}
+
+
+function TestModePanel({setTestMode}){
+  const testProduct = products.find(p => p.id === 15);
+
+  function simulateApprovedPurchase(){
+    localStorage.setItem('imperio_last_order', JSON.stringify({
+      cart: testProduct ? [testProduct] : [],
+      customer: { name:'Cliente Teste', email:'teste@imperiodigital.com', whatsapp:'11999999999' },
+      total: testProduct ? priceNumber(testProduct.price) : 0,
+      test:true
+    }));
+    window.location.href = '/obrigado?teste=1';
+  }
+
+  function prepareTestCheckout(){
+    if(testProduct){
+      localStorage.setItem('imperio_cart', JSON.stringify([testProduct]));
+    }
+    window.location.href = '/checkout?teste=1';
+  }
+
+  function closeTestMode(){
+    localStorage.removeItem('imperio_test_mode');
+    setTestMode(false);
+  }
+
+  return <aside className="testModePanel">
+    <div>
+      <b>🧪 Modo teste ativo</b>
+      <button onClick={closeTestMode}>×</button>
+    </div>
+    <p>Use para testar o funil sem pagar toda hora.</p>
+    <button onClick={simulateApprovedPurchase}>Simular compra aprovada</button>
+    <button onClick={()=>{window.location.href='/descobrir-negocio'}}>Abrir quiz</button>
+    <button onClick={prepareTestCheckout}>Testar checkout com carrinho</button>
+    <small>Para liberar: clique 7 vezes no logo Império Digital.</small>
+  </aside>
 }
 
 function FloatingButtons(){return <><a className="floatZap" href={wa()} target="_blank" rel="noreferrer">💬</a><div className="mobile"><a href={wa()} target="_blank" rel="noreferrer">WhatsApp</a><a href="#ebook050">Comprar</a></div></>}
