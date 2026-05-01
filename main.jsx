@@ -77,6 +77,7 @@ function App(){
 
   if(path === '/checkout') return <CheckoutPage />;
   if(path === '/obrigado') return <ThankYouPage />;
+  if(path === '/descobrir-negocio') return <QuizProPage />;
 
   return <main>
     <TopNotice />
@@ -357,12 +358,196 @@ function ThankYouPage(){
       </div>
 
       <a className="thanksBtn" href={ebookLink} download>📥 Baixar meu ebook</a>
+      <a className="thanksBtn quizThanksBtn" href="/descobrir-negocio">🤖 Descobrir meu melhor negócio</a>
       <a className="thanksBtn" href={wa()} target="_blank" rel="noreferrer">💬 Falar com suporte</a>
       <a className="thanksBtn" href="/">Voltar para o site</a>
     </section>
   </main>
 }
 
+
+
+function QuizProPage(){
+  const [step,setStep] = useState(0);
+  const [answers,setAnswers] = useState([]);
+
+  const questions = [
+    {
+      title:"Você prefere começar trabalhando com o quê?",
+      options:[
+        ["💻","Internet, celular e vendas online","digital"],
+        ["🛠️","Ferramentas, consertos e prática manual","tecnico"],
+        ["✂️","Beleza, estética ou atendimento","beleza"],
+        ["🧁","Comida, doces ou produção artesanal","producao"],
+        ["🗓️","Organização, rotina e produtividade","organizacao"]
+      ]
+    },
+    {
+      title:"Quanto você tem para começar?",
+      options:[
+        ["🪙","Quase nada, quero começar do zero","digital"],
+        ["💼","Até R$300","organizacao"],
+        ["💵","Até R$1.000","tecnico"],
+        ["💰","Mais de R$1.000","beleza"]
+      ]
+    },
+    {
+      title:"Qual resultado você busca primeiro?",
+      options:[
+        ["⚡","Fazer renda extra rápido","digital"],
+        ["💼","Aprender uma profissão prática","tecnico"],
+        ["👥","Atender clientes e crescer aos poucos","beleza"],
+        ["🛒","Produzir e vender algo meu","producao"],
+        ["🎯","Me organizar para empreender melhor","organizacao"]
+      ]
+    },
+    {
+      title:"Você prefere trabalhar mais...",
+      options:[
+        ["🌐","Online","digital"],
+        ["🏪","Presencialmente","beleza"],
+        ["⚙️","Com serviços técnicos","tecnico"],
+        ["🏠","Em casa produzindo","producao"],
+        ["📊","Planejando e estruturando","organizacao"]
+      ]
+    }
+  ];
+
+  const data = {
+    digital:{
+      title:"VENDAS DIGITAIS",
+      text:"Você tem perfil para negócios online, produtos digitais e renda extra usando celular e internet.",
+      products:[
+        {img:"/vendas-digitais.png", title:"Vendas Digitais", desc:"Estratégia simples para vender todos os dias pela internet.", price:"R$ 14,00", link:"https://pay.kiwify.com.br/tAqlMeI"},
+        {img:"/negocio-lucrativo.png", title:"Como Abrir um Negócio Lucrativo do Zero", desc:"Guia completo para começar do jeito certo.", price:"R$ 9,00", link:"COLE_AQUI_O_LINK_DO_CHECKOUT_R9"},
+        {img:"/pack-negocios.png", title:"Pack Completo de Negócios Lucrativos", desc:"O caminho completo para escolher, planejar e lucrar muito mais.", price:"R$ 37,00", link:"COLE_AQUI_O_LINK_DO_CHECKOUT_R37"}
+      ]
+    },
+    tecnico:{
+      title:"ASSISTÊNCIA TÉCNICA",
+      text:"Você combina com serviços práticos, consertos e negócios com demanda local.",
+      products:[
+        {img:"/assistencia-celular.png", title:"Assistência Técnica de Celular", desc:"Aprenda a iniciar no ramo de assistência técnica.", price:"R$ 14,00", link:"https://pay.kiwify.com.br/PjRqOei"},
+        {img:"/negocio-lucrativo.png", title:"Como Abrir um Negócio Lucrativo do Zero", desc:"Guia completo para começar do jeito certo.", price:"R$ 9,00", link:"COLE_AQUI_O_LINK_DO_CHECKOUT_R9"}
+      ]
+    },
+    beleza:{
+      title:"BELEZA E ATENDIMENTO",
+      text:"Você combina com negócios presenciais, estética e atendimento ao cliente.",
+      products:[
+        {img:"/barbearia.png", title:"Barbearia", desc:"Comece no ramo de barbearia com mais segurança.", price:"R$ 13,00", link:"https://pay.kiwify.com.br/ynz7UXJ"},
+        {img:"/devocional.png", title:"Estética", desc:"Guia para entrar no mercado da estética.", price:"R$ 13,00", link:"https://pay.kiwify.com.br/FptQKV2"}
+      ]
+    },
+    producao:{
+      title:"PRODUÇÃO E VENDA",
+      text:"Você combina com produção caseira, doces, alimentos e venda recorrente.",
+      products:[
+        {img:"/confeitaria.png", title:"Confeitaria", desc:"Transforme doces em oportunidade de renda.", price:"R$ 13,00", link:"https://pay.kiwify.com.br/sjoOT4z"},
+        {img:"/corte-costura.png", title:"Corte e Costura", desc:"Aprenda, crie e lucre com corte e costura.", price:"R$ 13,00", link:"https://pay.kiwify.com.br/uxqfR0Z"}
+      ]
+    },
+    organizacao:{
+      title:"NEGÓCIO ORGANIZADO",
+      text:"Você combina com planejamento, produtividade e estruturação antes de crescer.",
+      products:[
+        {img:"/negocio-organizado.png", title:"Negócio Organizado", desc:"Organize sua rotina e comece com clareza.", price:"R$ 9,00", link:"https://pay.kiwify.com.br/fIg2Fdd"},
+        {img:"/tarefas-diarias.png", title:"Tarefas Diárias", desc:"Organize melhor seu dia e pare de apagar incêndios.", price:"R$ 13,00", link:"https://pay.kiwify.com.br/nmHBzko"}
+      ]
+    }
+  };
+
+  function choose(type){
+    const updated = [...answers,type];
+    setAnswers(updated);
+    if(step < questions.length - 1) setStep(step + 1);
+    else setStep("result");
+  }
+
+  function resultKey(){
+    const count = {};
+    answers.forEach(a => count[a] = (count[a] || 0) + 1);
+    return Object.keys(count).reduce((a,b)=>count[a] > count[b] ? a : b,"digital");
+  }
+
+  if(step === "result"){
+    const result = data[resultKey()];
+    return <main className="quizPro quizDark">
+      <section className="quizResultPro">
+        <div className="quizResultTop">
+          <a href="/" className="quizResultLogo">♛ IMPÉRIO <span>DIGITAL</span></a>
+          <small>🛡️ Ambiente Seguro</small>
+        </div>
+
+        <div className="quizResultHero">
+          <span>♕</span>
+          <p>SEU PERFIL COMBINA COM</p>
+          <h1>{result.title}</h1>
+          <small>{result.text}</small>
+        </div>
+
+        <div className="quizResultList">
+          <b>Recomendamos que você comece por:</b>
+          {result.products.map((p,i)=>(
+            <article key={i}>
+              <img src={p.img} alt={p.title}/>
+              <div>
+                <h3>{p.title}</h3>
+                <p>{p.desc}</p>
+              </div>
+              <strong>{p.price}</strong>
+              <a href={p.link} target="_blank" rel="noreferrer">Ver produto</a>
+            </article>
+          ))}
+        </div>
+
+        <a className="quizAllBtn" href="/#catalogo">Ver todos os produtos</a>
+        <button className="quizRedo" onClick={()=>{setStep(0);setAnswers([])}}>↻ Refazer teste</button>
+      </section>
+    </main>
+  }
+
+  const q = questions[step];
+
+  return <main className="quizPro">
+    <section className="quizCardPro">
+      <div className="quizTop">
+        <a href="/" className="quizBrand">♛ <b>IMPÉRIO</b><span>DIGITAL</span></a>
+        <small>🛡️ Ambiente Seguro</small>
+      </div>
+
+      <p className="quizBadge">CONSULTOR DIGITAL</p>
+      <h1>Descubra qual negócio combina <span>com você</span></h1>
+      <p className="quizSub">Responda algumas perguntas rápidas e receba uma recomendação personalizada para começar.</p>
+
+      <div className="quizProgressLine">
+        <small>{step+1} de {questions.length}</small>
+        <div><span style={{width:`${((step+1)/questions.length)*100}%`}}></span></div>
+      </div>
+
+      <div className="quizQuestion">
+        <b>{step+1}</b>
+        <h2>{q.title}</h2>
+      </div>
+
+      <div className="quizOptionsPro">
+        {q.options.map((opt,i)=>(
+          <button key={i} onClick={()=>choose(opt[2])}>
+            <em>{opt[0]}</em>
+            <span>{opt[1]}</span>
+            <strong>›</strong>
+          </button>
+        ))}
+      </div>
+
+      <div className="quizFooterProof">
+        <span>☆ <b>Mais de 1.284</b><small>alunos satisfeitos</small></span>
+        <span>⏱️ <b>Acesso imediato</b><small>após a compra</small></span>
+        <span>🛡️ <b>Compra 100%</b><small>segura</small></span>
+      </div>
+    </section>
+  </main>
+}
 
 function CartDrawer({cart,open,setOpen,removeFromCart}){
   const total = cart.reduce((sum,p)=>sum + priceNumber(p.price),0);
