@@ -5,7 +5,7 @@ import './style.css';
 const WHATSAPP = '5511919411086';
 
 const products = [
-  { id:15, title:'Ganhe Seus Primeiros R$10 Online Hoje', cat:'Renda Extra', intent:'ganhar', tag:'🔥 R$0,50', img:'/vendas-digitais.png', price:'R$ 0,50', old:'R$ 19,90', link:'/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf', desc:'Aprenda formas simples e reais de fazer renda extra online usando apenas o celular, mesmo começando do zero.' },
+  { id:15, title:'Ganhe Seus Primeiros R$10 Online Hoje', cat:'Renda Extra', intent:'ganhar', tag:'🔥 R$1,99', img:'/vendas-digitais.png', price:'R$ 1,99', old:'R$ 19,90', link:'/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf', desc:'Aprenda formas simples e reais de fazer renda extra online usando apenas o celular, mesmo começando do zero.' },
   { id:16, title:'Como Abrir um Negócio Lucrativo do Zero', cat:'Negócios', intent:'abrir-negocio', tag:'🔥 R$9', img:'/negocio-lucrativo.png', price:'R$ 9,00', old:'R$ 47,00', link:'COLE_AQUI_O_LINK_DO_CHECKOUT_R9', desc:'Um guia direto para entender o que vender, como começar, como organizar seu primeiro negócio e dar os primeiros passos mesmo com pouco dinheiro.' },
   { id:17, title:'Pack Completo de Negócios Lucrativos', cat:'Negócios', intent:'pack', tag:'💎 Pack R$37', img:'/pack-negocios.png', price:'R$ 37,00', old:'R$ 97,00', link:'COLE_AQUI_O_LINK_DO_CHECKOUT_R37', desc:'Pacote completo com guias práticos sobre diferentes negócios, do básico ao avançado, para quem quer escolher uma oportunidade e começar com mais clareza.' },
   { id:1, title:'Assistência Técnica de Celular', cat:'Negócios', intent:'ganhar', tag:'Mais vendido', img:'/assistencia-celular.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/PjRqOei', desc:'Aprenda a iniciar no ramo de assistência técnica com um guia direto e prático.' },
@@ -128,11 +128,11 @@ function Header({search,setSearch,cartCount,setCartOpen,onLogoSecretClick}){retu
 function Hero({best}){return <section id="top" className="hero heroPremium">
   <div className="copy">
     <p className="eyebrow">🔥 OFERTA DE ENTRADA • ACESSO IMEDIATO</p>
-    <h1>Ganhe dinheiro <br/><span>começando do zero</span><br/>por apenas R$0,50.</h1>
-    <p className="lead">Um guia rápido para descobrir formas simples e reais de fazer seus primeiros R$10 online usando apenas o celular.</p>
+    <h1>Ganhe dinheiro <br/><span>começando do zero</span><br/>com produtos a partir de R$1,99.</h1>
+    <p className="lead">Um guia rápido, direto e acessível para descobrir caminhos reais de renda extra usando apenas o celular.</p>
 
     <div className="heroTrust premiumTrust">
-      <span>💰 <b>Preço simbólico</b><small>Apenas R$0,50</small></span>
+      <span>💰 <b>Preço de entrada</b><small>Apenas R$1,99</small></span>
       <span>⚡ <b>Acesso imediato</b><small>Baixe na hora</small></span>
       <span>📱 <b>Comece pelo celular</b><small>Mesmo do zero</small></span>
       <span>🛡️ <b>Compra segura</b><small>Ambiente protegido</small></span>
@@ -144,7 +144,7 @@ function Hero({best}){return <section id="top" className="hero heroPremium">
     </div>
 
     <div className="actions">
-      <a className="primary pulse" href="#ebook050">Comprar agora por R$0,50</a>
+      <a className="primary pulse" href="#ebook050">Começar agora por R$1,99</a>
       <a className="secondary" href="#escada">Ver ofertas completas</a>
     </div>
     <p className="secureLine">🔒 Compra segura • Acesso imediato • Suporte no WhatsApp</p>
@@ -160,7 +160,7 @@ function Phone({product}){return <aside className="phone premiumPhone"><div clas
   <div className="phoneNav">☰ <b>♛ IMPÉRIO <small>DIGITAL</small></b> 🛒</div>
   <h3 className="phoneSectionTitle">MAIS VENDIDOS <a href="#best">Ver todos</a></h3>
   <div className="phoneProductGrid">
-    {products.filter(p=>!p.hidden).slice(0,6).map(p=><img key={p.id} src={p.img} alt={p.title}/>)}
+    {products.filter(p=>!p.hidden).slice(0,6).map(p=><img key={p.id} src={p.img} alt={p.title} loading="lazy" decoding="async"/>)}
   </div>
   <a className="phoneBtn" href="#catalogo">VER TODOS OS EBOOKS</a>
 </div></aside>}
@@ -172,24 +172,24 @@ function FeaturedMicroEbook({addToCart}){
   return <section id="ebook050" className="featured050">
     <div className="featured050Card">
       <div className="featured050Copy">
-        <p>🔥 TESTE DE OFERTA • RENDA EXTRA</p>
+        <p>🔥 OFERTA DE ENTRADA • RENDA EXTRA</p>
         <h2>Ganhe seus primeiros R$10 online hoje</h2>
         <span>Um guia rápido para iniciantes descobrirem formas simples e reais de começar a fazer renda extra pela internet usando apenas o celular.</span>
         <div className="featured050Bullets">
           <b>✅ Ideal para iniciantes</b>
           <b>⚡ Acesso imediato</b>
           <b>📱 Comece pelo celular</b>
-          <b>💰 Apenas R$0,50</b>
+          <b>💰 Apenas R$1,99</b>
         </div>
         <div className="featured050Actions">
-          <button onClick={()=>addToCart(ebook)}>Comprar por R$0,50</button>
-          <a href="#catalogo">Ver outros ebooks</a>
+          <button onClick={()=>addToCart(ebook)}>Comprar por R$1,99</button>
+          <a href="/descobrir-negocio">Descobrir meu melhor negócio</a>
         </div>
       </div>
       <div className="featured050Price">
         <small>De R$19,90 por</small>
-        <strong>R$0,50</strong>
-        <span>Oferta teste por tempo limitado</span>
+        <strong>R$1,99</strong>
+        <span>Oferta de lançamento por tempo limitado</span>
       </div>
     </div>
   </section>
@@ -202,7 +202,7 @@ function ValueLadder({addToCart}){
   const premium = products.find(p => p.id === 17);
 
   const steps = [
-    { label:'ENTRADA', price:'R$0,50', title:entrada?.title, text:'Produto barato para começar hoje e conhecer o método.', product:entrada },
+    { label:'ENTRADA', price:'R$1,99', title:entrada?.title, text:'Produto de entrada para começar hoje e conhecer o método.', product:entrada },
     { label:'PRODUTO PRINCIPAL', price:'R$9', title:principal?.title, text:'Guia central para quem quer abrir um negócio com clareza.', product:principal },
     { label:'PACK PREMIUM', price:'R$37', title:premium?.title, text:'Pacote completo com vários caminhos de negócio do básico ao avançado.', product:premium }
   ];
@@ -217,45 +217,11 @@ function ValueLadder({addToCart}){
         <strong>{step.price}</strong>
         <h3>{step.title}</h3>
         <p>{step.text}</p>
-        <button onClick={() => step.product && addToCart(step.product)}>{index === 0 ? 'Começar por R$0,50' : 'Comprar agora'}</button>
+        <button onClick={() => step.product && addToCart(step.product)}>{index === 0 ? 'Começar por R$1,99' : 'Comprar agora'}</button>
       </article>)}
     </div>
   </section>
 }
-
-function MicroR1(){return <section id="r1" className="microR1">
-  <div className="microR1Badge">🔥 OFERTA POR TEMPO LIMITADO • NOVOS PRODUTOS TODA SEMANA</div>
-  <div className="microR1Wrap">
-    <div className="microR1Copy">
-      <p>COMECE COM POUCO</p>
-      <h2>Produtos digitais <span>a partir de R$0,50</span></h2>
-      <b>Escolha, compre e receba na hora.</b>
-      <small>Uma vitrine criada para ofertas rápidas, produtos baratos e entrada em massa de novos clientes no Império Digital.</small>
-
-      <div className="microR1Proof">
-        <span>📥 +1.000 downloads</span>
-        <span>⭐ Clientes satisfeitos</span>
-        <span>⚡ Acesso imediato</span>
-      </div>
-
-      <div className="microR1Actions">
-        <a href="#catalogo">Comprar agora por R$0,50</a>
-        <a href="#best">Ver mais vendidos</a>
-      </div>
-    </div>
-    <div className="microR1Card">
-      <div className="microR1Top">OFERTA DE ENTRADA</div>
-      <strong>R$0,50+</strong>
-      <p>Produtos rápidos, práticos e acessíveis</p>
-      <ul>
-        <li>⏳ Oferta por tempo limitado</li>
-        <li>🆕 Novos produtos toda semana</li>
-        <li>🛡️ Compra segura</li>
-        <li>📚 Conteúdo direto ao ponto</li>
-      </ul>
-    </div>
-  </div>
-</section>}
 
 function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido.</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação.</p></div><div>🎧<b>Suporte no WhatsApp</b><p>Atendimento rápido.</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança.</p></div></section>}
 
@@ -265,7 +231,7 @@ function Filters({filter,setFilter}){return <section className="filters"><h2>Esc
 
 function Catalog({list,addToCart}){return <section id="catalogo" className="catalog"><p className="red">CATÁLOGO COMPLETO</p><h2>Todos os Ebooks</h2><p className="sub">Produtos low ticket, diretos e prontos para acesso.</p><div className="grid">{list.map(p=><Product p={p} addToCart={addToCart} key={p.id}/>)}</div></section>}
 
-function Product({p,compact,addToCart}){return <article className={compact?'card compact':'card'}><div className="imgWrap"><img src={p.img} alt={p.title}/><span>{p.tag}</span></div><div className="body"><h3>{p.title}</h3><p>{p.desc}</p><small>De {p.old}</small><strong>Por {p.price}</strong><em>Oferta de lançamento</em><button className="cartAdd" onClick={()=>addToCart(p)}>Adicionar ao carrinho</button><a className="buy" href="#" onClick={(e)=>{e.preventDefault();addToCart(p);}}>COMPRAR AGORA</a><a className="zap" href={wa(p)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a></div></article>}
+function Product({p,compact,addToCart}){return <article className={compact?'card compact':'card'}><div className="imgWrap"><img src={p.img} alt={p.title} loading="lazy" decoding="async"/><span>{p.tag}</span></div><div className="body"><h3>{p.title}</h3><p>{p.desc}</p><small>De {p.old}</small><strong>Por {p.price}</strong><em>Oferta de lançamento</em><button className="cartAdd" onClick={()=>addToCart(p)}>Adicionar ao carrinho</button><a className="buy" href="#" onClick={(e)=>{e.preventDefault();addToCart(p);}}>COMPRAR AGORA</a><a className="zap" href={wa(p)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a></div></article>}
 
 function OfferBanner(){return <section className="offer"><b>🔥 Preço promocional por tempo limitado</b><span>Escolha seu ebook, compre com segurança e receba o acesso imediatamente.</span><a href="#escada">Ver escada de valor</a></section>}
 
@@ -309,7 +275,7 @@ function CheckoutPage(){
     e.preventDefault();
     setError('');
     if(cart.length === 0) return setError('Seu carrinho está vazio.');
-    if(total < 0.5) return setError('Compra mínima de R$0,50 para finalizar no checkout.');
+    if(total < 1.99) return setError('Compra mínima de R$1,99 para finalizar no checkout.');
     if(!customer.name || !customer.email || !customer.whatsapp) return setError('Preencha nome, email e WhatsApp.');
 
     try{
@@ -342,9 +308,9 @@ function CheckoutPage(){
       </form>
       <aside className="checkoutSummary">
         <h2>Resumo do pedido</h2>
-        {cart.length === 0 ? <p>Seu carrinho está vazio.</p> : cart.map(item=><div className="summaryItem" key={item.id}><img src={item.img} alt={item.title}/><div><b>{item.title}</b><span>{item.price}</span></div></div>)}
+        {cart.length === 0 ? <p>Seu carrinho está vazio.</p> : cart.map(item=><div className="summaryItem" key={item.id}><img src={item.img} alt={item.title} loading="lazy" decoding="async"/><div><b>{item.title}</b><span>{item.price}</span></div></div>)}
         <div className="summaryTotal"><span>Total</span><strong>R$ {total.toFixed(2).replace('.',',')}</strong></div>
-        <em>Compra mínima: R$0,50</em>
+        <em>Compra mínima: R$1,99</em>
         <a href="/">Continuar comprando</a>
       </aside>
     </section>
@@ -366,7 +332,7 @@ function ThankYouPage(){
 
       <div className="thanksProducts">
         <article>
-          <img src="/vendas-digitais.png" alt="Ganhe Seus Primeiros R$10 Online Hoje"/>
+          <img src="/vendas-digitais.png" alt="Ganhe Seus Primeiros R$10 Online Hoje" loading="lazy" decoding="async"/>
           <b>Ganhe Seus Primeiros R$10 Online Hoje</b>
           <a href={ebookLink} download>Baixar Ebook Agora</a>
         </article>
@@ -505,7 +471,7 @@ function QuizProPage(){
           <b>Recomendamos que você comece por:</b>
           {result.products.map((p,i)=>(
             <article key={i}>
-              <img src={p.img} alt={p.title}/>
+              <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
               <div>
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>
@@ -583,7 +549,7 @@ function CartDrawer({cart,open,setOpen,removeFromCart}){
         <a href="#catalogo" onClick={()=>setOpen(false)}>Ver produtos</a>
       </div> : <div className="cartItems">
         {cart.map(item=><div className="cartItem" key={item.id}>
-          <img src={item.img} alt={item.title}/>
+          <img src={item.img} alt={item.title} loading="lazy" decoding="async"/>
           <div>
             <b>{item.title}</b>
             <span>{item.price}</span>
