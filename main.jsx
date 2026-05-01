@@ -398,43 +398,27 @@ function QuizProPage(){
     digital:{
       title:"VENDAS DIGITAIS",
       text:"Você tem perfil para negócios online, produtos digitais e renda extra usando celular e internet.",
-      products:[
-        {img:"/vendas-digitais.png", title:"Vendas Digitais", desc:"Estratégia simples para vender todos os dias pela internet.", price:"R$ 14,00", link:"https://pay.kiwify.com.br/tAqlMeI"},
-        {img:"/negocio-lucrativo.png", title:"Como Abrir um Negócio Lucrativo do Zero", desc:"Guia completo para começar do jeito certo.", price:"R$ 9,00", link:"COLE_AQUI_O_LINK_DO_CHECKOUT_R9"},
-        {img:"/pack-negocios.png", title:"Pack Completo de Negócios Lucrativos", desc:"O caminho completo para escolher, planejar e lucrar muito mais.", price:"R$ 37,00", link:"COLE_AQUI_O_LINK_DO_CHECKOUT_R37"}
-      ]
+      products:[3,16,17]
     },
     tecnico:{
       title:"ASSISTÊNCIA TÉCNICA",
       text:"Você combina com serviços práticos, consertos e negócios com demanda local.",
-      products:[
-        {img:"/assistencia-celular.png", title:"Assistência Técnica de Celular", desc:"Aprenda a iniciar no ramo de assistência técnica.", price:"R$ 14,00", link:"https://pay.kiwify.com.br/PjRqOei"},
-        {img:"/negocio-lucrativo.png", title:"Como Abrir um Negócio Lucrativo do Zero", desc:"Guia completo para começar do jeito certo.", price:"R$ 9,00", link:"COLE_AQUI_O_LINK_DO_CHECKOUT_R9"}
-      ]
+      products:[1,16,17]
     },
     beleza:{
       title:"BELEZA E ATENDIMENTO",
       text:"Você combina com negócios presenciais, estética e atendimento ao cliente.",
-      products:[
-        {img:"/barbearia.png", title:"Barbearia", desc:"Comece no ramo de barbearia com mais segurança.", price:"R$ 13,00", link:"https://pay.kiwify.com.br/ynz7UXJ"},
-        {img:"/devocional.png", title:"Estética", desc:"Guia para entrar no mercado da estética.", price:"R$ 13,00", link:"https://pay.kiwify.com.br/FptQKV2"}
-      ]
+      products:[2,6,16]
     },
     producao:{
       title:"PRODUÇÃO E VENDA",
       text:"Você combina com produção caseira, doces, alimentos e venda recorrente.",
-      products:[
-        {img:"/confeitaria.png", title:"Confeitaria", desc:"Transforme doces em oportunidade de renda.", price:"R$ 13,00", link:"https://pay.kiwify.com.br/sjoOT4z"},
-        {img:"/corte-costura.png", title:"Corte e Costura", desc:"Aprenda, crie e lucre com corte e costura.", price:"R$ 13,00", link:"https://pay.kiwify.com.br/uxqfR0Z"}
-      ]
+      products:[8,7,16]
     },
     organizacao:{
       title:"NEGÓCIO ORGANIZADO",
       text:"Você combina com planejamento, produtividade e estruturação antes de crescer.",
-      products:[
-        {img:"/negocio-organizado.png", title:"Negócio Organizado", desc:"Organize sua rotina e comece com clareza.", price:"R$ 9,00", link:"https://pay.kiwify.com.br/fIg2Fdd"},
-        {img:"/tarefas-diarias.png", title:"Tarefas Diárias", desc:"Organize melhor seu dia e pare de apagar incêndios.", price:"R$ 13,00", link:"https://pay.kiwify.com.br/nmHBzko"}
-      ]
+      products:[11,12,16]
     }
   };
 
@@ -449,6 +433,15 @@ function QuizProPage(){
     const count = {};
     answers.forEach(a => count[a] = (count[a] || 0) + 1);
     return Object.keys(count).reduce((a,b)=>count[a] > count[b] ? a : b,"digital");
+  }
+
+  function goCheckout(productId){
+    const product = products.find(p => p.id === productId);
+    if(!product) return;
+
+    localStorage.setItem('imperio_cart', JSON.stringify([product]));
+    localStorage.setItem('imperio_last_order', JSON.stringify({cart:[product], total: priceNumber(product.price)}));
+    window.location.href = '/checkout';
   }
 
   if(step === "result"){
@@ -469,17 +462,20 @@ function QuizProPage(){
 
         <div className="quizResultList">
           <b>Recomendamos que você comece por:</b>
-          {result.products.map((p,i)=>(
-            <article key={i}>
+          {result.products.map((id)=>{
+            const p = products.find(item => item.id === id);
+            if(!p) return null;
+
+            return <article key={p.id}>
               <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
               <div>
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>
               </div>
               <strong>{p.price}</strong>
-              <a href={p.link} target="_blank" rel="noreferrer">Ver produto</a>
+              <button onClick={()=>goCheckout(p.id)}>Ver produto</button>
             </article>
-          ))}
+          })}
         </div>
 
         <a className="quizAllBtn" href="/#catalogo">Ver todos os produtos</a>
