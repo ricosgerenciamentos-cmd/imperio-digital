@@ -1,105 +1,48 @@
-export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+import mercadopago from "mercadopago";
 
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Método não permitido' });
+mercadopago.configure({
+  access_token: process.env.MP_ACCESS_TOKEN
+});
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
 
   try {
-    const ACCESS_TOKEN = process.env.MERCADO_PAGO_ACCESS_TOKEN;
+    const { title, price } = req.body;
 
-    if (!ACCESS_TOKEN) {
-      return res.status(500).json({ error: 'MERCADO_PAGO_ACCESS_TOKEN não configurado' });
-    }
-
-    const PRODUCTS = [
-      { id: 15, title: 'Ganhe Seus Primeiros R$10 Online Hoje', price: 0.5 },
-      { id: 1, title: 'Assistência Técnica de Celular', price: 14 },
-      { id: 2, title: 'Barbearia', price: 13 },
-      { id: 3, title: 'Vendas Digitais', price: 14 },
-      { id: 4, title: 'Reeducação Alimentar', price: 13 },
-      { id: 5, title: 'Vestibular', price: 9 },
-      { id: 6, title: 'Estética', price: 13 },
-      { id: 7, title: 'Corte e Costura', price: 13 },
-      { id: 8, title: 'Confeitaria', price: 13 },
-      { id: 9, title: 'Pedras Preciosas', price: 14 },
-      { id: 10, title: 'Ferro Velho', price: 14 },
-      { id: 11, title: 'Negócio Organizado', price: 9 },
-      { id: 12, title: 'Tarefas Diárias', price: 13 },
-      { id: 13, title: 'Guia da Sobriedade', price: 9 }
-    ];
-
-    const { items, cart, customer } = req.body;
-
-    const receivedItems = Array.isArray(items)
-      ? items
-      : Array.isArray(cart)
-        ? cart.map(item => ({ id: item.id, qty: 1 }))
-        : [];
-
-    if (receivedItems.length === 0) {
-      return res.status(400).json({ error: 'Carrinho vazio' });
-    }
-
-    const mercadoPagoItems = receivedItems.map((item) => {
-      const found = PRODUCTS.find((p) => p.id === Number(item.id));
-      if (!found) throw new Error('Produto inválido');
-
-      return {
-        title: found.title,
-        quantity: Number(item.qty || 1),
-        unit_price: Number(found.price),
-        currency_id: 'BRL'
-      };
-    });
-
-    const total = mercadoPagoItems.reduce((sum, item) => {
-      return sum + item.unit_price * item.quantity;
-    }, 0);
-
-    if (total < 0.5) {
-      return res.status(400).json({ error: 'Compra mínima de R$0,50' });
-    }
-
-    const baseUrl = process.env.SITE_URL || 'https://imperio-digital-gray.vercel.app';
-
-    const body = {
-      items: mercadoPagoItems,
-      payer: {
-        name: customer?.name || '',
-        email: customer?.email || ''
-      },
+    const preference = {
+      items: [
+        {
+          title: title || "Acesso Império Digital",
+          quantity: 1,
+          currency_id: "BRL",
+          unit_price: Number(price) || 1.99
+        }
+      ],
       back_urls: {
-        success: `${baseUrl}/obrigado`,
-        failure: `${baseUrl}/checkout`,
-        pending: `${baseUrl}/obrigado`
+        success: "https://imperio-digital-gray.vercel.app/obrigado",
+        failure: "https://imperio-digital-gray.vercel.app/",
+        pending: "https://imperio-digital-gray.vercel.app/"
       },
-      auto_return: 'approved'
+      auto_return: "approved",
+      payment_methods: {
+        installments: 12
+      }
     };
 
-    const response = await fetch('https://api.mercadopago.com/checkout/preferences', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${ACCESS_TOKEN}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return res.status(500).json({ error: data.message || 'Erro ao criar pagamento' });
-    }
+    const response = await mercadopago.preferences.create(preference);
 
     return res.status(200).json({
-      init_point: data.init_point
+      id: response.body.id,
+      init_point: response.body.init_point
     });
 
   } catch (error) {
+    console.error("Erro Mercado Pago:", error);
     return res.status(500).json({
-      error: error.message || 'Erro interno'
+      error: "Erro ao criar pagamento"
     });
   }
 }
