@@ -304,14 +304,32 @@ function CheckoutPage(){
   const [customer,setCustomer] = useState({name:'',email:'',whatsapp:''});
   const [loading,setLoading] = useState(false);
   const [error,setError] = useState('');
+  const isTestCheckout = new URLSearchParams(window.location.search).get('teste') === '1';
 
   React.useEffect(()=>{setCart(JSON.parse(localStorage.getItem('imperio_cart') || '[]'))},[]);
   const total = cart.reduce((sum,p)=>sum + priceNumber(p.price),0);
+  const displayTotal = isTestCheckout ? 0 : total;
 
   async function finishCheckout(e){
     e.preventDefault();
     setError('');
     if(cart.length === 0) return setError('Seu carrinho está vazio.');
+
+    if(isTestCheckout){
+      localStorage.setItem('imperio_last_order', JSON.stringify({
+        cart,
+        customer: {
+          name: customer.name || 'Cliente Teste',
+          email: customer.email || 'teste@imperiodigital.com',
+          whatsapp: customer.whatsapp || '11999999999'
+        },
+        total: 0,
+        test:true
+      }));
+      window.location.href = '/obrigado?teste=1';
+      return;
+    }
+
     if(total < 1.99) return setError('Compra mínima de R$1,99 para finalizar no checkout.');
     if(!customer.name || !customer.email || !customer.whatsapp) return setError('Preencha nome, email e WhatsApp.');
 
@@ -336,18 +354,19 @@ function CheckoutPage(){
         <p className="red">CHECKOUT SEGURO</p>
         <h1>Finalize sua compra</h1>
         <span className="checkoutLead">Preencha seus dados e pague com Pix ou cartão pelo Mercado Pago</span>
+        {isTestCheckout && <div className="checkoutError">🧪 Modo teste ativo: esta compra será simulada por R$0, sem abrir o Mercado Pago.</div>}
         <label>Nome completo<input value={customer.name} onChange={e=>setCustomer({...customer,name:e.target.value})} placeholder="Seu nome"/></label>
         <label>Email<input type="email" value={customer.email} onChange={e=>setCustomer({...customer,email:e.target.value})} placeholder="seuemail@exemplo.com"/></label>
         <label>WhatsApp<input value={customer.whatsapp} onChange={e=>setCustomer({...customer,whatsapp:e.target.value})} placeholder="(11) 99999-9999"/></label>
         {error && <div className="checkoutError">{error}</div>}
-        <button disabled={loading}>{loading ? 'Gerando pagamento...' : 'Pagar com Mercado Pago'}</button>
+        <button disabled={loading}>{isTestCheckout ? 'Simular pagamento R$0' : (loading ? 'Gerando pagamento...' : 'Pagar com Mercado Pago')}</button>
         <small>🔒 Pagamento protegido no ambiente seguro do Mercado Pago</small>
       </form>
       <aside className="checkoutSummary">
         <h2>Resumo do pedido</h2>
         {cart.length === 0 ? <p>Seu carrinho está vazio</p> : cart.map(item=><div className="summaryItem" key={item.id}><img src={item.img} alt={item.title} loading="lazy" decoding="async"/><div><b>{item.title}</b><span>{item.price}</span></div></div>)}
-        <div className="summaryTotal"><span>Total</span><strong>R$ {total.toFixed(2).replace('.',',')}</strong></div>
-        <em>Compra mínima: R$1,99</em>
+        <div className="summaryTotal"><span>{isTestCheckout ? 'Total no modo teste' : 'Total'}</span><strong>R$ {displayTotal.toFixed(2).replace('.',',')}</strong></div>
+        <em>{isTestCheckout ? 'Teste interno: nenhum valor será cobrado' : 'Compra mínima: R$1,99'}</em>
         <a href="/">Continuar comprando</a>
       </aside>
     </section>
@@ -617,22 +636,27 @@ function CartDrawer({cart,open,setOpen,removeFromCart}){
 
 
 function TestModePanel({setTestMode}){
-  const testProduct = products.find(p => p.id === 15);
+  const testProducts = [
+    products.find(p => p.id === 101),
+    products.find(p => p.id === 201),
+    products.find(p => p.id === 1),
+    products.find(p => p.id === 2)
+  ].filter(Boolean);
+
+  const total = 0;
 
   function simulateApprovedPurchase(){
     localStorage.setItem('imperio_last_order', JSON.stringify({
-      cart: testProduct ? [testProduct] : [],
+      cart: testProducts,
       customer: { name:'Cliente Teste', email:'teste@imperiodigital.com', whatsapp:'11999999999' },
-      total: testProduct ? priceNumber(testProduct.price) : 0,
+      total,
       test:true
     }));
     window.location.href = '/obrigado?teste=1';
   }
 
   function prepareTestCheckout(){
-    if(testProduct){
-      localStorage.setItem('imperio_cart', JSON.stringify([testProduct]));
-    }
+    localStorage.setItem('imperio_cart', JSON.stringify(testProducts));
     window.location.href = '/checkout?teste=1';
   }
 
@@ -646,10 +670,10 @@ function TestModePanel({setTestMode}){
       <b>🧪 Modo teste ativo</b>
       <button onClick={closeTestMode}>×</button>
     </div>
-    <p>Use para testar o funil sem pagar toda hora</p>
-    <button onClick={simulateApprovedPurchase}>Simular compra aprovada</button>
+    <p>Use para testar o funil por R$0, sem abrir cobrança real</p>
+    <button onClick={simulateApprovedPurchase}>Simular compra R$0 com avulsos</button>
     <button onClick={()=>{window.location.href='/descobrir-negocio'}}>Abrir quiz</button>
-    <button onClick={prepareTestCheckout}>Testar checkout com carrinho</button>
+    <button onClick={prepareTestCheckout}>Testar checkout R$0 com avulsos</button>
     <small>Para liberar, clique 7 vezes no logo Império Digital</small>
   </aside>
 }
