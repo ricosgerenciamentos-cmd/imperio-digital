@@ -5,23 +5,23 @@ import './style.css';
 const WHATSAPP = '5511919411086';
 
 const products = [
-{ id:15, title:'Primeiros R$10 Online: Guia simples para começar pelo celular', cat:'Renda Extra', intent:'ganhar', tag:'🔥 Entrada', img:'/vendas-digitais.png', price:'R$ 1,99', old:'R$ 19,90', link:'/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf', desc:'Aprenda formas simples e realistas de iniciar na renda extra online usando apenas o celular, mesmo começando do zero.' },
-{ id:16, title:'Como Abrir um Negócio do Zero: Primeiros passos para começar com clareza', cat:'Negócios', intent:'abrir-negocio', tag:'🔥 Oferta R$9', img:'/negocio-lucrativo.png', price:'R$ 9,00', old:'R$ 47,00', link:'COLE_AQUI_O_LINK_DO_CHECKOUT_R9', desc:'Um guia direto para entender o que vender, como organizar sua ideia e dar os primeiros passos com pouco investimento.' },
-{ id:17, title:'Pack Completo de Negócios: Guias práticos para escolher e começar melhor', cat:'Negócios', intent:'pack', tag:'💎 Pack completo', img:'/pack-negocios.png', price:'R$ 37,00', old:'R$ 97,00', link:'COLE_AQUI_O_LINK_DO_CHECKOUT_R37', desc:'Pacote com conteúdos práticos sobre diferentes oportunidades de negócio, ideal para quem quer comparar caminhos e começar com mais segurança.' },
-{ id:1, title:'Assistência Técnica: Como começar do zero e fazer seus primeiros serviços', cat:'Negócios', intent:'ganhar', tag:'🔥 Mais vendido', img:'/assistencia-celular.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/PjRqOei', desc:'Guia prático para quem quer iniciar na assistência técnica, entender os primeiros serviços e começar a ganhar dinheiro mesmo sem experiência.' },
-{ id:2, title:'Barbearia do Zero: Aprenda a começar e conquistar seus primeiros clientes', cat:'Negócios', intent:'ganhar', tag:'🔥 Mais vendido', img:'/barbearia.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/ynz7UXJ', desc:'Guia prático para quem quer começar na barbearia do zero, entender os primeiros passos, evitar erros comuns e conquistar mais confiança para atender clientes.' },
-{ id:3, title:'Vendas Digitais para Iniciantes: Aprenda a vender online passo a passo', cat:'Negócios', intent:'ganhar', tag:'🔥 Mais vendido', img:'/vendas-digitais.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/tAqlMeI', desc:'Aprenda como começar a vender na internet do zero, entender o básico do digital e dar os primeiros passos para fazer suas primeiras vendas com mais segurança.' },
-{ id:4, title:'Reeducação Alimentar: Comece com hábitos simples para melhorar sua saúde', cat:'Saúde', intent:'saude', tag:'🥗 Saúde', img:'/reeducacao-alimentar.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/0SAithY', desc:'Aprenda a melhorar sua alimentação com mudanças simples e práticas, criando hábitos mais saudáveis de forma gradual e sustentável.' },
-{ id:5, title:'Plano de Estudos para Vestibular: Organize sua rotina e melhore seu desempenho', cat:'Educação', intent:'estudar', tag:'📚 Educação', img:'/vestibular.png', price:'R$ 9,00', old:'R$ 27,00', link:'https://pay.kiwify.com.br/sOYzBc2', desc:'Guia para quem quer estudar com mais organização, foco e constância, criando uma rotina mais clara para provas e vestibulares.' },
-{ id:6, title:'Estética do Zero: Guia prático para começar na área e atender melhor', cat:'Negócios', intent:'ganhar', tag:'💅 Beleza', img:'/devocional.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/FptQKV2', desc:'Conheça os primeiros passos para entrar no mercado da estética com mais clareza, aprendendo fundamentos importantes para começar com segurança.' },
-{ id:7, title:'Corte e Costura para Iniciantes: Aprenda do zero e crie suas primeiras peças', cat:'Negócios', intent:'ganhar', tag:'🧵 Criativo', img:'/corte-costura.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/uxqfR0Z', desc:'Um conteúdo simples para quem quer aprender os fundamentos da costura, entender materiais, técnicas básicas e começar a praticar com mais confiança.' },
-{ id:8, title:'Confeitaria do Zero: Aprenda a começar e vender seus primeiros doces', cat:'Negócios', intent:'ganhar', tag:'🍰 Doce renda', img:'/confeitaria.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/sjoOT4z', desc:'Guia prático para quem quer iniciar na confeitaria, aprender o básico da produção e entender como transformar doces em oportunidade de renda.' },
-{ id:9, title:'Pedras Preciosas: Guia inicial para entender valor, tipos e oportunidades', cat:'Negócios', intent:'ganhar', tag:'💎 Premium', img:'/pedras-preciosas.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/DZxpL4y', desc:'Aprenda os fundamentos sobre pedras preciosas, suas características e possibilidades de mercado, com uma linguagem simples para iniciantes.' },
-{ id:10, title:'Ferro Velho: Guia prático para enxergar oportunidades nesse mercado', cat:'Negócios', intent:'ganhar', tag:'♻️ Sustentável', img:'/ferro-velho.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/CFNOj2I', desc:'Entenda como funciona o mercado de ferro velho, materiais reaproveitáveis e primeiros passos para identificar oportunidades de renda de forma prática.' },
-{ id:11, title:'Organize seu Negócio: Guia simples para ter mais controle e clareza', cat:'Organização', intent:'organizar', tag:'📊 Organização', img:'/negocio-organizado.png', price:'R$ 9,00', old:'R$ 29,00', link:'https://pay.kiwify.com.br/fIg2Fdd', desc:'Aprenda a organizar tarefas, processos e decisões do seu negócio de forma mais simples, evitando bagunça e melhorando sua rotina de trabalho.' },
-{ id:12, title:'Organize sua Rotina: Método simples para ter mais foco no dia a dia', cat:'Organização', intent:'organizar', tag:'📅 Foco', img:'/tarefas-diarias.png', price:'R$ 13,00', old:'R$ 29,00', link:'https://pay.kiwify.com.br/nmHBzko', desc:'Um guia prático para quem quer organizar melhor as tarefas, reduzir a sensação de bagunça e ter mais clareza sobre o que precisa fazer.' },
-{ id:13, title:'Redução do Álcool: Guia prático para retomar o controle da rotina', cat:'Saúde', intent:'saude', tag:'🧠 Apoio', img:'/alcoolismo.png', price:'R$ 9,00', old:'R$ 27,00', link:'https://pay.kiwify.com.br/hlaRkGV', desc:'Conteúdo de apoio para quem deseja refletir sobre hábitos, organizar melhor a rotina e buscar um caminho mais equilibrado com responsabilidade.' },
-{ id:14, title:'Cannabis: Guia informativo para entender o tema com mais clareza', cat:'Nicho específico', intent:'nicho', tag:'🌿 Informativo', img:'/cannabis.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/riPNbK0', desc:'Um material educativo para quem deseja compreender melhor o assunto, seus contextos, cuidados e informações gerais de forma simples e organizada.', hidden:true }
+{ id:15, title:'Primeiros R$10 Online: Guia simples para começar pelo celular', cat:'Renda Extra', intent:'ganhar', tag:'🔥 Entrada', img:'/vendas-digitais.png', price:'R$ 1,99', old:'R$ 19,90', link:'/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf', desc:'Aprenda formas simples e realistas de iniciar na renda extra online usando apenas o celular, mesmo começando do zero' },
+{ id:16, title:'Como Abrir um Negócio do Zero: Primeiros passos para começar com clareza', cat:'Negócios', intent:'abrir-negocio', tag:'🔥 Oferta R$9', img:'/negocio-lucrativo.png', price:'R$ 9,00', old:'R$ 47,00', link:'COLE_AQUI_O_LINK_DO_CHECKOUT_R9', desc:'Um guia direto para entender o que vender, organizar sua ideia e dar os primeiros passos com pouco investimento' },
+{ id:17, title:'Pack Completo de Negócios: Guias práticos para escolher e começar melhor', cat:'Negócios', intent:'pack', tag:'💎 Pack completo', img:'/pack-negocios.png', price:'R$ 37,00', old:'R$ 97,00', link:'COLE_AQUI_O_LINK_DO_CHECKOUT_R37', desc:'Conteúdos práticos sobre diferentes oportunidades de negócio para comparar caminhos e começar com mais segurança' },
+{ id:1, title:'Assistência Técnica: Como começar do zero e fazer seus primeiros serviços', cat:'Negócios', intent:'ganhar', tag:'🔥 Mais vendido', img:'/assistencia-celular.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/PjRqOei', desc:'Guia prático para iniciar na assistência técnica, entender os primeiros serviços e começar com mais segurança mesmo sem experiência' },
+{ id:2, title:'Barbearia do Zero: Aprenda a começar e conquistar seus primeiros clientes', cat:'Negócios', intent:'ganhar', tag:'🔥 Mais vendido', img:'/barbearia.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/ynz7UXJ', desc:'Guia prático para começar na barbearia do zero, entender os primeiros passos, evitar erros comuns e atender clientes com mais confiança' },
+{ id:3, title:'Vendas Digitais para Iniciantes: Aprenda a vender online passo a passo', cat:'Negócios', intent:'ganhar', tag:'🔥 Mais vendido', img:'/vendas-digitais.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/tAqlMeI', desc:'Aprenda como começar a vender pela internet, entender o básico do digital e dar seus primeiros passos com mais segurança' },
+{ id:4, title:'Reeducação Alimentar: Comece com hábitos simples para melhorar sua saúde', cat:'Saúde', intent:'saude', tag:'🥗 Saúde', img:'/reeducacao-alimentar.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/0SAithY', desc:'Aprenda a melhorar sua alimentação com mudanças simples, práticas e possíveis de aplicar no dia a dia' },
+{ id:5, title:'Plano de Estudos para Vestibular: Organize sua rotina e melhore seu desempenho', cat:'Educação', intent:'estudar', tag:'📚 Educação', img:'/vestibular.png', price:'R$ 9,00', old:'R$ 27,00', link:'https://pay.kiwify.com.br/sOYzBc2', desc:'Guia para estudar com mais organização, foco e constância, criando uma rotina mais clara para provas e vestibulares' },
+{ id:6, title:'Estética do Zero: Guia prático para começar na área e atender melhor', cat:'Negócios', intent:'ganhar', tag:'💅 Beleza', img:'/devocional.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/FptQKV2', desc:'Conheça os primeiros passos para entrar no mercado da estética com mais clareza e começar com segurança' },
+{ id:7, title:'Corte e Costura para Iniciantes: Aprenda do zero e crie suas primeiras peças', cat:'Negócios', intent:'ganhar', tag:'🧵 Criativo', img:'/corte-costura.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/uxqfR0Z', desc:'Um conteúdo simples para aprender fundamentos da costura, entender materiais, técnicas básicas e começar a praticar com mais confiança' },
+{ id:8, title:'Confeitaria do Zero: Aprenda a começar e vender seus primeiros doces', cat:'Negócios', intent:'ganhar', tag:'🍰 Doce renda', img:'/confeitaria.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/sjoOT4z', desc:'Guia prático para iniciar na confeitaria, aprender o básico da produção e transformar doces em oportunidade de renda' },
+{ id:9, title:'Pedras Preciosas: Guia inicial para entender valor, tipos e oportunidades', cat:'Negócios', intent:'ganhar', tag:'💎 Premium', img:'/pedras-preciosas.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/DZxpL4y', desc:'Aprenda os fundamentos sobre pedras preciosas, suas características e possibilidades de mercado em linguagem simples para iniciantes' },
+{ id:10, title:'Ferro Velho: Guia prático para enxergar oportunidades nesse mercado', cat:'Negócios', intent:'ganhar', tag:'♻️ Sustentável', img:'/ferro-velho.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/CFNOj2I', desc:'Entenda como funciona o mercado de ferro velho, materiais reaproveitáveis e primeiros passos para identificar oportunidades na prática' },
+{ id:11, title:'Organize seu Negócio: Guia simples para ter mais controle e clareza', cat:'Organização', intent:'organizar', tag:'📊 Organização', img:'/negocio-organizado.png', price:'R$ 9,00', old:'R$ 29,00', link:'https://pay.kiwify.com.br/fIg2Fdd', desc:'Aprenda a organizar tarefas, processos e decisões do seu negócio com mais clareza e menos bagunça na rotina' },
+{ id:12, title:'Organize sua Rotina: Método simples para ter mais foco no dia a dia', cat:'Organização', intent:'organizar', tag:'📅 Foco', img:'/tarefas-diarias.png', price:'R$ 13,00', old:'R$ 29,00', link:'https://pay.kiwify.com.br/nmHBzko', desc:'Um guia prático para organizar melhor as tarefas, reduzir a bagunça e ter mais clareza no dia a dia' },
+{ id:13, title:'Redução do Álcool: Guia prático para retomar o controle da rotina', cat:'Saúde', intent:'saude', tag:'🧠 Apoio', img:'/alcoolismo.png', price:'R$ 9,00', old:'R$ 27,00', link:'https://pay.kiwify.com.br/hlaRkGV', desc:'Conteúdo de apoio para refletir sobre hábitos, organizar melhor a rotina e buscar um caminho mais equilibrado com responsabilidade' },
+{ id:14, title:'Cannabis: Guia informativo para entender o tema com mais clareza', cat:'Nicho específico', intent:'nicho', tag:'🌿 Informativo', img:'/cannabis.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/riPNbK0', desc:'Material educativo para compreender melhor o assunto, seus contextos, cuidados e informações gerais de forma simples e organizada', hidden:true }
 ];
 
 const filters = [
@@ -128,8 +128,8 @@ function Header({search,setSearch,cartCount,setCartOpen,onLogoSecretClick}){retu
 function Hero({best}){return <section id="top" className="hero heroPremium">
   <div className="copy">
     <p className="eyebrow">🔥 OFERTA DE ENTRADA • ACESSO IMEDIATO</p>
-    <h1>Ganhe dinheiro <br/><span>começando do zero</span><br/>com produtos a partir de R$1,99.</h1>
-    <p className="lead">Um guia rápido, direto e acessível para descobrir caminhos reais de renda extra usando apenas o celular.</p>
+    <h1>Ganhe dinheiro <br/><span>começando do zero</span><br/>com produtos a partir de R$1,99</h1>
+    <p className="lead">Um guia rápido, direto e acessível para descobrir caminhos reais de renda extra usando apenas o celular</p>
 
     <div className="heroTrust premiumTrust">
       <span>💰 <b>Preço de entrada</b><small>Apenas R$1,99</small></span>
@@ -174,7 +174,7 @@ function FeaturedMicroEbook({addToCart}){
       <div className="featured050Copy">
         <p>🔥 OFERTA DE ENTRADA • RENDA EXTRA</p>
         <h2>Ganhe seus primeiros R$10 online hoje</h2>
-        <span>Um guia rápido para iniciantes descobrirem formas simples e reais de começar a fazer renda extra pela internet usando apenas o celular.</span>
+        <span>Um guia rápido para iniciantes descobrirem formas simples e reais de começar a fazer renda extra pela internet usando apenas o celular</span>
         <div className="featured050Bullets">
           <b>✅ Ideal para iniciantes</b>
           <b>⚡ Acesso imediato</b>
@@ -202,63 +202,63 @@ function ValueLadder({addToCart}){
   const premium = products.find(p => p.id === 17);
 
   const steps = [
-    { label:'ENTRADA', price:'R$1,99', title:entrada?.title, text:'Produto de entrada para começar hoje e conhecer o método.', product:entrada },
-    { label:'PRODUTO PRINCIPAL', price:'R$9', title:principal?.title, text:'Guia central para quem quer abrir um negócio com clareza.', product:principal },
-    { label:'PACK PREMIUM', price:'R$37', title:premium?.title, text:'Pacote completo com vários caminhos de negócio do básico ao avançado.', product:premium }
+    { label:'ENTRADA', price:'R$1,99', title:entrada?.title, text:'Produto de entrada para começar hoje e conhecer o método', product:entrada },
+    { label:'PRODUTO PRINCIPAL', price:'R$9', title:principal?.title, text:'Guia central para quem quer abrir um negócio com clareza', product:principal },
+    { label:'PACK PREMIUM', price:'R$37', title:premium?.title, text:'Pacote completo com vários caminhos de negócio do básico ao avançado', product:premium }
   ];
 
   return <section id="escada" className="ladder">
     <p className="red">ESCADA DE VALOR</p>
-    <h2>Comece pequeno. Evolua para o pacote completo.</h2>
-    <p className="sub">Uma jornada simples: primeiro você aprende a ganhar dinheiro, depois entende como abrir um negócio, e por fim acessa o pack completo.</p>
+    <h2>Comece pequeno e evolua para o pacote completo</h2>
+    <p className="sub">Uma jornada simples para começar com pouco, entender como abrir um negócio e evoluir para o pack completo</p>
     <div className="ladderGrid">
       {steps.map((step, index) => <article className="ladderCard" key={step.label}>
         <span>{step.label}</span>
         <strong>{step.price}</strong>
         <h3>{step.title}</h3>
         <p>{step.text}</p>
-        <button onClick={() => step.product && addToCart(step.product)}>{index === 0 ? 'Começar por R$1,99' : 'Comprar agora'}</button>
+        <button onClick={() => step.product && addToCart(step.product)}>{index === 0 ? 'Começar por R$1,99' : 'Acessar agora'}</button>
       </article>)}
     </div>
   </section>
 }
 
-function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido.</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação.</p></div><div>🎧<b>Suporte no WhatsApp</b><p>Atendimento rápido.</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança.</p></div></section>}
+function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação</p></div><div>🎧<b>Suporte no WhatsApp</b><p>Atendimento rápido</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança</p></div></section>}
 
-function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS VENDIDOS DA SEMANA</p><h2>Escolha seu ebook e comece hoje</h2><p className="sub">Comece pelo produto de entrada ou escolha uma oferta principal do funil.</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
+function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS VENDIDOS DA SEMANA</p><h2>Escolha seu ebook e comece hoje</h2><p className="sub">Comece pelo produto de entrada ou escolha uma oferta principal do funil</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
 
 function Filters({filter,setFilter}){return <section className="filters"><h2>Escolha pelo seu <span>objetivo</span></h2><div>{filters.map(([id,label])=><button key={id} onClick={()=>setFilter(id)} className={filter===id?'active':''}>{label}</button>)}</div></section>}
 
-function Catalog({list,addToCart}){return <section id="catalogo" className="catalog"><p className="red">CATÁLOGO COMPLETO</p><h2>Todos os Ebooks</h2><p className="sub">Produtos low ticket, diretos e prontos para acesso.</p><div className="grid">{list.map(p=><Product p={p} addToCart={addToCart} key={p.id}/>)}</div></section>}
+function Catalog({list,addToCart}){return <section id="catalogo" className="catalog"><p className="red">CATÁLOGO COMPLETO</p><h2>Todos os Ebooks</h2><p className="sub">Produtos acessíveis, diretos e prontos para você começar</p><div className="grid">{list.map(p=><Product p={p} addToCart={addToCart} key={p.id}/>)}</div></section>}
 
-function Product({p,compact,addToCart}){return <article className={compact?'card compact':'card'}><div className="imgWrap"><img src={p.img} alt={p.title} loading="lazy" decoding="async"/><span>{p.tag}</span></div><div className="body"><h3>{p.title}</h3><p>{p.desc}</p><small>De {p.old}</small><strong>Por {p.price}</strong><em>Oferta de lançamento</em><button className="cartAdd" onClick={()=>addToCart(p)}>Adicionar ao carrinho</button><a className="buy" href="#" onClick={(e)=>{e.preventDefault();addToCart(p);}}>COMPRAR AGORA</a><a className="zap" href={wa(p)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a></div></article>}
+function Product({p,compact,addToCart}){return <article className={compact?'card compact':'card'}><div className="imgWrap"><img src={p.img} alt={p.title} loading="lazy" decoding="async"/><span>{p.tag}</span></div><div className="body"><h3>{p.title}</h3><p>{p.desc}</p><small>De {p.old}</small><strong>Por {p.price}</strong><em>Oferta de lançamento</em><button className="cartAdd" onClick={()=>addToCart(p)}>Adicionar ao carrinho</button><a className="buy" href="#" onClick={(e)=>{e.preventDefault();addToCart(p);}}>Acessar agora</a><a className="zap" href={wa(p)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a></div></article>}
 
-function OfferBanner(){return <section className="offer"><b>🔥 Preço promocional por tempo limitado</b><span>Escolha seu ebook, compre com segurança e receba o acesso imediatamente.</span><a href="#escada">Ver escada de valor</a></section>}
+function OfferBanner(){return <section className="offer"><b>🔥 Preço promocional por tempo limitado</b><span>Escolha seu ebook, compre com segurança e receba o acesso imediatamente</span><a href="#escada">Ver escada de valor</a></section>}
 
 
 function AffiliateSystem(){return <section id="afiliados" className="affiliate">
   <div className="affiliateCopy">
     <p className="red">SISTEMA DE AFILIADOS INTERNO</p>
     <h2>Venda produtos do Império Digital e ganhe comissão</h2>
-    <span>Estrutura pensada para transformar o site em um marketplace: criadores, afiliados e produtos digitais em uma única plataforma.</span>
+    <span>Estrutura pensada para transformar o site em um marketplace com criadores, afiliados e produtos digitais em uma única plataforma</span>
   </div>
   <div className="affiliateGrid">
-    <div><b>1</b><h3>Afiliado se cadastra</h3><p>Recebe um link único para divulgar produtos selecionados.</p></div>
-    <div><b>2</b><h3>Cliente compra</h3><p>A venda acontece pelo checkout do produto com rastreamento do afiliado.</p></div>
-    <div><b>3</b><h3>Comissão é registrada</h3><p>O painel mostra vendas, cliques, conversão e saldo acumulado.</p></div>
+    <div><b>1</b><h3>Afiliado se cadastra</h3><p>Recebe um link único para divulgar produtos selecionados</p></div>
+    <div><b>2</b><h3>Cliente compra</h3><p>A venda acontece pelo checkout do produto com rastreamento do afiliado</p></div>
+    <div><b>3</b><h3>Comissão é registrada</h3><p>O painel mostra vendas, cliques, conversão e saldo acumulado</p></div>
   </div>
   <div className="affiliateCTA">
     <strong>Próxima fase:</strong>
-    <span>Área de login, links únicos, painel de comissões e ranking de afiliados.</span>
+    <span>Área de login, links únicos, painel de comissões e ranking de afiliados</span>
     <a href={wa()} target="_blank" rel="noreferrer">Quero vender como afiliado</a>
   </div>
 </section>}
 
-function FAQ(){return <section id="faq" className="faq"><h2>Perguntas rápidas</h2><div><details open><summary>Como recebo o ebook?</summary><p>Após a compra aprovada, o acesso chega automaticamente no seu e-mail.</p></details><details><summary>É seguro comprar?</summary><p>Sim. O pagamento é feito pelo Mercado Pago, com checkout protegido.</p></details><details><summary>Tem suporte?</summary><p>Sim. Você pode tirar dúvidas pelo WhatsApp.</p></details></div></section>}
+function FAQ(){return <section id="faq" className="faq"><h2>Perguntas rápidas</h2><div><details open><summary>Como recebo o ebook?</summary><p>Após a compra aprovada, o acesso chega automaticamente no seu e-mail</p></details><details><summary>É seguro comprar?</summary><p>Sim, o pagamento é feito pelo Mercado Pago com checkout protegido</p></details><details><summary>Tem suporte?</summary><p>Sim, você pode tirar dúvidas pelo WhatsApp</p></details></div></section>}
 
-function Testimonials(){return <section className="test"><h2>O que nossos <span>clientes</span> dizem</h2><div><blockquote><b>Carlos M.</b><span>★★★★★</span><p>“O ebook de Barbearia mudou meu negócio. Direto ao ponto.”</p></blockquote><blockquote><b>Juliana S.</b><span>★★★★★</span><p>“O de Reeducação Alimentar me ajudou muito.”</p></blockquote><blockquote><b>Rafael T.</b><span>★★★★★</span><p>“Vendas Digitais abriu minha mente para novas oportunidades.”</p></blockquote></div></section>}
+function Testimonials(){return <section className="test"><h2>O que nossos <span>clientes</span> dizem</h2><div><blockquote><b>Carlos M.</b><span>★★★★★</span><p>“O ebook de Barbearia foi direto ao ponto e me ajudou a enxergar melhor o caminho”</p></blockquote><blockquote><b>Juliana S.</b><span>★★★★★</span><p>“O de Reeducação Alimentar trouxe orientações simples e fáceis de aplicar”</p></blockquote><blockquote><b>Rafael T.</b><span>★★★★★</span><p>“Vendas Digitais me ajudou a entender novas oportunidades com mais clareza”</p></blockquote></div></section>}
 
-function FinalCTA(){return <section className="final"><div>♛</div><section><h2>Invista em você. Comece hoje.</h2><p>Escolha um ebook, acesse agora e dê o próximo passo.</p></section><a href="#best">Comprar Agora →</a></section>}
+function FinalCTA(){return <section className="final"><div>♛</div><section><h2>Comece hoje e dê o próximo passo</h2><p>Escolha um ebook, acesse agora e dê o próximo passo</p></section><a href="#best">Escolher meu ebook →</a></section>}
 function Footer(){return <footer><span>♛ IMPÉRIO DIGITAL</span><b>Compra segura • Acesso imediato • Suporte WhatsApp • Garantia 7 dias</b></footer>}
 
 
@@ -298,17 +298,17 @@ function CheckoutPage(){
       <form className="checkoutForm" onSubmit={finishCheckout}>
         <p className="red">CHECKOUT SEGURO</p>
         <h1>Finalize sua compra</h1>
-        <span className="checkoutLead">Preencha seus dados e pague com Pix ou cartão pelo Mercado Pago.</span>
+        <span className="checkoutLead">Preencha seus dados e pague com Pix ou cartão pelo Mercado Pago</span>
         <label>Nome completo<input value={customer.name} onChange={e=>setCustomer({...customer,name:e.target.value})} placeholder="Seu nome"/></label>
         <label>Email<input type="email" value={customer.email} onChange={e=>setCustomer({...customer,email:e.target.value})} placeholder="seuemail@exemplo.com"/></label>
         <label>WhatsApp<input value={customer.whatsapp} onChange={e=>setCustomer({...customer,whatsapp:e.target.value})} placeholder="(11) 99999-9999"/></label>
         {error && <div className="checkoutError">{error}</div>}
         <button disabled={loading}>{loading ? 'Gerando pagamento...' : 'Pagar com Mercado Pago'}</button>
-        <small>🔒 Pagamento protegido. Você será redirecionado ao ambiente seguro do Mercado Pago.</small>
+        <small>🔒 Pagamento protegido no ambiente seguro do Mercado Pago</small>
       </form>
       <aside className="checkoutSummary">
         <h2>Resumo do pedido</h2>
-        {cart.length === 0 ? <p>Seu carrinho está vazio.</p> : cart.map(item=><div className="summaryItem" key={item.id}><img src={item.img} alt={item.title} loading="lazy" decoding="async"/><div><b>{item.title}</b><span>{item.price}</span></div></div>)}
+        {cart.length === 0 ? <p>Seu carrinho está vazio</p> : cart.map(item=><div className="summaryItem" key={item.id}><img src={item.img} alt={item.title} loading="lazy" decoding="async"/><div><b>{item.title}</b><span>{item.price}</span></div></div>)}
         <div className="summaryTotal"><span>Total</span><strong>R$ {total.toFixed(2).replace('.',',')}</strong></div>
         <em>Compra mínima: R$1,99</em>
         <a href="/">Continuar comprando</a>
@@ -327,8 +327,8 @@ function ThankYouPage(){
     <section>
       <div>✅</div>
       <p className="red">COMPRA APROVADA</p>
-      <h1>Seu ebook está liberado!</h1>
-      <span>Obrigado pela compra. Clique no botão abaixo para baixar seu ebook agora.</span>
+      <h1>Seu ebook está liberado</h1>
+      <span>Obrigado pela compra, clique no botão abaixo para baixar seu ebook agora</span>
 
       <div className="thanksProducts">
         <article>
@@ -397,27 +397,27 @@ function QuizProPage(){
   const data = {
     digital:{
       title:"VENDAS DIGITAIS",
-      text:"Você tem perfil para negócios online, produtos digitais e renda extra usando celular e internet.",
+      text:"Você tem perfil para negócios online, produtos digitais e renda extra usando celular e internet",
       products:[3,16,17]
     },
     tecnico:{
       title:"ASSISTÊNCIA TÉCNICA",
-      text:"Você combina com serviços práticos, consertos e negócios com demanda local.",
+      text:"Você combina com serviços práticos, consertos e negócios com demanda local",
       products:[1,16,17]
     },
     beleza:{
       title:"BELEZA E ATENDIMENTO",
-      text:"Você combina com negócios presenciais, estética e atendimento ao cliente.",
+      text:"Você combina com negócios presenciais, estética e atendimento ao cliente",
       products:[2,6,16]
     },
     producao:{
       title:"PRODUÇÃO E VENDA",
-      text:"Você combina com produção caseira, doces, alimentos e venda recorrente.",
+      text:"Você combina com produção caseira, doces, alimentos e venda recorrente",
       products:[8,7,16]
     },
     organizacao:{
       title:"NEGÓCIO ORGANIZADO",
-      text:"Você combina com planejamento, produtividade e estruturação antes de crescer.",
+      text:"Você combina com planejamento, produtividade e estruturação antes de crescer",
       products:[11,12,16]
     }
   };
@@ -495,7 +495,7 @@ function QuizProPage(){
 
       <p className="quizBadge">CONSULTOR DIGITAL</p>
       <h1>Descubra qual negócio combina <span>com você</span></h1>
-      <p className="quizSub">Responda algumas perguntas rápidas e receba uma recomendação personalizada para começar.</p>
+      <p className="quizSub">Responda algumas perguntas rápidas e receba uma recomendação personalizada para começar</p>
 
       <div className="quizProgressLine">
         <small>{step+1} de {questions.length}</small>
@@ -541,7 +541,7 @@ function CartDrawer({cart,open,setOpen,removeFromCart}){
 
       {cart.length === 0 ? <div className="cartEmpty">
         <b>Seu carrinho está vazio.</b>
-        <span>Escolha um ebook e adicione ao carrinho.</span>
+        <span>Escolha um ebook e adicione ao carrinho</span>
         <a href="#catalogo" onClick={()=>setOpen(false)}>Ver produtos</a>
       </div> : <div className="cartItems">
         {cart.map(item=><div className="cartItem" key={item.id}>
@@ -557,7 +557,7 @@ function CartDrawer({cart,open,setOpen,removeFromCart}){
       <div className="cartFooter">
         <div><span>Total aproximado</span><strong>R$ {total.toFixed(2).replace('.',',')}</strong></div>
         {cart.length > 0 && <button className="checkoutNow" onClick={()=>{localStorage.setItem('imperio_cart', JSON.stringify(cart)); window.location.href='/checkout';}}>Finalizar compra</button>}
-        <small>Pagamento único pelo Mercado Pago. Pix e cartão no checkout seguro.</small>
+        <small>Pagamento único pelo Mercado Pago com Pix e cartão no checkout seguro</small>
       </div>
     </aside>
   </div>
@@ -594,11 +594,11 @@ function TestModePanel({setTestMode}){
       <b>🧪 Modo teste ativo</b>
       <button onClick={closeTestMode}>×</button>
     </div>
-    <p>Use para testar o funil sem pagar toda hora.</p>
+    <p>Use para testar o funil sem pagar toda hora</p>
     <button onClick={simulateApprovedPurchase}>Simular compra aprovada</button>
     <button onClick={()=>{window.location.href='/descobrir-negocio'}}>Abrir quiz</button>
     <button onClick={prepareTestCheckout}>Testar checkout com carrinho</button>
-    <small>Para liberar: clique 7 vezes no logo Império Digital.</small>
+    <small>Para liberar, clique 7 vezes no logo Império Digital</small>
   </aside>
 }
 
