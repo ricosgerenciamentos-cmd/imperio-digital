@@ -48,6 +48,38 @@ const PRODUCTS = {
   209: { title: "Cortes precisos, degradês limpos e atendimento profissional", price: 4.99 }
 };
 
+async function supabaseRequest(path, options = {}) {
+  const url = `${process.env.SUPABASE_URL}/rest/v1${path}`;
+
+  const response = await fetch(url, {
+    method: options.method || "GET",
+    headers: {
+      apikey: process.env.SUPABASE_SERVICE_ROLE_KEY,
+      Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
+      "Content-Type": "application/json",
+      Prefer: options.prefer || "return=representation"
+    },
+    body: options.body ? JSON.stringify(options.body) : undefined
+  });
+
+  const text = await response.text();
+
+  let data = null;
+
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch {
+    data = text;
+  }
+
+  if (!response.ok) {
+    console.error("Erro Supabase:", data);
+    throw new Error(typeof data === "string" ? data : data?.message || "Erro no Supabase");
+  }
+
+  return data;
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Método não permitido" });
@@ -55,6 +87,14 @@ export default async function handler(req, res) {
 
   try {
     const { items = [], customer = {} } = req.body || {};
+
+    if (!process.env.MERCADO_PAGO_ACCESS_TOKEN) {
+      return res.status(500).json({ error: "MERCADO_PAGO_ACCESS_TOKEN não configurado." });
+    }
+
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      return res.status(500).json({ error: "Supabase não configurado." });
+    }
 
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Carrinho vazio." });
@@ -91,6 +131,34 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Compra mínima de R$1,99." });
     }
 
+    const cleanItems = mpItems.map((item) => ({
+      id: item.id,
+      title: item.title,
+      quantity: item.quantity,
+      price: item.unit_price,
+      subtotal: item.unit_price * item.quantity
+    }));
+
+    const createdOrder = await supabaseRequest("/orders?select=id", {
+      method: "POST",
+      body: {
+        email: customer.email || null,
+        customer_name: customer.name || null,
+        whatsapp: customer.whatsapp || null,
+        amount: total,
+        status: "pending",
+        items: cleanItems
+      }
+    });
+
+    const orderId = Array.isArray(createdOrder)
+      ? createdOrder[0]?.id
+      : createdOrder?.id;
+
+    if (!orderId) {
+      return res.status(500).json({ error: "Pedido não foi criado no Supabase." });
+    }
+
     const siteUrl = process.env.SITE_URL || "https://imperio-digital-gray.vercel.app";
 
     const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
@@ -107,9 +175,11 @@ export default async function handler(req, res) {
           email: customer.email || undefined
         },
 
+        external_reference: String(orderId),
+
         back_urls: {
-          success: `${siteUrl}/obrigado`,
-          failure: `${siteUrl}/`,
+          success: `${siteUrl}/obrigado?order_id=${orderId}`,
+          failure: `${siteUrl}/checkout`,
           pending: `${siteUrl}/checkout`
         },
 
@@ -118,8 +188,10 @@ export default async function handler(req, res) {
         notification_url: `${siteUrl}/api/webhook`,
 
         metadata: {
-          customer,
-          items
+          order_id: String(orderId),
+          customer_name: customer.name || "",
+          customer_email: customer.email || "",
+          whatsapp: customer.whatsapp || ""
         },
 
         payment_methods: {
@@ -133,13 +205,32 @@ export default async function handler(req, res) {
     if (!response.ok) {
       console.error("Erro Mercado Pago:", data);
 
+      await supabaseRequest(`/orders?id=eq.${orderId}`, {
+        method: "PATCH",
+        prefer: "return=minimal",
+        body: {
+          status: "payment_error",
+          updated_at: new Date().toISOString()
+        }
+      });
+
       return res.status(500).json({
         error: data.message || "Erro ao criar pagamento."
       });
     }
 
+    await supabaseRequest(`/orders?id=eq.${orderId}`, {
+      method: "PATCH",
+      prefer: "return=minimal",
+      body: {
+        mp_preference_id: data.id,
+        updated_at: new Date().toISOString()
+      }
+    });
+
     return res.status(200).json({
       id: data.id,
+      order_id: orderId,
       init_point: data.init_point,
       sandbox_init_point: data.sandbox_init_point
     });
@@ -148,7 +239,7 @@ export default async function handler(req, res) {
     console.error("Erro create-preference:", error);
 
     return res.status(500).json({
-      error: "Erro ao criar pagamento."
+      error: error.message || "Erro ao criar pagamento."
     });
   }
 }
