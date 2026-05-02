@@ -5,28 +5,56 @@ import './style.css';
 const WHATSAPP = '5511919411086';
 
 const products = [
-{ id:15, title:'Primeiros R$10 Online: Guia simples para começar pelo celular', cat:'Renda Extra', intent:'ganhar', tag:'🔥 Entrada', img:'/vendas-digitais.png', price:'R$ 1,99', old:'R$ 19,90', link:'/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf', desc:'Aprenda formas simples e realistas de iniciar na renda extra online usando apenas o celular, mesmo começando do zero' },
-{ id:16, title:'Como Abrir um Negócio do Zero: Primeiros passos para começar com clareza', cat:'Negócios', intent:'abrir-negocio', tag:'🔥 Oferta R$9', img:'/negocio-lucrativo.png', price:'R$ 9,00', old:'R$ 47,00', link:'COLE_AQUI_O_LINK_DO_CHECKOUT_R9', desc:'Um guia direto para entender o que vender, organizar sua ideia e dar os primeiros passos com pouco investimento' },
-{ id:17, title:'Pack Completo de Negócios: Guias práticos para escolher e começar melhor', cat:'Negócios', intent:'pack', tag:'💎 Pack completo', img:'/pack-negocios.png', price:'R$ 37,00', old:'R$ 97,00', link:'COLE_AQUI_O_LINK_DO_CHECKOUT_R37', desc:'Conteúdos práticos sobre diferentes oportunidades de negócio para comparar caminhos e começar com mais segurança' },
-{ id:1, title:'Assistência Técnica: Como começar do zero e fazer seus primeiros serviços', cat:'Negócios', intent:'ganhar', tag:'🔥 Mais vendido', img:'/assistencia-celular.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/PjRqOei', desc:'Guia prático para iniciar na assistência técnica, entender os primeiros serviços e começar com mais segurança mesmo sem experiência' },
-{ id:2, title:'Barbearia do Zero: Aprenda a começar e conquistar seus primeiros clientes', cat:'Negócios', intent:'ganhar', tag:'🔥 Mais vendido', img:'/barbearia.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/ynz7UXJ', desc:'Guia prático para começar na barbearia do zero, entender os primeiros passos, evitar erros comuns e atender clientes com mais confiança' },
-{ id:3, title:'Vendas Digitais para Iniciantes: Aprenda a vender online passo a passo', cat:'Negócios', intent:'ganhar', tag:'🔥 Mais vendido', img:'/vendas-digitais.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/tAqlMeI', desc:'Aprenda como começar a vender pela internet, entender o básico do digital e dar seus primeiros passos com mais segurança' },
-{ id:4, title:'Reeducação Alimentar: Comece com hábitos simples para melhorar sua saúde', cat:'Saúde', intent:'saude', tag:'🥗 Saúde', img:'/reeducacao-alimentar.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/0SAithY', desc:'Aprenda a melhorar sua alimentação com mudanças simples, práticas e possíveis de aplicar no dia a dia' },
-{ id:5, title:'Plano de Estudos para Vestibular: Organize sua rotina e melhore seu desempenho', cat:'Educação', intent:'estudar', tag:'📚 Educação', img:'/vestibular.png', price:'R$ 9,00', old:'R$ 27,00', link:'https://pay.kiwify.com.br/sOYzBc2', desc:'Guia para estudar com mais organização, foco e constância, criando uma rotina mais clara para provas e vestibulares' },
-{ id:6, title:'Estética do Zero: Guia prático para começar na área e atender melhor', cat:'Negócios', intent:'ganhar', tag:'💅 Beleza', img:'/devocional.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/FptQKV2', desc:'Conheça os primeiros passos para entrar no mercado da estética com mais clareza e começar com segurança' },
-{ id:7, title:'Corte e Costura para Iniciantes: Aprenda do zero e crie suas primeiras peças', cat:'Negócios', intent:'ganhar', tag:'🧵 Criativo', img:'/corte-costura.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/uxqfR0Z', desc:'Um conteúdo simples para aprender fundamentos da costura, entender materiais, técnicas básicas e começar a praticar com mais confiança' },
-{ id:8, title:'Confeitaria do Zero: Aprenda a começar e vender seus primeiros doces', cat:'Negócios', intent:'ganhar', tag:'🍰 Doce renda', img:'/confeitaria.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/sjoOT4z', desc:'Guia prático para iniciar na confeitaria, aprender o básico da produção e transformar doces em oportunidade de renda' },
-{ id:9, title:'Pedras Preciosas: Guia inicial para entender valor, tipos e oportunidades', cat:'Negócios', intent:'ganhar', tag:'💎 Premium', img:'/pedras-preciosas.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/DZxpL4y', desc:'Aprenda os fundamentos sobre pedras preciosas, suas características e possibilidades de mercado em linguagem simples para iniciantes' },
-{ id:10, title:'Ferro Velho: Guia prático para enxergar oportunidades nesse mercado', cat:'Negócios', intent:'ganhar', tag:'♻️ Sustentável', img:'/ferro-velho.png', price:'R$ 14,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/CFNOj2I', desc:'Entenda como funciona o mercado de ferro velho, materiais reaproveitáveis e primeiros passos para identificar oportunidades na prática' },
-{ id:11, title:'Organize seu Negócio: Guia simples para ter mais controle e clareza', cat:'Organização', intent:'organizar', tag:'📊 Organização', img:'/negocio-organizado.png', price:'R$ 9,00', old:'R$ 29,00', link:'https://pay.kiwify.com.br/fIg2Fdd', desc:'Aprenda a organizar tarefas, processos e decisões do seu negócio com mais clareza e menos bagunça na rotina' },
-{ id:12, title:'Organize sua Rotina: Método simples para ter mais foco no dia a dia', cat:'Organização', intent:'organizar', tag:'📅 Foco', img:'/tarefas-diarias.png', price:'R$ 13,00', old:'R$ 29,00', link:'https://pay.kiwify.com.br/nmHBzko', desc:'Um guia prático para organizar melhor as tarefas, reduzir a bagunça e ter mais clareza no dia a dia' },
-{ id:13, title:'Redução do Álcool: Guia prático para retomar o controle da rotina', cat:'Saúde', intent:'saude', tag:'🧠 Apoio', img:'/alcoolismo.png', price:'R$ 9,00', old:'R$ 27,00', link:'https://pay.kiwify.com.br/hlaRkGV', desc:'Conteúdo de apoio para refletir sobre hábitos, organizar melhor a rotina e buscar um caminho mais equilibrado com responsabilidade' },
-{ id:14, title:'Cannabis: Guia informativo para entender o tema com mais clareza', cat:'Nicho específico', intent:'nicho', tag:'🌿 Informativo', img:'/cannabis.png', price:'R$ 13,00', old:'R$ 47,00', link:'https://pay.kiwify.com.br/riPNbK0', desc:'Material educativo para compreender melhor o assunto, seus contextos, cuidados e informações gerais de forma simples e organizada', hidden:true }
+{ id:15, title:"Primeiros R$10 Online: Guia simples para começar pelo celular", cat:"Renda Extra", intent:"ganhar", tag:"🔥 Entrada", img:"/vendas-digitais.png", price:"R$ 1,99", old:"R$ 19,90", file:"/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf", desc:"Aprenda formas simples e realistas de iniciar na renda extra online usando apenas o celular, mesmo começando do zero" },
+{ id:16, title:"Como Abrir um Negócio do Zero: Primeiros passos para começar com clareza", cat:"Negócios", intent:"abrir-negocio", tag:"🔥 Oferta R$9", img:"/negocio-lucrativo.png", price:"R$ 9,00", old:"R$ 47,00", file:"/ebooks/como-abrir-negocio.pdf", desc:"Um guia direto para entender o que vender, organizar sua ideia e dar os primeiros passos com pouco investimento" },
+{ id:17, title:"Pack Completo de Negócios: Guias práticos para escolher e começar melhor", cat:"Negócios", intent:"pack", tag:"💎 Pack completo", img:"/pack-negocios.png", price:"R$ 37,00", old:"R$ 97,00", file:"/ebooks/pack-negocios.pdf", desc:"Conteúdos práticos sobre diferentes oportunidades de negócio para comparar caminhos e começar com mais segurança" },
+{ id:1, title:"Pack Assistência Técnica Completo: do zero aos primeiros clientes", cat:"Assistência Técnica", intent:"assistencia", tag:"💎 Pack completo", img:"/assistencia-celular.png", price:"R$ 37,00", old:"R$ 97,00", file:"/ebooks/assistencia-tecnica.pdf", desc:"Pacote completo com vários guias sobre bancada, defeitos, serviços rápidos, clientes, cobrança, atendimento e crescimento na assistência técnica" },
+{ id:2, title:"Pack Barbearia Completo: do básico aos primeiros clientes", cat:"Barbearia", intent:"barbearia", tag:"💎 Pack completo", img:"/barbearia.png", price:"R$ 37,00", old:"R$ 97,00", file:"/ebooks/barbearia.pdf", desc:"Pacote completo com guias sobre degradê, tesoura, barba, atendimento, fotos, Instagram, cobrança e captação de clientes" },
+{ id:3, title:"Vendas Digitais para Iniciantes: Aprenda a vender online passo a passo", cat:"Negócios", intent:"ganhar", tag:"🔥 Mais vendido", img:"/vendas-digitais.png", price:"R$ 14,00", old:"R$ 47,00", file:"/ebooks/vendas-digitais.pdf", desc:"Aprenda como começar a vender pela internet, entender o básico do digital e dar seus primeiros passos com mais segurança" },
+{ id:4, title:"Reeducação Alimentar: Comece com hábitos simples para melhorar sua saúde", cat:"Saúde", intent:"saude", tag:"🥗 Saúde", img:"/reeducacao-alimentar.png", price:"R$ 13,00", old:"R$ 47,00", file:"/ebooks/reeducacao-alimentar.pdf", desc:"Aprenda a melhorar sua alimentação com mudanças simples, práticas e possíveis de aplicar no dia a dia" },
+{ id:5, title:"Plano de Estudos para Vestibular: Organize sua rotina e melhore seu desempenho", cat:"Educação", intent:"estudar", tag:"📚 Educação", img:"/vestibular.png", price:"R$ 9,00", old:"R$ 27,00", file:"/ebooks/vestibular.pdf", desc:"Guia para estudar com mais organização, foco e constância, criando uma rotina mais clara para provas e vestibulares" },
+{ id:6, title:"Estética do Zero: Guia prático para começar na área e atender melhor", cat:"Negócios", intent:"ganhar", tag:"💅 Beleza", img:"/devocional.png", price:"R$ 13,00", old:"R$ 47,00", file:"/ebooks/estetica.pdf", desc:"Conheça os primeiros passos para entrar no mercado da estética com mais clareza e começar com segurança" },
+{ id:7, title:"Corte e Costura para Iniciantes: Aprenda do zero e crie suas primeiras peças", cat:"Negócios", intent:"ganhar", tag:"🧵 Criativo", img:"/corte-costura.png", price:"R$ 13,00", old:"R$ 47,00", file:"/ebooks/corte-costura.pdf", desc:"Um conteúdo simples para aprender fundamentos da costura, entender materiais, técnicas básicas e começar a praticar com mais confiança" },
+{ id:8, title:"Confeitaria do Zero: Aprenda a começar e vender seus primeiros doces", cat:"Negócios", intent:"ganhar", tag:"🍰 Doce renda", img:"/confeitaria.png", price:"R$ 13,00", old:"R$ 47,00", file:"/ebooks/confeitaria.pdf", desc:"Guia prático para iniciar na confeitaria, aprender o básico da produção e transformar doces em oportunidade de renda" },
+{ id:9, title:"Pedras Preciosas: Guia inicial para entender valor, tipos e oportunidades", cat:"Negócios", intent:"ganhar", tag:"💎 Premium", img:"/pedras-preciosas.png", price:"R$ 14,00", old:"R$ 47,00", file:"/ebooks/pedras-preciosas.pdf", desc:"Aprenda os fundamentos sobre pedras preciosas, suas características e possibilidades de mercado em linguagem simples para iniciantes" },
+{ id:10, title:"Ferro Velho: Guia prático para enxergar oportunidades nesse mercado", cat:"Negócios", intent:"ganhar", tag:"♻️ Sustentável", img:"/ferro-velho.png", price:"R$ 14,00", old:"R$ 47,00", file:"/ebooks/ferro-velho.pdf", desc:"Entenda como funciona o mercado de ferro velho, materiais reaproveitáveis e primeiros passos para identificar oportunidades na prática" },
+{ id:11, title:"Organize seu Negócio: Guia simples para ter mais controle e clareza", cat:"Organização", intent:"organizar", tag:"📊 Organização", img:"/negocio-organizado.png", price:"R$ 9,00", old:"R$ 29,00", file:"/ebooks/negocio-organizado.pdf", desc:"Aprenda a organizar tarefas, processos e decisões do seu negócio com mais clareza e menos bagunça na rotina" },
+{ id:12, title:"Organize sua Rotina: Método simples para ter mais foco no dia a dia", cat:"Organização", intent:"organizar", tag:"📅 Foco", img:"/tarefas-diarias.png", price:"R$ 13,00", old:"R$ 29,00", file:"/ebooks/tarefas-diarias.pdf", desc:"Um guia prático para organizar melhor as tarefas, reduzir a bagunça e ter mais clareza no dia a dia" },
+{ id:13, title:"Redução do Álcool: Guia prático para retomar o controle da rotina", cat:"Saúde", intent:"saude", tag:"🧠 Apoio", img:"/alcoolismo.png", price:"R$ 9,00", old:"R$ 27,00", file:"/ebooks/reducao-alcool.pdf", desc:"Conteúdo de apoio para refletir sobre hábitos, organizar melhor a rotina e buscar um caminho mais equilibrado com responsabilidade" },
+{ id:14, title:"Cannabis: Guia informativo para entender o tema com mais clareza", cat:"Nicho específico", intent:"nicho", tag:"🌿 Informativo", img:"/cannabis.png", price:"R$ 13,00", old:"R$ 47,00", file:"/ebooks/cannabis.pdf", desc:"Material educativo para compreender melhor o assunto, seus contextos, cuidados e informações gerais de forma simples e organizada", hidden:true },
+{ id:101, title:"Como cobrar mais pelos serviços de assistência técnica", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-cobrar-mais-servicos.pdf", desc:"Aprenda formas simples de valorizar seus serviços, cobrar com mais segurança e aumentar o lucro em cada atendimento" },
+{ id:102, title:"Como conseguir clientes na sua cidade para assistência técnica", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-conseguir-clientes.pdf", desc:"Estratégias práticas para atrair clientes locais, divulgar seus serviços e começar a formar uma base de atendimento" },
+{ id:103, title:"Como criar promoções que vendem na assistência técnica", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-criar-promocoes.pdf", desc:"Monte ofertas simples, combos e promoções para aumentar movimento sem desvalorizar seu serviço" },
+{ id:104, title:"Como fidelizar clientes e receber indicações", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-fidelizar-clientes.pdf", desc:"Aprenda a atender melhor, gerar confiança e transformar clientes em indicações recorrentes" },
+{ id:105, title:"Como identificar defeitos em celulares", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-identificar-defeitos.pdf", desc:"Guia rápido para entender sintomas comuns, fazer diagnóstico inicial e evitar erros antes do reparo" },
+{ id:106, title:"Como montar uma bancada barata para assistência técnica", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-montar-bancada-barata.pdf", desc:"Veja como organizar ferramentas, espaço e materiais básicos para começar gastando menos" },
+{ id:107, title:"Serviços rápidos: corrija erros, melhore desempenho e lucre mais", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-servicos-rapidos.pdf", desc:"Ideias de serviços simples e rápidos para gerar caixa com manutenção, ajustes e otimizações" },
+{ id:108, title:"Como trabalhar com celulares molhados e oxidados", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-celulares-molhados-oxidados.pdf", desc:"Cuidados, riscos e primeiros procedimentos para lidar com aparelhos molhados ou com oxidação" },
+{ id:109, title:"Desmontagem e montagem sem danificar celulares", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-desmontagem-montagem.pdf", desc:"Passos e cuidados essenciais para abrir, desmontar e remontar aparelhos com mais segurança" },
+{ id:110, title:"Como resolver lentidão, reinicializações e falhas de sistema", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-lentidao-falhas-sistema.pdf", desc:"Aprenda causas comuns de lentidão e falhas, além de procedimentos para melhorar o desempenho" },
+{ id:111, title:"Limpeza e manutenção preventiva de celulares", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-limpeza-manutencao.pdf", desc:"Aprenda a fazer limpeza preventiva, orientar clientes e criar serviços simples de manutenção" },
+{ id:112, title:"Curso rápido de iPhone básico", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-iphone-basico.pdf", desc:"Introdução prática para entender cuidados, peças, diagnóstico inicial e atendimento com iPhones" },
+{ id:113, title:"Diagnóstico, substituição segura e melhor desempenho", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-diagnostico-substituicao.pdf", desc:"Guia para diagnosticar, substituir componentes com cuidado e entregar melhor resultado ao cliente" },
+{ id:114, title:"Como trabalhar em casa com assistência técnica de celular", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-trabalhar-em-casa.pdf", desc:"Organize atendimento, espaço, rotina e divulgação para começar prestando serviço em casa" },
+{ id:115, title:"Transferência de informações com segurança e agilidade", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-transferir-informacoes.pdf", desc:"Aprenda a oferecer transferência de dados como serviço, com cuidado, organização e valor percebido" },
+{ id:116, title:"Solda básica para iniciantes na assistência técnica", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-solda-basica.pdf", desc:"Introdução aos cuidados, ferramentas e primeiros conceitos para iniciar em solda básica" },
+{ id:117, title:"Troca de tela passo a passo", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/assistencia-troca-de-tela.pdf", desc:"Guia prático com cuidados importantes para entender e executar troca de tela com mais segurança" },
+{ id:201, title:"Como fazer degradê profissional na barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/barbearia-degrade-profissional.pdf", desc:"Aprenda fundamentos para melhorar o degradê, trabalhar transições limpas e entregar cortes mais profissionais" },
+{ id:202, title:"Como atender clientes na barbearia e fazer voltar sempre", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/barbearia-atendimento-clientes.pdf", desc:"Melhore atendimento, experiência e relacionamento para aumentar retorno e indicações" },
+{ id:203, title:"Como fazer barba profissional na barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/barbearia-barba-profissional.pdf", desc:"Guia prático para trabalhar barba com mais cuidado, acabamento e percepção de valor" },
+{ id:204, title:"Como cobrar mais na barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/barbearia-cobrar-mais.pdf", desc:"Aprenda a posicionar melhor seus serviços e aumentar preço sem afastar bons clientes" },
+{ id:205, title:"Como montar sua barbearia do zero", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/barbearia-montar-do-zero.pdf", desc:"Entenda estrutura, primeiros passos, organização e visão prática para começar uma barbearia" },
+{ id:206, title:"Como atrair clientes para barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/barbearia-atrair-clientes.pdf", desc:"Estratégias simples para divulgar, aparecer mais e trazer novos clientes para sua barbearia" },
+{ id:207, title:"Como usar a tesoura na barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/barbearia-usar-tesoura.pdf", desc:"Fundamentos para ganhar mais segurança no uso da tesoura e melhorar acabamento dos cortes" },
+{ id:208, title:"Fotos e Instagram para barbeiros", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/barbearia-fotos-instagram.pdf", desc:"Aprenda a apresentar melhor seus cortes, tirar fotos melhores e usar o Instagram para atrair clientes" },
+{ id:209, title:"Cortes precisos, degradês limpos e atendimento profissional", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/barbearia-cortes-degrades-atendimento.pdf", desc:"Guia prático para elevar a qualidade dos cortes, acabamento e experiência do cliente" }
 ];
 
 const filters = [
   ['todos','Todos'],
   ['ganhar','Ganhar dinheiro'],
+  ['assistencia','Assistência Técnica'],
+  ['barbearia','Barbearia'],
   ['abrir-negocio','Abrir negócio'],
   ['pack','Pack completo'],
   ['organizar','Organização'],
@@ -34,7 +62,7 @@ const filters = [
   ['estudar','Estudos']
 ];
 
-const bestIds = [15,16,17,1];
+const bestIds = [15,1,2,101];
 
 function wa(p){
   const txt = p ? `Olá! Tenho interesse no ebook ${p.title}` : 'Olá! Quero conhecer os ebooks do Império Digital';
@@ -44,6 +72,15 @@ function wa(p){
 
 function priceNumber(price){
   return Number(String(price).replace(/[^\d,]/g,'').replace(',','.')) || 0;
+}
+
+function productFile(product){
+  const current = products.find(item => item.id === product?.id);
+  return product?.file || current?.file || '';
+}
+
+function isDownloadReady(product){
+  return Boolean(productFile(product));
 }
 
 function waCart(cart){
@@ -254,7 +291,7 @@ function AffiliateSystem(){return <section id="afiliados" className="affiliate">
   </div>
 </section>}
 
-function FAQ(){return <section id="faq" className="faq"><h2>Perguntas rápidas</h2><div><details open><summary>Como recebo o ebook?</summary><p>Após a compra aprovada, o acesso chega automaticamente no seu e-mail</p></details><details><summary>É seguro comprar?</summary><p>Sim, o pagamento é feito pelo Mercado Pago com checkout protegido</p></details><details><summary>Tem suporte?</summary><p>Sim, você pode tirar dúvidas pelo WhatsApp</p></details></div></section>}
+function FAQ(){return <section id="faq" className="faq"><h2>Perguntas rápidas</h2><div><details open><summary>Como recebo o ebook?</summary><p>Após a compra aprovada, você é direcionado para a página de obrigado e baixa os ebooks comprados na hora</p></details><details><summary>É seguro comprar?</summary><p>Sim, o pagamento é feito pelo Mercado Pago com checkout protegido</p></details><details><summary>Tem suporte?</summary><p>Sim, você pode tirar dúvidas pelo WhatsApp</p></details></div></section>}
 
 function Testimonials(){return <section className="test"><h2>O que nossos <span>clientes</span> dizem</h2><div><blockquote><b>Carlos M.</b><span>★★★★★</span><p>“O ebook de Barbearia foi direto ao ponto e me ajudou a enxergar melhor o caminho”</p></blockquote><blockquote><b>Juliana S.</b><span>★★★★★</span><p>“O de Reeducação Alimentar trouxe orientações simples e fáceis de aplicar”</p></blockquote><blockquote><b>Rafael T.</b><span>★★★★★</span><p>“Vendas Digitais me ajudou a entender novas oportunidades com mais clareza”</p></blockquote></div></section>}
 
@@ -324,60 +361,38 @@ function ThankYouPage(){
     setOrder(JSON.parse(localStorage.getItem('imperio_last_order') || 'null'));
   },[]);
 
-  const fileMap = {
-    1: '/ebooks/assistencia-tecnica.pdf',
-    2: '/ebooks/barbearia.pdf',
-    3: '/ebooks/vendas-digitais.pdf',
-    4: '/ebooks/reeducacao-alimentar.pdf',
-    5: '/ebooks/vestibular.pdf',
-    6: '/ebooks/estetica.pdf',
-    7: '/ebooks/corte-costura.pdf',
-    8: '/ebooks/confeitaria.pdf',
-    9: '/ebooks/pedras-preciosas.pdf',
-    10: '/ebooks/ferro-velho.pdf',
-    11: '/ebooks/negocio-organizado.pdf',
-    12: '/ebooks/tarefas-diarias.pdf',
-    13: '/ebooks/alcoolismo.pdf',
-    14: '/ebooks/cannabis.pdf',
-    15: '/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf',
-    16: '/ebooks/como-abrir-negocio.pdf',
-    17: '/ebooks/pack-negocios.pdf'
-  };
-
   const purchased = order?.cart || [];
-  const hasProducts = purchased.length > 0;
 
   return <main className="thanksPage">
     <section>
       <div>✅</div>
       <p className="red">COMPRA APROVADA</p>
-      <h1>{hasProducts ? 'Seus ebooks estão liberados' : 'Pedido não encontrado neste dispositivo'}</h1>
-      <span>
-        {hasProducts
-          ? 'Obrigado pela compra. Baixe abaixo todos os produtos que você adquiriu.'
-          : 'Não conseguimos localizar o carrinho desta compra no navegador. Fale com o suporte para receber seu acesso.'}
-      </span>
+      <h1>Seus ebooks estão liberados</h1>
+      <span>Obrigado pela compra. Baixe abaixo todos os produtos que você adquiriu.</span>
 
       <div className="thanksProducts">
-        {hasProducts ? purchased.map(p => {
-          const ebookLink = fileMap[p.id];
+        {purchased.length === 0 ? (
+          <article>
+            <b>Não encontramos seu pedido neste dispositivo.</b>
+            <p>Se você já pagou, fale com o suporte para receber seu acesso.</p>
+            <a href={wa()} target="_blank" rel="noreferrer">Falar com suporte</a>
+          </article>
+        ) : purchased.map(p => {
+          const link = productFile(p);
 
           return <article key={p.id}>
             <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
             <b>{p.title}</b>
-            {ebookLink ? (
-              <a href={ebookLink} download>Baixar Ebook Agora</a>
+            {link ? (
+              <a href={link} download>Baixar Ebook Agora</a>
             ) : (
               <a href={wa(p)} target="_blank" rel="noreferrer">Solicitar acesso no WhatsApp</a>
             )}
           </article>
-        }) : <article>
-          <b>Precisa de ajuda com seu acesso?</b>
-          <a href={wa()} target="_blank" rel="noreferrer">Falar com suporte</a>
-        </article>}
+        })}
       </div>
 
-      {hasProducts && <a className="thanksBtn quizThanksBtn" href="/descobrir-negocio">🤖 Descobrir meu melhor negócio</a>}
+      <a className="thanksBtn quizThanksBtn" href="/descobrir-negocio">🤖 Descobrir meu melhor negócio</a>
       <a className="thanksBtn" href={wa()} target="_blank" rel="noreferrer">💬 Falar com suporte</a>
       <a className="thanksBtn" href="/">Voltar para o site</a>
     </section>
@@ -440,12 +455,12 @@ function QuizProPage(){
     tecnico:{
       title:"ASSISTÊNCIA TÉCNICA",
       text:"Você combina com serviços práticos, consertos e negócios com demanda local",
-      products:[1,16,17]
+      products:[1,101,102]
     },
     beleza:{
       title:"BELEZA E ATENDIMENTO",
       text:"Você combina com negócios presenciais, estética e atendimento ao cliente",
-      products:[2,6,16]
+      products:[2,201,202]
     },
     producao:{
       title:"PRODUÇÃO E VENDA",
