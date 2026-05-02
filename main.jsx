@@ -375,49 +375,175 @@ function CheckoutPage(){
 
 function ThankYouPage(){
   const [order,setOrder] = useState(null);
+  const [token,setToken] = useState(null);
+  const [loading,setLoading] = useState(true);
+  const [message,setMessage] = useState('Verificando pagamento...');
+  const [error,setError] = useState('');
 
   React.useEffect(()=>{
-    setOrder(JSON.parse(localStorage.getItem('imperio_last_order') || 'null'));
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get('order_id');
+    const isTest = params.get('teste') === '1';
+
+    if(isTest || !orderId){
+      const localOrder = JSON.parse(localStorage.getItem('imperio_last_order') || 'null');
+
+      if(localOrder){
+        setOrder({
+          status: localOrder.test ? 'approved' : 'local',
+          items: localOrder.cart || [],
+          amount: localOrder.total || 0,
+          customer_name: localOrder.customer?.name || 'Cliente'
+        });
+        setToken(localOrder.test ? 'TESTE_R0' : null);
+      }
+
+      setLoading(false);
+      return;
+    }
+
+    let attempts = 0;
+    const maxAttempts = 20;
+    let intervalId = null;
+
+    async function checkOrder(){
+      try{
+        attempts += 1;
+
+        const res = await fetch(`/api/order-status?order_id=${encodeURIComponent(orderId)}`);
+        const data = await res.json();
+
+        if(!res.ok){
+          throw new Error(data.error || 'Não foi possível consultar o pedido.');
+        }
+
+        setOrder(data.order || null);
+        setToken(data.token?.token || null);
+
+        if(data.order?.status === 'approved' && data.token?.token){
+          setMessage('Pagamento aprovado. Seus ebooks estão liberados.');
+          setLoading(false);
+          return true;
+        }
+
+        if(data.order?.status === 'approved' && !data.token?.token){
+          setMessage('Pagamento aprovado. Preparando seus links de download...');
+        }else if(data.order?.status === 'pending'){
+          setMessage('Pagamento em processamento. Aguarde alguns segundos...');
+        }else if(data.order?.status === 'payment_error'){
+          setMessage('Houve um problema ao criar o pagamento.');
+          setLoading(false);
+          return true;
+        }else{
+          setMessage('Verificando pagamento...');
+        }
+
+        if(attempts >= maxAttempts){
+          setLoading(false);
+          setMessage('Ainda não conseguimos confirmar o pagamento automaticamente.');
+          return true;
+        }
+
+        return false;
+      }catch(err){
+        setError(err.message || 'Erro ao consultar pedido.');
+        setLoading(false);
+        return true;
+      }
+    }
+
+    checkOrder().then((done)=>{
+      if(done) return;
+
+      intervalId = setInterval(async ()=>{
+        const doneNow = await checkOrder();
+
+        if(doneNow && intervalId){
+          clearInterval(intervalId);
+        }
+      }, 4000);
+    });
+
+    return () => {
+      if(intervalId) clearInterval(intervalId);
+    };
   },[]);
 
-  const purchased = order?.cart || [];
+  const purchased = order?.items || [];
+
+  function getProductInfo(item){
+    const product = products.find(p => String(p.id) === String(item.id));
+    return {
+      ...item,
+      title: product?.title || item.title,
+      img: product?.img || '/vendas-digitais.png',
+      price: product?.price || (item.price ? `R$ ${Number(item.price).toFixed(2).replace('.',',')}` : ''),
+      file: product?.file || item.file
+    };
+  }
+
+  function downloadLink(item){
+    if(token === 'TESTE_R0'){
+      const product = products.find(p => String(p.id) === String(item.id));
+      return product?.file || item.file || '#';
+    }
+
+    return `/api/download?token=${encodeURIComponent(token)}&product_id=${encodeURIComponent(item.id)}`;
+  }
+
+  const canDownload = token && purchased.length > 0;
 
   return <main className="thanksPage">
     <section>
-      <div>✅</div>
-      <p className="red">COMPRA APROVADA</p>
-      <h1>Seus ebooks estão liberados</h1>
-      <span>Obrigado pela compra. Baixe abaixo todos os produtos que você adquiriu.</span>
+      <div>{canDownload ? '✅' : '⏳'}</div>
+      <p className="red">{canDownload ? 'COMPRA APROVADA' : 'AGUARDANDO CONFIRMAÇÃO'}</p>
+      <h1>{canDownload ? 'Seus ebooks estão liberados' : 'Estamos verificando seu pagamento'}</h1>
+      <span>{message}</span>
+
+      {loading && <div className="checkoutError" style={{marginTop:'18px'}}>
+        Aguarde, isso pode levar alguns segundos após o pagamento.
+      </div>}
+
+      {error && <div className="checkoutError" style={{marginTop:'18px'}}>
+        {error}
+      </div>}
 
       <div className="thanksProducts">
         {purchased.length === 0 ? (
           <article>
-            <b>Não encontramos seu pedido neste dispositivo.</b>
+            <b>Não encontramos produtos neste pedido.</b>
             <p>Se você já pagou, fale com o suporte para receber seu acesso.</p>
             <a href={wa()} target="_blank" rel="noreferrer">Falar com suporte</a>
           </article>
-        ) : purchased.map(p => {
-          const link = productFile(p);
+        ) : purchased.map(item => {
+          const p = getProductInfo(item);
 
           return <article key={p.id}>
             <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
             <b>{p.title}</b>
-            {link ? (
-              <a href={link} download>Baixar Ebook Agora</a>
+
+            {canDownload ? (
+              <a href={downloadLink(p)} target="_blank" rel="noreferrer">
+                Baixar Ebook Agora
+              </a>
             ) : (
-              <a href={wa(p)} target="_blank" rel="noreferrer">Solicitar acesso no WhatsApp</a>
+              <button disabled style={{opacity:.55,cursor:'not-allowed'}}>
+                Aguardando aprovação
+              </button>
             )}
           </article>
         })}
       </div>
 
+      {!canDownload && <a className="thanksBtn" href={wa()} target="_blank" rel="noreferrer">
+        💬 Falar com suporte
+      </a>}
+
       <a className="thanksBtn quizThanksBtn" href="/descobrir-negocio">🤖 Descobrir meu melhor negócio</a>
-      <a className="thanksBtn" href={wa()} target="_blank" rel="noreferrer">💬 Falar com suporte</a>
       <a className="thanksBtn" href="/">Voltar para o site</a>
     </section>
   </main>
 }
-
 
 function QuizProPage(){
   const [step,setStep] = useState(0);
