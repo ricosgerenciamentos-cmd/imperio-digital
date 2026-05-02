@@ -97,6 +97,7 @@ function App(){
   const [cart,setCart] = useState([]);
   const [cartOpen,setCartOpen] = useState(false);
   const [logoClicks,setLogoClicks] = useState(0);
+  const [footerAdminClicks,setFooterAdminClicks] = useState(0);
   const [testMode,setTestMode] = useState(() => localStorage.getItem('imperio_test_mode') === 'true');
 
   function handleLogoSecretClick(e){
@@ -108,6 +109,16 @@ function App(){
       localStorage.setItem('imperio_test_mode', 'true');
       setTestMode(true);
       setLogoClicks(0);
+    }
+  }
+
+  function handleFooterSecretAdminClick(){
+    const next = footerAdminClicks + 1;
+    setFooterAdminClicks(next);
+
+    if(next >= 7){
+      setFooterAdminClicks(0);
+      window.location.href = '/admin';
     }
   }
 
@@ -129,6 +140,7 @@ function App(){
   if(path === '/checkout') return <CheckoutPage />;
   if(path === '/obrigado') return <ThankYouPage />;
   if(path === '/descobrir-negocio') return <QuizProPage />;
+  if(path === '/admin') return <AdminPage />;
 
   return <main>
     <TopNotice />
@@ -145,7 +157,7 @@ function App(){
     <FAQ/>
     <Testimonials/>
     <FinalCTA/>
-    <Footer/>
+    <Footer onSecretAdminClick={handleFooterSecretAdminClick}/>
     <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
     <FloatingButtons/>
     {testMode && <TestModePanel setTestMode={setTestMode}/>}
@@ -296,7 +308,7 @@ function FAQ(){return <section id="faq" className="faq"><h2>Perguntas rápidas</
 function Testimonials(){return <section className="test"><h2>O que nossos <span>clientes</span> dizem</h2><div><blockquote><b>Carlos M.</b><span>★★★★★</span><p>“O ebook de Barbearia foi direto ao ponto e me ajudou a enxergar melhor o caminho”</p></blockquote><blockquote><b>Juliana S.</b><span>★★★★★</span><p>“O de Reeducação Alimentar trouxe orientações simples e fáceis de aplicar”</p></blockquote><blockquote><b>Rafael T.</b><span>★★★★★</span><p>“Vendas Digitais me ajudou a entender novas oportunidades com mais clareza”</p></blockquote></div></section>}
 
 function FinalCTA(){return <section className="final"><div>♛</div><section><h2>Comece hoje e dê o próximo passo</h2><p>Escolha um ebook, acesse agora e dê o próximo passo</p></section><a href="#best">Escolher meu ebook →</a></section>}
-function Footer(){return <footer><span>♛ IMPÉRIO DIGITAL</span><b>Compra segura • Acesso imediato • Suporte WhatsApp • Garantia 7 dias</b></footer>}
+function Footer({onSecretAdminClick}){return <footer><button type="button" className="footerSecretAdmin" onClick={onSecretAdminClick}>♛ IMPÉRIO DIGITAL</button><b>Compra segura • Acesso imediato • Suporte WhatsApp • Garantia 7 dias</b></footer>}
 
 
 function CheckoutPage(){
@@ -396,6 +408,7 @@ function ThankYouPage(){
           customer_name: localOrder.customer?.name || 'Cliente'
         });
         setToken(localOrder.test ? 'TESTE_R0' : null);
+        setMessage(isTest ? 'Modo teste aprovado. Seus downloads estão liberados.' : 'Seus ebooks estão liberados.');
       }
 
       setLoading(false);
@@ -802,6 +815,218 @@ function TestModePanel({setTestMode}){
     <button onClick={prepareTestCheckout}>Testar checkout R$0 com avulsos</button>
     <small>Para liberar, clique 7 vezes no logo Império Digital</small>
   </aside>
+}
+
+
+function AdminPage(){
+  const [password,setPassword] = useState('');
+  const [logged,setLogged] = useState(false);
+  const [orders,setOrders] = useState([]);
+  const [loading,setLoading] = useState(false);
+  const [error,setError] = useState('');
+
+  async function loadOrders(pass = password){
+    setLoading(true);
+    setError('');
+
+    try{
+      const res = await fetch('/api/admin-orders',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({password:pass})
+      });
+
+      const data = await res.json();
+
+      if(!res.ok){
+        throw new Error(data.error || 'Erro ao carregar pedidos.');
+      }
+
+      setOrders(data.orders || []);
+      setLogged(true);
+      sessionStorage.setItem('imperio_admin_logged', 'true');
+      sessionStorage.setItem('imperio_admin_password', pass);
+
+    }catch(err){
+      setError(err.message || 'Erro inesperado.');
+    }finally{
+      setLoading(false);
+    }
+  }
+
+  React.useEffect(()=>{
+    const savedLogged = sessionStorage.getItem('imperio_admin_logged') === 'true';
+    const savedPass = sessionStorage.getItem('imperio_admin_password') || '';
+
+    if(savedLogged && savedPass){
+      setPassword(savedPass);
+      loadOrders(savedPass);
+    }
+  },[]);
+
+  function logout(){
+    sessionStorage.removeItem('imperio_admin_logged');
+    sessionStorage.removeItem('imperio_admin_password');
+    setLogged(false);
+    setPassword('');
+    setOrders([]);
+  }
+
+  function formatDate(value){
+    if(!value) return '-';
+
+    try{
+      return new Date(value).toLocaleString('pt-BR');
+    }catch{
+      return value;
+    }
+  }
+
+  function statusLabel(status){
+    if(status === 'approved') return '✅ Aprovado';
+    if(status === 'pending') return '⏳ Pendente';
+    if(status === 'payment_error') return '❌ Erro no pagamento';
+    return status || '-';
+  }
+
+  const totalApproved = orders
+    .filter(order => order.status === 'approved')
+    .reduce((sum,order)=>sum + Number(order.amount || 0),0);
+
+  const pendingCount = orders.filter(order => order.status === 'pending').length;
+  const approvedCount = orders.filter(order => order.status === 'approved').length;
+
+  if(!logged){
+    return <main className="adminPage">
+      <section className="adminLogin">
+        <a className="checkoutLogo" href="/">♛ IMPÉRIO <span>DIGITAL</span></a>
+        <p className="red">PAINEL ADMIN</p>
+        <h1>Acesso restrito</h1>
+        <span>Digite a senha administrativa para visualizar pedidos, status, produtos e tokens.</span>
+
+        <label>
+          Senha
+          <input
+            type="password"
+            value={password}
+            onChange={e=>setPassword(e.target.value)}
+            placeholder="Digite sua senha"
+            onKeyDown={e=>{if(e.key === 'Enter') loadOrders();}}
+          />
+        </label>
+
+        {error && <div className="checkoutError">{error}</div>}
+
+        <button onClick={()=>loadOrders()} disabled={loading}>
+          {loading ? 'Entrando...' : 'Entrar no painel'}
+        </button>
+
+        <a href="/">Voltar para o site</a>
+      </section>
+    </main>
+  }
+
+  return <main className="adminPage">
+    <section className="adminShell">
+      <div className="adminTop">
+        <div>
+          <p className="red">PAINEL ADMIN</p>
+          <h1>Pedidos do Império Digital</h1>
+          <span>Controle rápido de vendas, pagamentos, produtos comprados e tokens de download.</span>
+        </div>
+
+        <div className="adminActions">
+          <button onClick={()=>loadOrders()} disabled={loading}>
+            {loading ? 'Atualizando...' : 'Atualizar'}
+          </button>
+          <button onClick={logout}>Sair</button>
+        </div>
+      </div>
+
+      <div className="adminStats">
+        <article>
+          <span>Total aprovado</span>
+          <strong>R$ {totalApproved.toFixed(2).replace('.',',')}</strong>
+        </article>
+        <article>
+          <span>Pedidos aprovados</span>
+          <strong>{approvedCount}</strong>
+        </article>
+        <article>
+          <span>Pedidos pendentes</span>
+          <strong>{pendingCount}</strong>
+        </article>
+        <article>
+          <span>Total de pedidos</span>
+          <strong>{orders.length}</strong>
+        </article>
+      </div>
+
+      {error && <div className="checkoutError">{error}</div>}
+
+      <div className="adminOrders">
+        {orders.length === 0 ? (
+          <div className="adminEmpty">Nenhum pedido encontrado ainda.</div>
+        ) : orders.map(order => (
+          <article className="adminOrderCard" key={order.id}>
+            <div className="adminOrderHead">
+              <div>
+                <b>{order.customer_name || 'Cliente sem nome'}</b>
+                <span>{order.email || 'Sem email'} • {order.whatsapp || 'Sem WhatsApp'}</span>
+              </div>
+
+              <strong className={`adminStatus ${order.status}`}>
+                {statusLabel(order.status)}
+              </strong>
+            </div>
+
+            <div className="adminOrderMeta">
+              <span><b>Pedido:</b> {order.id}</span>
+              <span><b>Valor:</b> R$ {Number(order.amount || 0).toFixed(2).replace('.',',')}</span>
+              <span><b>Criado:</b> {formatDate(order.created_at)}</span>
+              <span><b>Atualizado:</b> {formatDate(order.updated_at)}</span>
+              <span><b>MP Preference:</b> {order.mp_preference_id || '-'}</span>
+              <span><b>MP Payment:</b> {order.mp_payment_id || '-'}</span>
+            </div>
+
+            <div className="adminProducts">
+              <b>Produtos comprados</b>
+              {(order.items || []).length === 0 ? (
+                <p>Nenhum produto salvo neste pedido.</p>
+              ) : (
+                (order.items || []).map((item,index)=>(
+                  <div key={`${order.id}-${item.id}-${index}`}>
+                    <span>{item.title || `Produto ${item.id}`}</span>
+                    <strong>R$ {Number(item.price || 0).toFixed(2).replace('.',',')}</strong>
+                  </div>
+                ))
+              )}
+            </div>
+
+            <div className="adminTokenBox">
+              <b>Token de download</b>
+              {order.token ? (
+                <>
+                  <code>{order.token.token}</code>
+                  <span>Expira em: {formatDate(order.token.expires_at)}</span>
+                  <span>Usado em: {order.token.used_at ? formatDate(order.token.used_at) : 'Ainda não usado'}</span>
+                  <a
+                    href={`/obrigado?order_id=${order.id}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Abrir página de obrigado
+                  </a>
+                </>
+              ) : (
+                <span>Token ainda não criado.</span>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
 }
 
 function FloatingButtons(){return <><a className="floatZap" href={wa()} target="_blank" rel="noreferrer">💬</a><div className="mobile"><a href={wa()} target="_blank" rel="noreferrer">WhatsApp</a><a href="#ebook050">Comprar</a></div></>}
