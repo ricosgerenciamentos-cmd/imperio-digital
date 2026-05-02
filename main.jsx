@@ -319,33 +319,70 @@ function CheckoutPage(){
 
 function ThankYouPage(){
   const [order,setOrder] = useState(null);
-  React.useEffect(()=>{setOrder(JSON.parse(localStorage.getItem('imperio_last_order') || 'null'))},[]);
 
-  const ebookLink = '/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf';
+  React.useEffect(()=>{
+    setOrder(JSON.parse(localStorage.getItem('imperio_last_order') || 'null'));
+  },[]);
+
+  const fileMap = {
+    1: '/ebooks/assistencia-tecnica.pdf',
+    2: '/ebooks/barbearia.pdf',
+    3: '/ebooks/vendas-digitais.pdf',
+    4: '/ebooks/reeducacao-alimentar.pdf',
+    5: '/ebooks/vestibular.pdf',
+    6: '/ebooks/estetica.pdf',
+    7: '/ebooks/corte-costura.pdf',
+    8: '/ebooks/confeitaria.pdf',
+    9: '/ebooks/pedras-preciosas.pdf',
+    10: '/ebooks/ferro-velho.pdf',
+    11: '/ebooks/negocio-organizado.pdf',
+    12: '/ebooks/tarefas-diarias.pdf',
+    13: '/ebooks/alcoolismo.pdf',
+    14: '/ebooks/cannabis.pdf',
+    15: '/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf',
+    16: '/ebooks/como-abrir-negocio.pdf',
+    17: '/ebooks/pack-negocios.pdf'
+  };
+
+  const purchased = order?.cart || [];
+  const hasProducts = purchased.length > 0;
 
   return <main className="thanksPage">
     <section>
       <div>✅</div>
       <p className="red">COMPRA APROVADA</p>
-      <h1>Seu ebook está liberado</h1>
-      <span>Obrigado pela compra, clique no botão abaixo para baixar seu ebook agora</span>
+      <h1>{hasProducts ? 'Seus ebooks estão liberados' : 'Pedido não encontrado neste dispositivo'}</h1>
+      <span>
+        {hasProducts
+          ? 'Obrigado pela compra. Baixe abaixo todos os produtos que você adquiriu.'
+          : 'Não conseguimos localizar o carrinho desta compra no navegador. Fale com o suporte para receber seu acesso.'}
+      </span>
 
       <div className="thanksProducts">
-        <article>
-          <img src="/vendas-digitais.png" alt="Ganhe Seus Primeiros R$10 Online Hoje" loading="lazy" decoding="async"/>
-          <b>Ganhe Seus Primeiros R$10 Online Hoje</b>
-          <a href={ebookLink} download>Baixar Ebook Agora</a>
-        </article>
+        {hasProducts ? purchased.map(p => {
+          const ebookLink = fileMap[p.id];
+
+          return <article key={p.id}>
+            <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
+            <b>{p.title}</b>
+            {ebookLink ? (
+              <a href={ebookLink} download>Baixar Ebook Agora</a>
+            ) : (
+              <a href={wa(p)} target="_blank" rel="noreferrer">Solicitar acesso no WhatsApp</a>
+            )}
+          </article>
+        }) : <article>
+          <b>Precisa de ajuda com seu acesso?</b>
+          <a href={wa()} target="_blank" rel="noreferrer">Falar com suporte</a>
+        </article>}
       </div>
 
-      <a className="thanksBtn" href={ebookLink} download>📥 Baixar meu ebook</a>
-      <a className="thanksBtn quizThanksBtn" href="/descobrir-negocio">🤖 Descobrir meu melhor negócio</a>
+      {hasProducts && <a className="thanksBtn quizThanksBtn" href="/descobrir-negocio">🤖 Descobrir meu melhor negócio</a>}
       <a className="thanksBtn" href={wa()} target="_blank" rel="noreferrer">💬 Falar com suporte</a>
       <a className="thanksBtn" href="/">Voltar para o site</a>
     </section>
   </main>
 }
-
 
 
 function QuizProPage(){
