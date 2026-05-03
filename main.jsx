@@ -94,6 +94,7 @@ function App(){
   const path = window.location.pathname;
   const [filter,setFilter] = useState('todos');
   const [search,setSearch] = useState('');
+  const [catalogOpen,setCatalogOpen] = useState(false);
   const [cart,setCart] = useState([]);
   const [cartOpen,setCartOpen] = useState(false);
   const [logoClicks,setLogoClicks] = useState(0);
@@ -130,6 +131,23 @@ function App(){
   function removeFromCart(id){
     setCart(current => current.filter(item => item.id !== id));
   }
+
+  function openCatalog(nextFilter = 'todos'){
+    setSearch('');
+    setFilter(nextFilter);
+    setCatalogOpen(true);
+    setTimeout(() => document.getElementById('catalogo')?.scrollIntoView({ behavior:'smooth', block:'start' }), 60);
+  }
+
+  function handleSearch(value){
+    setSearch(value);
+    if(value.trim()){
+      setFilter('todos');
+      setCatalogOpen(true);
+      setTimeout(() => document.getElementById('catalogo')?.scrollIntoView({ behavior:'smooth', block:'start' }), 60);
+    }
+  }
+
   const best = products.filter(p => bestIds.includes(p.id));
   const list = useMemo(() => products.filter(p => {
     const byFilter = filter === 'todos' ? !p.hidden : p.intent === filter;
@@ -144,28 +162,33 @@ function App(){
 
   return <main>
     <TopNotice />
-    <Header search={search} setSearch={setSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={handleLogoSecretClick}/>
-    <Hero best={best}/>
+    <Header search={search} setSearch={handleSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={handleLogoSecretClick} openCatalog={openCatalog}/>
+    <Hero best={best} openCatalog={openCatalog}/>
     <TrustBar/>
     <Best best={best} addToCart={addToCart}/>
     <FeaturedMicroEbook addToCart={addToCart}/>
-    <Filters filter={filter} setFilter={setFilter}/>
-    <Catalog list={list} addToCart={addToCart}/>
+    <Filters filter={filter} openCatalog={openCatalog} catalogOpen={catalogOpen}/>
+    {catalogOpen && <Catalog list={list} addToCart={addToCart} filter={filter} search={search}/>} 
     <FAQ/>
     <Testimonials/>
     <FinalCTA/>
     <Footer onSecretAdminClick={handleFooterSecretAdminClick}/>
     <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
-    <FloatingButtons/>
-    {testMode && <TestModePanel setTestMode={setTestMode}/>}
+    {testMode && <TestModePanel setTestMode={setTestMode}/>} 
   </main>
 }
 
-function TopNotice(){return <div className="notice">🔥 Oferta especial de lançamento • Acesso imediato • Compra segura pelo Mercado Pago • Suporte no WhatsApp</div>}
+function TopNotice(){return <div className="notice">🔥 Oferta especial de lançamento • Acesso imediato • Compra segura pelo Mercado Pago • Garantia 7 dias</div>}
 
-function Header({search,setSearch,cartCount,setCartOpen,onLogoSecretClick}){return <header className="header">
+function Header({search,setSearch,cartCount,setCartOpen,onLogoSecretClick,openCatalog}){return <header className="header">
   <a className="logo" href="#top" onClick={onLogoSecretClick} title="Império Digital"><span>♛</span><div><b>IMPÉRIO</b><small>DIGITAL</small></div></a>
-  <nav><a href="#top">Início</a><a href="#best">Mais vendidos</a><a href="#catalogo">Ebooks</a><a href="#faq">Perguntas</a><a href={wa()} target="_blank" rel="noreferrer">Contato</a></nav>
+  <nav>
+    <a href="#top">Início</a>
+    <a href="#best">Mais vendidos</a>
+    <a href="#escolha">Escolher objetivo</a>
+    <a href="#catalogo" onClick={(e)=>{e.preventDefault();openCatalog('todos')}}>Tudo</a>
+    <a href="#faq">Perguntas</a>
+  </nav>
   <label className="search"><span>⌕</span><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar ebook"/></label>
   <button className="cartBtn" onClick={()=>setCartOpen(true)}>🛒 <span>{cartCount}</span></button>
   <a className="headBtn" href="#ebook050">Começar por R$1,99</a>
@@ -193,7 +216,7 @@ function Hero({best}){return <section id="top" className="hero heroPremium">
       <a className="primary pulse" href="#best">Ver mais vendidos</a>
       <a className="secondary" href="#ebook050">Começar por R$1,99</a>
     </div>
-    <p className="secureLine">🔒 Compra segura • Acesso imediato • Suporte no WhatsApp</p>
+    <p className="secureLine">🔒 Compra segura • Acesso imediato • Garantia 7 dias</p>
   </div>
 
   <div className="phoneStage">
@@ -204,11 +227,11 @@ function Hero({best}){return <section id="top" className="hero heroPremium">
 
 function Phone({product}){const phoneProducts = products.filter(p=>[1,2,3,4,15,16].includes(p.id)); return <aside className="phone premiumPhone"><div className="screen">
   <div className="phoneNav">☰ <b>♛ IMPÉRIO <small>DIGITAL</small></b> 🛒</div>
-  <h3 className="phoneSectionTitle">VITRINE INICIAL <a href="#best">Ver todos</a></h3>
+  <h3 className="phoneSectionTitle">VITRINE INICIAL <a href="#escolha">Escolher</a></h3>
   <div className="phoneProductGrid">
     {phoneProducts.map(p=><img key={p.id} src={p.img} alt={p.title} loading="lazy" decoding="async"/>)}
   </div>
-  <a className="phoneBtn" href="#catalogo">VER TODOS OS EBOOKS</a>
+  <a className="phoneBtn" href="#escolha">ESCOLHER POR OBJETIVO</a>
 </div></aside>}
 
 
@@ -269,19 +292,38 @@ function ValueLadder({addToCart}){
   </section>
 }
 
-function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação</p></div><div>🎧<b>Suporte no WhatsApp</b><p>Atendimento rápido</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança</p></div></section>}
+function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação</p></div><div>🎧<b>Atendimento de apoio</b><p>Suporte quando precisar</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança</p></div></section>}
 
 function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS PROCURADOS AGORA</p><h2>Produtos em destaque para começar</h2><p className="sub">Mostramos poucos produtos no início para a pessoa entender rápido o que vale a pena ver primeiro</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
 
-function Filters({filter,setFilter}){return <section className="filters"><h2>Escolha pelo seu <span>objetivo</span></h2><div>{filters.map(([id,label])=><button key={id} onClick={()=>setFilter(id)} className={filter===id?'active':''}>{label}</button>)}</div></section>}
+function Filters({filter,openCatalog,catalogOpen}){
+  return <section id="escolha" className="filters goalChooser">
+    <p className="red">ESCOLHA O QUE VOCÊ PROCURA</p>
+    <h2>Veja apenas os ebooks do seu <span>objetivo</span></h2>
+    <p className="sub">Nada de jogar todos os produtos na tela. Escolha uma área e o site mostra só o que faz sentido para você.</p>
+    <div>
+      {filters.map(([id,label])=><button key={id} onClick={()=>openCatalog(id)} className={catalogOpen && filter===id?'active':''}>{id === 'todos' ? 'Tudo' : label}</button>)}
+    </div>
+  </section>
+}
 
-function Catalog({list,addToCart}){return <section id="catalogo" className="catalog"><p className="red">CATÁLOGO COMPLETO</p><h2>Encontre o ebook pelo seu objetivo</h2><p className="sub">Use os filtros acima para ver somente o que combina com o que você procura</p><div className="grid">{list.map(p=><Product p={p} addToCart={addToCart} key={p.id}/>)}</div></section>}
+function Catalog({list,addToCart,filter,search}){
+  const selected = filters.find(([id])=>id === filter)?.[1] || 'Todos';
+  const title = search ? `Resultado para: ${search}` : filter === 'todos' ? 'Todos os ebooks' : `Ebooks de ${selected}`;
+
+  return <section id="catalogo" className="catalog">
+    <p className="red">CATÁLOGO FILTRADO</p>
+    <h2>{title}</h2>
+    <p className="sub">Agora aparecem somente os produtos da opção escolhida. Para ver tudo, clique em “Tudo”.</p>
+    {list.length === 0 ? <div className="emptyCatalog">Nenhum ebook encontrado nessa busca.</div> : <div className="grid">{list.map(p=><Product p={p} addToCart={addToCart} key={p.id}/>)}</div>}
+  </section>
+}
 
 function Product({p,compact,addToCart}){
-  const limit = compact ? 118 : 145;
+  const limit = compact ? 94 : 118;
   const desc = p.desc && p.desc.length > limit ? `${p.desc.slice(0, limit)}...` : p.desc;
 
-  return <article className={compact?'card compact':'card'}>
+  return <article className={compact?'card compact cleanCard':'card cleanCard'}>
     <div className="imgWrap">
       <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
       <span>{p.tag}</span>
@@ -293,9 +335,7 @@ function Product({p,compact,addToCart}){
       <small>De {p.old}</small>
       <strong>Por {p.price}</strong>
       <em>Acesso imediato</em>
-      <button className="cartAdd" onClick={()=>addToCart(p)}>Adicionar ao carrinho</button>
-      <a className="buy" href="#" onClick={(e)=>{e.preventDefault();addToCart(p);}}>Comprar agora</a>
-      <a className="zap" href={wa(p)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a>
+      <button className="buy singleBuy" onClick={()=>addToCart(p)}>Comprar agora</button>
     </div>
   </article>
 }
@@ -325,7 +365,7 @@ function FAQ(){return <section id="faq" className="faq"><h2>Perguntas rápidas</
 
 function Testimonials(){return <section className="test"><h2>O que nossos <span>clientes</span> dizem</h2><div><blockquote><b>Carlos M.</b><span>★★★★★</span><p>“O ebook de Barbearia foi direto ao ponto e me ajudou a enxergar melhor o caminho”</p></blockquote><blockquote><b>Juliana S.</b><span>★★★★★</span><p>“O de Reeducação Alimentar trouxe orientações simples e fáceis de aplicar”</p></blockquote><blockquote><b>Rafael T.</b><span>★★★★★</span><p>“Vendas Digitais me ajudou a entender novas oportunidades com mais clareza”</p></blockquote></div></section>}
 
-function FinalCTA(){return <section className="final"><div>♛</div><section><h2>Escolha um ebook e comece hoje</h2><p>Produtos digitais simples, acessíveis e com acesso imediato para você aprender sem complicação</p></section><a href="#best">Ver mais vendidos →</a></section>}
+function FinalCTA(){return <section className="final"><div>♛</div><section><h2>Escolha um ebook e comece hoje</h2><p>Produtos digitais simples, acessíveis e com acesso imediato para você aprender sem complicação</p></section><a href="#escolha">Escolher objetivo →</a></section>}
 function Footer({onSecretAdminClick}){return <footer><button type="button" className="footerSecretAdmin" onClick={onSecretAdminClick}>♛ IMPÉRIO DIGITAL</button><b>Compra segura • Acesso imediato • Suporte WhatsApp • Garantia 7 dias</b></footer>}
 
 
