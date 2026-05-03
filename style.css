@@ -1757,3 +1757,179 @@ h1,h2,h3,.logo b,.headBtn,.primary,.secondary,.buy,.microR1Copy h2,.microR1Card 
   .cleanCard .body h3{font-size:19px!important;}
   .final{margin-bottom:34px!important;}
 }
+
+
+/* ================================
+   AJUSTE: páginas reais por categoria
+   ================================ */
+.header nav a[href="/catalogo"],
+.header nav a[href="/descobrir-negocio"]{
+  color:#111;
+}
+.search{
+  border:0;
+  background:transparent;
+  padding:0;
+}
+.cartAdd,.zap,.floatZap,.mobile{
+  display:none!important;
+}
+.pageHero{
+  padding:64px 80px 34px;
+  background:linear-gradient(135deg,#fff 0%,#fff7f7 54%,#ffecec 100%);
+  border-bottom:1px solid #f2dddd;
+  text-align:center;
+}
+.pageHero h1{
+  max-width:980px;
+  margin:10px auto 14px;
+  font-size:clamp(42px,5vw,72px);
+  line-height:.98;
+  letter-spacing:-2.4px;
+  font-weight:1000;
+}
+.pageHero p:not(.red){
+  max-width:720px;
+  margin:0 auto 24px;
+  color:#444;
+  font-size:18px;
+  line-height:1.6;
+  font-weight:650;
+}
+.backLink{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  border:1px solid #f1d9d9;
+  border-radius:999px;
+  padding:11px 16px;
+  color:#e50909;
+  font-weight:1000;
+  box-shadow:0 12px 30px rgba(0,0,0,.04);
+  margin-bottom:22px;
+}
+.categoryTabs{
+  max-width:1120px;
+  margin:24px auto 0;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+}
+.categoryTabs a{
+  border:1px solid #ffd2d2;
+  background:#fff;
+  color:#111;
+  border-radius:999px;
+  padding:12px 16px;
+  font-weight:1000;
+  box-shadow:0 8px 22px rgba(0,0,0,.035);
+}
+.categoryTabs a.active,
+.categoryTabs a:hover{
+  background:#e50909;
+  color:#fff;
+  border-color:#e50909;
+}
+.goalChooser{
+  background:#fff;
+  padding-bottom:70px;
+}
+.goalGrid{
+  max-width:1180px;
+  margin:26px auto 0;
+  display:grid!important;
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:18px!important;
+}
+.goalCard{
+  min-height:210px;
+  border:1px solid #eee;
+  border-radius:24px;
+  padding:24px;
+  text-align:left;
+  background:#fff;
+  box-shadow:0 16px 44px rgba(0,0,0,.055);
+  transition:.22s;
+}
+.goalCard:hover{
+  transform:translateY(-4px);
+  border-color:#ffd0d0;
+  box-shadow:0 24px 60px rgba(229,9,9,.10);
+}
+.goalCard strong{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  background:#fff1f1;
+  color:#e50909;
+  display:grid;
+  place-items:center;
+  font-size:26px;
+  margin-bottom:16px;
+}
+.goalCard h3{
+  margin:0 0 8px;
+  font-size:22px;
+  line-height:1.05;
+}
+.goalCard p{
+  color:#555;
+  line-height:1.45;
+  margin:0 0 16px;
+  font-weight:650;
+}
+.goalCard span{
+  color:#e50909;
+  font-weight:1000;
+}
+.allCatalogLink{
+  display:inline-flex;
+  margin-top:26px;
+  color:#e50909;
+  border:1px solid #e50909;
+  border-radius:999px;
+  padding:14px 22px;
+  font-weight:1000;
+}
+.routeCatalog{
+  padding-top:46px;
+}
+.routeCatalog .grid{
+  margin-top:26px;
+}
+.cleanCard .body p{
+  min-height:unset;
+}
+.singleBuy{
+  border:0;
+  cursor:pointer;
+  margin-top:auto;
+}
+.final a[href="#escolha"]{
+  background:#e50909;
+}
+.footerSecretAdmin{
+  background:transparent;
+  border:0;
+  color:inherit;
+  font:inherit;
+  font-weight:1000;
+  cursor:pointer;
+  padding:0;
+}
+@media(max-width:1200px){
+  .pageHero{padding:52px 28px 30px}
+  .goalGrid{grid-template-columns:repeat(2,1fr)!important}
+}
+@media(max-width:760px){
+  .pageHero{padding:36px 18px 24px}
+  .pageHero h1{font-size:42px;letter-spacing:-1.2px}
+  .pageHero p:not(.red){font-size:16px}
+  .categoryTabs{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px}
+  .categoryTabs a{white-space:nowrap}
+  .goalGrid{grid-template-columns:1fr!important}
+  .goalCard{min-height:auto;padding:22px}
+  .allCatalogLink{width:100%;justify-content:center;text-align:center}
+}
