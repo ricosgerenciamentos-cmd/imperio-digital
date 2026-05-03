@@ -100,8 +100,8 @@ function categoryLabel(id){
 
 function categoryText(id){
   const texts = {
-    todos:'Veja todos os ebooks disponíveis no Império Digital em um só lugar.',
-    ganhar:'Ebooks para quem quer renda extra, vendas digitais e ideias práticas de negócio.',
+    todos:'Veja todos os materiais disponíveis no Império Digital e escolha o ebook ideal para o seu momento.',
+    ganhar:'Materiais para quem busca renda extra, vendas digitais e ideias práticas para começar.',
     assistencia:'Guias focados em assistência técnica de celular, bancada, clientes e serviços práticos.',
     barbearia:'Conteúdos focados em barbearia, atendimento, cortes, barba, fotos e captação de clientes.',
     'abrir-negocio':'Materiais para clarear ideias, escolher um caminho e começar um negócio com mais segurança.',
@@ -179,6 +179,19 @@ function App(){
   if(rawPath === '/obrigado') return <ThankYouPage />;
   if(rawPath === '/descobrir-negocio') return <QuizProPage />;
   if(rawPath === '/admin') return <AdminPage />;
+  if(rawPath === '/sugestoes') return <SuggestionPage
+    search={search}
+    setSearch={setSearch}
+    submitSearch={submitSearch}
+    cart={cart}
+    cartOpen={cartOpen}
+    setCartOpen={setCartOpen}
+    removeFromCart={removeFromCart}
+    onLogoSecretClick={handleLogoSecretClick}
+    onSecretAdminClick={handleFooterSecretAdminClick}
+    testMode={testMode}
+    setTestMode={setTestMode}
+  />;
 
   if(routeFilter){
     return <StorePage
@@ -247,7 +260,7 @@ function Header({search,setSearch,submitSearch,cartCount,setCartOpen,onLogoSecre
   <nav>
     <a href="/">Início</a>
     <a href="/#best">Mais vendidos</a>
-    <a href="/#escolha">Escolher objetivo</a>
+    <a href="/#escolha">Escolher material</a>
     <a href="/catalogo">Tudo</a>
     <a href="/descobrir-negocio">Quiz</a>
   </nav>
@@ -263,7 +276,7 @@ function Hero({best}){return <section id="top" className="hero heroPremium">
   <div className="copy">
     <p className="eyebrow">🔥 EBOOKS PRÁTICOS • ACESSO IMEDIATO</p>
     <h1>Ebooks práticos para <span>aprender, vender e organizar</span> sua vida</h1>
-    <p className="lead">Guias simples, acessíveis e diretos ao ponto. Escolha por objetivo e encontre rapidamente o ebook mais útil para o seu momento.</p>
+    <p className="lead">Guias simples, acessíveis e diretos ao ponto para quem quer aprender, empreender, se organizar ou desenvolver uma nova habilidade.</p>
 
     <div className="heroTrust premiumTrust">
       <span>💰 <b>A partir de R$1,99</b><small>Produto de entrada</small></span>
@@ -273,13 +286,13 @@ function Hero({best}){return <section id="top" className="hero heroPremium">
     </div>
 
     <div className="socialProof premiumProof">
-      <b>⭐ Escolha mais fácil</b>
-      <span>Encontre ebooks por objetivo: renda extra, profissão, saúde, estudos ou organização</span>
+      <b>⭐ Materiais selecionados</b>
+      <span>Escolha uma área de interesse e encontre conteúdos alinhados ao seu objetivo</span>
     </div>
 
     <div className="actions">
       <a className="primary pulse" href="#best">Ver mais vendidos</a>
-      <a className="secondary" href="#escolha">Escolher por objetivo</a>
+      <a className="secondary" href="#escolha">Escolher material</a>
     </div>
     <p className="secureLine">🔒 Compra segura • Acesso imediato • Garantia 7 dias</p>
   </div>
@@ -292,11 +305,11 @@ function Hero({best}){return <section id="top" className="hero heroPremium">
 
 function Phone({product}){const phoneProducts = products.filter(p=>[1,2,3,4,15,16].includes(p.id)); return <aside className="phone premiumPhone"><div className="screen">
   <div className="phoneNav">☰ <b>♛ IMPÉRIO <small>DIGITAL</small></b> 🛒</div>
-  <h3 className="phoneSectionTitle">VITRINE INICIAL <a href="/#escolha">Escolher</a></h3>
+  <h3 className="phoneSectionTitle">CATEGORIAS <a href="/#escolha">Ver</a></h3>
   <div className="phoneProductGrid">
     {phoneProducts.map(p=><img key={p.id} src={p.img} alt={p.title} loading="lazy" decoding="async"/>)}
   </div>
-  <a className="phoneBtn" href="/#escolha">ESCOLHER POR OBJETIVO</a>
+  <a className="phoneBtn" href="/#escolha">ESCOLHER MATERIAL</a>
 </div></aside>}
 
 function FeaturedMicroEbook({addToCart}){
@@ -306,7 +319,7 @@ function FeaturedMicroEbook({addToCart}){
       <div className="featured050Copy">
         <p>🔥 OFERTA DE ENTRADA • R$1,99</p>
         <h2>Comece com um ebook simples, barato e direto</h2>
-        <span>O produto de entrada serve para conhecer o Império Digital sem gastar muito. Depois, você escolhe uma categoria específica sem precisar ver um catálogo misturado.</span>
+        <span>Um material acessível para quem quer começar hoje com um conteúdo prático, direto e fácil de aplicar.</span>
         <div className="featured050Bullets">
           <b>✅ Ideal para iniciantes</b>
           <b>⚡ Acesso imediato</b>
@@ -327,35 +340,32 @@ function FeaturedMicroEbook({addToCart}){
   </section>
 }
 
-function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação</p></div><div>🎯<b>Escolha por objetivo</b><p>Encontre o que combina com você</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança</p></div></section>}
+function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação</p></div><div>🎯<b>Escolha por interesse</b><p>Encontre materiais alinhados ao que você procura</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança</p></div></section>}
 
-function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS PROCURADOS AGORA</p><h2>Produtos em destaque para começar</h2><p className="sub">Uma seleção curta com os ebooks de maior interesse para quem quer começar hoje.</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
+function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS PROCURADOS AGORA</p><h2>Produtos em destaque para começar</h2><p className="sub">Uma seleção inicial dos materiais mais procurados para você começar com segurança.</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
 
 function GoalLinks(){
   const goals = [
-    ['ganhar','💰','Ganhar dinheiro','Renda extra, vendas digitais e ideias de negócio'],
-    ['assistencia','📱','Assistência Técnica','Celulares, bancada, serviços e clientes'],
-    ['barbearia','✂️','Barbearia','Cortes, barba, atendimento e divulgação'],
-    ['abrir-negocio','💼','Abrir negócio','Primeiros passos para começar com clareza'],
-    ['pack','💎','Pack completo','Pacotes maiores com mais conteúdo'],
-    ['organizar','📊','Organização','Rotina, tarefas e controle do negócio'],
-    ['saude','🥗','Saúde','Hábitos e rotina mais equilibrada'],
-    ['estudar','📚','Estudos','Foco, vestibular e organização dos estudos']
+    ['ganhar','Ganhar dinheiro'],
+    ['assistencia','Assistência Técnica'],
+    ['barbearia','Barbearia'],
+    ['abrir-negocio','Abrir negócio'],
+    ['pack','Pack completo'],
+    ['organizar','Organização'],
+    ['saude','Saúde'],
+    ['estudar','Estudos']
   ];
 
-  return <section id="escolha" className="filters goalChooser">
-    <p className="red">ESCOLHA UMA PÁGINA</p>
-    <h2>Entre só na categoria que faz sentido para você</h2>
-    <p className="sub">Agora cada botão abre uma página separada. Se a pessoa quer Barbearia, ela não precisa ver Ferro Velho, Saúde ou Vestibular.</p>
-    <div className="goalGrid">
-      {goals.map(([id,icon,title,text])=><a className="goalCard" href={categoryHref(id)} key={id}>
-        <strong>{icon}</strong>
+  return <section id="escolha" className="filters goalChooser compactGoalChooser">
+    <p className="red">ESCOLHA SEU MATERIAL</p>
+    <h2>Encontre o ebook ideal para você</h2>
+    <p className="sub">Selecione uma área de interesse e veja os materiais disponíveis.</p>
+    <div className="goalGrid simpleGoalGrid">
+      {goals.map(([id,title])=><a className="goalCard simpleGoalCard" href={categoryHref(id)} key={id}>
         <h3>{title}</h3>
-        <p>{text}</p>
-        <span>Ver ebooks →</span>
       </a>)}
+      <a className="goalCard simpleGoalCard allGoalCard" href="/catalogo"><h3>Ver todos</h3></a>
     </div>
-    <a className="allCatalogLink" href="/catalogo">Ver tudo somente se eu clicar em Tudo</a>
   </section>
 }
 
@@ -364,9 +374,9 @@ function Catalog({list,addToCart,filter,search}){
   const title = search ? `Resultado para: ${search}` : filter === 'todos' ? 'Todos os ebooks' : `Ebooks de ${selected}`;
 
   return <section id="catalogo" className="catalog routeCatalog">
-    <p className="red">CATÁLOGO FILTRADO</p>
+    <p className="red">MATERIAIS DISPONÍVEIS</p>
     <h2>{title}</h2>
-    <p className="sub">Esta lista pertence somente à página atual. Voltar no navegador volta para a página anterior.</p>
+    <p className="sub">Veja os ebooks disponíveis nesta categoria e escolha o material ideal para você.</p>
     {list.length === 0 ? <div className="emptyCatalog">Nenhum ebook encontrado nessa busca.</div> : <div className="grid">{list.map(p=><Product p={p} addToCart={addToCart} key={p.id}/>)}</div>}
   </section>
 }
@@ -417,9 +427,89 @@ function FAQ(){return <section id="faq" className="faq"><h2>Perguntas rápidas</
 
 function Testimonials(){return <section className="test"><h2>O que nossos <span>clientes</span> dizem</h2><div><blockquote><b>Carlos M.</b><span>★★★★★</span><p>“O ebook de Barbearia foi direto ao ponto e me ajudou a enxergar melhor o caminho”</p></blockquote><blockquote><b>Juliana S.</b><span>★★★★★</span><p>“O de Reeducação Alimentar trouxe orientações simples e fáceis de aplicar”</p></blockquote><blockquote><b>Rafael T.</b><span>★★★★★</span><p>“Vendas Digitais me ajudou a entender novas oportunidades com mais clareza”</p></blockquote></div></section>}
 
-function FinalCTA(){return <section className="final"><div>♛</div><section><h2>Escolha um ebook e comece hoje</h2><p>Produtos digitais simples, acessíveis e com acesso imediato para você aprender sem complicação</p></section><a href="#escolha">Escolher objetivo →</a></section>}
+function FinalCTA(){return <section className="final finalHelp"><div>♛</div><section><h2>Escolha um ebook e comece hoje</h2><p>Produtos digitais simples, acessíveis e com acesso imediato para você aprender sem complicação.</p></section><div className="finalActions"><a className="finalPrimary" href="#escolha">Escolher material →</a><a className="finalWhats" href={wa()} target="_blank" rel="noreferrer">Fale conosco</a><a className="finalSuggest" href="/sugestoes">Não encontrou o que procura? Envie uma sugestão</a></div></section>}
 function Footer({onSecretAdminClick}){return <footer><button type="button" className="footerSecretAdmin" onClick={onSecretAdminClick}>♛ IMPÉRIO DIGITAL</button><b>Compra segura • Acesso imediato • Garantia 7 dias</b></footer>}
 
+
+function SuggestionPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,removeFromCart,onLogoSecretClick,onSecretAdminClick,testMode,setTestMode}){
+  const emptyForm = {name:'',whatsapp:'',email:'',theme:'',category:'',description:''};
+  const [form,setForm] = useState(emptyForm);
+  const [loading,setLoading] = useState(false);
+  const [status,setStatus] = useState({type:'',message:''});
+
+  function updateField(field,value){
+    setForm(current => ({...current,[field]:value}));
+  }
+
+  async function handleSuggestionSubmit(e){
+    e.preventDefault();
+    setLoading(true);
+    setStatus({type:'',message:''});
+
+    try{
+      const response = await fetch('/api/create-suggestion', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(form)
+      });
+
+      if(!response.ok) throw new Error('Falha ao enviar sugestão');
+
+      setForm(emptyForm);
+      setStatus({type:'success',message:'Sugestão enviada com sucesso. Nossa equipe irá avaliar o tema sugerido.'});
+    }catch(error){
+      setStatus({type:'error',message:'Não foi possível enviar a sugestão agora. Tente novamente em alguns minutos.'});
+    }finally{
+      setLoading(false);
+    }
+  }
+
+  return <main>
+    <TopNotice />
+    <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={onLogoSecretClick}/>
+
+    <section className="suggestPage">
+      <div className="suggestHero">
+        <a className="backLink" href="/">← Voltar para o início</a>
+        <p className="red">SUGESTÕES</p>
+        <h1>Sugira um novo ebook</h1>
+        <p>Não encontrou o material que estava procurando? Envie sua sugestão de tema e nossa equipe irá avaliar a possibilidade de desenvolver ou disponibilizar um conteúdo alinhado ao que você precisa.</p>
+      </div>
+
+      <form className="suggestForm" onSubmit={handleSuggestionSubmit}>
+        <div className="formRow">
+          <label>Seu nome<input required value={form.name} onChange={e=>updateField('name', e.target.value)} placeholder="Digite seu nome"/></label>
+          <label>WhatsApp para contato<input required value={form.whatsapp} onChange={e=>updateField('whatsapp', e.target.value)} placeholder="(00) 00000-0000"/></label>
+        </div>
+        <div className="formRow">
+          <label>Email<input type="email" value={form.email} onChange={e=>updateField('email', e.target.value)} placeholder="seuemail@exemplo.com"/></label>
+          <label>Categoria<select required value={form.category} onChange={e=>updateField('category', e.target.value)}>
+            <option value="">Selecione uma categoria</option>
+            <option>Ganhar dinheiro</option>
+            <option>Assistência Técnica</option>
+            <option>Barbearia</option>
+            <option>Abrir negócio</option>
+            <option>Organização</option>
+            <option>Saúde</option>
+            <option>Estudos</option>
+            <option>Outro tema</option>
+          </select></label>
+        </div>
+        <label>Tema sugerido<input required value={form.theme} onChange={e=>updateField('theme', e.target.value)} placeholder="Exemplo: Como vender doces pelo WhatsApp"/></label>
+        <label>O que você gostaria de aprender?<textarea required value={form.description} onChange={e=>updateField('description', e.target.value)} placeholder="Conte brevemente qual material você gostaria de encontrar no site" rows="5"/></label>
+
+        {status.message && <div className={`suggestStatus ${status.type}`}>{status.message}</div>}
+
+        <button type="submit" disabled={loading}>{loading ? 'Enviando...' : 'Enviar sugestão'}</button>
+        <small>Suas informações serão usadas apenas para avaliar a sugestão e, se necessário, entrar em contato sobre o tema enviado.</small>
+      </form>
+    </section>
+
+    <Footer onSecretAdminClick={onSecretAdminClick}/>
+    <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
+    {testMode && <TestModePanel setTestMode={setTestMode}/>} 
+  </main>
+}
 
 function CheckoutPage(){
   const [cart,setCart] = useState([]);
@@ -798,7 +888,7 @@ function QuizProPage(){
           })}
         </div>
 
-        <a className="quizAllBtn" href="/catalogo">Ver todos os produtos</a>
+        <a className="quizAllBtn" href="/#catalogo">Ver todos os produtos</a>
         <button className="quizRedo" onClick={()=>{setStep(0);setAnswers([])}}>↻ Refazer teste</button>
       </section>
     </main>
