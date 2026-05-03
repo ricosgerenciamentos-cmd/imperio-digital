@@ -427,7 +427,25 @@ function FAQ(){return <section id="faq" className="faq"><h2>Perguntas rápidas</
 
 function Testimonials(){return <section className="test"><h2>O que nossos <span>clientes</span> dizem</h2><div><blockquote><b>Carlos M.</b><span>★★★★★</span><p>“O ebook de Barbearia foi direto ao ponto e me ajudou a enxergar melhor o caminho”</p></blockquote><blockquote><b>Juliana S.</b><span>★★★★★</span><p>“O de Reeducação Alimentar trouxe orientações simples e fáceis de aplicar”</p></blockquote><blockquote><b>Rafael T.</b><span>★★★★★</span><p>“Vendas Digitais me ajudou a entender novas oportunidades com mais clareza”</p></blockquote></div></section>}
 
-function FinalCTA(){return <section className="final finalHelp"><div>♛</div><section><h2>Escolha um ebook e comece hoje</h2><p>Produtos digitais simples, acessíveis e com acesso imediato para você aprender sem complicação.</p></section><div className="finalActions"><a className="finalPrimary" href="#escolha">Escolher material →</a><a className="finalWhats" href={wa()} target="_blank" rel="noreferrer">Fale conosco</a><a className="finalSuggest" href="/sugestoes">Não encontrou o que procura? Envie uma sugestão</a></div></section>}
+function FinalCTA(){
+  return (
+    <section className="final finalHelp finalFixedActions">
+      <div className="finalIcon">♛</div>
+
+      <div className="finalCopy">
+        <h2>Escolha um ebook e comece hoje</h2>
+        <p>Produtos digitais simples, acessíveis e com acesso imediato para você aprender sem complicação.</p>
+        <small>Compra segura • Acesso imediato • Garantia 7 dias</small>
+      </div>
+
+      <div className="finalActions">
+        <a className="finalPrimary" href="#escolha">Escolher material</a>
+        <a className="finalWhats" href={wa()} target="_blank" rel="noreferrer">Fale conosco</a>
+        <a className="finalSuggest" href="/sugestoes">Enviar sugestão</a>
+      </div>
+    </section>
+  );
+}
 function Footer({onSecretAdminClick}){return <footer><button type="button" className="footerSecretAdmin" onClick={onSecretAdminClick}>♛ IMPÉRIO DIGITAL</button><b>Compra segura • Acesso imediato • Garantia 7 dias</b></footer>}
 
 
