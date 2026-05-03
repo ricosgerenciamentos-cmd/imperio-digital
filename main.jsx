@@ -906,7 +906,7 @@ function QuizProPage(){
           })}
         </div>
 
-        <a className="quizAllBtn" href="/#catalogo">Ver todos os produtos</a>
+        <a className="quizAllBtn" href="/catalogo">Ver todos os produtos</a>
         <button className="quizRedo" onClick={()=>{setStep(0);setAnswers([])}}>↻ Refazer teste</button>
       </section>
     </main>
