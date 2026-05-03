@@ -1,1945 +1,1144 @@
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;color:#111;background:#fff}a{text-decoration:none;color:inherit}img{max-width:100%;display:block}button,input{font:inherit}main{overflow-x:hidden}.notice{background:#111;color:#fff;text-align:center;font-weight:900;padding:10px;font-size:14px}.header{height:84px;display:flex;align-items:center;gap:30px;padding:0 80px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);position:sticky;top:0;z-index:50;border-bottom:1px solid #eee}.logo{display:flex;align-items:center;gap:10px;min-width:210px}.logo span{font-size:42px;color:#e50909}.logo b{font-size:25px;font-weight:1000}.logo small{display:block;color:#e50909;letter-spacing:4px;font-size:12px;font-weight:1000}.header nav{display:flex;gap:32px;flex:1;justify-content:center}.header nav a{font-size:14px;font-weight:900}.header nav a:hover{color:#e50909}.search{width:46px;height:46px;display:grid;place-items:center;position:relative}.search span{font-size:28px}.search input{position:absolute;right:0;width:0;opacity:0;transition:.25s;border:1px solid #ddd;border-radius:999px;padding:12px 16px}.search:hover input,.search input:focus{width:230px;opacity:1}.headBtn,.primary,.buy,.final a,.offer a{background:#e50909;color:#fff;border-radius:10px;font-weight:1000;box-shadow:0 14px 30px rgba(229,9,9,.2);transition:.25s}.headBtn{padding:15px 24px}.primary{padding:18px 30px;display:inline-flex}.secondary{padding:17px 24px;border:1px solid #e50909;color:#e50909;border-radius:10px;font-weight:1000}.headBtn:hover,.primary:hover,.buy:hover,.final a:hover,.card:hover,.offer a:hover{transform:translateY(-3px)}.pulse{animation:pulse 1.8s infinite}@keyframes pulse{0%,100%{box-shadow:0 14px 30px rgba(229,9,9,.2)}50%{box-shadow:0 16px 45px rgba(229,9,9,.42)}}.hero{position:relative;display:grid;grid-template-columns:minmax(440px,42%) minmax(420px,38%) 300px;gap:30px;min-height:650px;padding:70px 80px;background:linear-gradient(90deg,#fff 0%,#fff 50%,#f7f3f1 100%);overflow:hidden}.copy{z-index:2}.eyebrow,.red{color:#e50909;font-weight:1000;letter-spacing:.6px}.copy h1{font-size:clamp(62px,6vw,96px);line-height:.92;letter-spacing:-4px;margin:20px 0 22px;font-weight:1000}.copy h1 span,.phone h2 span,.filters span,.test span{color:#e50909}.lead{font-size:20px;line-height:1.5;color:#333;max-width:620px;font-weight:650}.socialProof{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.socialProof b,.socialProof span{border:1px solid #eee;border-radius:999px;padding:8px 12px;font-weight:900;background:#fff}.heroTrust{display:grid;grid-template-columns:repeat(4,max-content);gap:24px;margin:25px 0}.heroTrust span{font-weight:950}.actions{display:flex;gap:14px;align-items:center}.scene{position:relative}.tablet{position:absolute;top:0;left:0;width:430px;background:#111;border:14px solid #111;border-radius:30px;box-shadow:0 32px 70px rgba(0,0,0,.18);transform:rotate(2deg);overflow:hidden}.tabletTop{background:#fff;padding:8px 14px;display:flex;justify-content:space-between;font-size:12px}.tabletGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px;background:#111}.tabletGrid img{height:115px;width:100%;object-fit:cover;border-radius:8px}.mug{position:absolute;right:0;top:260px;width:145px;height:140px;background:#fff;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 22px 50px rgba(0,0,0,.14);color:#e50909;font-size:38px}.mug b{color:#111;font-size:18px}.mug small{font-size:10px;font-weight:1000;letter-spacing:2px}.phone{width:292px;height:600px;background:#111;border-radius:48px;padding:10px;box-shadow:0 28px 70px rgba(0,0,0,.25);border:4px solid #222;margin-top:80px}.screen{height:100%;overflow:hidden;background:#fff;border-radius:38px;padding:22px 17px}.phoneNav{display:flex;justify-content:space-between;margin-bottom:24px}.phoneNav b{font-size:15px}.phoneNav small{color:#e50909}.phoneTiny{font-size:9px;color:#e50909;font-weight:1000}.phone h2{font-size:30px;line-height:.94;margin:8px 0;font-weight:1000}.phone p,.phone li{font-size:12px}.phone ul{padding:0;list-style:none;display:grid;gap:8px}.phoneBtn{display:flex;justify-content:center;background:#e50909;color:#fff;border-radius:8px;padding:12px;font-size:12px;font-weight:1000}.phone h3{font-size:12px;display:flex;justify-content:space-between}.phone h3 a{color:#e50909}.phoneCats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.phoneCats span{border:1px solid #eee;border-radius:10px;padding:10px 3px;text-align:center;font-size:10px;font-weight:900}.phoneCard{display:grid;grid-template-columns:70px 1fr;gap:10px}.phoneCard img{width:70px;height:86px;object-fit:cover;border-radius:7px}.phoneCard b{font-size:12px}.phoneCard strong{display:block;color:#e50909}.phoneCard a{display:inline-flex;border:1px solid #e50909;color:#e50909;border-radius:5px;padding:5px;font-size:9px;font-weight:1000}.trustBar{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:30px 80px;background:#fff;border-top:1px solid #eee;border-bottom:1px solid #eee}.trustBar div{padding:20px;border:1px solid #eee;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.04)}.trustBar b{display:block}.trustBar p{margin:6px 0 0;color:#666;font-size:13px}.best,.filters,.catalog,.faq,.test{padding:58px 80px;text-align:center}.best h2,.catalog h2,.filters h2,.faq h2,.test h2{font-size:38px;line-height:1;margin:0;font-weight:1000;letter-spacing:-1px}.sub{color:#555;margin:10px 0 28px}.bestGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1160px;margin:0 auto}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1280px;margin:30px auto 0;text-align:left}.card{background:#fff;border:1px solid #e8e8e8;border-radius:22px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,.07);transition:.25s;text-align:left;display:flex;flex-direction:column}.imgWrap{position:relative;background:#fafafa}.imgWrap:before{content:'Imagem indisponível';position:absolute;inset:0;display:grid;place-items:center;color:#bbb;font-weight:900;background:#fafafa;z-index:0}.imgWrap img{position:relative;z-index:1;width:100%;height:290px;object-fit:cover}.compact .imgWrap img{height:230px}.imgWrap span{position:absolute;left:14px;top:14px;background:#e50909;color:#fff;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:1000;z-index:2}.body{padding:18px;display:flex;flex-direction:column;flex:1}.body h3{font-size:23px;line-height:1.05;margin:0 0 8px}.body p{color:#555;line-height:1.4;min-height:58px}.body small{display:block;text-decoration:line-through;color:#999;font-weight:850}.body strong{display:block;color:#e50909;font-size:31px;font-weight:1000;margin:2px 0}.body em{display:inline-block;background:#fff1f0;color:#e50909;border-radius:999px;padding:6px 10px;font-size:12px;font-style:normal;font-weight:1000;margin-bottom:10px;align-self:flex-start}.buy,.zap{display:flex;width:100%;justify-content:center;padding:14px;border-radius:9px;font-weight:1000;margin-top:10px}.zap{background:#f1f1f1;color:#111;font-size:13px}.filters{background:#fff}.filters div{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;max-width:1180px;margin:24px auto 0}.filters button{border:1px solid #eee;background:#fff;border-radius:16px;padding:22px 12px;font-weight:1000;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.04)}.filters button.active,.filters button:hover{background:#e50909;color:#fff}.catalog{background:#f7f7f8}.offer{margin:0 80px;padding:28px 34px;border-radius:20px;background:#111;color:#fff;display:flex;align-items:center;gap:20px;justify-content:space-between}.offer b{font-size:24px}.offer span{color:#ddd}.offer a{padding:14px 20px}.faq{background:#fff}.faq>div{max-width:900px;margin:24px auto;display:grid;gap:12px;text-align:left}.faq details{border:1px solid #eee;border-radius:14px;padding:18px;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.04)}.faq summary{font-weight:1000;cursor:pointer}.test>div{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1050px;margin:25px auto}.test blockquote{margin:0;border:1px solid #eee;border-radius:16px;padding:24px;text-align:left;box-shadow:0 10px 30px rgba(0,0,0,.04)}.test blockquote span{display:block;color:#ffb400}.final{margin:0 80px 35px;padding:30px 34px;background:#fff;border-radius:18px;box-shadow:0 15px 45px rgba(0,0,0,.07);display:grid;grid-template-columns:80px 1fr 240px;gap:25px;align-items:center}.final>div{width:70px;height:70px;border:2px solid #e50909;border-radius:50%;display:grid;place-items:center;color:#e50909;font-size:42px}.final h2{margin:0;font-size:28px}.final p{margin:6px 0 0;color:#555}.final a{padding:18px;text-align:center}footer{padding:26px 80px;border-top:1px solid #eee;display:flex;justify-content:space-between;color:#555;font-weight:900}.floatZap{position:fixed;right:22px;bottom:86px;width:58px;height:58px;border-radius:50%;background:#16a34a;color:#fff;display:grid;place-items:center;font-size:26px;z-index:100;box-shadow:0 12px 30px rgba(0,0,0,.18)}.mobile{display:none}@media(max-width:1200px){.header{padding:0 28px}.header nav{display:none}.hero{grid-template-columns:1fr;min-height:auto;padding:48px 28px 650px}.scene{position:absolute;right:340px;bottom:150px;width:430px}.hero>.phone{position:absolute;right:30px;bottom:30px}.trustBar{grid-template-columns:repeat(2,1fr);padding:28px}.best,.filters,.catalog,.faq,.test{padding:48px 28px}.bestGrid,.grid{grid-template-columns:repeat(3,1fr)}.filters div{grid-template-columns:repeat(3,1fr)}.final,.offer{margin-left:28px;margin-right:28px}.heroTrust{grid-template-columns:repeat(2,max-content)}}@media(max-width:760px){.notice{font-size:12px}.header{height:66px;padding:0 16px}.logo{min-width:0}.logo span{font-size:34px}.logo b{font-size:17px}.logo small{font-size:9px}.search,.headBtn{display:none}.hero{padding:34px 18px 585px}.copy h1{font-size:48px;letter-spacing:-2px}.lead{font-size:16px}.socialProof{gap:8px}.socialProof b,.socialProof span{font-size:12px}.heroTrust{grid-template-columns:1fr;gap:10px}.actions{flex-direction:column;align-items:stretch}.primary,.secondary{justify-content:center}.scene{display:none}.hero>.phone{left:50%;right:auto;transform:translateX(-50%);bottom:18px;width:292px}.trustBar,.bestGrid,.grid,.filters div,.test>div{grid-template-columns:1fr}.trustBar,.best,.filters,.catalog,.faq,.test{padding:38px 18px}.imgWrap img{height:360px}.compact .imgWrap img{height:310px}.offer{margin:0 18px;flex-direction:column;text-align:center}.final{grid-template-columns:1fr;text-align:center;margin:0 18px 90px}.final>div{margin:0 auto}footer{padding:22px 18px 90px;display:grid;gap:8px;text-align:center}.floatZap{display:none}.mobile{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:100;background:rgba(255,255,255,.96);padding:10px;border-top:1px solid #eee}.mobile a{background:#e50909;color:#fff;border-radius:10px;padding:13px;text-align:center;font-weight:1000}.mobile a:first-child{background:#16a34a}}
+import React, { useMemo, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import './style.css';
+
+const WHATSAPP = '5511919411086';
+
+const products = [
+{ id:15, title:"Primeiros R$10 Online: Guia simples para começar pelo celular", cat:"Renda Extra", intent:"ganhar", tag:"🔥 Entrada", img:"/vendas-digitais.png", price:"R$ 1,99", old:"R$ 19,90", file:"/GANHE-SEUS-PRIMEIROS-Rdollar10-ONLINE-HOJE.pdf", desc:"Aprenda formas simples e realistas de iniciar na renda extra online usando apenas o celular, mesmo começando do zero" },
+{ id:16, title:"Como Abrir um Negócio do Zero: Primeiros passos para começar com clareza", cat:"Negócios", intent:"abrir-negocio", tag:"🔥 Oferta R$9", img:"/negocio-lucrativo.png", price:"R$ 9,00", old:"R$ 47,00", file:"/ebooks/como-abrir-negocio.pdf", desc:"Um guia direto para entender o que vender, organizar sua ideia e dar os primeiros passos com pouco investimento" },
+{ id:17, title:"Pack Completo de Negócios: Guias práticos para escolher e começar melhor", cat:"Negócios", intent:"pack", tag:"💎 Pack completo", img:"/pack-negocios.png", price:"R$ 37,00", old:"R$ 97,00", file:"/ebooks/pack-negocios.pdf", desc:"Conteúdos práticos sobre diferentes oportunidades de negócio para comparar caminhos e começar com mais segurança" },
+{ id:1, title:"Pack Assistência Técnica Completo: do zero aos primeiros clientes", cat:"Assistência Técnica", intent:"assistencia", tag:"💎 Pack completo", img:"/assistencia-celular.png", price:"R$ 37,00", old:"R$ 97,00", file:"/ebooks/assistencia-tecnica.pdf", desc:"Pacote completo com vários guias sobre bancada, defeitos, serviços rápidos, clientes, cobrança, atendimento e crescimento na assistência técnica" },
+{ id:2, title:"Pack Barbearia Completo: do básico aos primeiros clientes", cat:"Barbearia", intent:"barbearia", tag:"💎 Pack completo", img:"/barbearia.png", price:"R$ 37,00", old:"R$ 97,00", file:"/ebooks/barbearia.pdf", desc:"Pacote completo com guias sobre degradê, tesoura, barba, atendimento, fotos, Instagram, cobrança e captação de clientes" },
+{ id:3, title:"Vendas Digitais para Iniciantes: Aprenda a vender online passo a passo", cat:"Negócios", intent:"ganhar", tag:"🔥 Mais vendido", img:"/vendas-digitais.png", price:"R$ 14,00", old:"R$ 47,00", file:"/ebooks/vendas-digitais.pdf", desc:"Aprenda como começar a vender pela internet, entender o básico do digital e dar seus primeiros passos com mais segurança" },
+{ id:4, title:"Reeducação Alimentar: Comece com hábitos simples para melhorar sua saúde", cat:"Saúde", intent:"saude", tag:"🥗 Saúde", img:"/reeducacao-alimentar.png", price:"R$ 13,00", old:"R$ 47,00", file:"/ebooks/reeducacao-alimentar.pdf", desc:"Aprenda a melhorar sua alimentação com mudanças simples, práticas e possíveis de aplicar no dia a dia" },
+{ id:5, title:"Plano de Estudos para Vestibular: Organize sua rotina e melhore seu desempenho", cat:"Educação", intent:"estudar", tag:"📚 Educação", img:"/vestibular.png", price:"R$ 9,00", old:"R$ 27,00", file:"/ebooks/vestibular.pdf", desc:"Guia para estudar com mais organização, foco e constância, criando uma rotina mais clara para provas e vestibulares" },
+{ id:6, title:"Estética do Zero: Guia prático para começar na área e atender melhor", cat:"Negócios", intent:"ganhar", tag:"💅 Beleza", img:"/devocional.png", price:"R$ 13,00", old:"R$ 47,00", file:"/ebooks/estetica.pdf", desc:"Conheça os primeiros passos para entrar no mercado da estética com mais clareza e começar com segurança" },
+{ id:7, title:"Corte e Costura para Iniciantes: Aprenda do zero e crie suas primeiras peças", cat:"Negócios", intent:"ganhar", tag:"🧵 Criativo", img:"/corte-costura.png", price:"R$ 13,00", old:"R$ 47,00", file:"/ebooks/corte-costura.pdf", desc:"Um conteúdo simples para aprender fundamentos da costura, entender materiais, técnicas básicas e começar a praticar com mais confiança" },
+{ id:8, title:"Confeitaria do Zero: Aprenda a começar e vender seus primeiros doces", cat:"Negócios", intent:"ganhar", tag:"🍰 Doce renda", img:"/confeitaria.png", price:"R$ 13,00", old:"R$ 47,00", file:"/ebooks/confeitaria.pdf", desc:"Guia prático para iniciar na confeitaria, aprender o básico da produção e transformar doces em oportunidade de renda" },
+{ id:9, title:"Pedras Preciosas: Guia inicial para entender valor, tipos e oportunidades", cat:"Negócios", intent:"ganhar", tag:"💎 Premium", img:"/pedras-preciosas.png", price:"R$ 14,00", old:"R$ 47,00", file:"/ebooks/pedras-preciosas.pdf", desc:"Aprenda os fundamentos sobre pedras preciosas, suas características e possibilidades de mercado em linguagem simples para iniciantes" },
+{ id:10, title:"Ferro Velho: Guia prático para enxergar oportunidades nesse mercado", cat:"Negócios", intent:"ganhar", tag:"♻️ Sustentável", img:"/ferro-velho.png", price:"R$ 14,00", old:"R$ 47,00", file:"/ebooks/ferro-velho.pdf", desc:"Entenda como funciona o mercado de ferro velho, materiais reaproveitáveis e primeiros passos para identificar oportunidades na prática" },
+{ id:11, title:"Organize seu Negócio: Guia simples para ter mais controle e clareza", cat:"Organização", intent:"organizar", tag:"📊 Organização", img:"/negocio-organizado.png", price:"R$ 9,00", old:"R$ 29,00", file:"/ebooks/negocio-organizado.pdf", desc:"Aprenda a organizar tarefas, processos e decisões do seu negócio com mais clareza e menos bagunça na rotina" },
+{ id:12, title:"Organize sua Rotina: Método simples para ter mais foco no dia a dia", cat:"Organização", intent:"organizar", tag:"📅 Foco", img:"/tarefas-diarias.png", price:"R$ 13,00", old:"R$ 29,00", file:"/ebooks/tarefas-diarias.pdf", desc:"Um guia prático para organizar melhor as tarefas, reduzir a bagunça e ter mais clareza no dia a dia" },
+{ id:13, title:"Redução do Álcool: Guia prático para retomar o controle da rotina", cat:"Saúde", intent:"saude", tag:"🧠 Apoio", img:"/alcoolismo.png", price:"R$ 9,00", old:"R$ 27,00", file:"/ebooks/reducao-alcool.pdf", desc:"Conteúdo de apoio para refletir sobre hábitos, organizar melhor a rotina e buscar um caminho mais equilibrado com responsabilidade" },
+{ id:14, title:"Cannabis: Guia informativo para entender o tema com mais clareza", cat:"Nicho específico", intent:"nicho", tag:"🌿 Informativo", img:"/cannabis.png", price:"R$ 13,00", old:"R$ 47,00", file:"/ebooks/cannabis.pdf", desc:"Material educativo para compreender melhor o assunto, seus contextos, cuidados e informações gerais de forma simples e organizada", hidden:true },
+{ id:101, title:"Como cobrar mais pelos serviços de assistência técnica", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Cobrar-Mais-Pelos-Servicos-de-Assistencia-Tecnica.pdf", desc:"Aprenda formas simples de valorizar seus serviços, cobrar com mais segurança e aumentar o lucro em cada atendimento" },
+{ id:102, title:"Como conseguir clientes na sua cidade para assistência técnica", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Conseguir-Clientes-na-Sua-Cidade-para-Assistencia-Tecnica-de-Celular.pdf", desc:"Estratégias práticas para atrair clientes locais, divulgar seus serviços e começar a formar uma base de atendimento" },
+{ id:103, title:"Como criar promoções que vendem na assistência técnica", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Criar-Promocoes-que-Vendem-na-Assistencia-Tecnica.pdf", desc:"Monte ofertas simples, combos e promoções para aumentar movimento sem desvalorizar seu serviço" },
+{ id:104, title:"Como fidelizar clientes e receber indicações", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Fidelizar-Clientes-e-Receber-Indicacoes-na-Assistencia-Tecnica.pdf", desc:"Aprenda a atender melhor, gerar confiança e transformar clientes em indicações recorrentes" },
+{ id:105, title:"Como identificar defeitos em celulares", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Identificar-Defeitos-em-Celulares.pdf", desc:"Guia rápido para entender sintomas comuns, fazer diagnóstico inicial e evitar erros antes do reparo" },
+{ id:106, title:"Como montar uma bancada barata para assistência técnica", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Montar-Sua-Bancada-Barata-para-Assistencia-Tecnica.pdf", desc:"Veja como organizar ferramentas, espaço e materiais básicos para começar gastando menos" },
+{ id:107, title:"Serviços rápidos: corrija erros, melhore desempenho e lucre mais", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Corrija-Erros-Melhore-Desempenho-e-Lucre-com-Servicos-Rapidos.pdf", desc:"Ideias de serviços simples e rápidos para gerar caixa com manutenção, ajustes e otimizações" },
+{ id:108, title:"Como trabalhar com celulares molhados e oxidados", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Trabalhar-com-Celulares-Molhados-e-Oxidados.pdf", desc:"Cuidados, riscos e primeiros procedimentos para lidar com aparelhos molhados ou com oxidação" },
+{ id:109, title:"Desmontagem e montagem sem danificar celulares", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Desmontagem-e-Montagem-Sem-Danificar-Celulares.pdf", desc:"Passos e cuidados essenciais para abrir, desmontar e remontar aparelhos com mais segurança" },
+{ id:110, title:"Como resolver lentidão, reinicializações e falhas de sistema", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Guia-Pratico-para-Resolver-Lentidao-Reinicializacoes-e-Falhas-de-Sistema.pdf", desc:"Aprenda causas comuns de lentidão e falhas, além de procedimentos para melhorar o desempenho" },
+{ id:111, title:"Limpeza e manutenção preventiva de celulares", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Limpeza-e-Manutencao-Preventiva-de-Celulares.pdf", desc:"Aprenda a fazer limpeza preventiva, orientar clientes e criar serviços simples de manutenção" },
+{ id:112, title:"Curso rápido de iPhone básico", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Curso-Rapido-de-iPhone-Basico.pdf", desc:"Introdução prática para entender cuidados, peças, diagnóstico inicial e atendimento com iPhones" },
+{ id:113, title:"Diagnóstico, substituição segura e melhor desempenho", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Guia-Pratico-para-Diagnostico-Substituicao-Segura-e-Melhor-Desempenho.pdf", desc:"Guia para diagnosticar, substituir componentes com cuidado e entregar melhor resultado ao cliente" },
+{ id:114, title:"Como trabalhar em casa com assistência técnica de celular", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Trabalhar-em-Casa-com-Assistencia-Tecnica-de-Celular.pdf", desc:"Organize atendimento, espaço, rotina e divulgação para começar prestando serviço em casa" },
+{ id:115, title:"Transferência de informações com segurança e agilidade", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Guia-Pratico-para-Transferir-Informacoes-com-Seguranca-Agilidade-e-Resultado-Profissional.pdf", desc:"Aprenda a oferecer transferência de dados como serviço, com cuidado, organização e valor percebido" },
+{ id:116, title:"Solda básica para iniciantes na assistência técnica", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Solda-Basica-para-Iniciantes-na-Assistencia-Tecnica.pdf", desc:"Introdução aos cuidados, ferramentas e primeiros conceitos para iniciar em solda básica" },
+{ id:117, title:"Troca de tela passo a passo", cat:"Assistência Técnica", intent:"assistencia", tag:"📘 Avulso", img:"/assistencia-celular.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Troca-de-Tela-Passo-a-Passo.pdf", desc:"Guia prático com cuidados importantes para entender e executar troca de tela com mais segurança" },
+{ id:201, title:"Como fazer degradê profissional na barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/COMO-FAZER-DEGRADE-PROFISSIONAL-NA-BARBEIRIA.pdf", desc:"Aprenda fundamentos para melhorar o degradê, trabalhar transições limpas e entregar cortes mais profissionais" },
+{ id:202, title:"Como atender clientes na barbearia e fazer voltar sempre", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Atender-Cliente-na-Barbearia-e-Fazer-Voltar-Sempre.pdf", desc:"Melhore atendimento, experiência e relacionamento para aumentar retorno e indicações" },
+{ id:203, title:"Como fazer barba profissional na barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Fazer-Barba-Profissional-na-Barbearia.pdf", desc:"Guia prático para trabalhar barba com mais cuidado, acabamento e percepção de valor" },
+{ id:204, title:"Como cobrar mais na barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/COMO-COBRAR-MAIS-NA-BARBEIRIA.pdf", desc:"Aprenda a posicionar melhor seus serviços e aumentar preço sem afastar bons clientes" },
+{ id:205, title:"Como montar sua barbearia do zero", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Montar-Sua-Barbearia-do-Zero.pdf", desc:"Entenda estrutura, primeiros passos, organização e visão prática para começar uma barbearia" },
+{ id:206, title:"Como atrair clientes para barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Atrair-Clientes-para-Barbearia.pdf", desc:"Estratégias simples para divulgar, aparecer mais e trazer novos clientes para sua barbearia" },
+{ id:207, title:"Como usar a tesoura na barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/COMO-USAR-A-TESOURA-NA-BARBEIRIA.pdf", desc:"Fundamentos para ganhar mais segurança no uso da tesoura e melhorar acabamento dos cortes" },
+{ id:208, title:"Fotos e Instagram para barbeiros", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/FOTOS-E-INSTAGRAM-PARA-BARBEIROS.pdf", desc:"Aprenda a apresentar melhor seus cortes, tirar fotos melhores e usar o Instagram para atrair clientes" },
+{ id:209, title:"Cortes precisos, degradês limpos e atendimento profissional", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Guia-Pratico-para-Cortes-Precisos-Degrades-Limpos-e-Atendimento-Profissional.pdf", desc:"Guia prático para elevar a qualidade dos cortes, acabamento e experiência do cliente" }
+];
+
+const filters = [
+  ['todos','Todos'],
+  ['ganhar','Ganhar dinheiro'],
+  ['assistencia','Assistência Técnica'],
+  ['barbearia','Barbearia'],
+  ['abrir-negocio','Abrir negócio'],
+  ['pack','Pack completo'],
+  ['organizar','Organização'],
+  ['saude','Saúde'],
+  ['estudar','Estudos']
+];
+
+const bestIds = [1,2,3,4];
+
+function wa(p){
+  const txt = p ? `Olá! Tenho interesse no ebook ${p.title}` : 'Olá! Quero conhecer os ebooks do Império Digital';
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(txt)}`;
+}
 
 
-.microR1{
-  padding:56px 80px;
-  background:linear-gradient(135deg,#fff 0%,#fff5f5 45%,#ffe8e8 100%);
-  border-top:1px solid #f3d4d4;
-  border-bottom:1px solid #f3d4d4;
+function priceNumber(price){
+  return Number(String(price).replace(/[^\d,]/g,'').replace(',','.')) || 0;
 }
-.microR1Badge{width:max-content;margin:0 auto 24px;background:#e50909;color:#fff;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:1000}
-.microR1Wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.3fr .7fr;gap:28px;align-items:center}
-.microR1Copy{background:#fff;border:1px solid #f1d0d0;border-radius:28px;padding:42px}
-.microR1Copy p{color:#e50909;font-weight:1000;margin:0 0 10px}
-.microR1Copy h2{font-size:clamp(42px,5vw,74px);line-height:.95;margin:0;font-weight:1000}
-.microR1Copy h2 span{color:#e50909;display:block}
-.microR1Copy b{display:block;font-size:24px;margin:18px 0 8px}
-.microR1Copy small{display:block;color:#555;font-size:17px;line-height:1.5}
-.microR1Actions{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
-.microR1Actions a{background:#e50909;color:#fff;border-radius:12px;padding:16px 24px;font-weight:1000}
-.microR1Actions a:nth-child(2){background:#fff;color:#e50909;border:1px solid #e50909}
-.microR1Card{background:#e50909;color:#fff;border-radius:32px;padding:34px}
-.microR1Top{background:rgba(255,255,255,.18);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:1000;display:inline-block}
-.microR1Card strong{display:block;font-size:88px;line-height:.9;margin:22px 0 10px}
-.microR1Card ul{list-style:none;padding:0;display:grid;gap:10px}
-.microR1Card li{background:rgba(255,255,255,.14);border-radius:12px;padding:12px}
-@media(max-width:900px){.microR1{padding:42px 18px}.microR1Wrap{grid-template-columns:1fr}}
 
+function productFile(product){
+  const current = products.find(item => item.id === product?.id);
+  return product?.file || current?.file || '';
+}
 
-/* Premium font and R1 section */
-body{font-family:'Inter',Arial,sans-serif}
-h1,h2,h3,.logo b,.headBtn,.primary,.secondary,.buy,.microR1Copy h2,.microR1Card strong,.microR1Actions a{font-family:'Montserrat','Inter',Arial,sans-serif}
-.copy h1{letter-spacing:-4px}
+function isDownloadReady(product){
+  return Boolean(productFile(product));
+}
 
-.microR1{
-  padding:72px 80px;
-  background:linear-gradient(135deg,#fff 0%,#fff7f7 48%,#ffeaea 100%);
-  border-top:1px solid #f5d2d2;
-  border-bottom:1px solid #f5d2d2;
+function waCart(cart){
+  const total = cart.reduce((sum,p)=>sum + priceNumber(p.price),0);
+  const itens = cart.map((p,i)=>`${i+1}. ${p.title} - ${p.price}`).join('\n');
+  const txt = `Olá! Quero finalizar meu pedido no Império Digital:\n\n${itens}\n\nTotal aproximado: R$ ${total.toFixed(2).replace('.',',')}`;
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(txt)}`;
 }
-.microR1Badge{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  background:#e50909;
-  color:#fff;
-  padding:12px 20px;
-  border-radius:999px;
-  font-weight:1000;
-  margin:0 0 22px 80px;
-  box-shadow:0 18px 42px rgba(229,9,9,.22);
+
+function categoryHref(id){
+  return id === 'todos' ? '/catalogo' : `/categoria/${id}`;
 }
-.microR1Wrap{
-  max-width:1200px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:1.85fr 1fr;
-  gap:26px;
-  align-items:stretch;
+
+function categoryLabel(id){
+  return filters.find(([key]) => key === id)?.[1] || 'Todos';
 }
-.microR1Copy,.microR1Card{
-  border-radius:34px;
-  padding:40px;
-  box-shadow:0 24px 70px rgba(18,18,18,.08);
+
+function categoryText(id){
+  const texts = {
+    todos:'Veja todos os ebooks disponíveis em um só lugar e escolha o melhor para o seu momento.',
+    ganhar:'Ebooks para quem quer renda extra, vendas digitais e ideias práticas de negócio.',
+    assistencia:'Guias focados em assistência técnica de celular, bancada, clientes e serviços práticos.',
+    barbearia:'Conteúdos focados em barbearia, atendimento, cortes, barba, fotos e captação de clientes.',
+    'abrir-negocio':'Materiais para clarear ideias, escolher um caminho e começar um negócio com mais segurança.',
+    pack:'Pacotes completos para quem quer mais conteúdo em uma única compra.',
+    organizar:'Guias para organizar rotina, tarefas e negócios com mais controle.',
+    saude:'Conteúdos práticos para melhorar hábitos e rotina com mais consciência.',
+    estudar:'Materiais para organizar melhor os estudos e evoluir com mais foco.'
+  };
+  return texts[id] || texts.todos;
 }
-.microR1Copy{
-  background:#fff;
-  border:1px solid rgba(229,9,9,.12);
+
+function routeFilterFromPath(path){
+  if(path === '/catalogo') return 'todos';
+  if(path.startsWith('/categoria/')) return decodeURIComponent(path.replace('/categoria/','')).replace(/\/$/,'');
+  return null;
 }
-.microR1Copy p{
-  margin:0 0 14px;
-  color:#e50909;
-  font-weight:1000;
-  letter-spacing:.8px;
-  font-size:13px;
-}
-.microR1Copy h2{
-  font-size:clamp(50px,5.4vw,78px);
-  line-height:.9;
-  margin:0;
-  font-weight:900;
-  letter-spacing:-3.8px;
-  color:#111;
-}
-.microR1Copy h2 span{
-  color:#e50909;
-  display:block;
-}
-.microR1Copy b{
-  display:block;
-  margin:24px 0 8px;
-  font-size:21px;
-  line-height:1.25;
-}
-.microR1Copy small{
-  display:block;
-  color:#333;
-  font-size:16px;
-  line-height:1.65;
-  max-width:760px;
-}
-.microR1Proof{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:22px;
-}
-.microR1Proof span{
-  background:#fff;
-  color:#e50909;
-  border:1px solid #ffd4d4;
-  border-radius:999px;
-  padding:10px 14px;
-  font-weight:900;
-  font-size:14px;
-  box-shadow:0 8px 24px rgba(229,9,9,.06);
-}
-.microR1Actions{
-  display:flex;
-  gap:12px;
-  margin-top:28px;
-  flex-wrap:wrap;
-}
-.microR1Actions a{
-  background:#e50909;
-  color:#fff;
-  padding:17px 24px;
-  border-radius:16px;
-  font-weight:900;
-  box-shadow:0 18px 42px rgba(229,9,9,.24);
-  transition:.25s;
-}
-.microR1Actions a:hover{transform:translateY(-3px)}
-.microR1Actions a:nth-child(2){
-  background:#fff;
-  color:#e50909;
-  border:1px solid #e50909;
-  box-shadow:none;
-}
-.microR1Card{
-  background:linear-gradient(145deg,#e50909 0%,#c90000 100%);
-  color:#fff;
-  position:relative;
-  overflow:hidden;
-}
-.microR1Card:before{
-  content:"";
-  position:absolute;
-  width:260px;
-  height:260px;
-  right:-90px;
-  top:-90px;
-  border-radius:50%;
-  background:rgba(255,255,255,.12);
-}
-.microR1Top{
-  position:relative;
-  display:inline-flex;
-  background:rgba(255,255,255,.16);
-  border:1px solid rgba(255,255,255,.24);
-  border-radius:999px;
-  padding:9px 13px;
-  font-size:12px;
-  font-weight:1000;
-  letter-spacing:.4px;
-}
-.microR1Card strong{
-  position:relative;
-  display:block;
-  font-size:88px;
-  line-height:.82;
-  margin:30px 0 18px;
-  font-weight:900;
-  letter-spacing:-4px;
-}
-.microR1Card p{
-  position:relative;
-  margin:0 0 20px;
-  font-size:19px;
-  font-weight:900;
-  line-height:1.25;
-}
-.microR1Card ul{
-  position:relative;
-  list-style:none;
-  padding:0;
-  margin:0;
-  display:grid;
-  gap:10px;
-}
-.microR1Card li{
-  background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:14px;
-  padding:12px 13px;
-  font-weight:800;
-}
-@media(max-width:900px){
-  .copy h1{letter-spacing:-2.5px}
-  .microR1{padding:42px 16px}
-  .microR1Badge{
-    margin:0 0 16px;
-    width:100%;
-    text-align:center;
-    font-size:12px;
-    line-height:1.25;
-    padding:11px 14px;
+
+function App(){
+  const rawPath = window.location.pathname.replace(/\/$/, '') || '/';
+  const routeFilter = routeFilterFromPath(rawPath);
+  const params = new URLSearchParams(window.location.search);
+  const initialSearch = params.get('busca') || '';
+  const [search,setSearch] = useState(initialSearch);
+  const [cart,setCart] = useState([]);
+  const [cartOpen,setCartOpen] = useState(false);
+  const [logoClicks,setLogoClicks] = useState(0);
+  const [footerAdminClicks,setFooterAdminClicks] = useState(0);
+  const [testMode,setTestMode] = useState(() => localStorage.getItem('imperio_test_mode') === 'true');
+
+  function handleLogoSecretClick(e){
+    const next = logoClicks + 1;
+    setLogoClicks(next);
+
+    if(next >= 7){
+      e.preventDefault();
+      localStorage.setItem('imperio_test_mode', 'true');
+      setTestMode(true);
+      setLogoClicks(0);
+    }
   }
-  .microR1Wrap{
-    grid-template-columns:1fr;
-    gap:16px;
+
+  function handleFooterSecretAdminClick(){
+    const next = footerAdminClicks + 1;
+    setFooterAdminClicks(next);
+
+    if(next >= 7){
+      setFooterAdminClicks(0);
+      window.location.href = '/admin';
+    }
   }
-  .microR1Copy,.microR1Card{
-    padding:26px;
-    border-radius:26px;
+
+  function addToCart(product){
+    setCart(current => current.some(item => item.id === product.id) ? current : [...current, product]);
+    setCartOpen(true);
   }
-  .microR1Copy h2{
-    font-size:42px;
-    letter-spacing:-2px;
+
+  function removeFromCart(id){
+    setCart(current => current.filter(item => item.id !== id));
   }
-  .microR1Copy b{font-size:18px}
-  .microR1Proof{gap:8px}
-  .microR1Proof span{
-    width:100%;
-    text-align:center;
+
+  function submitSearch(value){
+    const next = String(value || '').trim();
+    if(next) window.location.href = `/catalogo?busca=${encodeURIComponent(next)}`;
   }
-  .microR1Actions{flex-direction:column}
-  .microR1Actions a{
-    width:100%;
-    text-align:center;
+
+  const best = products.filter(p => bestIds.includes(p.id));
+  const currentFilter = routeFilter || 'todos';
+  const list = useMemo(() => products.filter(p => {
+    const byFilter = currentFilter === 'todos' ? !p.hidden : p.intent === currentFilter;
+    const bySearch = `${p.title} ${p.cat} ${p.intent} ${p.tag}`.toLowerCase().includes(search.toLowerCase());
+    return byFilter && bySearch;
+  }), [currentFilter,search]);
+
+  if(rawPath === '/checkout') return <CheckoutPage />;
+  if(rawPath === '/obrigado') return <ThankYouPage />;
+  if(rawPath === '/descobrir-negocio') return <QuizProPage />;
+  if(rawPath === '/admin') return <AdminPage />;
+
+  if(routeFilter){
+    return <StorePage
+      filter={currentFilter}
+      list={list}
+      search={search}
+      setSearch={setSearch}
+      submitSearch={submitSearch}
+      cart={cart}
+      cartOpen={cartOpen}
+      setCartOpen={setCartOpen}
+      removeFromCart={removeFromCart}
+      addToCart={addToCart}
+      onLogoSecretClick={handleLogoSecretClick}
+      onSecretAdminClick={handleFooterSecretAdminClick}
+      testMode={testMode}
+      setTestMode={setTestMode}
+    />;
   }
-  .microR1Card strong{font-size:70px}
+
+  return <main>
+    <TopNotice />
+    <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={handleLogoSecretClick}/>
+    <Hero best={best}/>
+    <TrustBar/>
+    <Best best={best} addToCart={addToCart}/>
+    <FeaturedMicroEbook addToCart={addToCart}/>
+    <GoalLinks/>
+    <FinalCTA/>
+    <Footer onSecretAdminClick={handleFooterSecretAdminClick}/>
+    <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
+    {testMode && <TestModePanel setTestMode={setTestMode}/>} 
+  </main>
 }
 
+function StorePage({filter,list,search,setSearch,submitSearch,cart,cartOpen,setCartOpen,removeFromCart,addToCart,onLogoSecretClick,onSecretAdminClick,testMode,setTestMode}){
+  const label = categoryLabel(filter);
+  const title = search ? `Resultado para: ${search}` : filter === 'todos' ? 'Todos os ebooks' : `Ebooks de ${label}`;
 
-/* Hero premium sem expositor preto */
-.heroPremium{
-  grid-template-columns:minmax(420px,46%) minmax(420px,54%);
-  gap:36px;
-  min-height:760px;
-  padding:70px 80px 80px;
-  background:
-    radial-gradient(circle at 77% 50%, rgba(229,9,9,.09), transparent 32%),
-    linear-gradient(90deg,#fff 0%,#fff 55%,#fff7f7 100%);
-  overflow:hidden;
+  return <main>
+    <TopNotice />
+    <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={onLogoSecretClick}/>
+
+    <section className="pageHero catalogHero">
+      <a className="backLink" href="/">← Voltar para o início</a>
+      <p className="red">{filter === 'todos' ? 'CATÁLOGO COMPLETO' : label.toUpperCase()}</p>
+      <h1>{title}</h1>
+      <p>{search ? 'Mostrando apenas os produtos que combinam com sua busca.' : categoryText(filter)}</p>
+
+      <div className="categoryTabs">
+        {filters.map(([id,label]) => <a key={id} className={filter === id ? 'active' : ''} href={categoryHref(id)}>{id === 'todos' ? 'Tudo' : label}</a>)}
+      </div>
+    </section>
+
+    <Catalog list={list} addToCart={addToCart} filter={filter} search={search}/>
+    <Footer onSecretAdminClick={onSecretAdminClick}/>
+    <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
+    {testMode && <TestModePanel setTestMode={setTestMode}/>} 
+  </main>
 }
-.heroPremium .copy{
-  align-self:center;
+
+function TopNotice(){return <div className="notice">🔥 Oferta especial de lançamento • Acesso imediato • Compra segura pelo Mercado Pago • Garantia 7 dias</div>}
+
+function Header({search,setSearch,submitSearch,cartCount,setCartOpen,onLogoSecretClick}){return <header className="header">
+  <a className="logo" href="/" onClick={onLogoSecretClick} title="Império Digital"><span>♛</span><div><b>IMPÉRIO</b><small>DIGITAL</small></div></a>
+  <nav>
+    <a href="/">Início</a>
+    <a href="/#best">Mais vendidos</a>
+    <a href="/#escolha">Categorias</a>
+    <a href="/catalogo">Todos</a>
+    <a href="/descobrir-negocio">Quiz rápido</a>
+  </nav>
+  <form className="search" onSubmit={(e)=>{e.preventDefault(); submitSearch?.(search)}}>
+    <span>⌕</span>
+    <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar ebook"/>
+  </form>
+  <button className="cartBtn" onClick={()=>setCartOpen(true)}>🛒 <span>{cartCount}</span></button>
+  <a className="headBtn" href="/#ebook050">Começar por R$1,99</a>
+</header>}
+
+function Hero({best}){return <section id="top" className="hero heroPremium">
+  <div className="copy">
+    <p className="eyebrow">🔥 EBOOKS PRÁTICOS • ACESSO IMEDIATO</p>
+    <h1>Ebooks práticos para <span>aprender, vender e organizar</span> sua vida</h1>
+    <p className="lead">Guias simples, acessíveis e diretos ao ponto para quem quer aprender uma habilidade, organizar a rotina ou começar uma nova fonte de renda.</p>
+
+    <div className="heroTrust premiumTrust">
+      <span>💰 <b>A partir de R$1,99</b><small>Produto de entrada</small></span>
+      <span>⚡ <b>Acesso imediato</b><small>Baixe após a compra</small></span>
+      <span>📚 <b>Leitura prática</b><small>Conteúdo direto</small></span>
+      <span>🛡️ <b>Compra segura</b><small>Mercado Pago</small></span>
+    </div>
+
+    <div className="socialProof premiumProof">
+      <b>⭐ Escolha mais fácil</b>
+      <span>Encontre ebooks por objetivo: renda extra, profissão, saúde, estudos ou organização</span>
+    </div>
+
+    <div className="actions">
+      <a className="primary pulse" href="#best">Ver mais vendidos</a>
+      <a className="secondary" href="#escolha">Escolher por objetivo</a>
+    </div>
+    <p className="secureLine">🔒 Compra segura • Acesso imediato • Garantia 7 dias</p>
+  </div>
+
+  <div className="phoneStage">
+    <div className="orbit"></div>
+    <Phone product={best[0]}/>
+  </div>
+</section>}
+
+function Phone({product}){const phoneProducts = products.filter(p=>[1,2,3,4,15,16].includes(p.id)); return <aside className="phone premiumPhone"><div className="screen">
+  <div className="phoneNav">☰ <b>♛ IMPÉRIO <small>DIGITAL</small></b> 🛒</div>
+  <h3 className="phoneSectionTitle">MAIS PROCURADOS <a href="/#escolha">Ver áreas</a></h3>
+  <div className="phoneProductGrid">
+    {phoneProducts.map(p=><img key={p.id} src={p.img} alt={p.title} loading="lazy" decoding="async"/>)}
+  </div>
+  <a className="phoneBtn" href="/#escolha">VER ÁREAS DE INTERESSE</a>
+</div></aside>}
+
+function FeaturedMicroEbook({addToCart}){
+  const ebook = products.find(p=>p.id === 15);
+  return <section id="ebook050" className="featured050">
+    <div className="featured050Card">
+      <div className="featured050Copy">
+        <p>🔥 OFERTA DE ENTRADA • R$1,99</p>
+        <h2>Comece com um ebook simples, acessível e direto</h2>
+        <span>Um guia rápido para dar o primeiro passo, aprender uma ideia prática e acessar o conteúdo imediatamente após a compra.</span>
+        <div className="featured050Bullets">
+          <b>✅ Ideal para iniciantes</b>
+          <b>⚡ Acesso imediato</b>
+          <b>📱 Comece pelo celular</b>
+          <b>💰 Apenas R$1,99</b>
+        </div>
+        <div className="featured050Actions">
+          <button onClick={()=>addToCart(ebook)}>Comprar por R$1,99</button>
+          <a href="/descobrir-negocio">Descobrir meu melhor negócio</a>
+        </div>
+      </div>
+      <div className="featured050Price">
+        <small>De R$19,90 por</small>
+        <strong>R$1,99</strong>
+        <span>Oferta de entrada por tempo limitado</span>
+      </div>
+    </div>
+  </section>
 }
-.heroPremium .eyebrow{
-  display:inline-flex;
-  background:#fff1f1;
-  color:#e50909;
-  border-radius:999px;
-  padding:13px 20px;
-  font-size:14px;
-  letter-spacing:.4px;
-  margin:0 0 22px;
+
+function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação</p></div><div>🎯<b>Escolha por objetivo</b><p>Encontre o que combina com você</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança</p></div></section>}
+
+function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS PROCURADOS AGORA</p><h2>Produtos em destaque para começar</h2><p className="sub">Uma seleção curta com os ebooks de maior interesse para quem quer começar hoje.</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
+
+function GoalLinks(){
+  const goals = [
+    ['ganhar','💰','Ganhar dinheiro','Renda extra, vendas digitais e ideias de negócio'],
+    ['assistencia','📱','Assistência Técnica','Celulares, bancada, serviços e clientes'],
+    ['barbearia','✂️','Barbearia','Cortes, barba, atendimento e divulgação'],
+    ['abrir-negocio','💼','Abrir negócio','Primeiros passos para começar com clareza'],
+    ['pack','💎','Pack completo','Pacotes maiores com mais conteúdo'],
+    ['organizar','📊','Organização','Rotina, tarefas e controle do negócio'],
+    ['saude','🥗','Saúde','Hábitos e rotina mais equilibrada'],
+    ['estudar','📚','Estudos','Foco, vestibular e organização dos estudos']
+  ];
+
+  return <section id="escolha" className="filters goalChooser">
+    <p className="red">ESCOLHA SEU OBJETIVO</p>
+    <h2>Encontre o ebook ideal para você</h2>
+    <p className="sub">Selecione uma área de interesse e veja os produtos relacionados ao que você procura.</p>
+    <div className="goalGrid">
+      {goals.map(([id,icon,title,text])=><a className="goalCard" href={categoryHref(id)} key={id}>
+        <strong>{icon}</strong>
+        <h3>{title}</h3>
+        <p>{text}</p>
+        <span>Ver ebooks →</span>
+      </a>)}
+    </div>
+    <a className="allCatalogLink" href="/catalogo">Ver todos os ebooks</a>
+  </section>
 }
-.heroPremium .copy h1{
-  font-size:clamp(58px,5.6vw,86px);
-  line-height:1.02;
-  letter-spacing:-2.8px;
-  margin:0 0 22px;
-  font-weight:900;
+
+function Catalog({list,addToCart,filter,search}){
+  const selected = categoryLabel(filter);
+  const title = search ? `Resultado para: ${search}` : filter === 'todos' ? 'Todos os ebooks' : `Ebooks de ${selected}`;
+
+  return <section id="catalogo" className="catalog routeCatalog">
+    <p className="red">{filter === 'todos' ? 'TODOS OS EBOOKS' : 'SELEÇÃO POR CATEGORIA'}</p>
+    <h2>{title}</h2>
+    <p className="sub">Escolha um produto, adicione ao carrinho e finalize sua compra com acesso imediato.</p>
+    {list.length === 0 ? <div className="emptyCatalog">Nenhum ebook encontrado nessa busca.</div> : <div className="grid">{list.map(p=><Product p={p} addToCart={addToCart} key={p.id}/>)}</div>}
+  </section>
 }
-.heroPremium .copy h1 span{
-  color:#e50909;
+
+function Product({p,compact,addToCart}){
+  const limit = compact ? 94 : 118;
+  const desc = p.desc && p.desc.length > limit ? `${p.desc.slice(0, limit)}...` : p.desc;
+
+  return <article className={compact?'card compact cleanCard':'card cleanCard'}>
+    <div className="imgWrap">
+      <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
+      <span>{p.tag}</span>
+    </div>
+    <div className="body">
+      <small className="catLabel">{p.cat}</small>
+      <h3>{p.title}</h3>
+      <p>{desc}</p>
+      <small>De {p.old}</small>
+      <strong>Por {p.price}</strong>
+      <em>Acesso imediato</em>
+      <button className="buy singleBuy" onClick={()=>addToCart(p)}>Comprar agora</button>
+    </div>
+  </article>
 }
-.heroPremium .lead{
-  font-size:19px;
-  line-height:1.65;
-  max-width:620px;
-  color:#2b2b2b;
-  margin:0 0 24px;
-}
-.premiumTrust{
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin:26px 0 20px;
-}
-.premiumTrust span{
-  display:grid;
-  grid-template-columns:auto 1fr;
-  column-gap:8px;
-  row-gap:2px;
-  align-items:center;
-  background:#fff;
-  border:1px solid #f0e1e1;
-  border-radius:18px;
-  padding:14px 12px;
-  box-shadow:0 12px 34px rgba(0,0,0,.045);
-  font-size:19px;
-}
-.premiumTrust b{
-  font-size:13px;
-  line-height:1.1;
-}
-.premiumTrust small{
-  grid-column:2;
-  color:#777;
-  font-size:11px;
-}
-.premiumProof{
-  max-width:520px;
-  background:#fff;
-  border:1px solid #eee;
-  border-radius:22px;
-  padding:10px;
-  box-shadow:0 14px 38px rgba(0,0,0,.04);
-}
-.heroPremium .actions{
-  margin-top:24px;
-}
-.heroPremium .primary{
-  border-radius:999px;
-  padding:18px 28px;
-}
-.heroPremium .secondary{
-  border-radius:999px;
-  border-color:#eee;
-  color:#111;
-  background:#fff;
-}
-.secureLine{
-  color:#777;
-  font-size:13px;
-  margin:18px 0 0;
-}
-.phoneStage{
-  position:relative;
-  display:grid;
-  place-items:center;
-  min-height:620px;
-}
-.orbit{
-  position:absolute;
-  width:620px;
-  height:620px;
-  border-radius:50%;
-  background:repeating-radial-gradient(circle, rgba(229,9,9,.12) 0 1px, transparent 1px 28px);
-  opacity:.8;
-}
-.phoneStage .phone{
-  position:relative;
-  margin:0;
-  width:350px;
-  height:690px;
-  transform:none;
-  z-index:2;
-  border-radius:54px;
-  border:5px solid #151515;
-  box-shadow:0 30px 85px rgba(0,0,0,.24), 0 0 0 10px rgba(0,0,0,.04);
-}
-.premiumPhone .screen{
-  border-radius:43px;
-  padding:28px 20px;
-  overflow:hidden;
-}
-.premiumPhone .phoneNav{
-  margin-bottom:24px;
-  align-items:center;
-}
-.phoneSectionTitle{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:14px;
-  margin:0 0 12px;
-  letter-spacing:.2px;
-}
-.phoneSectionTitle a{
-  color:#e50909;
-  font-size:11px;
-}
-.phoneProductGrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-.phoneProductGrid img{
-  width:100%;
-  height:156px;
-  object-fit:cover;
-  border-radius:13px;
-  box-shadow:0 8px 18px rgba(0,0,0,.10);
-}
-.premiumPhone .phoneBtn{
-  margin-top:18px;
-  border-radius:18px;
-  padding:16px;
-  font-weight:1000;
-  letter-spacing:.2px;
-}
-.floatNote{
-  position:absolute;
-  z-index:3;
-  background:rgba(255,255,255,.94);
-  border:1px solid #f0eeee;
-  box-shadow:0 16px 48px rgba(0,0,0,.08);
-  border-radius:999px;
-  padding:18px 24px;
-  font-weight:900;
-  line-height:1.25;
-}
-.noteOne{
-  right:10px;
-  top:130px;
-}
-.noteTwo{
-  right:0;
-  top:300px;
-}
-.noteThree{
-  right:18px;
-  bottom:120px;
-}
-.tablet,.mug,.scene{
-  display:none!important;
-}
-@media(max-width:1200px){
-  .heroPremium{
-    grid-template-columns:1fr;
-    padding:50px 28px 70px;
-    min-height:auto;
+
+function OfferBanner(){return <section className="offer"><b>🔥 Preço promocional por tempo limitado</b><span>Escolha seu ebook, compre com segurança e receba o acesso imediatamente</span><a href="#escada">Ver escada de valor</a></section>}
+
+
+function AffiliateSystem(){return <section id="afiliados" className="affiliate">
+  <div className="affiliateCopy">
+    <p className="red">SISTEMA DE AFILIADOS INTERNO</p>
+    <h2>Venda produtos do Império Digital e ganhe comissão</h2>
+    <span>Estrutura pensada para transformar o site em um marketplace com criadores, afiliados e produtos digitais em uma única plataforma</span>
+  </div>
+  <div className="affiliateGrid">
+    <div><b>1</b><h3>Afiliado se cadastra</h3><p>Recebe um link único para divulgar produtos selecionados</p></div>
+    <div><b>2</b><h3>Cliente compra</h3><p>A venda acontece pelo checkout do produto com rastreamento do afiliado</p></div>
+    <div><b>3</b><h3>Comissão é registrada</h3><p>O painel mostra vendas, cliques, conversão e saldo acumulado</p></div>
+  </div>
+  <div className="affiliateCTA">
+    <strong>Próxima fase:</strong>
+    <span>Área de login, links únicos, painel de comissões e ranking de afiliados</span>
+    <a href={wa()} target="_blank" rel="noreferrer">Quero vender como afiliado</a>
+  </div>
+</section>}
+
+function FAQ(){return <section id="faq" className="faq"><h2>Perguntas rápidas</h2><div><details open><summary>Como recebo o ebook?</summary><p>Após a compra aprovada, você é direcionado para a página de obrigado e baixa os ebooks comprados na hora</p></details><details><summary>É seguro comprar?</summary><p>Sim, o pagamento é feito pelo Mercado Pago com checkout protegido</p></details><details><summary>Tem suporte?</summary><p>Sim, você pode tirar dúvidas pelo WhatsApp</p></details></div></section>}
+
+function Testimonials(){return <section className="test"><h2>O que nossos <span>clientes</span> dizem</h2><div><blockquote><b>Carlos M.</b><span>★★★★★</span><p>“O ebook de Barbearia foi direto ao ponto e me ajudou a enxergar melhor o caminho”</p></blockquote><blockquote><b>Juliana S.</b><span>★★★★★</span><p>“O de Reeducação Alimentar trouxe orientações simples e fáceis de aplicar”</p></blockquote><blockquote><b>Rafael T.</b><span>★★★★★</span><p>“Vendas Digitais me ajudou a entender novas oportunidades com mais clareza”</p></blockquote></div></section>}
+
+function FinalCTA(){return <section className="final"><div>♛</div><section><h2>Escolha um ebook e comece hoje</h2><p>Produtos digitais simples, acessíveis e com acesso imediato para você aprender sem complicação.</p></section><a href="#escolha">Escolher objetivo →</a></section>}
+function Footer({onSecretAdminClick}){return <footer><button type="button" className="footerSecretAdmin" onClick={onSecretAdminClick}>♛ IMPÉRIO DIGITAL</button><b>Compra segura • Acesso imediato • Garantia 7 dias</b></footer>}
+
+
+function CheckoutPage(){
+  const [cart,setCart] = useState([]);
+  const [customer,setCustomer] = useState({name:'',email:'',whatsapp:''});
+  const [loading,setLoading] = useState(false);
+  const [error,setError] = useState('');
+  const isTestCheckout = new URLSearchParams(window.location.search).get('teste') === '1';
+
+  React.useEffect(()=>{setCart(JSON.parse(localStorage.getItem('imperio_cart') || '[]'))},[]);
+  const total = cart.reduce((sum,p)=>sum + priceNumber(p.price),0);
+  const displayTotal = isTestCheckout ? 0 : total;
+
+  async function finishCheckout(e){
+    e.preventDefault();
+    setError('');
+    if(cart.length === 0) return setError('Seu carrinho está vazio.');
+
+    if(isTestCheckout){
+      localStorage.setItem('imperio_last_order', JSON.stringify({
+        cart,
+        customer: {
+          name: customer.name || 'Cliente Teste',
+          email: customer.email || 'teste@imperiodigital.com',
+          whatsapp: customer.whatsapp || '11999999999'
+        },
+        total: 0,
+        test:true
+      }));
+      window.location.href = '/obrigado?teste=1';
+      return;
+    }
+
+    if(total < 1.99) return setError('Compra mínima de R$1,99 para finalizar no checkout.');
+    if(!customer.name || !customer.email || !customer.whatsapp) return setError('Preencha nome, email e WhatsApp.');
+
+    try{
+      setLoading(true);
+      const res = await fetch('/api/create-preference',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items: cart.map(item => ({id: item.id, qty: 1})), customer})});
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.error || 'Erro ao criar pagamento.');
+      localStorage.setItem('imperio_last_order', JSON.stringify({cart,customer,total}));
+      window.location.href = data.init_point;
+    }catch(err){
+      setError(err.message || 'Erro inesperado.');
+    }finally{
+      setLoading(false);
+    }
   }
-  .phoneStage{
-    min-height:720px;
+
+  return <main className="checkoutPage">
+    <a className="checkoutLogo" href="/">♛ IMPÉRIO <span>DIGITAL</span></a>
+    <section className="checkoutShell">
+      <form className="checkoutForm" onSubmit={finishCheckout}>
+        <p className="red">CHECKOUT SEGURO</p>
+        <h1>Finalize sua compra</h1>
+        <span className="checkoutLead">Preencha seus dados e pague com Pix ou cartão pelo Mercado Pago</span>
+        {isTestCheckout && <div className="checkoutError">🧪 Modo teste ativo: esta compra será simulada por R$0, sem abrir o Mercado Pago.</div>}
+        <label>Nome completo<input value={customer.name} onChange={e=>setCustomer({...customer,name:e.target.value})} placeholder="Seu nome"/></label>
+        <label>Email<input type="email" value={customer.email} onChange={e=>setCustomer({...customer,email:e.target.value})} placeholder="seuemail@exemplo.com"/></label>
+        <label>WhatsApp<input value={customer.whatsapp} onChange={e=>setCustomer({...customer,whatsapp:e.target.value})} placeholder="(11) 99999-9999"/></label>
+        {error && <div className="checkoutError">{error}</div>}
+        <button disabled={loading}>{isTestCheckout ? 'Simular pagamento R$0' : (loading ? 'Gerando pagamento...' : 'Pagar com Mercado Pago')}</button>
+        <small>🔒 Pagamento protegido no ambiente seguro do Mercado Pago</small>
+      </form>
+      <aside className="checkoutSummary">
+        <h2>Resumo do pedido</h2>
+        {cart.length === 0 ? <p>Seu carrinho está vazio</p> : cart.map(item=><div className="summaryItem" key={item.id}><img src={item.img} alt={item.title} loading="lazy" decoding="async"/><div><b>{item.title}</b><span>{item.price}</span></div></div>)}
+        <div className="summaryTotal"><span>{isTestCheckout ? 'Total no modo teste' : 'Total'}</span><strong>R$ {displayTotal.toFixed(2).replace('.',',')}</strong></div>
+        <em>{isTestCheckout ? 'Teste interno: nenhum valor será cobrado' : 'Compra mínima: R$1,99'}</em>
+        <a href="/">Continuar comprando</a>
+      </aside>
+    </section>
+  </main>
+}
+
+function ThankYouPage(){
+  const [order,setOrder] = useState(null);
+  const [token,setToken] = useState(null);
+  const [loading,setLoading] = useState(true);
+  const [message,setMessage] = useState('Verificando pagamento...');
+  const [error,setError] = useState('');
+
+  React.useEffect(()=>{
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get('order_id');
+    const isTest = params.get('teste') === '1';
+
+    if(isTest || !orderId){
+      const localOrder = JSON.parse(localStorage.getItem('imperio_last_order') || 'null');
+
+      if(localOrder){
+        setOrder({
+          status: localOrder.test ? 'approved' : 'local',
+          items: localOrder.cart || [],
+          amount: localOrder.total || 0,
+          customer_name: localOrder.customer?.name || 'Cliente'
+        });
+        setToken(localOrder.test ? 'TESTE_R0' : null);
+        setMessage(isTest ? 'Modo teste aprovado. Seus downloads estão liberados.' : 'Seus ebooks estão liberados.');
+      }
+
+      setLoading(false);
+      return;
+    }
+
+    let attempts = 0;
+    const maxAttempts = 20;
+    let intervalId = null;
+
+    async function checkOrder(){
+      try{
+        attempts += 1;
+
+        const res = await fetch(`/api/order-status?order_id=${encodeURIComponent(orderId)}`);
+        const data = await res.json();
+
+        if(!res.ok){
+          throw new Error(data.error || 'Não foi possível consultar o pedido.');
+        }
+
+        setOrder(data.order || null);
+        setToken(data.token?.token || null);
+
+        if(data.order?.status === 'approved' && data.token?.token){
+          setMessage('Pagamento aprovado. Seus ebooks estão liberados.');
+          setLoading(false);
+          return true;
+        }
+
+        if(data.order?.status === 'approved' && !data.token?.token){
+          setMessage('Pagamento aprovado. Preparando seus links de download...');
+        }else if(data.order?.status === 'pending'){
+          setMessage('Pagamento em processamento. Aguarde alguns segundos...');
+        }else if(data.order?.status === 'payment_error'){
+          setMessage('Houve um problema ao criar o pagamento.');
+          setLoading(false);
+          return true;
+        }else{
+          setMessage('Verificando pagamento...');
+        }
+
+        if(attempts >= maxAttempts){
+          setLoading(false);
+          setMessage('Ainda não conseguimos confirmar o pagamento automaticamente.');
+          return true;
+        }
+
+        return false;
+      }catch(err){
+        setError(err.message || 'Erro ao consultar pedido.');
+        setLoading(false);
+        return true;
+      }
+    }
+
+    checkOrder().then((done)=>{
+      if(done) return;
+
+      intervalId = setInterval(async ()=>{
+        const doneNow = await checkOrder();
+
+        if(doneNow && intervalId){
+          clearInterval(intervalId);
+        }
+      }, 4000);
+    });
+
+    return () => {
+      if(intervalId) clearInterval(intervalId);
+    };
+  },[]);
+
+  const purchased = order?.items || [];
+
+  function getProductInfo(item){
+    const product = products.find(p => String(p.id) === String(item.id));
+    return {
+      ...item,
+      title: product?.title || item.title,
+      img: product?.img || '/vendas-digitais.png',
+      price: product?.price || (item.price ? `R$ ${Number(item.price).toFixed(2).replace('.',',')}` : ''),
+      file: product?.file || item.file
+    };
   }
-  .heroPremium .heroTrust{
-    grid-template-columns:repeat(2,1fr);
+
+  function downloadLink(item){
+    if(token === 'TESTE_R0'){
+      const product = products.find(p => String(p.id) === String(item.id));
+      return product?.file || item.file || '#';
+    }
+
+    return `/api/download?token=${encodeURIComponent(token)}&product_id=${encodeURIComponent(item.id)}`;
   }
-  .noteOne{right:40px;top:110px}
-  .noteTwo{right:20px;top:300px}
-  .noteThree{right:45px;bottom:120px}
+
+  const canDownload = token && purchased.length > 0;
+
+  return <main className="thanksPage">
+    <section>
+      <div>{canDownload ? '✅' : '⏳'}</div>
+      <p className="red">{canDownload ? 'COMPRA APROVADA' : 'AGUARDANDO CONFIRMAÇÃO'}</p>
+      <h1>{canDownload ? 'Seus ebooks estão liberados' : 'Estamos verificando seu pagamento'}</h1>
+      <span>{message}</span>
+
+      {loading && <div className="checkoutError" style={{marginTop:'18px'}}>
+        Aguarde, isso pode levar alguns segundos após o pagamento.
+      </div>}
+
+      {error && <div className="checkoutError" style={{marginTop:'18px'}}>
+        {error}
+      </div>}
+
+      <div className="thanksProducts">
+        {purchased.length === 0 ? (
+          <article>
+            <b>Não encontramos produtos neste pedido.</b>
+            <p>Se você já pagou, fale com o suporte para receber seu acesso.</p>
+            <a href={wa()} target="_blank" rel="noreferrer">Falar com suporte</a>
+          </article>
+        ) : purchased.map(item => {
+          const p = getProductInfo(item);
+
+          return <article key={p.id}>
+            <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
+            <b>{p.title}</b>
+
+            {canDownload ? (
+              <a href={downloadLink(p)} target="_blank" rel="noreferrer">
+                Baixar Ebook Agora
+              </a>
+            ) : (
+              <button disabled style={{opacity:.55,cursor:'not-allowed'}}>
+                Aguardando aprovação
+              </button>
+            )}
+          </article>
+        })}
+      </div>
+
+      {!canDownload && <a className="thanksBtn" href={wa()} target="_blank" rel="noreferrer">
+        💬 Falar com suporte
+      </a>}
+
+      <a className="thanksBtn quizThanksBtn" href="/descobrir-negocio">🤖 Descobrir meu melhor negócio</a>
+      <a className="thanksBtn" href="/">Voltar para o site</a>
+    </section>
+  </main>
 }
-@media(max-width:760px){
-  .heroPremium{
-    padding:34px 18px 44px;
+
+function QuizProPage(){
+  const [step,setStep] = useState(0);
+  const [answers,setAnswers] = useState([]);
+
+  const questions = [
+    {
+      title:"Você prefere começar trabalhando com o quê?",
+      options:[
+        ["💻","Internet, celular e vendas online","digital"],
+        ["🛠️","Ferramentas, consertos e prática manual","tecnico"],
+        ["✂️","Beleza, estética ou atendimento","beleza"],
+        ["🧁","Comida, doces ou produção artesanal","producao"],
+        ["🗓️","Organização, rotina e produtividade","organizacao"]
+      ]
+    },
+    {
+      title:"Quanto você tem para começar?",
+      options:[
+        ["🪙","Quase nada, quero começar do zero","digital"],
+        ["💼","Até R$300","organizacao"],
+        ["💵","Até R$1.000","tecnico"],
+        ["💰","Mais de R$1.000","beleza"]
+      ]
+    },
+    {
+      title:"Qual resultado você busca primeiro?",
+      options:[
+        ["⚡","Fazer renda extra rápido","digital"],
+        ["💼","Aprender uma profissão prática","tecnico"],
+        ["👥","Atender clientes e crescer aos poucos","beleza"],
+        ["🛒","Produzir e vender algo meu","producao"],
+        ["🎯","Me organizar para empreender melhor","organizacao"]
+      ]
+    },
+    {
+      title:"Você prefere trabalhar mais...",
+      options:[
+        ["🌐","Online","digital"],
+        ["🏪","Presencialmente","beleza"],
+        ["⚙️","Com serviços técnicos","tecnico"],
+        ["🏠","Em casa produzindo","producao"],
+        ["📊","Planejando e estruturando","organizacao"]
+      ]
+    }
+  ];
+
+  const data = {
+    digital:{
+      title:"VENDAS DIGITAIS",
+      text:"Você tem perfil para negócios online, produtos digitais e renda extra usando celular e internet",
+      products:[3,16,17]
+    },
+    tecnico:{
+      title:"ASSISTÊNCIA TÉCNICA",
+      text:"Você combina com serviços práticos, consertos e negócios com demanda local",
+      products:[1,101,102]
+    },
+    beleza:{
+      title:"BELEZA E ATENDIMENTO",
+      text:"Você combina com negócios presenciais, estética e atendimento ao cliente",
+      products:[2,201,202]
+    },
+    producao:{
+      title:"PRODUÇÃO E VENDA",
+      text:"Você combina com produção caseira, doces, alimentos e venda recorrente",
+      products:[8,7,16]
+    },
+    organizacao:{
+      title:"NEGÓCIO ORGANIZADO",
+      text:"Você combina com planejamento, produtividade e estruturação antes de crescer",
+      products:[11,12,16]
+    }
+  };
+
+  function choose(type){
+    const updated = [...answers,type];
+    setAnswers(updated);
+    if(step < questions.length - 1) setStep(step + 1);
+    else setStep("result");
   }
-  .heroPremium .copy h1{
-    font-size:48px;
-    line-height:1.04;
-    letter-spacing:-1.4px;
+
+  function resultKey(){
+    const count = {};
+    answers.forEach(a => count[a] = (count[a] || 0) + 1);
+    return Object.keys(count).reduce((a,b)=>count[a] > count[b] ? a : b,"digital");
   }
-  .heroPremium .lead{
-    font-size:16px;
-    line-height:1.55;
+
+  function goCheckout(productId){
+    const product = products.find(p => p.id === productId);
+    if(!product) return;
+
+    localStorage.setItem('imperio_cart', JSON.stringify([product]));
+    localStorage.setItem('imperio_last_order', JSON.stringify({cart:[product], total: priceNumber(product.price)}));
+    window.location.href = '/checkout';
   }
-  .heroPremium .heroTrust{
-    grid-template-columns:1fr;
+
+  if(step === "result"){
+    const result = data[resultKey()];
+    return <main className="quizPro quizDark">
+      <section className="quizResultPro">
+        <div className="quizResultTop">
+          <a href="/" className="quizResultLogo">♛ IMPÉRIO <span>DIGITAL</span></a>
+          <small>🛡️ Ambiente Seguro</small>
+        </div>
+
+        <div className="quizResultHero">
+          <span>♕</span>
+          <p>SEU PERFIL COMBINA COM</p>
+          <h1>{result.title}</h1>
+          <small>{result.text}</small>
+        </div>
+
+        <div className="quizResultList">
+          <b>Recomendamos que você comece por:</b>
+          {result.products.map((id)=>{
+            const p = products.find(item => item.id === id);
+            if(!p) return null;
+
+            return <article key={p.id}>
+              <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
+              <div>
+                <h3>{p.title}</h3>
+                <p>{p.desc}</p>
+              </div>
+              <strong>{p.price}</strong>
+              <button onClick={()=>goCheckout(p.id)}>Ver produto</button>
+            </article>
+          })}
+        </div>
+
+        <a className="quizAllBtn" href="/#catalogo">Ver todos os produtos</a>
+        <button className="quizRedo" onClick={()=>{setStep(0);setAnswers([])}}>↻ Refazer teste</button>
+      </section>
+    </main>
   }
-  .phoneStage{
-    min-height:660px;
-    overflow:hidden;
+
+  const q = questions[step];
+
+  return <main className="quizPro">
+    <section className="quizCardPro">
+      <div className="quizTop">
+        <a href="/" className="quizBrand">♛ <b>IMPÉRIO</b><span>DIGITAL</span></a>
+        <small>🛡️ Ambiente Seguro</small>
+      </div>
+
+      <p className="quizBadge">CONSULTOR DIGITAL</p>
+      <h1>Descubra qual negócio combina <span>com você</span></h1>
+      <p className="quizSub">Responda algumas perguntas rápidas e receba uma recomendação personalizada para começar</p>
+
+      <div className="quizProgressLine">
+        <small>{step+1} de {questions.length}</small>
+        <div><span style={{width:`${((step+1)/questions.length)*100}%`}}></span></div>
+      </div>
+
+      <div className="quizQuestion">
+        <b>{step+1}</b>
+        <h2>{q.title}</h2>
+      </div>
+
+      <div className="quizOptionsPro">
+        {q.options.map((opt,i)=>(
+          <button key={i} onClick={()=>choose(opt[2])}>
+            <em>{opt[0]}</em>
+            <span>{opt[1]}</span>
+            <strong>›</strong>
+          </button>
+        ))}
+      </div>
+
+      <div className="quizFooterProof">
+        <span>☆ <b>Mais de 1.284</b><small>alunos satisfeitos</small></span>
+        <span>⏱️ <b>Acesso imediato</b><small>após a compra</small></span>
+        <span>🛡️ <b>Compra 100%</b><small>segura</small></span>
+      </div>
+    </section>
+  </main>
+}
+
+function CartDrawer({cart,open,setOpen,removeFromCart}){
+  const total = cart.reduce((sum,p)=>sum + priceNumber(p.price),0);
+  return <div className={open ? "cartOverlay open" : "cartOverlay"}>
+    <div className="cartBackdrop" onClick={()=>setOpen(false)}></div>
+    <aside className="cartDrawer">
+      <div className="cartHeader">
+        <div>
+          <p>Seu carrinho</p>
+          <h2>{cart.length} produto{cart.length === 1 ? '' : 's'}</h2>
+        </div>
+        <button onClick={()=>setOpen(false)}>×</button>
+      </div>
+
+      {cart.length === 0 ? <div className="cartEmpty">
+        <b>Seu carrinho está vazio.</b>
+        <span>Escolha um ebook e adicione ao carrinho</span>
+        <a href="/catalogo" onClick={()=>setOpen(false)}>Ver produtos</a>
+      </div> : <div className="cartItems">
+        {cart.map(item=><div className="cartItem" key={item.id}>
+          <img src={item.img} alt={item.title} loading="lazy" decoding="async"/>
+          <div>
+            <b>{item.title}</b>
+            <span>{item.price}</span>
+          </div>
+          <button onClick={()=>removeFromCart(item.id)}>Remover</button>
+        </div>)}
+      </div>}
+
+      <div className="cartFooter">
+        <div><span>Total aproximado</span><strong>R$ {total.toFixed(2).replace('.',',')}</strong></div>
+        {cart.length > 0 && <button className="checkoutNow" onClick={()=>{localStorage.setItem('imperio_cart', JSON.stringify(cart)); window.location.href='/checkout';}}>Finalizar compra</button>}
+        <small>Pagamento único pelo Mercado Pago com Pix e cartão no checkout seguro</small>
+      </div>
+    </aside>
+  </div>
+}
+
+
+function TestModePanel({setTestMode}){
+  const testProducts = [
+    products.find(p => p.id === 101),
+    products.find(p => p.id === 201),
+    products.find(p => p.id === 1),
+    products.find(p => p.id === 2)
+  ].filter(Boolean);
+
+  const total = 0;
+
+  function simulateApprovedPurchase(){
+    localStorage.setItem('imperio_last_order', JSON.stringify({
+      cart: testProducts,
+      customer: { name:'Cliente Teste', email:'teste@imperiodigital.com', whatsapp:'11999999999' },
+      total,
+      test:true
+    }));
+    window.location.href = '/obrigado?teste=1';
   }
-  .phoneStage .phone{
-    width:300px;
-    height:610px;
+
+  function prepareTestCheckout(){
+    localStorage.setItem('imperio_cart', JSON.stringify(testProducts));
+    window.location.href = '/checkout?teste=1';
   }
-  .phoneProductGrid img{
-    height:132px;
+
+  function closeTestMode(){
+    localStorage.removeItem('imperio_test_mode');
+    setTestMode(false);
   }
-  .orbit{
-    width:500px;
-    height:500px;
+
+  return <aside className="testModePanel">
+    <div>
+      <b>🧪 Modo teste ativo</b>
+      <button onClick={closeTestMode}>×</button>
+    </div>
+    <p>Use para testar o funil por R$0, sem abrir cobrança real</p>
+    <button onClick={simulateApprovedPurchase}>Simular compra R$0 com avulsos</button>
+    <button onClick={()=>{window.location.href='/descobrir-negocio'}}>Abrir quiz</button>
+    <button onClick={prepareTestCheckout}>Testar checkout R$0 com avulsos</button>
+    <small>Para liberar, clique 7 vezes no logo Império Digital</small>
+  </aside>
+}
+
+
+function AdminPage(){
+  const [password,setPassword] = useState('');
+  const [logged,setLogged] = useState(false);
+  const [orders,setOrders] = useState([]);
+  const [loading,setLoading] = useState(false);
+  const [error,setError] = useState('');
+
+  async function loadOrders(pass = password){
+    setLoading(true);
+    setError('');
+
+    try{
+      const res = await fetch('/api/admin-orders',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({password:pass})
+      });
+
+      const data = await res.json();
+
+      if(!res.ok){
+        throw new Error(data.error || 'Erro ao carregar pedidos.');
+      }
+
+      setOrders(data.orders || []);
+      setLogged(true);
+      sessionStorage.setItem('imperio_admin_logged', 'true');
+      sessionStorage.setItem('imperio_admin_password', pass);
+
+    }catch(err){
+      setError(err.message || 'Erro inesperado.');
+    }finally{
+      setLoading(false);
+    }
   }
-  .floatNote{
-    display:none;
+
+  React.useEffect(()=>{
+    const savedLogged = sessionStorage.getItem('imperio_admin_logged') === 'true';
+    const savedPass = sessionStorage.getItem('imperio_admin_password') || '';
+
+    if(savedLogged && savedPass){
+      setPassword(savedPass);
+      loadOrders(savedPass);
+    }
+  },[]);
+
+  function logout(){
+    sessionStorage.removeItem('imperio_admin_logged');
+    sessionStorage.removeItem('imperio_admin_password');
+    setLogged(false);
+    setPassword('');
+    setOrders([]);
   }
-  .premiumProof{
-    max-width:100%;
+
+  function formatDate(value){
+    if(!value) return '-';
+
+    try{
+      return new Date(value).toLocaleString('pt-BR');
+    }catch{
+      return value;
+    }
   }
-}
 
-
-/* LAPIDAÇÃO FINAL PREMIUM */
-:root{
-  --red:#e50909;
-  --dark:#111;
-  --soft:#fff5f5;
-}
-body{
-  font-family:'Inter',Arial,sans-serif;
-  color:#111;
-  background:#fff;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-}
-h1,h2,h3,.logo b,.headBtn,.primary,.secondary,.buy,.microR1Copy h2,.microR1Card strong,.phoneBtn{
-  font-family:'Montserrat','Inter',Arial,sans-serif;
-}
-.header{
-  height:78px;
-  box-shadow:0 10px 40px rgba(0,0,0,.035);
-}
-.notice{
-  background:var(--red);
-  color:#fff;
-}
-.heroPremium{
-  min-height:735px;
-  padding-top:58px;
-  padding-bottom:70px;
-}
-.heroPremium .copy h1{
-  font-size:clamp(54px,5.25vw,78px);
-  line-height:1.08;
-  letter-spacing:-1.9px;
-  margin-bottom:24px;
-}
-.heroPremium .eyebrow{
-  font-size:13px;
-  padding:12px 18px;
-}
-.heroPremium .lead{
-  max-width:640px;
-  font-size:18px;
-  line-height:1.72;
-}
-.phoneStage{
-  transform:translateY(-18px);
-}
-.phoneStage .phone{
-  width:365px;
-  height:705px;
-}
-.phoneProductGrid img{
-  height:160px;
-}
-.floatNote{
-  font-size:15px;
-  padding:17px 23px;
-}
-.noteOne{top:118px}
-.noteTwo{top:285px}
-.noteThree{bottom:108px}
-.heroPremium .primary{
-  font-size:16px;
-  padding:19px 30px;
-}
-.heroPremium .secondary{
-  padding:18px 26px;
-}
-.premiumTrust span{
-  min-height:82px;
-}
-.premiumProof{
-  margin-top:4px;
-}
-
-/* Seção R$1 mais refinada */
-.microR1{
-  padding-top:74px;
-  padding-bottom:74px;
-}
-.microR1Copy h2{
-  line-height:1.02;
-  letter-spacing:-2.2px;
-}
-.microR1Copy small{
-  max-width:690px;
-}
-.microR1Card strong{
-  letter-spacing:-2.4px;
-}
-.microR1Actions a{
-  min-width:210px;
-  text-align:center;
-}
-
-/* Cards mais premium */
-.card{
-  border-radius:26px;
-  border:1px solid #eee;
-  box-shadow:0 18px 45px rgba(0,0,0,.055);
-}
-.card:hover{
-  box-shadow:0 28px 70px rgba(229,9,9,.12);
-}
-.imgWrap img{
-  transition:.35s;
-}
-.card:hover .imgWrap img{
-  transform:scale(1.025);
-}
-.buy{
-  border-radius:14px;
-  letter-spacing:.2px;
-}
-.zap{
-  border-radius:14px;
-}
-
-/* Afiliados */
-.affiliate{
-  margin:0;
-  padding:74px 80px;
-  background:linear-gradient(135deg,#111 0%,#1a1a1a 55%,#330000 100%);
-  color:#fff;
-}
-.affiliateCopy{
-  max-width:900px;
-  margin:0 auto 32px;
-  text-align:center;
-}
-.affiliateCopy .red{
-  color:#ff4b4b;
-}
-.affiliateCopy h2{
-  font-size:clamp(36px,4vw,58px);
-  line-height:1.05;
-  margin:8px 0 14px;
-  font-weight:1000;
-  letter-spacing:-1.5px;
-}
-.affiliateCopy span{
-  color:#ddd;
-  font-size:17px;
-  line-height:1.6;
-}
-.affiliateGrid{
-  max-width:1120px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-.affiliateGrid div{
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:26px;
-  padding:26px;
-}
-.affiliateGrid b{
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:var(--red);
-  display:grid;
-  place-items:center;
-  font-size:20px;
-  margin-bottom:18px;
-}
-.affiliateGrid h3{
-  margin:0 0 10px;
-  font-size:21px;
-}
-.affiliateGrid p{
-  margin:0;
-  color:#ddd;
-  line-height:1.55;
-}
-.affiliateCTA{
-  max-width:1120px;
-  margin:22px auto 0;
-  background:#fff;
-  color:#111;
-  border-radius:26px;
-  padding:24px;
-  display:grid;
-  grid-template-columns:auto 1fr auto;
-  gap:16px;
-  align-items:center;
-}
-.affiliateCTA strong{
-  color:var(--red);
-}
-.affiliateCTA span{
-  color:#444;
-}
-.affiliateCTA a{
-  background:var(--red);
-  color:#fff;
-  padding:15px 20px;
-  border-radius:14px;
-  font-weight:1000;
-  text-align:center;
-}
-
-/* Barra fixa mobile */
-.mobile a:nth-child(2){
-  background:var(--red);
-}
-.mobile a:nth-child(2)::after{
-  content:" por R$1";
-}
-
-/* Responsivo final */
-@media(max-width:1200px){
-  .heroPremium .copy h1{
-    font-size:clamp(48px,7vw,70px);
+  function statusLabel(status){
+    if(status === 'approved') return '✅ Aprovado';
+    if(status === 'pending') return '⏳ Pendente';
+    if(status === 'payment_error') return '❌ Erro no pagamento';
+    return status || '-';
   }
-  .phoneStage{
-    transform:none;
+
+  const totalApproved = orders
+    .filter(order => order.status === 'approved')
+    .reduce((sum,order)=>sum + Number(order.amount || 0),0);
+
+  const pendingCount = orders.filter(order => order.status === 'pending').length;
+  const approvedCount = orders.filter(order => order.status === 'approved').length;
+
+  if(!logged){
+    return <main className="adminPage">
+      <section className="adminLogin">
+        <a className="checkoutLogo" href="/">♛ IMPÉRIO <span>DIGITAL</span></a>
+        <p className="red">PAINEL ADMIN</p>
+        <h1>Acesso restrito</h1>
+        <span>Digite a senha administrativa para visualizar pedidos, status, produtos e tokens.</span>
+
+        <label>
+          Senha
+          <input
+            type="password"
+            value={password}
+            onChange={e=>setPassword(e.target.value)}
+            placeholder="Digite sua senha"
+            onKeyDown={e=>{if(e.key === 'Enter') loadOrders();}}
+          />
+        </label>
+
+        {error && <div className="checkoutError">{error}</div>}
+
+        <button onClick={()=>loadOrders()} disabled={loading}>
+          {loading ? 'Entrando...' : 'Entrar no painel'}
+        </button>
+
+        <a href="/">Voltar para o site</a>
+      </section>
+    </main>
   }
-}
-@media(max-width:900px){
-  .affiliate{
-    padding:48px 18px;
-  }
-  .affiliateGrid{
-    grid-template-columns:1fr;
-  }
-  .affiliateCTA{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-}
-@media(max-width:760px){
-  .header{
-    height:66px;
-  }
-  .heroPremium .copy h1{
-    font-size:43px;
-    line-height:1.1;
-    letter-spacing:-1px;
-  }
-  .heroPremium .lead{
-    font-size:16px;
-    line-height:1.62;
-  }
-  .phoneStage .phone{
-    width:292px;
-    height:600px;
-  }
-  .phoneProductGrid img{
-    height:126px;
-  }
-  .microR1Copy h2{
-    font-size:38px;
-    line-height:1.08;
-    letter-spacing:-.8px;
-  }
+
+  return <main className="adminPage">
+    <section className="adminShell">
+      <div className="adminTop">
+        <div>
+          <p className="red">PAINEL ADMIN</p>
+          <h1>Pedidos do Império Digital</h1>
+          <span>Controle rápido de vendas, pagamentos, produtos comprados e tokens de download.</span>
+        </div>
+
+        <div className="adminActions">
+          <button onClick={()=>loadOrders()} disabled={loading}>
+            {loading ? 'Atualizando...' : 'Atualizar'}
+          </button>
+          <button onClick={logout}>Sair</button>
+        </div>
+      </div>
+
+      <div className="adminStats">
+        <article>
+          <span>Total aprovado</span>
+          <strong>R$ {totalApproved.toFixed(2).replace('.',',')}</strong>
+        </article>
+        <article>
+          <span>Pedidos aprovados</span>
+          <strong>{approvedCount}</strong>
+        </article>
+        <article>
+          <span>Pedidos pendentes</span>
+          <strong>{pendingCount}</strong>
+        </article>
+        <article>
+          <span>Total de pedidos</span>
+          <strong>{orders.length}</strong>
+        </article>
+      </div>
+
+      {error && <div className="checkoutError">{error}</div>}
+
+      <div className="adminOrders">
+        {orders.length === 0 ? (
+          <div className="adminEmpty">Nenhum pedido encontrado ainda.</div>
+        ) : orders.map(order => (
+          <article className="adminOrderCard" key={order.id}>
+            <div className="adminOrderHead">
+              <div>
+                <b>{order.customer_name || 'Cliente sem nome'}</b>
+                <span>{order.email || 'Sem email'} • {order.whatsapp || 'Sem WhatsApp'}</span>
+              </div>
+
+              <strong className={`adminStatus ${order.status}`}>
+                {statusLabel(order.status)}
+              </strong>
+            </div>
+
+            <div className="adminOrderMeta">
+              <span><b>Pedido:</b> {order.id}</span>
+              <span><b>Valor:</b> R$ {Number(order.amount || 0).toFixed(2).replace('.',',')}</span>
+              <span><b>Criado:</b> {formatDate(order.created_at)}</span>
+              <span><b>Atualizado:</b> {formatDate(order.updated_at)}</span>
+              <span><b>MP Preference:</b> {order.mp_preference_id || '-'}</span>
+              <span><b>MP Payment:</b> {order.mp_payment_id || '-'}</span>
+            </div>
+
+            <div className="adminProducts">
+              <b>Produtos comprados</b>
+              {(order.items || []).length === 0 ? (
+                <p>Nenhum produto salvo neste pedido.</p>
+              ) : (
+                (order.items || []).map((item,index)=>(
+                  <div key={`${order.id}-${item.id}-${index}`}>
+                    <span>{item.title || `Produto ${item.id}`}</span>
+                    <strong>R$ {Number(item.price || 0).toFixed(2).replace('.',',')}</strong>
+                  </div>
+                ))
+              )}
+            </div>
+
+            <div className="adminTokenBox">
+              <b>Token de download</b>
+              {order.token ? (
+                <>
+                  <code>{order.token.token}</code>
+                  <span>Expira em: {formatDate(order.token.expires_at)}</span>
+                  <span>Usado em: {order.token.used_at ? formatDate(order.token.used_at) : 'Ainda não usado'}</span>
+                  <a
+                    href={`/obrigado?order_id=${order.id}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Abrir página de obrigado
+                  </a>
+                </>
+              ) : (
+                <span>Token ainda não criado.</span>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
 }
 
-.floatNote,.noteOne,.noteTwo,.noteThree{display:none!important;}
+function FloatingButtons(){return <><a className="floatZap" href={wa()} target="_blank" rel="noreferrer">💬</a><div className="mobile"><a href={wa()} target="_blank" rel="noreferrer">WhatsApp</a><a href="#best">Mais vendidos</a></div></>}
 
-
-/* Carrinho */
-.cartBtn{
-  width:48px;
-  height:48px;
-  border:1px solid #eee;
-  background:#fff;
-  border-radius:16px;
-  cursor:pointer;
-  font-weight:1000;
-  position:relative;
-  box-shadow:0 10px 26px rgba(0,0,0,.05);
-}
-.cartBtn span{
-  position:absolute;
-  top:-7px;
-  right:-7px;
-  min-width:22px;
-  height:22px;
-  border-radius:999px;
-  background:#e50909;
-  color:#fff;
-  display:grid;
-  place-items:center;
-  font-size:12px;
-}
-.cartAdd{
-  width:100%;
-  border:1px solid #e50909;
-  background:#fff;
-  color:#e50909;
-  border-radius:14px;
-  padding:13px;
-  font-weight:1000;
-  cursor:pointer;
-  margin-top:10px;
-  transition:.25s;
-}
-.cartAdd:hover{
-  background:#fff5f5;
-  transform:translateY(-2px);
-}
-.cartOverlay{
-  position:fixed;
-  inset:0;
-  z-index:200;
-  pointer-events:none;
-}
-.cartOverlay.open{
-  pointer-events:auto;
-}
-.cartBackdrop{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  opacity:0;
-  transition:.25s;
-}
-.cartOverlay.open .cartBackdrop{
-  opacity:1;
-}
-.cartDrawer{
-  position:absolute;
-  right:0;
-  top:0;
-  height:100%;
-  width:min(440px,92vw);
-  background:#fff;
-  transform:translateX(100%);
-  transition:.3s;
-  box-shadow:-30px 0 80px rgba(0,0,0,.22);
-  display:flex;
-  flex-direction:column;
-}
-.cartOverlay.open .cartDrawer{
-  transform:translateX(0);
-}
-.cartHeader{
-  padding:26px;
-  border-bottom:1px solid #eee;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.cartHeader p{
-  margin:0;
-  color:#e50909;
-  font-weight:1000;
-}
-.cartHeader h2{
-  margin:4px 0 0;
-  font-size:28px;
-}
-.cartHeader button{
-  width:42px;
-  height:42px;
-  border:0;
-  border-radius:50%;
-  background:#f5f5f5;
-  cursor:pointer;
-  font-size:28px;
-}
-.cartItems{
-  padding:18px;
-  overflow:auto;
-  display:grid;
-  gap:12px;
-  flex:1;
-}
-.cartItem{
-  display:grid;
-  grid-template-columns:72px 1fr auto;
-  gap:12px;
-  align-items:center;
-  border:1px solid #eee;
-  border-radius:18px;
-  padding:10px;
-}
-.cartItem img{
-  width:72px;
-  height:86px;
-  object-fit:cover;
-  border-radius:12px;
-}
-.cartItem b{
-  display:block;
-  line-height:1.2;
-}
-.cartItem span{
-  color:#e50909;
-  font-weight:1000;
-  display:block;
-  margin-top:6px;
-}
-.cartItem button{
-  border:0;
-  background:#f3f3f3;
-  border-radius:10px;
-  padding:9px;
-  cursor:pointer;
-  font-size:12px;
-  font-weight:800;
-}
-.cartEmpty{
-  flex:1;
-  display:grid;
-  place-items:center;
-  align-content:center;
-  gap:12px;
-  padding:30px;
-  text-align:center;
-}
-.cartEmpty b{
-  font-size:22px;
-}
-.cartEmpty span{
-  color:#666;
-}
-.cartEmpty a{
-  background:#e50909;
-  color:#fff;
-  border-radius:14px;
-  padding:14px 18px;
-  font-weight:1000;
-}
-.cartFooter{
-  border-top:1px solid #eee;
-  padding:22px;
-  display:grid;
-  gap:14px;
-}
-.cartFooter div{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.cartFooter span{
-  color:#666;
-}
-.cartFooter strong{
-  color:#e50909;
-  font-size:26px;
-}
-.cartFooter a{
-  background:#e50909;
-  color:#fff;
-  padding:16px;
-  border-radius:16px;
-  font-weight:1000;
-  text-align:center;
-}
-.cartFooter small{
-  color:#777;
-  line-height:1.4;
-}
-@media(max-width:760px){
-  .cartBtn{
-    display:none;
-  }
-  .cartDrawer{
-    width:100vw;
-  }
-  .cartItem{
-    grid-template-columns:64px 1fr;
-  }
-  .cartItem button{
-    grid-column:2;
-    justify-self:start;
-  }
-}
-
-.checkoutNow{background:#e50909;color:#fff;padding:16px;border:0;border-radius:16px;font-weight:1000;text-align:center;cursor:pointer}
-.checkoutPage{min-height:100vh;background:linear-gradient(135deg,#fff 0%,#fff5f5 100%);padding:34px}
-.checkoutLogo{display:inline-flex;gap:6px;align-items:center;color:#111;font-weight:1000;font-size:24px;margin-bottom:28px}.checkoutLogo span{color:#e50909}
-.checkoutShell{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:start}
-.checkoutForm,.checkoutSummary{background:#fff;border:1px solid #f0dada;border-radius:30px;padding:34px;box-shadow:0 22px 65px rgba(0,0,0,.07)}
-.checkoutForm h1{font-size:clamp(38px,4vw,58px);line-height:1;margin:4px 0 10px}.checkoutLead{color:#555;display:block;margin-bottom:26px}
-.checkoutForm label{display:grid;gap:8px;margin-bottom:14px;font-weight:900}.checkoutForm input{border:1px solid #e5e5e5;border-radius:16px;padding:16px;outline:none}.checkoutForm input:focus{border-color:#e50909;box-shadow:0 0 0 4px rgba(229,9,9,.08)}
-.checkoutForm button{width:100%;background:#e50909;color:#fff;border:0;border-radius:18px;padding:18px;font-weight:1000;margin-top:8px;cursor:pointer}.checkoutForm button:disabled{opacity:.65;cursor:not-allowed}.checkoutForm small{display:block;color:#777;margin-top:14px;line-height:1.4}
-.checkoutError{background:#fff1f1;color:#e50909;border:1px solid #ffd0d0;border-radius:14px;padding:12px;font-weight:800;margin:12px 0}
-.checkoutSummary h2{margin:0 0 18px}.summaryItem{display:grid;grid-template-columns:74px 1fr;gap:12px;align-items:center;border-bottom:1px solid #f1f1f1;padding:12px 0}.summaryItem img{width:74px;height:88px;object-fit:cover;border-radius:12px}.summaryItem b{display:block;line-height:1.2}.summaryItem span{color:#e50909;font-weight:1000;display:block;margin-top:6px}
-.summaryTotal{display:flex;justify-content:space-between;align-items:center;padding:22px 0 8px}.summaryTotal strong{font-size:30px;color:#e50909}.checkoutSummary em{display:block;background:#fff5f5;color:#e50909;border-radius:999px;padding:10px 14px;font-style:normal;font-weight:900;text-align:center}.checkoutSummary>a{display:block;text-align:center;margin-top:14px;color:#111;font-weight:900}
-.thanksPage{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#fff 0%,#fff5f5 100%);padding:24px}.thanksPage>section{max-width:920px;background:#fff;border:1px solid #f0dada;border-radius:32px;padding:42px;text-align:center;box-shadow:0 22px 65px rgba(0,0,0,.07)}.thanksPage h1{font-size:clamp(38px,5vw,66px);margin:6px 0 12px}.thanksPage section>div:first-child{font-size:48px}
-.thanksProducts{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}.thanksProducts article{border:1px solid #eee;border-radius:18px;padding:12px;text-align:left}.thanksProducts img{width:100%;height:150px;object-fit:cover;border-radius:12px}.thanksProducts b{display:block;margin:10px 0}.thanksProducts a,.thanksBtn{display:inline-flex;background:#e50909;color:#fff;border-radius:12px;padding:12px 14px;font-weight:1000;justify-content:center}.thanksBtn{margin-top:26px}
-@media(max-width:850px){.checkoutPage{padding:18px}.checkoutShell{grid-template-columns:1fr}.checkoutForm,.checkoutSummary{padding:24px;border-radius:24px}}
-
-
-/* Ebook R$0,50 em destaque */
-.featured050{padding:64px 80px;background:linear-gradient(135deg,#111 0%,#1b0000 55%,#e50909 140%);color:#fff}
-.featured050Card{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.5fr .7fr;gap:24px;align-items:stretch}
-.featured050Copy,.featured050Price{border-radius:34px;padding:38px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 70px rgba(0,0,0,.18)}
-.featured050Copy p{margin:0 0 12px;color:#ff6b6b;font-weight:1000;letter-spacing:.6px}
-.featured050Copy h2{font-family:'Montserrat','Inter',Arial,sans-serif;font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-2px;margin:0 0 18px}
-.featured050Copy>span{color:#f0f0f0;line-height:1.6;font-size:18px;display:block;max-width:760px}
-.featured050Bullets{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
-.featured050Bullets b{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:13px;font-size:14px}
-.featured050Actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-.featured050Actions button,.featured050Actions a{border:0;border-radius:16px;padding:17px 24px;font-weight:1000;cursor:pointer}
-.featured050Actions button{background:#fff;color:#e50909;box-shadow:0 16px 38px rgba(255,255,255,.18)}
-.featured050Actions a{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.32)}
-.featured050Price{display:flex;flex-direction:column;justify-content:center;text-align:center;background:#fff;color:#111}
-.featured050Price small{font-weight:900;color:#777}
-.featured050Price strong{font-family:'Montserrat','Inter',Arial,sans-serif;font-size:76px;line-height:.95;color:#e50909;margin:10px 0}
-.featured050Price span{background:#fff1f1;color:#e50909;border-radius:999px;padding:10px 14px;font-weight:1000}
-@media(max-width:900px){.featured050{padding:42px 18px}.featured050Card{grid-template-columns:1fr}.featured050Copy,.featured050Price{padding:26px;border-radius:26px}.featured050Bullets{grid-template-columns:1fr}.featured050Actions{flex-direction:column}.featured050Actions button,.featured050Actions a{width:100%;text-align:center}.featured050Price strong{font-size:58px}}
-
-/* ESCADA DE VALOR - R$0,50 -> R$9 -> R$37 */
-.ladder{
-  padding:74px 80px;
-  background:linear-gradient(135deg,#fff 0%,#fff7f7 100%);
-  text-align:center;
-}
-.ladder h2{
-  font-size:clamp(36px,4vw,58px);
-  line-height:1.05;
-  margin:8px 0 10px;
-  font-weight:1000;
-  letter-spacing:-1.5px;
-}
-.ladder .sub{
-  max-width:760px;
-  margin:0 auto 30px;
-  color:#555;
-  line-height:1.6;
-}
-.ladderGrid{
-  max-width:1180px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-.ladderCard{
-  background:#fff;
-  border:1px solid #f1d0d0;
-  border-radius:30px;
-  padding:30px;
-  text-align:left;
-  box-shadow:0 22px 60px rgba(0,0,0,.06);
-  transition:.25s;
-}
-.ladderCard:hover{
-  transform:translateY(-5px);
-  box-shadow:0 30px 80px rgba(229,9,9,.13);
-}
-.ladderCard:nth-child(3){
-  background:linear-gradient(145deg,#111 0%,#290000 100%);
-  color:#fff;
-  border-color:#111;
-}
-.ladderCard span{
-  display:inline-flex;
-  background:#fff1f1;
-  color:#e50909;
-  border-radius:999px;
-  padding:8px 12px;
-  font-size:12px;
-  font-weight:1000;
-}
-.ladderCard:nth-child(3) span{
-  background:rgba(255,255,255,.14);
-  color:#fff;
-}
-.ladderCard strong{
-  display:block;
-  color:#e50909;
-  font-size:56px;
-  font-weight:1000;
-  margin:20px 0 8px;
-  line-height:.9;
-}
-.ladderCard:nth-child(3) strong{
-  color:#fff;
-}
-.ladderCard h3{
-  font-size:24px;
-  line-height:1.08;
-  margin:0 0 12px;
-  font-weight:1000;
-}
-.ladderCard p{
-  color:#555;
-  line-height:1.55;
-  min-height:78px;
-}
-.ladderCard:nth-child(3) p{
-  color:#ddd;
-}
-.ladderCard button{
-  width:100%;
-  border:0;
-  background:#e50909;
-  color:#fff;
-  border-radius:16px;
-  padding:16px;
-  font-weight:1000;
-  cursor:pointer;
-  margin-top:12px;
-  box-shadow:0 18px 40px rgba(229,9,9,.22);
-}
-.ladderCard:nth-child(3) button{
-  background:#fff;
-  color:#111;
-}
-.mobile a:nth-child(2)::after{
-  content:" por R$0,50";
-}
-@media(max-width:900px){
-  .ladder{padding:48px 18px;}
-  .ladderGrid{grid-template-columns:1fr;}
-}
-/* PAINEL ADMIN + ACESSO SECRETO NO RODAPÉ */
-.footerSecretAdmin{
-  border:0;
-  background:transparent;
-  color:#555;
-  font-weight:1000;
-  cursor:pointer;
-  padding:0;
-  text-align:left;
-}
-.footerSecretAdmin:hover{
-  color:#e50909;
-}
-.adminPage{
-  min-height:100vh;
-  background:linear-gradient(135deg,#fff 0%,#fff5f5 100%);
-  padding:36px 18px;
-  color:#111;
-}
-.adminLogin{
-  max-width:520px;
-  margin:70px auto;
-  background:#fff;
-  border:1px solid rgba(230,0,0,.16);
-  border-radius:28px;
-  padding:34px;
-  box-shadow:0 30px 90px rgba(0,0,0,.08);
-}
-.adminLogin h1{
-  font-size:42px;
-  line-height:1;
-  margin:12px 0;
-}
-.adminLogin span{
-  display:block;
-  color:#555;
-  margin-bottom:24px;
-}
-.adminLogin label{
-  display:grid;
-  gap:8px;
-  font-weight:900;
-  margin:18px 0;
-}
-.adminLogin input{
-  border:1px solid #eee;
-  border-radius:16px;
-  padding:16px;
-  font-size:16px;
-  outline:none;
-}
-.adminLogin input:focus{
-  border-color:#e50909;
-  box-shadow:0 0 0 4px rgba(229,9,9,.08);
-}
-.adminLogin button,
-.adminActions button{
-  border:0;
-  border-radius:16px;
-  padding:15px 20px;
-  background:#e60000;
-  color:#fff;
-  font-weight:950;
-  cursor:pointer;
-}
-.adminLogin button:disabled,
-.adminActions button:disabled{
-  opacity:.65;
-  cursor:not-allowed;
-}
-.adminLogin a{
-  display:inline-block;
-  margin-top:18px;
-  color:#111;
-  font-weight:900;
-  text-decoration:none;
-}
-.adminShell{
-  max-width:1180px;
-  margin:auto;
-}
-.adminTop{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  align-items:center;
-  background:#fff;
-  border:1px solid rgba(230,0,0,.14);
-  border-radius:28px;
-  padding:28px;
-  box-shadow:0 22px 70px rgba(0,0,0,.06);
-}
-.adminTop h1{
-  font-size:42px;
-  line-height:1;
-  margin:8px 0;
-}
-.adminTop span{
-  color:#555;
-}
-.adminActions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.adminActions button:last-child{
-  background:#111;
-}
-.adminStats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  margin:20px 0;
-}
-.adminStats article{
-  background:#fff;
-  border:1px solid #eee;
-  border-radius:22px;
-  padding:22px;
-  box-shadow:0 16px 50px rgba(0,0,0,.04);
-}
-.adminStats span{
-  display:block;
-  color:#666;
-  font-weight:800;
-  margin-bottom:8px;
-}
-.adminStats strong{
-  font-size:28px;
-}
-.adminOrders{
-  display:grid;
-  gap:18px;
-}
-.adminEmpty{
-  background:#fff;
-  border:1px solid #eee;
-  border-radius:22px;
-  padding:28px;
-  font-weight:900;
-}
-.adminOrderCard{
-  background:#fff;
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:26px;
-  padding:24px;
-  box-shadow:0 20px 70px rgba(0,0,0,.05);
-}
-.adminOrderHead{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  align-items:flex-start;
-  border-bottom:1px solid #f0f0f0;
-  padding-bottom:16px;
-  margin-bottom:16px;
-}
-.adminOrderHead b{
-  display:block;
-  font-size:20px;
-}
-.adminOrderHead span{
-  display:block;
-  color:#666;
-  margin-top:4px;
-}
-.adminStatus{
-  white-space:nowrap;
-  border-radius:999px;
-  padding:10px 14px;
-  font-size:13px;
-  background:#f3f3f3;
-}
-.adminStatus.approved{
-  background:#e9fff0;
-  color:#087a2f;
-}
-.adminStatus.pending{
-  background:#fff7df;
-  color:#9a6400;
-}
-.adminStatus.payment_error{
-  background:#ffecec;
-  color:#b00000;
-}
-.adminOrderMeta{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  font-size:14px;
-  color:#444;
-  margin-bottom:18px;
-}
-.adminProducts{
-  border:1px solid #f0f0f0;
-  border-radius:18px;
-  padding:16px;
-  margin-bottom:16px;
-}
-.adminProducts > b,
-.adminTokenBox > b{
-  display:block;
-  margin-bottom:12px;
-  font-size:15px;
-}
-.adminProducts div{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  border-top:1px solid #f4f4f4;
-  padding:10px 0;
-}
-.adminProducts div:first-of-type{
-  border-top:0;
-}
-.adminTokenBox{
-  background:#fafafa;
-  border:1px solid #eee;
-  border-radius:18px;
-  padding:16px;
-  display:grid;
-  gap:8px;
-}
-.adminTokenBox code{
-  word-break:break-all;
-  background:#111;
-  color:#fff;
-  padding:12px;
-  border-radius:12px;
-  font-size:13px;
-}
-.adminTokenBox a{
-  width:max-content;
-  background:#e60000;
-  color:#fff;
-  padding:10px 14px;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:900;
-}
-@media(max-width:800px){
-  .adminTop,
-  .adminOrderHead{
-    flex-direction:column;
-  }
-  .adminStats{
-    grid-template-columns:1fr 1fr;
-  }
-  .adminOrderMeta{
-    grid-template-columns:1fr;
-  }
-  .adminLogin h1,
-  .adminTop h1{
-    font-size:32px;
-  }
-}
-@media(max-width:520px){
-  .adminStats{
-    grid-template-columns:1fr;
-  }
-  .adminPage{
-    padding:18px 10px;
-  }
-  .adminLogin,
-  .adminTop,
-  .adminOrderCard{
-    border-radius:20px;
-    padding:20px;
-  }
-}
-/* =========================================================
-   AJUSTE HOME LIMPA — conversão, menos poluição e mais foco
-   Cole este arquivo inteiro no style.css
-   ========================================================= */
-
-:root{
-  --imperio-red:#e50909;
-  --imperio-dark:#111111;
-  --imperio-soft:#fff6f6;
-  --imperio-line:#eeeeee;
-}
-
-.notice{
-  background:var(--imperio-red)!important;
-  color:#fff!important;
-  padding:9px 14px!important;
-  font-size:13px!important;
-  letter-spacing:.2px;
-}
-
-.header{
-  height:76px!important;
-  padding:0 64px!important;
-  gap:22px!important;
-  border-bottom:1px solid rgba(0,0,0,.06)!important;
-  box-shadow:0 10px 36px rgba(0,0,0,.035)!important;
-}
-
-.header nav{
-  gap:24px!important;
-}
-
-.header nav a{
-  color:#222!important;
-}
-
-.headBtn{
-  border-radius:999px!important;
-  padding:13px 20px!important;
-  white-space:nowrap;
-}
-
-.heroPremium{
-  min-height:650px!important;
-  padding:58px 72px 64px!important;
-  grid-template-columns:minmax(430px,48%) minmax(380px,52%)!important;
-  background:
-    radial-gradient(circle at 82% 45%, rgba(229,9,9,.09), transparent 32%),
-    linear-gradient(90deg,#fff 0%,#fff 55%,#fff8f8 100%)!important;
-}
-
-.heroPremium .copy h1{
-  max-width:740px;
-  font-size:clamp(46px,5.1vw,74px)!important;
-  line-height:1.04!important;
-  letter-spacing:-2px!important;
-  margin-bottom:18px!important;
-}
-
-.heroPremium .lead{
-  max-width:650px!important;
-  font-size:18px!important;
-  line-height:1.62!important;
-  color:#333!important;
-}
-
-.heroPremium .eyebrow{
-  background:#fff0f0!important;
-  color:var(--imperio-red)!important;
-  border:1px solid #ffd7d7;
-  font-size:12px!important;
-  padding:10px 15px!important;
-  margin-bottom:18px!important;
-}
-
-.premiumTrust{
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  gap:12px!important;
-  max-width:640px;
-  margin:22px 0 16px!important;
-}
-
-.premiumTrust span{
-  min-height:72px!important;
-  border-radius:16px!important;
-  padding:13px 14px!important;
-  box-shadow:0 10px 28px rgba(0,0,0,.04)!important;
-}
-
-.premiumProof{
-  max-width:620px!important;
-  margin:12px 0 0!important;
-  padding:8px!important;
-}
-
-.heroPremium .actions{
-  margin-top:22px!important;
-}
-
-.heroPremium .primary,
-.heroPremium .secondary{
-  border-radius:999px!important;
-}
-
-.phoneStage{
-  min-height:560px!important;
-  transform:none!important;
-}
-
-.phoneStage .phone{
-  width:330px!important;
-  height:650px!important;
-}
-
-.phoneProductGrid img{
-  height:145px!important;
-}
-
-.trustBar{
-  padding:26px 72px!important;
-  gap:14px!important;
-  background:#fff!important;
-}
-
-.trustBar div{
-  padding:18px!important;
-  border-radius:16px!important;
-  box-shadow:0 8px 24px rgba(0,0,0,.035)!important;
-}
-
-.best,
-.filters,
-.catalog,
-.faq,
-.test{
-  padding:54px 72px!important;
-}
-
-.best{
-  background:#fff!important;
-}
-
-.best h2,
-.catalog h2,
-.filters h2,
-.faq h2,
-.test h2{
-  font-size:clamp(31px,3vw,42px)!important;
-  line-height:1.05!important;
-}
-
-.sub{
-  max-width:690px;
-  margin:10px auto 28px!important;
-  line-height:1.5;
-}
-
-.bestGrid{
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  max-width:1160px!important;
-  gap:18px!important;
-}
-
-.grid{
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  gap:18px!important;
-}
-
-.card{
-  border-radius:22px!important;
-  box-shadow:0 12px 34px rgba(0,0,0,.055)!important;
-}
-
-.card:hover{
-  transform:translateY(-4px)!important;
-  box-shadow:0 24px 54px rgba(229,9,9,.12)!important;
-}
-
-.imgWrap img{
-  height:250px!important;
-}
-
-.compact .imgWrap img{
-  height:220px!important;
-}
-
-.body{
-  padding:16px!important;
-}
-
-.body h3{
-  font-size:20px!important;
-  line-height:1.12!important;
-  margin-bottom:8px!important;
-}
-
-.body p{
-  min-height:54px!important;
-  font-size:14px!important;
-  line-height:1.42!important;
-  margin:0 0 12px!important;
-}
-
-.body strong{
-  font-size:28px!important;
-}
-
-.catLabel{
-  display:inline-flex!important;
-  width:max-content;
-  text-decoration:none!important;
-  color:#e50909!important;
-  background:#fff3f3;
-  border:1px solid #ffdcdc;
-  border-radius:999px;
-  padding:5px 9px;
-  margin:0 0 8px!important;
-  font-size:11px!important;
-}
-
-.cartAdd{
-  border-radius:12px!important;
-}
-
-.buy,
-.zap{
-  border-radius:12px!important;
-  margin-top:8px!important;
-}
-
-.featured050{
-  padding:58px 72px!important;
-  background:linear-gradient(135deg,#111 0%,#1c0505 62%,#b60000 130%)!important;
-}
-
-.featured050Card{
-  max-width:1160px!important;
-  grid-template-columns:1.35fr .65fr!important;
-}
-
-.featured050Copy,
-.featured050Price{
-  border-radius:28px!important;
-  padding:34px!important;
-}
-
-.featured050Copy h2{
-  font-size:clamp(36px,4.5vw,62px)!important;
-  line-height:1.02!important;
-  letter-spacing:-1.5px!important;
-}
-
-.featured050Copy>span{
-  font-size:17px!important;
-  line-height:1.55!important;
-}
-
-.filters{
-  background:#fff!important;
-}
-
-.filters div{
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  max-width:1050px!important;
-  gap:12px!important;
-}
-
-.filters button{
-  padding:18px 10px!important;
-  border-radius:14px!important;
-}
-
-.catalog{
-  background:#f8f8f9!important;
-}
-
-.faq details{
-  box-shadow:0 8px 22px rgba(0,0,0,.035)!important;
-}
-
-.final{
-  margin:0 72px 34px!important;
-  border:1px solid #eee;
-}
-
-.footerSecretAdmin{
-  border:0;
-  background:transparent;
-  color:#555;
-  font-weight:1000;
-  cursor:pointer;
-}
-
-@media(max-width:1200px){
-  .header{padding:0 28px!important;}
-  .heroPremium{grid-template-columns:1fr!important;padding:46px 28px 52px!important;}
-  .phoneStage{min-height:660px!important;}
-  .bestGrid,.grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;}
-  .trustBar,.best,.filters,.catalog,.faq,.test{padding-left:28px!important;padding-right:28px!important;}
-  .final{margin-left:28px!important;margin-right:28px!important;}
-}
-
-@media(max-width:760px){
-  .notice{font-size:11px!important;padding:8px!important;}
-  .header{height:64px!important;padding:0 14px!important;}
-  .cartBtn{width:42px;height:42px;}
-  .heroPremium{padding:30px 18px 36px!important;}
-  .heroPremium .copy h1{font-size:42px!important;letter-spacing:-1.2px!important;}
-  .heroPremium .lead{font-size:15.5px!important;}
-  .premiumTrust{grid-template-columns:1fr!important;}
-  .heroPremium .actions{display:grid!important;grid-template-columns:1fr!important;}
-  .heroPremium .primary,.heroPremium .secondary{justify-content:center!important;text-align:center!important;}
-  .phoneStage{min-height:590px!important;margin-top:16px;}
-  .phoneStage .phone{width:286px!important;height:580px!important;}
-  .phoneProductGrid img{height:124px!important;}
-  .trustBar,.best,.filters,.catalog,.faq,.test{padding:36px 18px!important;}
-  .trustBar,.bestGrid,.grid,.filters div,.test>div{grid-template-columns:1fr!important;}
-  .imgWrap img,.compact .imgWrap img{height:320px!important;}
-  .featured050{padding:38px 18px!important;}
-  .featured050Card{grid-template-columns:1fr!important;}
-  .featured050Copy,.featured050Price{padding:24px!important;border-radius:24px!important;}
-  .featured050Bullets{grid-template-columns:1fr!important;}
-  .featured050Actions{display:grid!important;grid-template-columns:1fr!important;}
-  .featured050Actions button,.featured050Actions a{text-align:center!important;width:100%!important;}
-  .final{margin:0 18px 88px!important;}
-}
-
-/* AJUSTE ANTI-POLUIÇÃO: catálogo só aparece após clique em objetivo/Tudo */
-.goalChooser{
-  background:#fff!important;
-  border-top:1px solid #f1f1f1;
-  border-bottom:1px solid #f1f1f1;
-}
-.goalChooser .sub{
-  max-width:760px;
-  margin-left:auto!important;
-  margin-right:auto!important;
-  line-height:1.55;
-}
-.goalChooser div{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  max-width:960px!important;
-}
-.goalChooser button{
-  min-height:72px;
-  background:#fff!important;
-  border:1px solid #eee!important;
-  box-shadow:0 10px 28px rgba(0,0,0,.04)!important;
-}
-.goalChooser button.active,
-.goalChooser button:hover{
-  background:#e50909!important;
-  color:#fff!important;
-  border-color:#e50909!important;
-  transform:translateY(-2px);
-}
-.catalog{
-  scroll-margin-top:90px;
-}
-.emptyCatalog{
-  max-width:680px;
-  margin:26px auto 0;
-  padding:22px;
-  border-radius:18px;
-  background:#fff;
-  border:1px solid #eee;
-  color:#555;
-  font-weight:900;
-}
-.cleanCard .body p{
-  min-height:0!important;
-  margin:0 0 12px!important;
-  font-size:14px;
-}
-.cleanCard .body h3{
-  font-size:20px!important;
-  line-height:1.12!important;
-}
-.cleanCard .body em{
-  margin-bottom:0!important;
-}
-.singleBuy{
-  border:0!important;
-  cursor:pointer;
-  margin-top:auto!important;
-  min-height:50px;
-  align-items:center;
-}
-.cartAdd,
-.zap{
-  display:none!important;
-}
-.final{
-  margin-bottom:34px!important;
-}
-@media(max-width:760px){
-  .goalChooser div{grid-template-columns:1fr!important;}
-  .goalChooser button{min-height:60px;}
-  .cleanCard .body h3{font-size:19px!important;}
-  .final{margin-bottom:34px!important;}
-}
-
-
-/* ================================
-   AJUSTE: páginas reais por categoria
-   ================================ */
-.header nav a[href="/catalogo"],
-.header nav a[href="/descobrir-negocio"]{
-  color:#111;
-}
-.search{
-  border:0;
-  background:transparent;
-  padding:0;
-}
-.cartAdd,.zap,.floatZap,.mobile{
-  display:none!important;
-}
-.pageHero{
-  padding:64px 80px 34px;
-  background:linear-gradient(135deg,#fff 0%,#fff7f7 54%,#ffecec 100%);
-  border-bottom:1px solid #f2dddd;
-  text-align:center;
-}
-.pageHero h1{
-  max-width:980px;
-  margin:10px auto 14px;
-  font-size:clamp(42px,5vw,72px);
-  line-height:.98;
-  letter-spacing:-2.4px;
-  font-weight:1000;
-}
-.pageHero p:not(.red){
-  max-width:720px;
-  margin:0 auto 24px;
-  color:#444;
-  font-size:18px;
-  line-height:1.6;
-  font-weight:650;
-}
-.backLink{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  background:#fff;
-  border:1px solid #f1d9d9;
-  border-radius:999px;
-  padding:11px 16px;
-  color:#e50909;
-  font-weight:1000;
-  box-shadow:0 12px 30px rgba(0,0,0,.04);
-  margin-bottom:22px;
-}
-.categoryTabs{
-  max-width:1120px;
-  margin:24px auto 0;
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-}
-.categoryTabs a{
-  border:1px solid #ffd2d2;
-  background:#fff;
-  color:#111;
-  border-radius:999px;
-  padding:12px 16px;
-  font-weight:1000;
-  box-shadow:0 8px 22px rgba(0,0,0,.035);
-}
-.categoryTabs a.active,
-.categoryTabs a:hover{
-  background:#e50909;
-  color:#fff;
-  border-color:#e50909;
-}
-.goalChooser{
-  background:#fff;
-  padding-bottom:70px;
-}
-.goalGrid{
-  max-width:1180px;
-  margin:26px auto 0;
-  display:grid!important;
-  grid-template-columns:repeat(4,1fr)!important;
-  gap:18px!important;
-}
-.goalCard{
-  min-height:210px;
-  border:1px solid #eee;
-  border-radius:24px;
-  padding:24px;
-  text-align:left;
-  background:#fff;
-  box-shadow:0 16px 44px rgba(0,0,0,.055);
-  transition:.22s;
-}
-.goalCard:hover{
-  transform:translateY(-4px);
-  border-color:#ffd0d0;
-  box-shadow:0 24px 60px rgba(229,9,9,.10);
-}
-.goalCard strong{
-  width:52px;
-  height:52px;
-  border-radius:16px;
-  background:#fff1f1;
-  color:#e50909;
-  display:grid;
-  place-items:center;
-  font-size:26px;
-  margin-bottom:16px;
-}
-.goalCard h3{
-  margin:0 0 8px;
-  font-size:22px;
-  line-height:1.05;
-}
-.goalCard p{
-  color:#555;
-  line-height:1.45;
-  margin:0 0 16px;
-  font-weight:650;
-}
-.goalCard span{
-  color:#e50909;
-  font-weight:1000;
-}
-.allCatalogLink{
-  display:inline-flex;
-  margin-top:26px;
-  color:#e50909;
-  border:1px solid #e50909;
-  border-radius:999px;
-  padding:14px 22px;
-  font-weight:1000;
-}
-.routeCatalog{
-  padding-top:46px;
-}
-.routeCatalog .grid{
-  margin-top:26px;
-}
-.cleanCard .body p{
-  min-height:unset;
-}
-.singleBuy{
-  border:0;
-  cursor:pointer;
-  margin-top:auto;
-}
-.final a[href="#escolha"]{
-  background:#e50909;
-}
-.footerSecretAdmin{
-  background:transparent;
-  border:0;
-  color:inherit;
-  font:inherit;
-  font-weight:1000;
-  cursor:pointer;
-  padding:0;
-}
-@media(max-width:1200px){
-  .pageHero{padding:52px 28px 30px}
-  .goalGrid{grid-template-columns:repeat(2,1fr)!important}
-}
-@media(max-width:760px){
-  .pageHero{padding:36px 18px 24px}
-  .pageHero h1{font-size:42px;letter-spacing:-1.2px}
-  .pageHero p:not(.red){font-size:16px}
-  .categoryTabs{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px}
-  .categoryTabs a{white-space:nowrap}
-  .goalGrid{grid-template-columns:1fr!important}
-  .goalCard{min-height:auto;padding:22px}
-  .allCatalogLink{width:100%;justify-content:center;text-align:center}
-}
-
-/* Ajustes finais de limpeza comercial */
-.floatZap,.mobile{display:none!important}
-.cleanCard .zap,.cleanCard .cartAdd{display:none!important}
-.singleBuy{border:0;cursor:pointer;width:100%;justify-content:center;text-align:center}
-.pageHero .red{letter-spacing:.8px}
-.categoryTabs a{white-space:nowrap}
-.backLink{display:inline-flex;align-items:center;gap:6px}
-.goalChooser .sub,.catalogHero>p,.routeCatalog .sub{max-width:760px;margin-left:auto;margin-right:auto}
-@media(max-width:760px){.pageHero{padding-top:34px}.categoryTabs{overflow-x:auto;justify-content:flex-start;padding-bottom:6px}.categoryTabs a{flex:0 0 auto}}
+createRoot(document.getElementById('root')).render(<App/>);
