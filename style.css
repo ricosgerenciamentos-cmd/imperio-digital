@@ -1356,3 +1356,329 @@ h1,h2,h3,.logo b,.headBtn,.primary,.secondary,.buy,.microR1Copy h2,.microR1Card 
     padding:20px;
   }
 }
+/* =========================================================
+   AJUSTE HOME LIMPA — conversão, menos poluição e mais foco
+   Cole este arquivo inteiro no style.css
+   ========================================================= */
+
+:root{
+  --imperio-red:#e50909;
+  --imperio-dark:#111111;
+  --imperio-soft:#fff6f6;
+  --imperio-line:#eeeeee;
+}
+
+.notice{
+  background:var(--imperio-red)!important;
+  color:#fff!important;
+  padding:9px 14px!important;
+  font-size:13px!important;
+  letter-spacing:.2px;
+}
+
+.header{
+  height:76px!important;
+  padding:0 64px!important;
+  gap:22px!important;
+  border-bottom:1px solid rgba(0,0,0,.06)!important;
+  box-shadow:0 10px 36px rgba(0,0,0,.035)!important;
+}
+
+.header nav{
+  gap:24px!important;
+}
+
+.header nav a{
+  color:#222!important;
+}
+
+.headBtn{
+  border-radius:999px!important;
+  padding:13px 20px!important;
+  white-space:nowrap;
+}
+
+.heroPremium{
+  min-height:650px!important;
+  padding:58px 72px 64px!important;
+  grid-template-columns:minmax(430px,48%) minmax(380px,52%)!important;
+  background:
+    radial-gradient(circle at 82% 45%, rgba(229,9,9,.09), transparent 32%),
+    linear-gradient(90deg,#fff 0%,#fff 55%,#fff8f8 100%)!important;
+}
+
+.heroPremium .copy h1{
+  max-width:740px;
+  font-size:clamp(46px,5.1vw,74px)!important;
+  line-height:1.04!important;
+  letter-spacing:-2px!important;
+  margin-bottom:18px!important;
+}
+
+.heroPremium .lead{
+  max-width:650px!important;
+  font-size:18px!important;
+  line-height:1.62!important;
+  color:#333!important;
+}
+
+.heroPremium .eyebrow{
+  background:#fff0f0!important;
+  color:var(--imperio-red)!important;
+  border:1px solid #ffd7d7;
+  font-size:12px!important;
+  padding:10px 15px!important;
+  margin-bottom:18px!important;
+}
+
+.premiumTrust{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+  max-width:640px;
+  margin:22px 0 16px!important;
+}
+
+.premiumTrust span{
+  min-height:72px!important;
+  border-radius:16px!important;
+  padding:13px 14px!important;
+  box-shadow:0 10px 28px rgba(0,0,0,.04)!important;
+}
+
+.premiumProof{
+  max-width:620px!important;
+  margin:12px 0 0!important;
+  padding:8px!important;
+}
+
+.heroPremium .actions{
+  margin-top:22px!important;
+}
+
+.heroPremium .primary,
+.heroPremium .secondary{
+  border-radius:999px!important;
+}
+
+.phoneStage{
+  min-height:560px!important;
+  transform:none!important;
+}
+
+.phoneStage .phone{
+  width:330px!important;
+  height:650px!important;
+}
+
+.phoneProductGrid img{
+  height:145px!important;
+}
+
+.trustBar{
+  padding:26px 72px!important;
+  gap:14px!important;
+  background:#fff!important;
+}
+
+.trustBar div{
+  padding:18px!important;
+  border-radius:16px!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.035)!important;
+}
+
+.best,
+.filters,
+.catalog,
+.faq,
+.test{
+  padding:54px 72px!important;
+}
+
+.best{
+  background:#fff!important;
+}
+
+.best h2,
+.catalog h2,
+.filters h2,
+.faq h2,
+.test h2{
+  font-size:clamp(31px,3vw,42px)!important;
+  line-height:1.05!important;
+}
+
+.sub{
+  max-width:690px;
+  margin:10px auto 28px!important;
+  line-height:1.5;
+}
+
+.bestGrid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  max-width:1160px!important;
+  gap:18px!important;
+}
+
+.grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:18px!important;
+}
+
+.card{
+  border-radius:22px!important;
+  box-shadow:0 12px 34px rgba(0,0,0,.055)!important;
+}
+
+.card:hover{
+  transform:translateY(-4px)!important;
+  box-shadow:0 24px 54px rgba(229,9,9,.12)!important;
+}
+
+.imgWrap img{
+  height:250px!important;
+}
+
+.compact .imgWrap img{
+  height:220px!important;
+}
+
+.body{
+  padding:16px!important;
+}
+
+.body h3{
+  font-size:20px!important;
+  line-height:1.12!important;
+  margin-bottom:8px!important;
+}
+
+.body p{
+  min-height:54px!important;
+  font-size:14px!important;
+  line-height:1.42!important;
+  margin:0 0 12px!important;
+}
+
+.body strong{
+  font-size:28px!important;
+}
+
+.catLabel{
+  display:inline-flex!important;
+  width:max-content;
+  text-decoration:none!important;
+  color:#e50909!important;
+  background:#fff3f3;
+  border:1px solid #ffdcdc;
+  border-radius:999px;
+  padding:5px 9px;
+  margin:0 0 8px!important;
+  font-size:11px!important;
+}
+
+.cartAdd{
+  border-radius:12px!important;
+}
+
+.buy,
+.zap{
+  border-radius:12px!important;
+  margin-top:8px!important;
+}
+
+.featured050{
+  padding:58px 72px!important;
+  background:linear-gradient(135deg,#111 0%,#1c0505 62%,#b60000 130%)!important;
+}
+
+.featured050Card{
+  max-width:1160px!important;
+  grid-template-columns:1.35fr .65fr!important;
+}
+
+.featured050Copy,
+.featured050Price{
+  border-radius:28px!important;
+  padding:34px!important;
+}
+
+.featured050Copy h2{
+  font-size:clamp(36px,4.5vw,62px)!important;
+  line-height:1.02!important;
+  letter-spacing:-1.5px!important;
+}
+
+.featured050Copy>span{
+  font-size:17px!important;
+  line-height:1.55!important;
+}
+
+.filters{
+  background:#fff!important;
+}
+
+.filters div{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  max-width:1050px!important;
+  gap:12px!important;
+}
+
+.filters button{
+  padding:18px 10px!important;
+  border-radius:14px!important;
+}
+
+.catalog{
+  background:#f8f8f9!important;
+}
+
+.faq details{
+  box-shadow:0 8px 22px rgba(0,0,0,.035)!important;
+}
+
+.final{
+  margin:0 72px 34px!important;
+  border:1px solid #eee;
+}
+
+.footerSecretAdmin{
+  border:0;
+  background:transparent;
+  color:#555;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+@media(max-width:1200px){
+  .header{padding:0 28px!important;}
+  .heroPremium{grid-template-columns:1fr!important;padding:46px 28px 52px!important;}
+  .phoneStage{min-height:660px!important;}
+  .bestGrid,.grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+  .trustBar,.best,.filters,.catalog,.faq,.test{padding-left:28px!important;padding-right:28px!important;}
+  .final{margin-left:28px!important;margin-right:28px!important;}
+}
+
+@media(max-width:760px){
+  .notice{font-size:11px!important;padding:8px!important;}
+  .header{height:64px!important;padding:0 14px!important;}
+  .cartBtn{width:42px;height:42px;}
+  .heroPremium{padding:30px 18px 36px!important;}
+  .heroPremium .copy h1{font-size:42px!important;letter-spacing:-1.2px!important;}
+  .heroPremium .lead{font-size:15.5px!important;}
+  .premiumTrust{grid-template-columns:1fr!important;}
+  .heroPremium .actions{display:grid!important;grid-template-columns:1fr!important;}
+  .heroPremium .primary,.heroPremium .secondary{justify-content:center!important;text-align:center!important;}
+  .phoneStage{min-height:590px!important;margin-top:16px;}
+  .phoneStage .phone{width:286px!important;height:580px!important;}
+  .phoneProductGrid img{height:124px!important;}
+  .trustBar,.best,.filters,.catalog,.faq,.test{padding:36px 18px!important;}
+  .trustBar,.bestGrid,.grid,.filters div,.test>div{grid-template-columns:1fr!important;}
+  .imgWrap img,.compact .imgWrap img{height:320px!important;}
+  .featured050{padding:38px 18px!important;}
+  .featured050Card{grid-template-columns:1fr!important;}
+  .featured050Copy,.featured050Price{padding:24px!important;border-radius:24px!important;}
+  .featured050Bullets{grid-template-columns:1fr!important;}
+  .featured050Actions{display:grid!important;grid-template-columns:1fr!important;}
+  .featured050Actions button,.featured050Actions a{text-align:center!important;width:100%!important;}
+  .final{margin:0 18px 88px!important;}
+}
