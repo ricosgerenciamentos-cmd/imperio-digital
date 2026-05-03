@@ -2237,3 +2237,87 @@ h1,h2,h3,.logo b,.headBtn,.primary,.secondary,.buy,.microR1Copy h2,.microR1Card 
     margin-top:4px !important;
   }
 }
+
+/* Etapa 2 - Sugestões no painel admin */
+.adminSectionTitle{
+  margin:28px 0 18px;
+  padding:22px;
+  border:1px solid #eee;
+  border-radius:22px;
+  background:#fff;
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center;
+  box-shadow:0 12px 30px rgba(0,0,0,.04);
+}
+.adminSectionTitle p{margin:0 0 6px}
+.adminSectionTitle h2{margin:0;font-size:26px;line-height:1.1}
+.adminSectionTitle span{display:block;margin-top:8px;color:#666;font-weight:700;line-height:1.4}
+.adminSectionTitle button{
+  border:0;
+  background:#e50909;
+  color:#fff;
+  border-radius:14px;
+  padding:14px 18px;
+  font-weight:1000;
+  cursor:pointer;
+  min-width:180px;
+}
+.adminSectionTitle button:disabled{opacity:.6;cursor:not-allowed}
+.ordersTitle{margin-top:34px}
+.adminSuggestions{
+  display:grid;
+  gap:16px;
+}
+.adminSuggestionCard{
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:22px;
+  padding:22px;
+  box-shadow:0 12px 34px rgba(0,0,0,.045);
+}
+.adminSuggestionHead{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-start;
+}
+.adminSuggestionHead b{display:block;font-size:19px;line-height:1.2}
+.adminSuggestionHead span{display:block;margin-top:6px;color:#666;font-weight:800;font-size:13px}
+.adminSuggestionHead strong{
+  background:#fff1f0;
+  color:#e50909;
+  border:1px solid #ffd6d6;
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:12px;
+  font-weight:1000;
+  white-space:nowrap;
+  text-transform:uppercase;
+}
+.adminSuggestionCard p{
+  color:#333;
+  line-height:1.55;
+  margin:16px 0;
+}
+.adminSuggestionMeta{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.adminSuggestionMeta span{
+  background:#f7f7f8;
+  border-radius:12px;
+  padding:10px 12px;
+  color:#444;
+  font-size:13px;
+  line-height:1.35;
+}
+.adminSuggestionMeta b{color:#111}
+@media(max-width:760px){
+  .adminSectionTitle{display:grid;text-align:left}
+  .adminSectionTitle button{width:100%;min-width:0}
+  .adminSuggestionHead{display:grid}
+  .adminSuggestionMeta{grid-template-columns:1fr}
+}
