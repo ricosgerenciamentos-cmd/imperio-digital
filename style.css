@@ -1933,3 +1933,13 @@ h1,h2,h3,.logo b,.headBtn,.primary,.secondary,.buy,.microR1Copy h2,.microR1Card 
   .goalCard{min-height:auto;padding:22px}
   .allCatalogLink{width:100%;justify-content:center;text-align:center}
 }
+
+/* Ajustes finais de limpeza comercial */
+.floatZap,.mobile{display:none!important}
+.cleanCard .zap,.cleanCard .cartAdd{display:none!important}
+.singleBuy{border:0;cursor:pointer;width:100%;justify-content:center;text-align:center}
+.pageHero .red{letter-spacing:.8px}
+.categoryTabs a{white-space:nowrap}
+.backLink{display:inline-flex;align-items:center;gap:6px}
+.goalChooser .sub,.catalogHero>p,.routeCatalog .sub{max-width:760px;margin-left:auto;margin-right:auto}
+@media(max-width:760px){.pageHero{padding-top:34px}.categoryTabs{overflow-x:auto;justify-content:flex-start;padding-bottom:6px}.categoryTabs a{flex:0 0 auto}}
