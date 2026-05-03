@@ -1934,12 +1934,166 @@ h1,h2,h3,.logo b,.headBtn,.primary,.secondary,.buy,.microR1Copy h2,.microR1Card 
   .allCatalogLink{width:100%;justify-content:center;text-align:center}
 }
 
-/* Ajustes finais de limpeza comercial */
-.floatZap,.mobile{display:none!important}
-.cleanCard .zap,.cleanCard .cartAdd{display:none!important}
-.singleBuy{border:0;cursor:pointer;width:100%;justify-content:center;text-align:center}
-.pageHero .red{letter-spacing:.8px}
-.categoryTabs a{white-space:nowrap}
-.backLink{display:inline-flex;align-items:center;gap:6px}
-.goalChooser .sub,.catalogHero>p,.routeCatalog .sub{max-width:760px;margin-left:auto;margin-right:auto}
-@media(max-width:760px){.pageHero{padding-top:34px}.categoryTabs{overflow-x:auto;justify-content:flex-start;padding-bottom:6px}.categoryTabs a{flex:0 0 auto}}
+/* ================================
+   ETAPA 1 — Limpeza de textos e sugestões
+   ================================ */
+.header nav a[href="/#escolha"]::after{content:"";}
+
+.heroPremium .lead{max-width:680px;}
+.premiumProof b,
+.premiumProof span{white-space:normal;}
+
+.compactGoalChooser{padding-top:58px!important;padding-bottom:62px!important;}
+.compactGoalChooser .red{font-size:13px;}
+.compactGoalChooser .sub{max-width:620px!important;}
+.simpleGoalGrid{
+  max-width:980px!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:14px!important;
+}
+.simpleGoalCard{
+  min-height:74px!important;
+  padding:22px 18px!important;
+  display:grid!important;
+  place-items:center!important;
+  text-align:center!important;
+  border-radius:20px!important;
+  box-shadow:0 12px 34px rgba(0,0,0,.045)!important;
+}
+.simpleGoalCard strong,
+.simpleGoalCard p,
+.simpleGoalCard span{display:none!important;}
+.simpleGoalCard h3{
+  margin:0!important;
+  font-size:18px!important;
+  line-height:1.15!important;
+}
+.simpleGoalCard:hover,
+.simpleGoalCard.allGoalCard:hover{
+  background:#e50909!important;
+  color:#fff!important;
+  border-color:#e50909!important;
+}
+.allCatalogLink{display:none!important;}
+
+.final.finalHelp{
+  grid-template-columns:80px 1fr minmax(300px,420px)!important;
+  align-items:center!important;
+}
+.finalActions{
+  display:grid;
+  gap:10px;
+}
+.finalActions a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 18px!important;
+  border-radius:14px!important;
+  font-weight:1000!important;
+  text-align:center;
+}
+.finalActions .finalPrimary{background:#e50909!important;color:#fff!important;}
+.finalActions .finalWhats{background:#16a34a!important;color:#fff!important;box-shadow:0 14px 30px rgba(22,163,74,.16)!important;}
+.finalActions .finalSuggest{background:#fff!important;color:#111!important;border:1px solid #eee!important;box-shadow:none!important;}
+.finalActions .finalSuggest:hover{border-color:#e50909!important;color:#e50909!important;}
+
+.suggestPage{
+  padding:58px 80px 74px;
+  background:linear-gradient(135deg,#fff 0%,#fff7f7 56%,#ffecec 100%);
+}
+.suggestHero{
+  max-width:900px;
+  margin:0 auto 26px;
+  text-align:center;
+}
+.suggestHero h1{
+  font-size:clamp(44px,5vw,72px);
+  line-height:1;
+  letter-spacing:-2px;
+  margin:10px 0 14px;
+  font-weight:1000;
+}
+.suggestHero p:not(.red){
+  max-width:760px;
+  margin:0 auto;
+  color:#444;
+  font-size:18px;
+  line-height:1.62;
+  font-weight:650;
+}
+.suggestForm{
+  max-width:860px;
+  margin:0 auto;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:28px;
+  padding:30px;
+  box-shadow:0 22px 64px rgba(0,0,0,.07);
+  display:grid;
+  gap:16px;
+}
+.formRow{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.suggestForm label{
+  display:grid;
+  gap:8px;
+  color:#111;
+  font-weight:1000;
+}
+.suggestForm input,
+.suggestForm select,
+.suggestForm textarea{
+  width:100%;
+  border:1px solid #e6e6e6;
+  border-radius:14px;
+  padding:14px 15px;
+  background:#fff;
+  outline:none;
+  color:#111;
+}
+.suggestForm input:focus,
+.suggestForm select:focus,
+.suggestForm textarea:focus{
+  border-color:#e50909;
+  box-shadow:0 0 0 4px rgba(229,9,9,.08);
+}
+.suggestForm button{
+  border:0;
+  background:#e50909;
+  color:#fff;
+  border-radius:16px;
+  padding:16px 20px;
+  font-weight:1000;
+  cursor:pointer;
+  box-shadow:0 16px 38px rgba(229,9,9,.20);
+}
+.suggestForm button:disabled{opacity:.7;cursor:not-allowed;}
+.suggestForm small{color:#666;line-height:1.5;}
+.suggestStatus{
+  border-radius:16px;
+  padding:14px 16px;
+  font-weight:900;
+  line-height:1.45;
+}
+.suggestStatus.success{background:#ecfdf5;color:#047857;border:1px solid #bbf7d0;}
+.suggestStatus.error{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;}
+
+@media(max-width:900px){
+  .simpleGoalGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .final.finalHelp{grid-template-columns:1fr!important;text-align:center!important;}
+  .final.finalHelp>div:first-child{margin:0 auto;}
+  .suggestPage{padding:42px 22px 58px;}
+  .formRow{grid-template-columns:1fr;}
+}
+@media(max-width:760px){
+  .simpleGoalGrid{grid-template-columns:1fr!important;}
+  .simpleGoalCard{min-height:62px!important;padding:18px!important;}
+  .finalActions a{width:100%;}
+  .suggestHero h1{font-size:42px;letter-spacing:-1px;}
+  .suggestHero p:not(.red){font-size:16px;}
+  .suggestForm{padding:22px;border-radius:22px;}
+}
