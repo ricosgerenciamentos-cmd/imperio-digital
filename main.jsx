@@ -1040,12 +1040,38 @@ function AdminPage(){
   const [password,setPassword] = useState('');
   const [logged,setLogged] = useState(false);
   const [orders,setOrders] = useState([]);
+  const [suggestions,setSuggestions] = useState([]);
   const [loading,setLoading] = useState(false);
   const [error,setError] = useState('');
+  const [suggestionsError,setSuggestionsError] = useState('');
+
+  async function loadSuggestions(pass = password){
+    setSuggestionsError('');
+
+    try{
+      const res = await fetch('/api/admin-suggestions',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({password:pass})
+      });
+
+      const data = await res.json();
+
+      if(!res.ok){
+        throw new Error(data.error || 'Erro ao carregar sugestões.');
+      }
+
+      setSuggestions(data.suggestions || []);
+    }catch(err){
+      setSuggestionsError(err.message || 'Erro ao carregar sugestões.');
+      setSuggestions([]);
+    }
+  }
 
   async function loadOrders(pass = password){
     setLoading(true);
     setError('');
+    setSuggestionsError('');
 
     try{
       const res = await fetch('/api/admin-orders',{
@@ -1064,6 +1090,7 @@ function AdminPage(){
       setLogged(true);
       sessionStorage.setItem('imperio_admin_logged', 'true');
       sessionStorage.setItem('imperio_admin_password', pass);
+      await loadSuggestions(pass);
 
     }catch(err){
       setError(err.message || 'Erro inesperado.');
@@ -1088,6 +1115,8 @@ function AdminPage(){
     setLogged(false);
     setPassword('');
     setOrders([]);
+    setSuggestions([]);
+    setSuggestionsError('');
   }
 
   function formatDate(value){
@@ -1113,6 +1142,7 @@ function AdminPage(){
 
   const pendingCount = orders.filter(order => order.status === 'pending').length;
   const approvedCount = orders.filter(order => order.status === 'approved').length;
+  const suggestionCount = suggestions.length;
 
   if(!logged){
     return <main className="adminPage">
@@ -1149,8 +1179,8 @@ function AdminPage(){
       <div className="adminTop">
         <div>
           <p className="red">PAINEL ADMIN</p>
-          <h1>Pedidos do Império Digital</h1>
-          <span>Controle rápido de vendas, pagamentos, produtos comprados e tokens de download.</span>
+          <h1>Painel do Império Digital</h1>
+          <span>Controle rápido de vendas, pagamentos, tokens de download e sugestões de novos ebooks.</span>
         </div>
 
         <div className="adminActions">
@@ -1175,12 +1205,54 @@ function AdminPage(){
           <strong>{pendingCount}</strong>
         </article>
         <article>
-          <span>Total de pedidos</span>
-          <strong>{orders.length}</strong>
+          <span>Sugestões recebidas</span>
+          <strong>{suggestionCount}</strong>
         </article>
       </div>
 
       {error && <div className="checkoutError">{error}</div>}
+      {suggestionsError && <div className="checkoutError">{suggestionsError}</div>}
+
+      <div className="adminSectionTitle">
+        <div>
+          <p className="red">SUGESTÕES</p>
+          <h2>Temas sugeridos pelos clientes</h2>
+          <span>Veja ideias de novos ebooks enviadas pelo formulário do site.</span>
+        </div>
+        <button onClick={()=>loadSuggestions()} disabled={loading}>Atualizar sugestões</button>
+      </div>
+
+      <div className="adminSuggestions">
+        {suggestions.length === 0 ? (
+          <div className="adminEmpty">Nenhuma sugestão recebida ainda.</div>
+        ) : suggestions.map(item => (
+          <article className="adminSuggestionCard" key={item.id}>
+            <div className="adminSuggestionHead">
+              <div>
+                <b>{item.theme || 'Tema sem título'}</b>
+                <span>{item.category || 'Sem categoria'} • {formatDate(item.created_at)}</span>
+              </div>
+              <strong>{item.status || 'nova'}</strong>
+            </div>
+
+            <p>{item.description || 'Sem descrição.'}</p>
+
+            <div className="adminSuggestionMeta">
+              <span><b>Nome:</b> {item.name || '-'}</span>
+              <span><b>WhatsApp:</b> {item.whatsapp || '-'}</span>
+              <span><b>Email:</b> {item.email || '-'}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="adminSectionTitle ordersTitle">
+        <div>
+          <p className="red">PEDIDOS</p>
+          <h2>Pedidos do Império Digital</h2>
+          <span>Vendas, pagamentos, produtos comprados e tokens de download.</span>
+        </div>
+      </div>
 
       <div className="adminOrders">
         {orders.length === 0 ? (
