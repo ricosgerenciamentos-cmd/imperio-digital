@@ -100,7 +100,7 @@ function categoryLabel(id){
 
 function categoryText(id){
   const texts = {
-    todos:'Todos os ebooks ficam em uma página separada. A home continua limpa e só mostra a vitrine principal.',
+    todos:'Veja todos os ebooks disponíveis no Império Digital em um só lugar.',
     ganhar:'Ebooks para quem quer renda extra, vendas digitais e ideias práticas de negócio.',
     assistencia:'Guias focados em assistência técnica de celular, bancada, clientes e serviços práticos.',
     barbearia:'Conteúdos focados em barbearia, atendimento, cortes, barba, fotos e captação de clientes.',
@@ -223,8 +223,8 @@ function StorePage({filter,list,search,setSearch,submitSearch,cart,cartOpen,setC
     <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={onLogoSecretClick}/>
 
     <section className="pageHero catalogHero">
-      <a className="backLink" href="/">← Voltar para a home limpa</a>
-      <p className="red">PÁGINA SEPARADA</p>
+      <a className="backLink" href="/">← Voltar para o início</a>
+      <p className="red">CATÁLOGO</p>
       <h1>{title}</h1>
       <p>{search ? 'Mostrando apenas os produtos que combinam com sua busca.' : categoryText(filter)}</p>
 
@@ -263,7 +263,7 @@ function Hero({best}){return <section id="top" className="hero heroPremium">
   <div className="copy">
     <p className="eyebrow">🔥 EBOOKS PRÁTICOS • ACESSO IMEDIATO</p>
     <h1>Ebooks práticos para <span>aprender, vender e organizar</span> sua vida</h1>
-    <p className="lead">Guias simples, acessíveis e diretos ao ponto. Escolha por objetivo e entre apenas na página que faz sentido para você.</p>
+    <p className="lead">Guias simples, acessíveis e diretos ao ponto. Escolha por objetivo e encontre rapidamente o ebook mais útil para o seu momento.</p>
 
     <div className="heroTrust premiumTrust">
       <span>💰 <b>A partir de R$1,99</b><small>Produto de entrada</small></span>
@@ -273,8 +273,8 @@ function Hero({best}){return <section id="top" className="hero heroPremium">
     </div>
 
     <div className="socialProof premiumProof">
-      <b>⭐ Home limpa</b>
-      <span>O catálogo completo só aparece quando você clicar em uma categoria ou em Tudo</span>
+      <b>⭐ Escolha mais fácil</b>
+      <span>Encontre ebooks por objetivo: renda extra, profissão, saúde, estudos ou organização</span>
     </div>
 
     <div className="actions">
@@ -327,9 +327,9 @@ function FeaturedMicroEbook({addToCart}){
   </section>
 }
 
-function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação</p></div><div>🎯<b>Escolha por objetivo</b><p>Sem catálogo misturado</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança</p></div></section>}
+function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação</p></div><div>🎯<b>Escolha por objetivo</b><p>Encontre o que combina com você</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança</p></div></section>}
 
-function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS PROCURADOS AGORA</p><h2>Produtos em destaque para começar</h2><p className="sub">Poucos produtos na vitrine inicial. O restante fica separado por página e categoria.</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
+function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS PROCURADOS AGORA</p><h2>Produtos em destaque para começar</h2><p className="sub">Uma seleção curta com os ebooks de maior interesse para quem quer começar hoje.</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
 
 function GoalLinks(){
   const goals = [
@@ -798,7 +798,7 @@ function QuizProPage(){
           })}
         </div>
 
-        <a className="quizAllBtn" href="/#catalogo">Ver todos os produtos</a>
+        <a className="quizAllBtn" href="/catalogo">Ver todos os produtos</a>
         <button className="quizRedo" onClick={()=>{setStep(0);setAnswers([])}}>↻ Refazer teste</button>
       </section>
     </main>
