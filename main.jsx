@@ -62,7 +62,7 @@ const filters = [
   ['estudar','Estudos']
 ];
 
-const bestIds = [15,1,2,101];
+const bestIds = [1,2,3,4];
 
 function wa(p){
   const txt = p ? `Olá! Tenho interesse no ebook ${p.title}` : 'Olá! Quero conhecer os ebooks do Império Digital';
@@ -146,14 +146,11 @@ function App(){
     <TopNotice />
     <Header search={search} setSearch={setSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={handleLogoSecretClick}/>
     <Hero best={best}/>
-    <FeaturedMicroEbook addToCart={addToCart}/>
-    <ValueLadder addToCart={addToCart}/>
     <TrustBar/>
     <Best best={best} addToCart={addToCart}/>
+    <FeaturedMicroEbook addToCart={addToCart}/>
     <Filters filter={filter} setFilter={setFilter}/>
     <Catalog list={list} addToCart={addToCart}/>
-    <OfferBanner/>
-    <AffiliateSystem/>
     <FAQ/>
     <Testimonials/>
     <FinalCTA/>
@@ -168,33 +165,33 @@ function TopNotice(){return <div className="notice">🔥 Oferta especial de lan�
 
 function Header({search,setSearch,cartCount,setCartOpen,onLogoSecretClick}){return <header className="header">
   <a className="logo" href="#top" onClick={onLogoSecretClick} title="Império Digital"><span>♛</span><div><b>IMPÉRIO</b><small>DIGITAL</small></div></a>
-  <nav><a href="#top">Início</a><a href="#best">Mais vendidos</a><a href="#catalogo">Ebooks</a><a href="#afiliados">Afiliados</a><a href="#faq">Perguntas</a><a href={wa()} target="_blank" rel="noreferrer">Contato</a></nav>
+  <nav><a href="#top">Início</a><a href="#best">Mais vendidos</a><a href="#catalogo">Ebooks</a><a href="#faq">Perguntas</a><a href={wa()} target="_blank" rel="noreferrer">Contato</a></nav>
   <label className="search"><span>⌕</span><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar ebook"/></label>
   <button className="cartBtn" onClick={()=>setCartOpen(true)}>🛒 <span>{cartCount}</span></button>
-  <a className="headBtn" href="#ebook050">Quero começar agora</a>
+  <a className="headBtn" href="#ebook050">Começar por R$1,99</a>
 </header>}
 
 function Hero({best}){return <section id="top" className="hero heroPremium">
   <div className="copy">
-    <p className="eyebrow">🔥 OFERTA DE ENTRADA • ACESSO IMEDIATO</p>
-    <h1>Ganhe dinheiro <br/><span>começando do zero</span><br/>com produtos a partir de R$1,99</h1>
-    <p className="lead">Um guia rápido, direto e acessível para descobrir caminhos reais de renda extra usando apenas o celular</p>
+    <p className="eyebrow">🔥 EBOOKS PRÁTICOS • ACESSO IMEDIATO</p>
+    <h1>Ebooks práticos para <span>aprender, vender e organizar</span> sua vida</h1>
+    <p className="lead">Guias simples, acessíveis e diretos ao ponto. Escolha seu ebook, compre com segurança e receba o acesso logo após a confirmação do pagamento</p>
 
     <div className="heroTrust premiumTrust">
-      <span>💰 <b>Preço de entrada</b><small>Apenas R$1,99</small></span>
-      <span>⚡ <b>Acesso imediato</b><small>Baixe na hora</small></span>
-      <span>📱 <b>Comece pelo celular</b><small>Mesmo do zero</small></span>
-      <span>🛡️ <b>Compra segura</b><small>Ambiente protegido</small></span>
+      <span>💰 <b>A partir de R$1,99</b><small>Produto de entrada</small></span>
+      <span>⚡ <b>Acesso imediato</b><small>Baixe após a compra</small></span>
+      <span>📚 <b>Leitura prática</b><small>Conteúdo direto</small></span>
+      <span>🛡️ <b>Compra segura</b><small>Mercado Pago</small></span>
     </div>
 
     <div className="socialProof premiumProof">
-      <b>⭐ Produto de entrada</b>
-      <span>Ideal para conhecer o Império Digital</span>
+      <b>⭐ Mais procurados em destaque</b>
+      <span>Escolha por objetivo e evite perder tempo procurando</span>
     </div>
 
     <div className="actions">
-      <a className="primary pulse" href="#ebook050">Começar agora por R$1,99</a>
-      <a className="secondary" href="#escada">Ver ofertas completas</a>
+      <a className="primary pulse" href="#best">Ver mais vendidos</a>
+      <a className="secondary" href="#ebook050">Começar por R$1,99</a>
     </div>
     <p className="secureLine">🔒 Compra segura • Acesso imediato • Suporte no WhatsApp</p>
   </div>
@@ -205,11 +202,11 @@ function Hero({best}){return <section id="top" className="hero heroPremium">
   </div>
 </section>}
 
-function Phone({product}){return <aside className="phone premiumPhone"><div className="screen">
+function Phone({product}){const phoneProducts = products.filter(p=>[1,2,3,4,15,16].includes(p.id)); return <aside className="phone premiumPhone"><div className="screen">
   <div className="phoneNav">☰ <b>♛ IMPÉRIO <small>DIGITAL</small></b> 🛒</div>
-  <h3 className="phoneSectionTitle">MAIS VENDIDOS <a href="#best">Ver todos</a></h3>
+  <h3 className="phoneSectionTitle">VITRINE INICIAL <a href="#best">Ver todos</a></h3>
   <div className="phoneProductGrid">
-    {products.filter(p=>!p.hidden).slice(0,6).map(p=><img key={p.id} src={p.img} alt={p.title} loading="lazy" decoding="async"/>)}
+    {phoneProducts.map(p=><img key={p.id} src={p.img} alt={p.title} loading="lazy" decoding="async"/>)}
   </div>
   <a className="phoneBtn" href="#catalogo">VER TODOS OS EBOOKS</a>
 </div></aside>}
@@ -221,9 +218,9 @@ function FeaturedMicroEbook({addToCart}){
   return <section id="ebook050" className="featured050">
     <div className="featured050Card">
       <div className="featured050Copy">
-        <p>🔥 OFERTA DE ENTRADA • RENDA EXTRA</p>
-        <h2>Ganhe seus primeiros R$10 online hoje</h2>
-        <span>Um guia rápido para iniciantes descobrirem formas simples e reais de começar a fazer renda extra pela internet usando apenas o celular</span>
+        <p>🔥 OFERTA DE ENTRADA • R$1,99</p>
+        <h2>Comece com um ebook simples, barato e direto</h2>
+        <span>O produto de entrada serve para o cliente conhecer o Império Digital sem gastar muito. É ideal para iniciar pelo celular e depois escolher outros guias do catálogo</span>
         <div className="featured050Bullets">
           <b>✅ Ideal para iniciantes</b>
           <b>⚡ Acesso imediato</b>
@@ -232,13 +229,13 @@ function FeaturedMicroEbook({addToCart}){
         </div>
         <div className="featured050Actions">
           <button onClick={()=>addToCart(ebook)}>Comprar por R$1,99</button>
-          <a href="/descobrir-negocio">Descobrir meu melhor negócio</a>
+          <a href="#catalogo">Ver outros ebooks</a>
         </div>
       </div>
       <div className="featured050Price">
         <small>De R$19,90 por</small>
         <strong>R$1,99</strong>
-        <span>Oferta de lançamento por tempo limitado</span>
+        <span>Oferta de entrada por tempo limitado</span>
       </div>
     </div>
   </section>
@@ -274,13 +271,34 @@ function ValueLadder({addToCart}){
 
 function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação</p></div><div>🎧<b>Suporte no WhatsApp</b><p>Atendimento rápido</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança</p></div></section>}
 
-function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS VENDIDOS DA SEMANA</p><h2>Escolha seu ebook e comece hoje</h2><p className="sub">Comece pelo produto de entrada ou escolha uma oferta principal do funil</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
+function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS PROCURADOS AGORA</p><h2>Produtos em destaque para começar</h2><p className="sub">Mostramos poucos produtos no início para a pessoa entender rápido o que vale a pena ver primeiro</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
 
 function Filters({filter,setFilter}){return <section className="filters"><h2>Escolha pelo seu <span>objetivo</span></h2><div>{filters.map(([id,label])=><button key={id} onClick={()=>setFilter(id)} className={filter===id?'active':''}>{label}</button>)}</div></section>}
 
-function Catalog({list,addToCart}){return <section id="catalogo" className="catalog"><p className="red">CATÁLOGO COMPLETO</p><h2>Todos os Ebooks</h2><p className="sub">Produtos acessíveis, diretos e prontos para você começar</p><div className="grid">{list.map(p=><Product p={p} addToCart={addToCart} key={p.id}/>)}</div></section>}
+function Catalog({list,addToCart}){return <section id="catalogo" className="catalog"><p className="red">CATÁLOGO COMPLETO</p><h2>Encontre o ebook pelo seu objetivo</h2><p className="sub">Use os filtros acima para ver somente o que combina com o que você procura</p><div className="grid">{list.map(p=><Product p={p} addToCart={addToCart} key={p.id}/>)}</div></section>}
 
-function Product({p,compact,addToCart}){return <article className={compact?'card compact':'card'}><div className="imgWrap"><img src={p.img} alt={p.title} loading="lazy" decoding="async"/><span>{p.tag}</span></div><div className="body"><h3>{p.title}</h3><p>{p.desc}</p><small>De {p.old}</small><strong>Por {p.price}</strong><em>Oferta de lançamento</em><button className="cartAdd" onClick={()=>addToCart(p)}>Adicionar ao carrinho</button><a className="buy" href="#" onClick={(e)=>{e.preventDefault();addToCart(p);}}>Acessar agora</a><a className="zap" href={wa(p)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a></div></article>}
+function Product({p,compact,addToCart}){
+  const limit = compact ? 118 : 145;
+  const desc = p.desc && p.desc.length > limit ? `${p.desc.slice(0, limit)}...` : p.desc;
+
+  return <article className={compact?'card compact':'card'}>
+    <div className="imgWrap">
+      <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
+      <span>{p.tag}</span>
+    </div>
+    <div className="body">
+      <small className="catLabel">{p.cat}</small>
+      <h3>{p.title}</h3>
+      <p>{desc}</p>
+      <small>De {p.old}</small>
+      <strong>Por {p.price}</strong>
+      <em>Acesso imediato</em>
+      <button className="cartAdd" onClick={()=>addToCart(p)}>Adicionar ao carrinho</button>
+      <a className="buy" href="#" onClick={(e)=>{e.preventDefault();addToCart(p);}}>Comprar agora</a>
+      <a className="zap" href={wa(p)} target="_blank" rel="noreferrer">Tirar dúvida no WhatsApp</a>
+    </div>
+  </article>
+}
 
 function OfferBanner(){return <section className="offer"><b>🔥 Preço promocional por tempo limitado</b><span>Escolha seu ebook, compre com segurança e receba o acesso imediatamente</span><a href="#escada">Ver escada de valor</a></section>}
 
@@ -307,7 +325,7 @@ function FAQ(){return <section id="faq" className="faq"><h2>Perguntas rápidas</
 
 function Testimonials(){return <section className="test"><h2>O que nossos <span>clientes</span> dizem</h2><div><blockquote><b>Carlos M.</b><span>★★★★★</span><p>“O ebook de Barbearia foi direto ao ponto e me ajudou a enxergar melhor o caminho”</p></blockquote><blockquote><b>Juliana S.</b><span>★★★★★</span><p>“O de Reeducação Alimentar trouxe orientações simples e fáceis de aplicar”</p></blockquote><blockquote><b>Rafael T.</b><span>★★★★★</span><p>“Vendas Digitais me ajudou a entender novas oportunidades com mais clareza”</p></blockquote></div></section>}
 
-function FinalCTA(){return <section className="final"><div>♛</div><section><h2>Comece hoje e dê o próximo passo</h2><p>Escolha um ebook, acesse agora e dê o próximo passo</p></section><a href="#best">Escolher meu ebook →</a></section>}
+function FinalCTA(){return <section className="final"><div>♛</div><section><h2>Escolha um ebook e comece hoje</h2><p>Produtos digitais simples, acessíveis e com acesso imediato para você aprender sem complicação</p></section><a href="#best">Ver mais vendidos →</a></section>}
 function Footer({onSecretAdminClick}){return <footer><button type="button" className="footerSecretAdmin" onClick={onSecretAdminClick}>♛ IMPÉRIO DIGITAL</button><b>Compra segura • Acesso imediato • Suporte WhatsApp • Garantia 7 dias</b></footer>}
 
 
@@ -1029,6 +1047,6 @@ function AdminPage(){
   </main>
 }
 
-function FloatingButtons(){return <><a className="floatZap" href={wa()} target="_blank" rel="noreferrer">💬</a><div className="mobile"><a href={wa()} target="_blank" rel="noreferrer">WhatsApp</a><a href="#ebook050">Comprar</a></div></>}
+function FloatingButtons(){return <><a className="floatZap" href={wa()} target="_blank" rel="noreferrer">💬</a><div className="mobile"><a href={wa()} target="_blank" rel="noreferrer">WhatsApp</a><a href="#best">Mais vendidos</a></div></>}
 
 createRoot(document.getElementById('root')).render(<App/>);
