@@ -47,7 +47,11 @@ const products = [
 { id:206, title:"Como atrair clientes para barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Como-Atrair-Clientes-para-Barbearia.pdf", desc:"Estratégias simples para divulgar, aparecer mais e trazer novos clientes para sua barbearia" },
 { id:207, title:"Como usar a tesoura na barbearia", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/COMO-USAR-A-TESOURA-NA-BARBEIRIA.pdf", desc:"Fundamentos para ganhar mais segurança no uso da tesoura e melhorar acabamento dos cortes" },
 { id:208, title:"Fotos e Instagram para barbeiros", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/FOTOS-E-INSTAGRAM-PARA-BARBEIROS.pdf", desc:"Aprenda a apresentar melhor seus cortes, tirar fotos melhores e usar o Instagram para atrair clientes" },
-{ id:209, title:"Cortes precisos, degradês limpos e atendimento profissional", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Guia-Pratico-para-Cortes-Precisos-Degrades-Limpos-e-Atendimento-Profissional.pdf", desc:"Guia prático para elevar a qualidade dos cortes, acabamento e experiência do cliente" }
+{ id:209, title:"Cortes precisos, degradês limpos e atendimento profissional", cat:"Barbearia", intent:"barbearia", tag:"📘 Avulso", img:"/barbearia.png", price:"R$ 4,99", old:"R$ 19,90", file:"/ebooks/Guia-Pratico-para-Cortes-Precisos-Degrades-Limpos-e-Atendimento-Profissional.pdf", desc:"Guia prático para elevar a qualidade dos cortes, acabamento e experiência do cliente" },
+{ id:301, title:"Diagnóstico OrganizaPro: Plano de Crescimento para seu Negócio", cat:"Consultoria", intent:"consultoria", tag:"📊 Diagnóstico", img:"/negocio-organizado.png", price:"R$ 497,00", old:"R$ 997,00", file:"", desc:"Análise personalizada do seu negócio com mapa de gargalos, prioridades, funil, processos e plano de ação para vender com mais previsibilidade." },
+{ id:302, title:"Projeto de Performance OrganizaPro", cat:"Consultoria", intent:"consultoria", tag:"📈 Performance", img:"/pack-negocios.png", price:"R$ 1.997,00", old:"R$ 3.997,00", file:"", desc:"Implementação comercial com organização de processos, funil de vendas, rotina comercial, captação e indicadores de performance." },
+{ id:401, title:"Mini OS IA: Crie um Mini Sistema Operacional com IA no Navegador", cat:"Programação", intent:"programacao", tag:"🚀 Turma Beta", img:"/vendas-digitais.png", price:"R$ 97,00", old:"R$ 297,00", file:"", desc:"Aprenda a criar um desktop no navegador com terminal, janelas, editor de código, sistema de arquivos simulado e agentes de IA." },
+{ id:402, title:"Workshop Mini OS IA com Mentoria", cat:"Programação", intent:"programacao", tag:"💻 Workshop", img:"/pack-negocios.png", price:"R$ 497,00", old:"R$ 997,00", file:"", desc:"Workshop prático para criar, personalizar e publicar seu Mini Sistema Operacional com IA como projeto de portfólio." }
 ];
 
 const filters = [
@@ -58,11 +62,13 @@ const filters = [
   ['abrir-negocio','Abrir negócio'],
   ['pack','Pack completo'],
   ['organizar','Organização'],
+  ['programacao','Programação e IA'],
+  ['consultoria','OrganizaPro'],
   ['saude','Saúde'],
   ['estudar','Estudos']
 ];
 
-const bestIds = [1,2,3,4];
+const bestIds = [15,401,301,1];
 
 function wa(p){
   const txt = p ? `Olá! Tenho interesse no ebook ${p.title}` : 'Olá! Quero conhecer os ebooks do Império Digital';
@@ -107,6 +113,8 @@ function categoryText(id){
     'abrir-negocio':'Materiais para clarear ideias, escolher um caminho e começar um negócio com mais segurança.',
     pack:'Pacotes completos para quem quer mais conteúdo em uma única compra.',
     organizar:'Guias para organizar rotina, tarefas e negócios com mais controle.',
+    programacao:'Produtos para aprender programação, IA e criar projetos visuais de portfólio.',
+    consultoria:'Diagnósticos e serviços OrganizaPro para organizar processos, vendas e crescimento.',
     saude:'Conteúdos práticos para melhorar hábitos e rotina com mais consciência.',
     estudar:'Materiais para organizar melhor os estudos e evoluir com mais foco.'
   };
@@ -179,6 +187,34 @@ function App(){
   if(rawPath === '/obrigado') return <ThankYouPage />;
   if(rawPath === '/descobrir-negocio') return <QuizProPage />;
   if(rawPath === '/admin') return <AdminPage />;
+  if(rawPath === '/mini-os') return <MiniOSPage
+    search={search}
+    setSearch={setSearch}
+    submitSearch={submitSearch}
+    cart={cart}
+    cartOpen={cartOpen}
+    setCartOpen={setCartOpen}
+    removeFromCart={removeFromCart}
+    addToCart={addToCart}
+    onLogoSecretClick={handleLogoSecretClick}
+    onSecretAdminClick={handleFooterSecretAdminClick}
+    testMode={testMode}
+    setTestMode={setTestMode}
+  />;
+  if(rawPath === '/organiza-pro') return <OrganizaProPage
+    search={search}
+    setSearch={setSearch}
+    submitSearch={submitSearch}
+    cart={cart}
+    cartOpen={cartOpen}
+    setCartOpen={setCartOpen}
+    removeFromCart={removeFromCart}
+    addToCart={addToCart}
+    onLogoSecretClick={handleLogoSecretClick}
+    onSecretAdminClick={handleFooterSecretAdminClick}
+    testMode={testMode}
+    setTestMode={setTestMode}
+  />;
   if(rawPath === '/sugestoes') return <SuggestionPage
     search={search}
     setSearch={setSearch}
@@ -219,6 +255,7 @@ function App(){
     <TrustBar/>
     <Best best={best} addToCart={addToCart}/>
     <FeaturedMicroEbook addToCart={addToCart}/>
+    <MiniOSAndOrganizaCTA />
     <GoalLinks/>
     <FinalCTA/>
     <Footer onSecretAdminClick={handleFooterSecretAdminClick}/>
@@ -262,6 +299,8 @@ function Header({search,setSearch,submitSearch,cartCount,setCartOpen,onLogoSecre
     <a href="/#best">Mais vendidos</a>
     <a href="/#escolha">Escolher material</a>
     <a href="/catalogo">Tudo</a>
+    <a href="/mini-os">Mini OS IA</a>
+    <a href="/organiza-pro">OrganizaPro</a>
     <a href="/descobrir-negocio">Quiz</a>
   </nav>
   <form className="search" onSubmit={(e)=>{e.preventDefault(); submitSearch?.(search)}}>
@@ -340,6 +379,188 @@ function FeaturedMicroEbook({addToCart}){
   </section>
 }
 
+
+function MiniOSAndOrganizaCTA(){
+  return <section className="doubleCTA">
+    <article>
+      <p>🚀 PRODUTO TECH</p>
+      <h2>Crie um Mini Sistema Operacional com IA</h2>
+      <span>Um projeto visual para aprender programação, IA, interface moderna, terminal, janelas e agentes inteligentes.</span>
+      <a href="/mini-os">Conhecer Mini OS IA</a>
+    </article>
+
+    <article>
+      <p>📊 CONSULTORIA</p>
+      <h2>Organize e escale seu negócio com método</h2>
+      <span>Diagnóstico, estruturação, captação e performance para negócios que precisam vender com previsibilidade.</span>
+      <a href="/organiza-pro">Conhecer OrganizaPro</a>
+    </article>
+  </section>
+}
+
+function buyProduct(product, addToCart){
+  if(!product) return;
+  addToCart(product);
+  localStorage.setItem('imperio_cart', JSON.stringify([product]));
+  window.location.href = '/checkout';
+}
+
+function MiniOSPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,removeFromCart,addToCart,onLogoSecretClick,onSecretAdminClick,testMode,setTestMode}){
+  const miniOS = products.find(p => p.id === 401);
+  const workshop = products.find(p => p.id === 402);
+
+  return <main>
+    <TopNotice />
+    <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={onLogoSecretClick}/>
+
+    <section className="miniOsHero">
+      <div>
+        <p className="red">🚀 TURMA BETA • PROGRAMAÇÃO + IA</p>
+        <h1>Crie um Mini Sistema Operacional com IA no Navegador</h1>
+        <p>Em 7 dias, você cria um projeto visual de portfólio com terminal, janelas, editor de código, sistema de arquivos simulado e agentes de IA.</p>
+
+        <div className="miniOsActions">
+          <button onClick={()=>buyProduct(miniOS, addToCart)}>Entrar na turma beta por R$97</button>
+          <a href="#programa">Ver o que vou aprender</a>
+        </div>
+      </div>
+
+      <div className="miniOsScreen">
+        <div className="miniOsTop"><span></span><span></span><span></span></div>
+        <div className="miniOsDesktop">
+          <div className="miniWindow terminal">
+            <b>Terminal</b>
+            <code>$ create robot<br/>criando agente...<br/>agente online ✅<br/>$ run world</code>
+          </div>
+          <div className="miniWindow editor">
+            <b>Editor</b>
+            <code>agent Robo {'{'}<br/>&nbsp;&nbsp;memory: true<br/>&nbsp;&nbsp;task: explore<br/>{'}'}</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="programa" className="miniOsProgram">
+      <p className="red">O QUE VOCÊ VAI CONSTRUIR</p>
+      <h2>Um projeto que parece coisa de hacker de filme</h2>
+
+      <div className="miniOsGrid">
+        <article><b>🖥️ Desktop no navegador</b><p>Interface com janelas, terminal, editor e ambiente visual.</p></article>
+        <article><b>⌨️ Terminal funcional</b><p>Comandos simulados para criar arquivos, agentes e processos.</p></article>
+        <article><b>🧠 IA fake convincente</b><p>Agentes com memória, respostas e comportamento programável.</p></article>
+        <article><b>📁 Sistema de arquivos</b><p>Arquivos e pastas simulados dentro do navegador.</p></article>
+        <article><b>🧩 Linguagem simples</b><p>Sintaxe própria para controlar agentes e ações do sistema.</p></article>
+        <article><b>🚀 Publicação online</b><p>Você finaliza com um projeto publicável para portfólio.</p></article>
+      </div>
+    </section>
+
+    <section className="miniOsOffer">
+      <div>
+        <p className="red">OFERTA DE LANÇAMENTO</p>
+        <h2>Entrar na turma beta</h2>
+        <p>Receba template base, 7 aulas curtas, código-fonte e desafio final para criar seu próprio Mini OS IA.</p>
+      </div>
+      <div>
+        <small>De R$297 por</small>
+        <strong>R$97</strong>
+        <button onClick={()=>buyProduct(miniOS, addToCart)}>Garantir acesso</button>
+      </div>
+    </section>
+
+    <section className="miniOsOffer miniOsOfferLight">
+      <div>
+        <p className="red">VERSÃO COM MENTORIA</p>
+        <h2>Workshop Mini OS IA</h2>
+        <p>Para quem quer acompanhamento para personalizar, publicar e apresentar o projeto como portfólio.</p>
+      </div>
+      <div>
+        <small>De R$997 por</small>
+        <strong>R$497</strong>
+        <button onClick={()=>buyProduct(workshop, addToCart)}>Comprar workshop</button>
+      </div>
+    </section>
+
+    <Footer onSecretAdminClick={onSecretAdminClick}/>
+    <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
+    {testMode && <TestModePanel setTestMode={setTestMode}/>} 
+  </main>
+}
+
+function OrganizaProPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,removeFromCart,addToCart,onLogoSecretClick,onSecretAdminClick,testMode,setTestMode}){
+  const diagnostico = products.find(p => p.id === 301);
+  const performance = products.find(p => p.id === 302);
+
+  return <main>
+    <TopNotice />
+    <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={onLogoSecretClick}/>
+
+    <section className="organizaHero">
+      <p className="red">ORGANIZAPRO • PERFORMANCE E EXPANSÃO</p>
+      <h1>Organize sua operação para vender com mais previsibilidade</h1>
+      <p>Diagnóstico, estruturação, captação e escala para negócios que querem parar de depender de sorte e começar a crescer com método.</p>
+
+      <div className="organizaActions">
+        <a href="/descobrir-negocio">Fazer diagnóstico gratuito</a>
+        <button onClick={()=>buyProduct(diagnostico, addToCart)}>Contratar análise completa</button>
+      </div>
+    </section>
+
+    <section className="organizaProblems">
+      <p className="red">O QUE RESOLVEMOS</p>
+      <h2>Seu negócio não precisa de mais bagunça. Precisa de processo.</h2>
+
+      <div>
+        <article><b>Falta de previsibilidade</b><p>Você não sabe quantos clientes vai conseguir no mês.</p></article>
+        <article><b>Processos desorganizados</b><p>Atendimento, vendas e marketing não seguem uma rotina clara.</p></article>
+        <article><b>Conversão inconsistente</b><p>Entram oportunidades, mas muitas se perdem no caminho.</p></article>
+        <article><b>Marketing desconectado</b><p>Conteúdo e anúncios não conversam com o processo comercial.</p></article>
+      </div>
+    </section>
+
+    <section className="organizaMethod">
+      <p className="red">METODOLOGIA ORGANIZAPRO</p>
+      <h2>Diagnóstico → Estruturação → Captação → Escala</h2>
+
+      <div>
+        <article><span>1</span><b>Diagnóstico</b><p>Mapeamos gargalos, oportunidades e prioridades.</p></article>
+        <article><span>2</span><b>Estruturação</b><p>Organizamos oferta, processo, atendimento e rotina comercial.</p></article>
+        <article><span>3</span><b>Captação</b><p>Criamos caminhos para gerar oportunidades com consistência.</p></article>
+        <article><span>4</span><b>Escala</b><p>Acompanhamos indicadores e otimizamos o crescimento.</p></article>
+      </div>
+    </section>
+
+    <section className="organizaOffer">
+      <div>
+        <p className="red">PRÓXIMO PASSO</p>
+        <h2>Diagnóstico OrganizaPro</h2>
+        <p>Receba análise personalizada do seu negócio com mapa de gargalos, prioridades e plano de ação.</p>
+      </div>
+      <div>
+        <small>Oferta inicial</small>
+        <strong>R$497</strong>
+        <button onClick={()=>buyProduct(diagnostico, addToCart)}>Contratar diagnóstico</button>
+      </div>
+    </section>
+
+    <section className="organizaOffer miniOsOfferLight">
+      <div>
+        <p className="red">IMPLEMENTAÇÃO</p>
+        <h2>Projeto de Performance OrganizaPro</h2>
+        <p>Para negócios que querem implementação de processos, funil comercial, captação e rotina de vendas.</p>
+      </div>
+      <div>
+        <small>Projeto inicial</small>
+        <strong>R$1.997</strong>
+        <button onClick={()=>buyProduct(performance, addToCart)}>Solicitar projeto</button>
+      </div>
+    </section>
+
+    <Footer onSecretAdminClick={onSecretAdminClick}/>
+    <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
+    {testMode && <TestModePanel setTestMode={setTestMode}/>} 
+  </main>
+}
+
 function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação</p></div><div>🎯<b>Escolha por interesse</b><p>Encontre materiais alinhados ao que você procura</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança</p></div></section>}
 
 function Best({best,addToCart}){return <section id="best" className="best"><p className="red">MAIS PROCURADOS AGORA</p><h2>Produtos em destaque para começar</h2><p className="sub">Uma seleção inicial dos materiais mais procurados para você começar com segurança.</p><div className="bestGrid">{best.map(p=><Product p={p} compact addToCart={addToCart} key={p.id}/>)}</div></section>}
@@ -352,6 +573,8 @@ function GoalLinks(){
     ['abrir-negocio','Abrir negócio'],
     ['pack','Pack completo'],
     ['organizar','Organização'],
+    ['programacao','Programação e IA'],
+    ['consultoria','OrganizaPro'],
     ['saude','Saúde'],
     ['estudar','Estudos']
   ];
@@ -753,9 +976,13 @@ function ThankYouPage(){
             <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
             <b>{p.title}</b>
 
-            {canDownload ? (
+            {canDownload && isDownloadReady(p) ? (
               <a href={downloadLink(p)} target="_blank" rel="noreferrer">
                 Baixar Ebook Agora
+              </a>
+            ) : canDownload && !isDownloadReady(p) ? (
+              <a href={wa(p)} target="_blank" rel="noreferrer">
+                Agendar pelo WhatsApp
               </a>
             ) : (
               <button disabled style={{opacity:.55,cursor:'not-allowed'}}>
