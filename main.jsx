@@ -252,6 +252,7 @@ function App(){
     <TopNotice />
     <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={handleLogoSecretClick}/>
     <Hero best={best}/>
+    <PathChooser />
     <TrustBar/>
     <Best best={best} addToCart={addToCart}/>
     <FeaturedMicroEbook addToCart={addToCart}/>
@@ -313,27 +314,27 @@ function Header({search,setSearch,submitSearch,cartCount,setCartOpen,onLogoSecre
 
 function Hero({best}){return <section id="top" className="hero heroPremium">
   <div className="copy">
-    <p className="eyebrow">🔥 EBOOKS PRÁTICOS • ACESSO IMEDIATO</p>
-    <h1>Ebooks práticos para <span>aprender, vender e organizar</span> sua vida</h1>
-    <p className="lead">Guias simples, acessíveis e diretos ao ponto para quem quer aprender, empreender, se organizar ou desenvolver uma nova habilidade.</p>
+    <p className="eyebrow">🔥 IMPÉRIO DIGITAL • PRODUTOS DIGITAIS + IA + CRESCIMENTO</p>
+    <h1>Escolha seu próximo passo: <span>aprender, criar ou organizar seu negócio</span></h1>
+    <p className="lead">Uma central com ebooks práticos, projetos de programação com IA e diagnóstico para quem quer começar, vender melhor ou estruturar uma operação com mais clareza.</p>
 
     <div className="heroTrust premiumTrust">
-      <span>💰 <b>A partir de R$1,99</b><small>Produto de entrada</small></span>
-      <span>⚡ <b>Acesso imediato</b><small>Baixe após a compra</small></span>
-      <span>📚 <b>Leitura prática</b><small>Conteúdo direto</small></span>
+      <span>📚 <b>Ebooks acessíveis</b><small>A partir de R$1,99</small></span>
+      <span>🚀 <b>Mini OS IA</b><small>Projeto tech de portfólio</small></span>
+      <span>📊 <b>OrganizaPro</b><small>Diagnóstico e performance</small></span>
       <span>🛡️ <b>Compra segura</b><small>Mercado Pago</small></span>
     </div>
 
     <div className="socialProof premiumProof">
-      <b>⭐ Materiais selecionados</b>
-      <span>Escolha uma área de interesse e encontre conteúdos alinhados ao seu objetivo</span>
+      <b>⭐ Comece pequeno e evolua</b>
+      <span>Do ebook de entrada ao produto premium ou consultoria.</span>
     </div>
 
     <div className="actions">
-      <a className="primary pulse" href="#best">Ver mais vendidos</a>
-      <a className="secondary" href="#escolha">Escolher material</a>
+      <a className="primary pulse" href="#caminhos">Escolher meu caminho</a>
+      <a className="secondary" href="/descobrir-negocio">Fazer o quiz</a>
     </div>
-    <p className="secureLine">🔒 Compra segura • Acesso imediato • Garantia 7 dias</p>
+    <p className="secureLine">🔒 Compra segura • Acesso imediato quando houver arquivo • Suporte no WhatsApp</p>
   </div>
 
   <div className="phoneStage">
@@ -341,6 +342,35 @@ function Hero({best}){return <section id="top" className="hero heroPremium">
     <Phone product={best[0]}/>
   </div>
 </section>}
+
+function PathChooser(){
+  return <section id="caminhos" className="pathChooser">
+    <p className="red">ESCOLHA SEU PRÓXIMO PASSO</p>
+    <h2>Três caminhos claros dentro do Império Digital</h2>
+    <p className="sub">Você não precisa entender tudo agora. Escolha o caminho que combina com seu momento.</p>
+
+    <div className="pathGrid">
+      <article>
+        <span>📚</span>
+        <b>Quero começar com ebooks</b>
+        <p>Materiais baratos e diretos para aprender, testar ideias e dar os primeiros passos.</p>
+        <a href="/catalogo">Ver catálogo</a>
+      </article>
+      <article>
+        <span>🚀</span>
+        <b>Quero aprender programação com IA</b>
+        <p>Crie um mini sistema operacional no navegador com terminal, janelas, editor e agentes de IA.</p>
+        <a href="/mini-os">Conhecer Mini OS IA</a>
+      </article>
+      <article>
+        <span>📊</span>
+        <b>Quero organizar meu negócio</b>
+        <p>Receba um diagnóstico para estruturar vendas, processos, captação e crescimento.</p>
+        <a href="/organiza-pro">Conhecer OrganizaPro</a>
+      </article>
+    </div>
+  </section>
+}
 
 function Phone({product}){const phoneProducts = products.filter(p=>[1,2,3,4,15,16].includes(p.id)); return <aside className="phone premiumPhone"><div className="screen">
   <div className="phoneNav">☰ <b>♛ IMPÉRIO <small>DIGITAL</small></b> 🛒</div>
@@ -381,19 +411,19 @@ function FeaturedMicroEbook({addToCart}){
 
 
 function MiniOSAndOrganizaCTA(){
-  return <section className="doubleCTA">
+  return <section className="doubleCTA upgradedDoubleCTA">
     <article>
-      <p>🚀 PRODUTO TECH</p>
-      <h2>Crie um Mini Sistema Operacional com IA</h2>
-      <span>Um projeto visual para aprender programação, IA, interface moderna, terminal, janelas e agentes inteligentes.</span>
-      <a href="/mini-os">Conhecer Mini OS IA</a>
+      <p>🚀 PRODUTO TECH PREMIUM</p>
+      <h2>Mini OS IA: um projeto de portfólio que chama atenção</h2>
+      <span>Aprenda criando um desktop no navegador com terminal, janelas, editor de código e agentes de IA. Ideal para iniciantes, devs júnior e criadores tech.</span>
+      <a href="/mini-os">Entrar na turma beta</a>
     </article>
 
     <article>
-      <p>📊 CONSULTORIA</p>
-      <h2>Organize e escale seu negócio com método</h2>
-      <span>Diagnóstico, estruturação, captação e performance para negócios que precisam vender com previsibilidade.</span>
-      <a href="/organiza-pro">Conhecer OrganizaPro</a>
+      <p>📊 CONSULTORIA E PERFORMANCE</p>
+      <h2>OrganizaPro: diagnóstico para vender com previsibilidade</h2>
+      <span>Mapeamos gargalos de vendas, atendimento, captação e processos para entregar um plano de ação claro.</span>
+      <a href="/organiza-pro">Fazer diagnóstico</a>
     </article>
   </section>
 }
@@ -413,15 +443,22 @@ function MiniOSPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,rem
     <TopNotice />
     <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={onLogoSecretClick}/>
 
-    <section className="miniOsHero">
+    <section className="miniOsHero miniOsHeroV2">
       <div>
         <p className="red">🚀 TURMA BETA • PROGRAMAÇÃO + IA</p>
-        <h1>Crie um Mini Sistema Operacional com IA no Navegador</h1>
-        <p>Em 7 dias, você cria um projeto visual de portfólio com terminal, janelas, editor de código, sistema de arquivos simulado e agentes de IA.</p>
+        <h1>Crie um projeto de portfólio que parece coisa de hacker de filme</h1>
+        <p>Em 7 dias, você constrói um mini sistema operacional no navegador com terminal, janelas, editor de código, sistema de arquivos simulado e agentes de IA. Não é teoria solta: é um projeto visual para mostrar.</p>
 
         <div className="miniOsActions">
           <button onClick={()=>buyProduct(miniOS, addToCart)}>Entrar na turma beta por R$97</button>
-          <a href="#programa">Ver o que vou aprender</a>
+          <a href="#programa">Ver o que vou construir</a>
+        </div>
+
+        <div className="miniProofLine">
+          <span>✅ Template base</span>
+          <span>✅ 7 aulas curtas</span>
+          <span>✅ Código-fonte</span>
+          <span>✅ Desafio final</span>
         </div>
       </div>
 
@@ -430,35 +467,50 @@ function MiniOSPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,rem
         <div className="miniOsDesktop">
           <div className="miniWindow terminal">
             <b>Terminal</b>
-            <code>$ create robot<br/>criando agente...<br/>agente online ✅<br/>$ run world</code>
+            <code>$ boot imperio-os<br/>sistema iniciado ✅<br/>$ create robot<br/>agente online 🤖<br/>$ run world</code>
           </div>
           <div className="miniWindow editor">
             <b>Editor</b>
-            <code>agent Robo {'{'}<br/>&nbsp;&nbsp;memory: true<br/>&nbsp;&nbsp;task: explore<br/>{'}'}</code>
+            <code>agent Robo {'{'}<br/>&nbsp;&nbsp;memory: true<br/>&nbsp;&nbsp;task: explore<br/>&nbsp;&nbsp;talk: smart<br/>{'}'}</code>
           </div>
+          <div className="miniOsDock"><span>Terminal</span><span>Editor</span><span>Files</span><span>AI</span></div>
         </div>
       </div>
     </section>
 
     <section id="programa" className="miniOsProgram">
       <p className="red">O QUE VOCÊ VAI CONSTRUIR</p>
-      <h2>Um projeto que parece coisa de hacker de filme</h2>
+      <h2>Um mini computador dentro do navegador</h2>
 
       <div className="miniOsGrid">
-        <article><b>🖥️ Desktop no navegador</b><p>Interface com janelas, terminal, editor e ambiente visual.</p></article>
-        <article><b>⌨️ Terminal funcional</b><p>Comandos simulados para criar arquivos, agentes e processos.</p></article>
-        <article><b>🧠 IA fake convincente</b><p>Agentes com memória, respostas e comportamento programável.</p></article>
-        <article><b>📁 Sistema de arquivos</b><p>Arquivos e pastas simulados dentro do navegador.</p></article>
-        <article><b>🧩 Linguagem simples</b><p>Sintaxe própria para controlar agentes e ações do sistema.</p></article>
-        <article><b>🚀 Publicação online</b><p>Você finaliza com um projeto publicável para portfólio.</p></article>
+        <article><b>🖥️ Desktop no navegador</b><p>Interface visual com janelas, área de trabalho e aparência de sistema próprio.</p></article>
+        <article><b>⌨️ Terminal funcional</b><p>Comandos simulados para criar arquivos, abrir apps e controlar agentes.</p></article>
+        <article><b>🧠 IA fake convincente</b><p>Agentes com respostas, memória simples e comportamento programável.</p></article>
+        <article><b>📁 Sistema de arquivos</b><p>Arquivos e pastas simulados para dar sensação real de sistema operacional.</p></article>
+        <article><b>🧩 Linguagem simples</b><p>Sintaxe própria para controlar robôs, tarefas e ações dentro do ambiente.</p></article>
+        <article><b>🚀 Publicação online</b><p>Você finaliza com um projeto compartilhável para portfólio, currículo e redes.</p></article>
+      </div>
+    </section>
+
+    <section className="miniLessonPlan">
+      <p className="red">PLANO EM 7 AULAS</p>
+      <h2>Roteiro simples para sair do zero ao projeto publicado</h2>
+      <div>
+        <article><span>1</span><b>Desktop</b><p>Criar a base visual do sistema.</p></article>
+        <article><span>2</span><b>Terminal</b><p>Comandos e respostas simuladas.</p></article>
+        <article><span>3</span><b>Linguagem fake</b><p>Sintaxe simples para controlar ações.</p></article>
+        <article><span>4</span><b>Arquivos</b><p>Sistema de arquivos virtual.</p></article>
+        <article><span>5</span><b>Agentes IA</b><p>NPCs e robôs com comportamento.</p></article>
+        <article><span>6</span><b>Publicação</b><p>Colocar o projeto online.</p></article>
+        <article><span>7</span><b>Portfólio</b><p>Personalizar e apresentar o projeto.</p></article>
       </div>
     </section>
 
     <section className="miniOsOffer">
       <div>
         <p className="red">OFERTA DE LANÇAMENTO</p>
-        <h2>Entrar na turma beta</h2>
-        <p>Receba template base, 7 aulas curtas, código-fonte e desafio final para criar seu próprio Mini OS IA.</p>
+        <h2>Turma beta Mini OS IA</h2>
+        <p>Receba template base, 7 aulas curtas, código-fonte, desafio final e acesso ao projeto para criar sua própria versão.</p>
       </div>
       <div>
         <small>De R$297 por</small>
@@ -494,25 +546,32 @@ function OrganizaProPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpe
     <TopNotice />
     <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={onLogoSecretClick}/>
 
-    <section className="organizaHero">
+    <section className="organizaHero organizaHeroV2">
       <p className="red">ORGANIZAPRO • PERFORMANCE E EXPANSÃO</p>
-      <h1>Organize sua operação para vender com mais previsibilidade</h1>
-      <p>Diagnóstico, estruturação, captação e escala para negócios que querem parar de depender de sorte e começar a crescer com método.</p>
+      <h1>Seu negócio vende pouco ou vende sem previsibilidade?</h1>
+      <p>A OrganizaPro organiza sua operação comercial com diagnóstico, processos, captação e plano de crescimento para você parar de depender de sorte e começar a decidir com método.</p>
 
       <div className="organizaActions">
         <a href="/descobrir-negocio">Fazer diagnóstico gratuito</a>
-        <button onClick={()=>buyProduct(diagnostico, addToCart)}>Contratar análise completa</button>
+        <button onClick={()=>buyProduct(diagnostico, addToCart)}>Contratar diagnóstico completo</button>
+      </div>
+
+      <div className="miniProofLine organizaProofLine">
+        <span>📌 Gargalos</span>
+        <span>📊 Funil</span>
+        <span>📞 Atendimento</span>
+        <span>🚀 Plano de ação</span>
       </div>
     </section>
 
     <section className="organizaProblems">
       <p className="red">O QUE RESOLVEMOS</p>
-      <h2>Seu negócio não precisa de mais bagunça. Precisa de processo.</h2>
+      <h2>Mais vendas não começam com mais bagunça. Começam com processo.</h2>
 
       <div>
-        <article><b>Falta de previsibilidade</b><p>Você não sabe quantos clientes vai conseguir no mês.</p></article>
+        <article><b>Falta de previsibilidade</b><p>Você não sabe quantos clientes vai conseguir no mês e vive apagando incêndio.</p></article>
         <article><b>Processos desorganizados</b><p>Atendimento, vendas e marketing não seguem uma rotina clara.</p></article>
-        <article><b>Conversão inconsistente</b><p>Entram oportunidades, mas muitas se perdem no caminho.</p></article>
+        <article><b>Conversão inconsistente</b><p>Entram oportunidades, mas muitas se perdem por falta de follow-up.</p></article>
         <article><b>Marketing desconectado</b><p>Conteúdo e anúncios não conversam com o processo comercial.</p></article>
       </div>
     </section>
@@ -522,10 +581,21 @@ function OrganizaProPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpe
       <h2>Diagnóstico → Estruturação → Captação → Escala</h2>
 
       <div>
-        <article><span>1</span><b>Diagnóstico</b><p>Mapeamos gargalos, oportunidades e prioridades.</p></article>
+        <article><span>1</span><b>Diagnóstico</b><p>Mapeamos gargalos, oportunidades e prioridades reais.</p></article>
         <article><span>2</span><b>Estruturação</b><p>Organizamos oferta, processo, atendimento e rotina comercial.</p></article>
         <article><span>3</span><b>Captação</b><p>Criamos caminhos para gerar oportunidades com consistência.</p></article>
         <article><span>4</span><b>Escala</b><p>Acompanhamos indicadores e otimizamos o crescimento.</p></article>
+      </div>
+    </section>
+
+    <section className="organizaDeliverables">
+      <p className="red">O QUE VOCÊ RECEBE NO DIAGNÓSTICO</p>
+      <h2>Uma visão clara do que corrigir primeiro</h2>
+      <div>
+        <article><b>Mapa de gargalos</b><p>O que está travando vendas, atendimento e captação.</p></article>
+        <article><b>Plano de 7 dias</b><p>Prioridades imediatas para organizar a operação.</p></article>
+        <article><b>Funil recomendado</b><p>Como transformar interesse em oportunidade e venda.</p></article>
+        <article><b>Próximos passos</b><p>O que fazer sozinho e o que pode ser implementado com acompanhamento.</p></article>
       </div>
     </section>
 
@@ -533,7 +603,7 @@ function OrganizaProPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpe
       <div>
         <p className="red">PRÓXIMO PASSO</p>
         <h2>Diagnóstico OrganizaPro</h2>
-        <p>Receba análise personalizada do seu negócio com mapa de gargalos, prioridades e plano de ação.</p>
+        <p>Receba uma análise personalizada do seu negócio com mapa de gargalos, prioridades e plano de ação.</p>
       </div>
       <div>
         <small>Oferta inicial</small>
@@ -849,7 +919,7 @@ function ThankYouPage(){
           customer_name: localOrder.customer?.name || 'Cliente'
         });
         setToken(localOrder.test ? 'TESTE_R0' : null);
-        setMessage(isTest ? 'Modo teste aprovado. Seus downloads estão liberados.' : 'Seus ebooks estão liberados.');
+        setMessage(isTest ? 'Modo teste aprovado. Seus acessos estão liberados.' : 'Seu pedido foi registrado.');
       }
 
       setLoading(false);
@@ -863,25 +933,18 @@ function ThankYouPage(){
     async function checkOrder(){
       try{
         attempts += 1;
-
         const res = await fetch(`/api/order-status?order_id=${encodeURIComponent(orderId)}`);
         const data = await res.json();
-
-        if(!res.ok){
-          throw new Error(data.error || 'Não foi possível consultar o pedido.');
-        }
-
+        if(!res.ok) throw new Error(data.error || 'Não foi possível consultar o pedido.');
         setOrder(data.order || null);
         setToken(data.token?.token || null);
-
         if(data.order?.status === 'approved' && data.token?.token){
-          setMessage('Pagamento aprovado. Seus ebooks estão liberados.');
+          setMessage('Pagamento aprovado. Seus acessos estão liberados.');
           setLoading(false);
           return true;
         }
-
         if(data.order?.status === 'approved' && !data.token?.token){
-          setMessage('Pagamento aprovado. Preparando seus links de download...');
+          setMessage('Pagamento aprovado. Preparando seus acessos...');
         }else if(data.order?.status === 'pending'){
           setMessage('Pagamento em processamento. Aguarde alguns segundos...');
         }else if(data.order?.status === 'payment_error'){
@@ -891,13 +954,11 @@ function ThankYouPage(){
         }else{
           setMessage('Verificando pagamento...');
         }
-
         if(attempts >= maxAttempts){
           setLoading(false);
           setMessage('Ainda não conseguimos confirmar o pagamento automaticamente.');
           return true;
         }
-
         return false;
       }catch(err){
         setError(err.message || 'Erro ao consultar pedido.');
@@ -908,19 +969,12 @@ function ThankYouPage(){
 
     checkOrder().then((done)=>{
       if(done) return;
-
       intervalId = setInterval(async ()=>{
         const doneNow = await checkOrder();
-
-        if(doneNow && intervalId){
-          clearInterval(intervalId);
-        }
+        if(doneNow && intervalId) clearInterval(intervalId);
       }, 4000);
     });
-
-    return () => {
-      if(intervalId) clearInterval(intervalId);
-    };
+    return () => { if(intervalId) clearInterval(intervalId); };
   },[]);
 
   const purchased = order?.items || [];
@@ -932,7 +986,8 @@ function ThankYouPage(){
       title: product?.title || item.title,
       img: product?.img || '/vendas-digitais.png',
       price: product?.price || (item.price ? `R$ ${Number(item.price).toFixed(2).replace('.',',')}` : ''),
-      file: product?.file || item.file
+      file: product?.file || item.file,
+      intent: product?.intent || item.intent
     };
   }
 
@@ -941,63 +996,54 @@ function ThankYouPage(){
       const product = products.find(p => String(p.id) === String(item.id));
       return product?.file || item.file || '#';
     }
-
     return `/api/download?token=${encodeURIComponent(token)}&product_id=${encodeURIComponent(item.id)}`;
   }
 
-  const canDownload = token && purchased.length > 0;
+  function upsellInfo(){
+    const ids = purchased.map(item => Number(item.id));
+    const intents = purchased.map(item => getProductInfo(item).intent);
+    if(ids.some(id => [401].includes(id))){
+      return {title:'Quer ajuda para personalizar e publicar seu projeto?',text:'O Workshop Mini OS IA com Mentoria ajuda você a transformar o template em um projeto próprio de portfólio.',cta:'Conhecer workshop',href:'/categoria/programacao'};
+    }
+    if(ids.some(id => [301,302].includes(id)) || intents.includes('consultoria')){
+      return {title:'Próximo passo: agendar sua análise',text:'Fale conosco no WhatsApp para alinhar informações do negócio, horários e próximos passos do diagnóstico ou projeto.',cta:'Agendar no WhatsApp',href:wa()};
+    }
+    if(ids.some(id => [11,12,16,17].includes(id)) || intents.includes('organizar') || intents.includes('abrir-negocio') || intents.includes('pack')){
+      return {title:'Quer um plano personalizado para aplicar isso no seu negócio?',text:'Conheça o Diagnóstico OrganizaPro e receba um mapa de gargalos com plano de ação prático.',cta:'Conhecer OrganizaPro',href:'/organiza-pro'};
+    }
+    return {title:'Não sabe qual caminho seguir depois?',text:'Faça o quiz e receba uma recomendação personalizada entre ebooks, Mini OS IA e OrganizaPro.',cta:'Fazer o quiz',href:'/descobrir-negocio'};
+  }
+
+  const canAccess = token && purchased.length > 0;
+  const upsell = upsellInfo();
+  const hasService = purchased.some(item => !isDownloadReady(getProductInfo(item)));
 
   return <main className="thanksPage">
     <section>
-      <div>{canDownload ? '✅' : '⏳'}</div>
-      <p className="red">{canDownload ? 'COMPRA APROVADA' : 'AGUARDANDO CONFIRMAÇÃO'}</p>
-      <h1>{canDownload ? 'Seus ebooks estão liberados' : 'Estamos verificando seu pagamento'}</h1>
+      <div>{canAccess ? '✅' : '⏳'}</div>
+      <p className="red">{canAccess ? 'COMPRA APROVADA' : 'AGUARDANDO CONFIRMAÇÃO'}</p>
+      <h1>{canAccess ? 'Seu acesso está liberado' : 'Estamos verificando seu pagamento'}</h1>
       <span>{message}</span>
-
-      {loading && <div className="checkoutError" style={{marginTop:'18px'}}>
-        Aguarde, isso pode levar alguns segundos após o pagamento.
-      </div>}
-
-      {error && <div className="checkoutError" style={{marginTop:'18px'}}>
-        {error}
-      </div>}
+      {hasService && canAccess && <div className="serviceAccessNote">Produtos como diagnóstico, workshop e consultoria não têm download automático. Use o botão de WhatsApp para agendar ou receber as instruções.</div>}
+      {loading && <div className="checkoutError" style={{marginTop:'18px'}}>Aguarde, isso pode levar alguns segundos após o pagamento.</div>}
+      {error && <div className="checkoutError" style={{marginTop:'18px'}}>{error}</div>}
 
       <div className="thanksProducts">
         {purchased.length === 0 ? (
-          <article>
-            <b>Não encontramos produtos neste pedido.</b>
-            <p>Se você já pagou, fale com o suporte para receber seu acesso.</p>
-            <a href={wa()} target="_blank" rel="noreferrer">Falar com suporte</a>
-          </article>
+          <article><b>Não encontramos produtos neste pedido.</b><p>Se você já pagou, fale com o suporte para receber seu acesso.</p><a href={wa()} target="_blank" rel="noreferrer">Falar com suporte</a></article>
         ) : purchased.map(item => {
           const p = getProductInfo(item);
-
           return <article key={p.id}>
             <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
             <b>{p.title}</b>
-
-            {canDownload && isDownloadReady(p) ? (
-              <a href={downloadLink(p)} target="_blank" rel="noreferrer">
-                Baixar Ebook Agora
-              </a>
-            ) : canDownload && !isDownloadReady(p) ? (
-              <a href={wa(p)} target="_blank" rel="noreferrer">
-                Agendar pelo WhatsApp
-              </a>
-            ) : (
-              <button disabled style={{opacity:.55,cursor:'not-allowed'}}>
-                Aguardando aprovação
-              </button>
-            )}
+            {canAccess && isDownloadReady(p) ? <a href={downloadLink(p)} target="_blank" rel="noreferrer">Baixar Ebook Agora</a> : canAccess && !isDownloadReady(p) ? <a href={wa(p)} target="_blank" rel="noreferrer">Agendar pelo WhatsApp</a> : <button disabled style={{opacity:.55,cursor:'not-allowed'}}>Aguardando aprovação</button>}
           </article>
         })}
       </div>
 
-      {!canDownload && <a className="thanksBtn" href={wa()} target="_blank" rel="noreferrer">
-        💬 Falar com suporte
-      </a>}
-
-      <a className="thanksBtn quizThanksBtn" href="/descobrir-negocio">🤖 Descobrir meu melhor negócio</a>
+      {canAccess && <div className="thanksUpsell"><p className="red">PRÓXIMO PASSO RECOMENDADO</p><h2>{upsell.title}</h2><p>{upsell.text}</p><a className="thanksBtn" href={upsell.href} target={upsell.href.startsWith('http') ? '_blank' : undefined} rel={upsell.href.startsWith('http') ? 'noreferrer' : undefined}>{upsell.cta}</a></div>}
+      {!canAccess && <a className="thanksBtn" href={wa()} target="_blank" rel="noreferrer">💬 Falar com suporte</a>}
+      <a className="thanksBtn quizThanksBtn" href="/descobrir-negocio">🤖 Descobrir meu melhor caminho</a>
       <a className="thanksBtn" href="/">Voltar para o site</a>
     </section>
   </main>
@@ -1008,73 +1054,18 @@ function QuizProPage(){
   const [answers,setAnswers] = useState([]);
 
   const questions = [
-    {
-      title:"Você prefere começar trabalhando com o quê?",
-      options:[
-        ["💻","Internet, celular e vendas online","digital"],
-        ["🛠️","Ferramentas, consertos e prática manual","tecnico"],
-        ["✂️","Beleza, estética ou atendimento","beleza"],
-        ["🧁","Comida, doces ou produção artesanal","producao"],
-        ["🗓️","Organização, rotina e produtividade","organizacao"]
-      ]
-    },
-    {
-      title:"Quanto você tem para começar?",
-      options:[
-        ["🪙","Quase nada, quero começar do zero","digital"],
-        ["💼","Até R$300","organizacao"],
-        ["💵","Até R$1.000","tecnico"],
-        ["💰","Mais de R$1.000","beleza"]
-      ]
-    },
-    {
-      title:"Qual resultado você busca primeiro?",
-      options:[
-        ["⚡","Fazer renda extra rápido","digital"],
-        ["💼","Aprender uma profissão prática","tecnico"],
-        ["👥","Atender clientes e crescer aos poucos","beleza"],
-        ["🛒","Produzir e vender algo meu","producao"],
-        ["🎯","Me organizar para empreender melhor","organizacao"]
-      ]
-    },
-    {
-      title:"Você prefere trabalhar mais...",
-      options:[
-        ["🌐","Online","digital"],
-        ["🏪","Presencialmente","beleza"],
-        ["⚙️","Com serviços técnicos","tecnico"],
-        ["🏠","Em casa produzindo","producao"],
-        ["📊","Planejando e estruturando","organizacao"]
-      ]
-    }
+    {title:"O que você quer conquistar primeiro?",options:[["💰","Começar uma renda extra com pouco investimento","digital"],["💻","Aprender programação/IA criando um projeto visual","programacao"],["📊","Organizar meu negócio e vender com previsibilidade","consultoria"],["🛠️","Aprender uma habilidade prática para atender clientes","tecnico"],["✂️","Trabalhar com beleza, atendimento ou serviço local","beleza"]]},
+    {title:"Qual é seu momento hoje?",options:[["🪙","Estou começando do zero","digital"],["🧠","Quero montar um projeto de portfólio","programacao"],["🏪","Já tenho ou quero estruturar um negócio","consultoria"],["🔧","Gosto de prática, ferramentas e serviço técnico","tecnico"],["👥","Quero lidar com pessoas e atendimento","beleza"]]},
+    {title:"Qual produto parece mais útil para você agora?",options:[["📚","Um ebook simples e barato para começar","digital"],["🚀","Um curso/projeto chamativo com IA","programacao"],["📈","Um diagnóstico para meu negócio","consultoria"],["🔩","Guias de assistência técnica","tecnico"],["💈","Guias de barbearia/beleza","beleza"]]},
+    {title:"Qual resultado faria você sentir que valeu a pena?",options:[["⚡","Ter uma ideia para começar a ganhar dinheiro","digital"],["🖥️","Publicar um projeto diferente no meu portfólio","programacao"],["🎯","Saber exatamente o que corrigir no meu negócio","consultoria"],["📞","Conseguir clientes para um serviço prático","tecnico"],["⭐","Melhorar atendimento e atrair mais clientes locais","beleza"]]}
   ];
 
   const data = {
-    digital:{
-      title:"VENDAS DIGITAIS",
-      text:"Você tem perfil para negócios online, produtos digitais e renda extra usando celular e internet",
-      products:[3,16,17]
-    },
-    tecnico:{
-      title:"ASSISTÊNCIA TÉCNICA",
-      text:"Você combina com serviços práticos, consertos e negócios com demanda local",
-      products:[1,101,102]
-    },
-    beleza:{
-      title:"BELEZA E ATENDIMENTO",
-      text:"Você combina com negócios presenciais, estética e atendimento ao cliente",
-      products:[2,201,202]
-    },
-    producao:{
-      title:"PRODUÇÃO E VENDA",
-      text:"Você combina com produção caseira, doces, alimentos e venda recorrente",
-      products:[8,7,16]
-    },
-    organizacao:{
-      title:"NEGÓCIO ORGANIZADO",
-      text:"Você combina com planejamento, produtividade e estruturação antes de crescer",
-      products:[11,12,16]
-    }
+    digital:{title:"RENDA EXTRA E VENDAS DIGITAIS",text:"Você está no momento de começar simples, com materiais acessíveis e práticos para testar caminhos.",products:[15,3,16]},
+    programacao:{title:"PROGRAMAÇÃO E IA",text:"Você combina com um projeto visual e chamativo: criar um Mini Sistema Operacional com IA no navegador.",products:[401,402,5]},
+    consultoria:{title:"NEGÓCIO ESTRUTURADO",text:"Você precisa de clareza, processo e um plano para organizar captação, atendimento e vendas.",products:[301,302,11]},
+    tecnico:{title:"ASSISTÊNCIA TÉCNICA",text:"Você combina com serviços práticos, consertos e negócios com demanda local.",products:[1,101,102]},
+    beleza:{title:"BELEZA E ATENDIMENTO",text:"Você combina com negócios presenciais, barbearia, estética e relacionamento com clientes.",products:[2,201,202]}
   };
 
   function choose(type){
@@ -1093,92 +1084,21 @@ function QuizProPage(){
   function goCheckout(productId){
     const product = products.find(p => p.id === productId);
     if(!product) return;
-
     localStorage.setItem('imperio_cart', JSON.stringify([product]));
     localStorage.setItem('imperio_last_order', JSON.stringify({cart:[product], total: priceNumber(product.price)}));
     window.location.href = '/checkout';
   }
 
   if(step === "result"){
-    const result = data[resultKey()];
-    return <main className="quizPro quizDark">
-      <section className="quizResultPro">
-        <div className="quizResultTop">
-          <a href="/" className="quizResultLogo">♛ IMPÉRIO <span>DIGITAL</span></a>
-          <small>🛡️ Ambiente Seguro</small>
-        </div>
-
-        <div className="quizResultHero">
-          <span>♕</span>
-          <p>SEU PERFIL COMBINA COM</p>
-          <h1>{result.title}</h1>
-          <small>{result.text}</small>
-        </div>
-
-        <div className="quizResultList">
-          <b>Recomendamos que você comece por:</b>
-          {result.products.map((id)=>{
-            const p = products.find(item => item.id === id);
-            if(!p) return null;
-
-            return <article key={p.id}>
-              <img src={p.img} alt={p.title} loading="lazy" decoding="async"/>
-              <div>
-                <h3>{p.title}</h3>
-                <p>{p.desc}</p>
-              </div>
-              <strong>{p.price}</strong>
-              <button onClick={()=>goCheckout(p.id)}>Ver produto</button>
-            </article>
-          })}
-        </div>
-
-        <a className="quizAllBtn" href="/catalogo">Ver todos os produtos</a>
-        <button className="quizRedo" onClick={()=>{setStep(0);setAnswers([])}}>↻ Refazer teste</button>
-      </section>
-    </main>
+    const key = resultKey();
+    const result = data[key] || data.digital;
+    const primaryHref = key === 'programacao' ? '/mini-os' : key === 'consultoria' ? '/organiza-pro' : '/catalogo';
+    const primaryLabel = key === 'programacao' ? 'Conhecer Mini OS IA' : key === 'consultoria' ? 'Conhecer OrganizaPro' : 'Ver catálogo';
+    return <main className="quizPro quizDark"><section className="quizResultPro"><div className="quizResultTop"><a href="/" className="quizResultLogo">♛ IMPÉRIO <span>DIGITAL</span></a><small>🛡️ Ambiente Seguro</small></div><div className="quizResultHero"><span>♕</span><p>SEU PERFIL COMBINA COM</p><h1>{result.title}</h1><small>{result.text}</small></div><div className="quizResultList"><b>Recomendamos que você comece por:</b>{result.products.map((id)=>{const p = products.find(item => item.id === id); if(!p) return null; return <article key={p.id}><img src={p.img} alt={p.title} loading="lazy" decoding="async"/><div><h3>{p.title}</h3><p>{p.desc}</p></div><strong>{p.price}</strong><button onClick={()=>goCheckout(p.id)}>Comprar</button></article>})}</div><a className="quizAllBtn" href={primaryHref}>{primaryLabel}</a><a className="quizAllBtn quizSecondaryBtn" href="/catalogo">Ver todos os produtos</a><button className="quizRedo" onClick={()=>{setStep(0);setAnswers([])}}>↻ Refazer teste</button></section></main>
   }
 
   const q = questions[step];
-
-  return <main className="quizPro">
-    <section className="quizCardPro">
-      <div className="quizTop">
-        <a href="/" className="quizBrand">♛ <b>IMPÉRIO</b><span>DIGITAL</span></a>
-        <small>🛡️ Ambiente Seguro</small>
-      </div>
-
-      <p className="quizBadge">CONSULTOR DIGITAL</p>
-      <h1>Descubra qual negócio combina <span>com você</span></h1>
-      <p className="quizSub">Responda algumas perguntas rápidas e receba uma recomendação personalizada para começar</p>
-
-      <div className="quizProgressLine">
-        <small>{step+1} de {questions.length}</small>
-        <div><span style={{width:`${((step+1)/questions.length)*100}%`}}></span></div>
-      </div>
-
-      <div className="quizQuestion">
-        <b>{step+1}</b>
-        <h2>{q.title}</h2>
-      </div>
-
-      <div className="quizOptionsPro">
-        {q.options.map((opt,i)=>(
-          <button key={i} onClick={()=>choose(opt[2])}>
-            <em>{opt[0]}</em>
-            <span>{opt[1]}</span>
-            <strong>›</strong>
-          </button>
-        ))}
-      </div>
-
-      <div className="quizFooterProof">
-        <span>☆ <b>Mais de 1.284</b><small>alunos satisfeitos</small></span>
-        <span>⏱️ <b>Acesso imediato</b><small>após a compra</small></span>
-        <span>🛡️ <b>Compra 100%</b><small>segura</small></span>
-      </div>
-    </section>
-  </main>
+  return <main className="quizPro"><section className="quizCardPro"><div className="quizTop"><a href="/" className="quizBrand">♛ <b>IMPÉRIO</b><span>DIGITAL</span></a><small>🛡️ Ambiente Seguro</small></div><p className="quizBadge">CONSULTOR DIGITAL</p><h1>Descubra qual caminho combina <span>com você</span></h1><p className="quizSub">Responda algumas perguntas rápidas e receba uma recomendação entre ebooks, Mini OS IA e OrganizaPro.</p><div className="quizProgressLine"><small>{step+1} de {questions.length}</small><div><span style={{width:`${((step+1)/questions.length)*100}%`}}></span></div></div><div className="quizQuestion"><b>{step+1}</b><h2>{q.title}</h2></div><div className="quizOptionsPro">{q.options.map((opt,i)=><button key={i} onClick={()=>choose(opt[2])}><em>{opt[0]}</em><span>{opt[1]}</span><strong>›</strong></button>)}</div><div className="quizFooterProof"><span>📚 <b>Ebooks</b><small>começo acessível</small></span><span>🚀 <b>Mini OS IA</b><small>projeto tech</small></span><span>📊 <b>OrganizaPro</b><small>negócio estruturado</small></span></div></section></main>
 }
 
 function CartDrawer({cart,open,setOpen,removeFromCart}){
