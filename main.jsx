@@ -96,6 +96,11 @@ function waCart(cart){
   return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(txt)}`;
 }
 
+function waOrganizaPro(){
+  const txt = 'Olá! Vim pela página OrganizaPro e quero falar sobre o Diagnóstico OrganizaPro e organização comercial.';
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(txt)}`;
+}
+
 function categoryHref(id){
   return id === 'todos' ? '/catalogo' : `/categoria/${id}`;
 }
@@ -215,6 +220,7 @@ function App(){
     onSecretAdminClick={handleFooterSecretAdminClick}
     testMode={testMode}
     setTestMode={setTestMode}
+    headerVariant="organizaPremium"
   />;
   if(rawPath === '/sugestoes') return <SuggestionPage
     search={search}
@@ -297,14 +303,21 @@ function TopNotice(){return <div className="notice">🔥 Oferta especial de lan�
 
 function Header({search,setSearch,submitSearch,cartCount,setCartOpen,onLogoSecretClick, variant}){
   const miniPremium = variant === 'miniOsPremium';
-  return <header className={miniPremium ? 'header headerMiniOsPremium' : 'header'}>
+  const orgPremium = variant === 'organizaPremium';
+  const slimLanding = miniPremium || orgPremium;
+  return <header className={miniPremium ? 'header headerMiniOsPremium' : orgPremium ? 'header headerOrganizaPremium' : 'header'}>
     <a className="logo" href="/" onClick={onLogoSecretClick} title="Império Digital"><span>♛</span><div><b>IMPÉRIO</b><small>DIGITAL</small></div></a>
-    <nav className={miniPremium ? 'navMiniOsPremium' : ''}>
+    <nav className={miniPremium ? 'navMiniOsPremium' : orgPremium ? 'navOrganizaPremium' : ''}>
       {miniPremium ? <>
         <a href="/">Início</a>
         <a href="/catalogo">Catálogo</a>
         <a href="/descobrir-negocio">Quiz</a>
         <a href="/organiza-pro">OrganizaPro</a>
+      </> : orgPremium ? <>
+        <a href="/">Início</a>
+        <a href="/catalogo">Catálogo</a>
+        <a href="/mini-os">Mini OS IA</a>
+        <a href="/descobrir-negocio">Quiz</a>
       </> : <>
         <a href="/">Início</a>
         <a href="/#best">Mais vendidos</a>
@@ -315,12 +328,12 @@ function Header({search,setSearch,submitSearch,cartCount,setCartOpen,onLogoSecre
         <a href="/descobrir-negocio">Quiz</a>
       </>}
     </nav>
-    {!miniPremium && <form className="search" onSubmit={(e)=>{e.preventDefault(); submitSearch?.(search)}}>
+    {!slimLanding && <form className="search" onSubmit={(e)=>{e.preventDefault(); submitSearch?.(search)}}>
       <span>⌕</span>
       <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar ebook"/>
     </form>}
     <button type="button" className="cartBtn" onClick={()=>setCartOpen(true)}>🛒 <span>{cartCount}</span></button>
-    <a className="headBtn" href={miniPremium ? '#oferta' : '/#ebook050'}>{miniPremium ? 'Garantir vaga' : 'Começar por R$1,99'}</a>
+    <a className="headBtn" href={miniPremium ? '#oferta' : orgPremium ? '#organiza-lead' : '/#ebook050'}>{miniPremium ? 'Garantir vaga' : orgPremium ? 'Diagnóstico' : 'Começar por R$1,99'}</a>
   </header>;
 }
 
@@ -458,12 +471,13 @@ function LeadForm({
   button = 'Enviar',
   compact = false,
   notes: notesProp,
-  defaultNotes
+  defaultNotes,
+  organizaFields = false
 }){
   const descText = description ?? subtitle ?? 'Preencha seus dados e vamos te chamar no WhatsApp com o próximo passo.';
   const notesExtra = notesProp ?? defaultNotes ?? '';
 
-  const [form,setForm] = useState({name:'', email:'', whatsapp:''});
+  const [form,setForm] = useState({name:'', email:'', whatsapp:'', company:'', revenue:''});
   const [status,setStatus] = useState({type:'', message:''});
   const [loading,setLoading] = useState(false);
 
@@ -478,6 +492,8 @@ function LeadForm({
     const name = form.name.trim();
     const email = form.email.trim();
     const whatsapp = form.whatsapp.trim();
+    const company = form.company.trim();
+    const revenue = form.revenue.trim();
 
     if(!name){
       setStatus({type:'error', message:'Informe seu nome.'});
@@ -490,8 +506,18 @@ function LeadForm({
 
     try{
       setLoading(true);
+      let notesBody = notesExtra.trim();
+      if(organizaFields){
+        const extraLines = [
+          company ? `Empresa: ${company}` : null,
+          revenue ? `Faturamento mensal aprox.: ${revenue}` : null
+        ].filter(Boolean).join('\n');
+        if(extraLines){
+          notesBody = notesBody ? `${notesBody}\n\n${extraLines}` : extraLines;
+        }
+      }
       const notes =
-        notesExtra.trim() ||
+        notesBody ||
         `Lead capturado em ${source} com interesse em ${leadInterestLabel(interest)}`;
 
       const response = await fetch('/api/save-lead', {
@@ -513,7 +539,7 @@ function LeadForm({
         throw new Error(data.error || 'Não foi possível salvar seus dados agora. Tente de novo em instantes.');
       }
 
-      setForm({name:'', email:'', whatsapp:''});
+      setForm({name:'', email:'', whatsapp:'', company:'', revenue:''});
       setStatus({type:'success', message:'Recebido! Vamos te chamar no WhatsApp.'});
     }catch(error){
       setStatus({type:'error', message:error.message || 'Algo deu errado ao enviar. Verifique sua internet e tente de novo.'});
@@ -531,10 +557,24 @@ function LeadForm({
           <span>{descText}</span>
         </div>
 
-        <div className="leadFormGrid">
+        <div className={`leadFormGrid${organizaFields ? ' leadFormGridOrganiza' : ''}`}>
           <label>Nome<input value={form.name} onChange={e=>update('name', e.target.value)} placeholder="Seu nome" autoComplete="name"/></label>
           <label>WhatsApp<input value={form.whatsapp} onChange={e=>update('whatsapp', e.target.value)} placeholder="(00) 00000-0000" inputMode="tel" autoComplete="tel"/></label>
           <label>Email <small className="leadOptionalHint">(opcional)</small><input type="email" value={form.email} onChange={e=>update('email', e.target.value)} placeholder="seuemail@exemplo.com" autoComplete="email"/></label>
+          {organizaFields && <>
+            <label>Faturamento aprox. <small className="leadOptionalHint">(opcional)</small>
+              <select value={form.revenue} onChange={e=>update('revenue', e.target.value)}>
+                <option value="">Selecione</option>
+                <option>Até R$ 10 mil</option>
+                <option>R$ 10 mil a R$ 50 mil</option>
+                <option>R$ 50 mil a R$ 150 mil</option>
+                <option>R$ 150 mil a R$ 500 mil</option>
+                <option>Acima de R$ 500 mil</option>
+                <option>Prefiro não informar</option>
+              </select>
+            </label>
+            <label className="leadFormFieldFull">Nome da empresa <small className="leadOptionalHint">(opcional)</small><input value={form.company} onChange={e=>update('company', e.target.value)} placeholder="Nome fantasia ou razão social" autoComplete="organization"/></label>
+          </>}
         </div>
 
         {status.message && <div className={`leadStatus ${status.type}`}>{status.message}</div>}
@@ -806,117 +846,226 @@ function MiniOSPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,rem
   </main>;
 }
 
-function OrganizaProPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,removeFromCart,addToCart,onLogoSecretClick,onSecretAdminClick,testMode,setTestMode}){
-  const diagnostico = products.find(p => p.id === 301);
+function OrganizaProPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,removeFromCart,addToCart,onLogoSecretClick,onSecretAdminClick,testMode,setTestMode,headerVariant}){
   const performance = products.find(p => p.id === 302);
 
-  return <main>
+  const benefits = [
+    { t: 'Clareza comercial', d: 'Visão objetiva do que está travando receita e onde atacar primeiro.' },
+    { t: 'Funil de vendas organizado', d: 'Etapas claras da prospecção ao fechamento, sem improviso.' },
+    { t: 'Processos documentados', d: 'Rotinas que a equipe consegue repetir sem depender só do dono.' },
+    { t: 'Mais previsibilidade', d: 'Métricas e rituais para saber se o comercial está no trilho.' }
+  ];
+
+  const methodSteps = [
+    { n: '1', title: 'Diagnóstico', text: 'Análise profunda do comercial atual: processos, equipe, métricas e pontos de melhoria.' },
+    { n: '2', title: 'Estruturação', text: 'Criação de processos claros, scripts de vendas, funil comercial e métricas de acompanhamento.' },
+    { n: '3', title: 'Captação', text: 'Implementação de estratégias de captação de leads qualificados para alimentar seu funil.' },
+    { n: '4', title: 'Escala', text: 'Otimização contínua e escala das vendas com previsibilidade e consistência.' }
+  ];
+
+  const problems = ['Vendas inconsistentes','Equipe sem direção','Leads que não convertem','Falta de métricas','Dependência do dono','Perda de oportunidades'];
+  const solutions = ['Processo estruturado','Scripts e roteiros claros','Funil otimizado','Dashboard com KPIs','Processos documentados','Follow-up automatizado'];
+
+  const deliverables = [
+    'Relatório de diagnóstico',
+    'Análise de métricas',
+    'Mapeamento do funil',
+    'Feedback personalizado',
+    'Plano de ação de 30 dias',
+    'Material de apoio'
+  ];
+
+  const offerBullets = [
+    'Diagnóstico completo do seu comercial',
+    'Análise de processos e métricas',
+    'Mapeamento do funil de vendas',
+    'Identificação de gargalos',
+    'Plano de ação personalizado',
+    'Sessão 1:1 com especialista',
+    'Material de apoio exclusivo'
+  ];
+
+  const faqItems = [
+    { q: 'Para quem é o diagnóstico OrganizaPro?', a: 'Para empresários e equipes comerciais que sentem vendas irregulares, falta de processo ou dificuldade em medir resultado. Serve tanto para quem já tem time quanto para operação enxuta.' },
+    { q: 'Preciso preparar algo antes do diagnóstico?', a: 'Reunir números básicos (metas, funil atual, canais que usa) ajuda, mas não é obrigatório. O especialista orienta o que trazer na confirmação do contato.' },
+    { q: 'O que acontece depois do diagnóstico?', a: 'Você recebe o relatório com achados, prioridades e plano de ação. A partir daí pode implementar com sua equipe ou avançar para uma fase de implementação com acompanhamento.' },
+    { q: 'Vocês atendem empresas de qualquer segmento?', a: 'Atendemos B2B e B2C de diversos segmentos. O foco é comercial, processo e previsibilidade — adaptamos o diagnóstico ao contexto do seu negócio.' },
+    { q: 'Como funciona a consultoria completa?', a: 'Após o diagnóstico, é possível contratar projetos de performance com implementação de funil, rotinas e captação. O escopo é definido em proposta apartada.' },
+    { q: 'Quanto tempo para ver resultados?', a: 'Depende do estágio da operação. Muitas empresas enxergam primeiros ajustes em semanas após aplicar o plano de 30 dias; escala exige consistência e revisão periódica.' }
+  ];
+
+  return <main className="organizaPremium">
     <TopNotice />
-    <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={onLogoSecretClick}/>
+    <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={onLogoSecretClick} variant={headerVariant}/>
 
-    <section className="organizaHero organizaHeroV2">
-      <p className="red">ORGANIZAPRO • PERFORMANCE E EXPANSÃO</p>
-      <h1>Seu negócio vende pouco ou vende sem previsibilidade?</h1>
-      <p>A OrganizaPro organiza sua operação comercial com diagnóstico, processos, captação e plano de crescimento para você parar de depender de sorte e começar a decidir com método.</p>
-
-      <div className="organizaActions">
-        <a href="/descobrir-negocio">Fazer diagnóstico gratuito</a>
-        <button onClick={()=>buyProduct(diagnostico, addToCart)}>Contratar diagnóstico completo</button>
+    <section className="organizaHero" id="top">
+      <div className="organizaHeroInner">
+        <p className="organizaHeroEyebrow">OrganizaPro • Diagnóstico comercial</p>
+        <h1>Seu negócio vende pouco ou sem previsibilidade?</h1>
+        <p className="organizaHeroSub">Ajudamos empresas a estruturarem processos comerciais claros para vender mais, com consistência e sem depender da sorte.</p>
+        <div className="organizaHeroCtas">
+          <a className="organizaBtnPrimary" href="#organiza-lead">Quero o Diagnóstico Gratuito</a>
+          <a className="organizaBtnGhost" href={waOrganizaPro()} target="_blank" rel="noreferrer">Falar no WhatsApp</a>
+        </div>
       </div>
-
-      <div className="miniProofLine organizaProofLine">
-        <span>📌 Gargalos</span>
-        <span>📊 Funil</span>
-        <span>📞 Atendimento</span>
-        <span>🚀 Plano de ação</span>
+      <div className="organizaHeroChart" aria-hidden="true">
+        <div className="organizaChartShell">
+          <div className="organizaChartTop">
+            <span>Relatório • OrganizaPro</span>
+            <span className="organizaChartLive">● ao vivo</span>
+          </div>
+          <div className="organizaChartMain">
+            <div className="organizaChartBars">
+              {[42,55,48,70,62,88,95].map((h,i)=>(<div key={i} className="organizaChartBar" style={{height:`${h}%`}}><i></i></div>))}
+            </div>
+            <div className="organizaChartSide">
+              <div className="organizaKpi"><small>Pipeline</small><strong>+32%</strong></div>
+              <div className="organizaKpi"><small>Conversão</small><strong>4.8%</strong></div>
+              <div className="organizaKpi organizaKpiAccent"><small>Meta mês</small><strong>82%</strong></div>
+            </div>
+          </div>
+          <div className="organizaChartFoot">
+            <span>Vendas previstas vs realizadas</span>
+            <span className="organizaChartTrend">↗ tendência de regularização</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section className="leadBlock leadBlockOrganiza">
+    <section className="organizaStats">
+      <article><strong>+200</strong><span>empresas atendidas</span></article>
+      <article><strong>85%</strong><span>aumento médio em vendas</span></article>
+      <article><strong>4.9</strong><span>avaliação dos clientes</span></article>
+    </section>
+
+    <section className="organizaBenefits" id="beneficios">
+      <p className="organizaSectionKicker">Benefícios</p>
+      <h2 className="organizaSectionTitle">Comercial organizado vende com mais método</h2>
+      <div className="organizaBenefitsGrid">
+        {benefits.map((b) => (
+          <article className="organizaBenefitCard" key={b.t}>
+            <b>{b.t}</b>
+            <p>{b.d}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section className="organizaMethod" id="metodo">
+      <p className="organizaSectionKicker">Método</p>
+      <h2 className="organizaSectionTitle">O caminho para vendas previsíveis em 4 etapas</h2>
+      <div className="organizaMethodGrid">
+        {methodSteps.map((s) => (
+          <article className="organizaMethodCard" key={s.n}>
+            <span className="organizaMethodNum">{s.n}</span>
+            <b>{s.title}</b>
+            <p>{s.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section className="organizaProblems" id="problemas">
+      <p className="organizaSectionKicker">Diagnóstico</p>
+      <h2 className="organizaSectionTitle">Problemas que vemos todo dia — e como viramos o jogo</h2>
+      <div className="organizaProblemsGrid">
+        <div className="organizaProblemsCol">
+          <h3>Problemas</h3>
+          <ul>{problems.map((p) => <li key={p}>{p}</li>)}</ul>
+        </div>
+        <div className="organizaProblemsCol organizaProblemsColLight">
+          <h3>Soluções</h3>
+          <ul>{solutions.map((p) => <li key={p}>{p}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section className="organizaDeliverables" id="entregaveis">
+      <p className="organizaSectionKicker">Entregáveis</p>
+      <h2 className="organizaSectionTitle">Tudo que está incluso no Diagnóstico OrganizaPro</h2>
+      <div className="organizaDeliverablesGrid">
+        {deliverables.map((t, i) => (
+          <article className="organizaDeliverableCard" key={t}>
+            <span>{i + 1}</span>
+            <b>{t}</b>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section className="organizaOffer organizaOfferFree" id="organiza-offer">
+      <div className="organizaOfferCopy">
+        <p className="organizaOfferEyebrow">Oferta limitada</p>
+        <h2>Diagnóstico OrganizaPro</h2>
+        <p className="organizaOfferLead">A primeira etapa para transformar seu comercial em uma máquina de vendas previsíveis.</p>
+        <ul className="organizaOfferBulletsLight">
+          {offerBullets.map((b) => (
+            <li key={b}><span>✓</span>{b}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="organizaOfferCard">
+        <div className="organizaPriceRow">
+          <span className="organizaPriceWas">R$497</span>
+          <strong className="organizaPriceFree">Gratuito</strong>
+        </div>
+        <p className="organizaOfferHint">Vagas sujeitas à agenda da equipe.</p>
+        <a className="organizaOfferCtaBtn" href="#organiza-lead">Quero Meu Diagnóstico</a>
+      </div>
+    </section>
+
+    <section className="organizaLeadSection leadBlock leadBlockOrganiza" id="organiza-lead">
       <LeadForm
         source="organiza-pro"
         interest="Diagnóstico OrganizaPro"
-        title="Quer que a gente analise seu negócio?"
-        description="Deixe seu contato e vamos te chamar para entender sua operação, vendas e próximos passos."
-        button="Quero meu diagnóstico"
+        title="Solicite seu diagnóstico gratuito"
+        description="Preencha os dados para nossa equipe entrar em contato e alinhar o melhor horário e formato da sessão."
+        button="Quero Meu Diagnóstico"
+        organizaFields
       />
     </section>
 
-    <section className="organizaProblems">
-      <p className="red">O QUE RESOLVEMOS</p>
-      <h2>Mais vendas não começam com mais bagunça. Começam com processo.</h2>
-
-      <div>
-        <article><b>Falta de previsibilidade</b><p>Você não sabe quantos clientes vai conseguir no mês e vive apagando incêndio.</p></article>
-        <article><b>Processos desorganizados</b><p>Atendimento, vendas e marketing não seguem uma rotina clara.</p></article>
-        <article><b>Conversão inconsistente</b><p>Entram oportunidades, mas muitas se perdem por falta de follow-up.</p></article>
-        <article><b>Marketing desconectado</b><p>Conteúdo e anúncios não conversam com o processo comercial.</p></article>
+    <section className="organizaWhatsAppCta">
+      <div className="organizaWhatsAppInner">
+        <h2>Prefere falar diretamente com nossa equipe?</h2>
+        <p>Chame no WhatsApp e diga que veio pela página OrganizaPro.</p>
+        <a className="organizaWhatsAppBtn" href={waOrganizaPro()} target="_blank" rel="noreferrer">Chamar no WhatsApp</a>
       </div>
     </section>
 
-    <section className="organizaMethod">
-      <p className="red">METODOLOGIA ORGANIZAPRO</p>
-      <h2>Diagnóstico → Estruturação → Captação → Escala</h2>
-
-      <div>
-        <article><span>1</span><b>Diagnóstico</b><p>Mapeamos gargalos, oportunidades e prioridades reais.</p></article>
-        <article><span>2</span><b>Estruturação</b><p>Organizamos oferta, processo, atendimento e rotina comercial.</p></article>
-        <article><span>3</span><b>Captação</b><p>Criamos caminhos para gerar oportunidades com consistência.</p></article>
-        <article><span>4</span><b>Escala</b><p>Acompanhamos indicadores e otimizamos o crescimento.</p></article>
+    <section className="organizaFaq" id="faq-organiza">
+      <p className="organizaSectionKicker">FAQ</p>
+      <h2 className="organizaSectionTitle">Perguntas frequentes</h2>
+      <div className="organizaFaqList">
+        {faqItems.map((item) => (
+          <details className="organizaFaqItem" key={item.q}>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
       </div>
     </section>
 
-    <section className="organizaDeliverables">
-      <p className="red">O QUE VOCÊ RECEBE NO DIAGNÓSTICO</p>
-      <h2>Uma visão clara do que corrigir primeiro</h2>
+    <section className="organizaPerformanceUpsell miniOsOffer miniOsOfferLight">
       <div>
-        <article><b>Mapa de gargalos</b><p>O que está travando vendas, atendimento e captação.</p></article>
-        <article><b>Plano de 7 dias</b><p>Prioridades imediatas para organizar a operação.</p></article>
-        <article><b>Funil recomendado</b><p>Como transformar interesse em oportunidade e venda.</p></article>
-        <article><b>Próximos passos</b><p>O que fazer sozinho e o que pode ser implementado com acompanhamento.</p></article>
-      </div>
-    </section>
-
-    <section className="organizaOffer">
-      <div>
-        <p className="red">PRÓXIMO PASSO</p>
-        <h2>Diagnóstico OrganizaPro</h2>
-        <p>Receba uma análise personalizada do seu negócio com mapa de gargalos, prioridades e plano de ação.</p>
-      </div>
-      <div>
-        <small>Oferta inicial</small>
-        <strong>R$497</strong>
-        <button onClick={()=>buyProduct(diagnostico, addToCart)}>Contratar diagnóstico</button>
-      </div>
-    </section>
-
-    <section className="leadBlock leadBlockPerformance">
-      <LeadForm
-        source="organiza-pro"
-        interest="Projeto de Performance OrganizaPro"
-        title="Quer um projeto de performance para sua empresa?"
-        description="Deixe seu contato e vamos te chamar para entender tamanho do negócio, gargalos e objetivo de crescimento."
-        button="Quero falar sobre performance"
-      />
-    </section>
-
-    <section className="organizaOffer miniOsOfferLight">
-      <div>
-        <p className="red">IMPLEMENTAÇÃO</p>
+        <p className="red">Implementação</p>
         <h2>Projeto de Performance OrganizaPro</h2>
-        <p>Para negócios que querem implementação de processos, funil comercial, captação e rotina de vendas.</p>
+        <p>Para negócios que querem implementação de processos, funil comercial, captação e rotina de vendas com acompanhamento.</p>
       </div>
       <div>
         <small>Projeto inicial</small>
         <strong>R$1.997</strong>
-        <button onClick={()=>buyProduct(performance, addToCart)}>Solicitar projeto</button>
+        <button type="button" onClick={()=>buyProduct(performance, addToCart)}>Solicitar projeto</button>
       </div>
     </section>
 
-    <Footer onSecretAdminClick={onSecretAdminClick}/>
+    <div className="organizaFooter">
+      <Footer onSecretAdminClick={onSecretAdminClick}/>
+    </div>
+
     <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
-    {testMode && <TestModePanel setTestMode={setTestMode}/>} 
-  </main>
+    {testMode && <TestModePanel setTestMode={setTestMode}/>}
+  </main>;
 }
 
 function TrustBar(){return <section className="trustBar"><div>🛡️<b>Compra segura pelo Mercado Pago</b><p>Checkout protegido</p></div><div>⚡<b>Acesso imediato</b><p>Receba após a confirmação</p></div><div>🎯<b>Escolha por interesse</b><p>Encontre materiais alinhados ao que você procura</p></div><div>🏅<b>Garantia 7 dias</b><p>Compre com segurança</p></div></section>}
