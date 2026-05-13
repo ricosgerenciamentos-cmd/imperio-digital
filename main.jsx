@@ -207,6 +207,15 @@ function App(){
     setTestMode={setTestMode}
     headerVariant="miniOsPremium"
   />;
+  if(rawPath === '/organiza-pro-os') return <OrganizaProOSPage
+    cart={cart}
+    cartOpen={cartOpen}
+    setCartOpen={setCartOpen}
+    removeFromCart={removeFromCart}
+    onSecretAdminClick={handleFooterSecretAdminClick}
+    testMode={testMode}
+    setTestMode={setTestMode}
+  />;
   if(rawPath === '/organiza-pro') return <OrganizaProPage
     search={search}
     setSearch={setSearch}
@@ -846,6 +855,234 @@ function MiniOSPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,rem
   </main>;
 }
 
+function slugStatus(s){
+  return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,'-');
+}
+
+const ORGANIZA_OS_NAV = ['Dashboard','Leads','Oportunidades','Pedidos','Tarefas','Relatórios','Propostas','Configurações'];
+
+function OrganizaProOSPage({cart,cartOpen,setCartOpen,removeFromCart,onSecretAdminClick,testMode,setTestMode}){
+  const [activeNav,setActiveNav] = useState('Dashboard');
+
+  const metrics = [
+    { label: 'Total de Leads', value: '156', hint: '+12% vs mês anterior' },
+    { label: 'Oportunidades', value: '42', hint: 'Pipeline ativo' },
+    { label: 'Valor Pipeline', value: 'R$ 1.2M', hint: 'Soma estimada' },
+    { label: 'Taxa de Conversão', value: '24%', hint: 'Lead → fechamento' },
+    { label: 'Fechados', value: '18', hint: 'Este trimestre' },
+    { label: 'Tempo Médio', value: '12 dias', hint: 'Lead → proposta' }
+  ];
+
+  const recentLeads = [
+    { name: 'Maria Santos', status: 'Qualificado', source: 'Google Ads', value: 'R$ 15.000,00' },
+    { name: 'Carlos Oliveira', status: 'Negociando', source: 'Indicação', value: 'R$ 28.000,00' },
+    { name: 'Ana Costa', status: 'Novo', source: 'LinkedIn', value: 'R$ 8.500,00' },
+    { name: 'Pedro Ferreira', status: 'Fechado', source: 'Site', value: 'R$ 45.000,00' },
+    { name: 'Juliana Mendes', status: 'Novo', source: 'Instagram', value: 'R$ 12.000,00' }
+  ];
+
+  const quickActions = ['Novo Lead','Nova Tarefa','Agendar Reunião','Enviar Proposta','WhatsApp em Massa','Gerar Relatório'];
+
+  const funnel = [
+    { stage: 'Prospecção', leads: 45, value: 'R$ 135 mil' },
+    { stage: 'Qualificação', leads: 32, value: 'R$ 288 mil' },
+    { stage: 'Proposta', leads: 18, value: 'R$ 324 mil' },
+    { stage: 'Negociação', leads: 12, value: 'R$ 216 mil' },
+    { stage: 'Fechamento', leads: 8, value: 'R$ 360 mil' }
+  ];
+
+  const tasks = [
+    { title: 'Ligar para Maria Santos', prio: 'Alta', due: 'Hoje' },
+    { title: 'Enviar proposta para Carlos', prio: 'Alta', due: 'Amanhã' },
+    { title: 'Atualizar CRM', prio: 'Média', due: '15 de mai.' },
+    { title: 'Reunião com equipe de vendas', prio: 'Baixa', due: '16 de mai.' }
+  ];
+
+  const leadStatus = [
+    { label: 'Novos', count: 45, color: '#22d3ee' },
+    { label: 'Qualificados', count: 32, color: '#34d399' },
+    { label: 'Negociando', count: 18, color: '#a78bfa' },
+    { label: 'Fechados', count: 24, color: '#4ade80' },
+    { label: 'Perdidos', count: 12, color: '#64748b' }
+  ];
+  const statusTotal = leadStatus.reduce((s, x) => s + x.count, 0);
+
+  return (
+    <main className="organizaOsPage">
+      <div className="organizaOsShell">
+        <aside className="organizaOsSidebar">
+          <div className="organizaOsSidebarTop">
+            <a className="organizaOsBrand" href="/organiza-pro" title="Voltar ao OrganizaPro">
+              <span className="organizaOsBrandMark">OP</span>
+              <div>
+                <b>OrganizaPro</b>
+                <small>OS</small>
+              </div>
+            </a>
+            <span className="organizaOsBadge">Protótipo visual</span>
+          </div>
+          <nav className="organizaOsNav" aria-label="Menu principal">
+            {ORGANIZA_OS_NAV.map((item) => (
+              <button
+                key={item}
+                type="button"
+                className={activeNav === item ? 'organizaOsNavItem active' : 'organizaOsNavItem'}
+                onClick={()=>setActiveNav(item)}
+              >
+                {item}
+              </button>
+            ))}
+          </nav>
+          <div className="organizaOsSidebarFoot">
+            <a href="/organiza-pro">← Voltar à landing</a>
+            <a href="/">Império Digital</a>
+          </div>
+        </aside>
+
+        <div className="organizaOsMain">
+          <header className="organizaOsHeader">
+            <div className="organizaOsHeaderLeft">
+              <strong className="organizaOsHeaderBrand">OrganizaPro OS</strong>
+              <span className="organizaOsHeaderSep" aria-hidden="true">·</span>
+              <span className="organizaOsHeaderTitle">{activeNav}</span>
+            </div>
+            <div className="organizaOsHeaderRight">
+              <label className="organizaOsSearch">
+                <span aria-hidden="true">⌕</span>
+                <input type="search" placeholder="Buscar leads, deals, tarefas..." readOnly />
+              </label>
+              <button type="button" className="organizaOsIconBtn" title="Notificações" aria-label="Notificações">🔔</button>
+              <button type="button" className="organizaOsAvatar" title="Conta demo" aria-label="Conta">AC</button>
+              <button type="button" className="organizaOsCartBtn" onClick={()=>setCartOpen(true)} aria-label="Abrir carrinho">🛒<em>{cart.length}</em></button>
+            </div>
+          </header>
+
+          <div className="organizaOsScroll">
+            <p className="organizaOsDisclaimer">Dados ilustrativos para demonstração do produto. Não conectado ao painel admin nem ao Supabase.</p>
+
+            <div className="organizaOsMetricGrid">
+              {metrics.map((m) => (
+                <article className="organizaOsMetricCard" key={m.label}>
+                  <span className="organizaOsMetricLabel">{m.label}</span>
+                  <strong className="organizaOsMetricValue">{m.value}</strong>
+                  <span className="organizaOsMetricHint">{m.hint}</span>
+                </article>
+              ))}
+            </div>
+
+            <div className="organizaOsGrid">
+              <section className="organizaOsPanel">
+                <div className="organizaOsPanelHead">
+                  <h2>Leads recentes</h2>
+                  <span className="organizaOsPanelTag">Ao vivo</span>
+                </div>
+                <div className="organizaOsLeadTableWrap">
+                  <table className="organizaOsLeadTable">
+                    <thead>
+                      <tr><th>Lead</th><th>Status</th><th>Origem</th><th>Valor</th></tr>
+                    </thead>
+                    <tbody>
+                      {recentLeads.map((row) => (
+                        <tr key={row.name}>
+                          <td><b>{row.name}</b></td>
+                          <td><span className={`organizaOsPill organizaOsPill--${slugStatus(row.status)}`}>{row.status}</span></td>
+                          <td>{row.source}</td>
+                          <td className="organizaOsMono">{row.value}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section className="organizaOsPanel">
+                <div className="organizaOsPanelHead">
+                  <h2>Ações rápidas</h2>
+                </div>
+                <div className="organizaOsQuickActions">
+                  {quickActions.map((a) => (
+                    <button key={a} type="button" className="organizaOsQuickBtn">{a}</button>
+                  ))}
+                </div>
+              </section>
+
+              <section className="organizaOsPanel organizaOsPanelWide">
+                <div className="organizaOsPanelHead">
+                  <h2>Funil de oportunidades</h2>
+                </div>
+                <div className="organizaOsFunnel">
+                  {funnel.map((f) => (
+                    <div className="organizaOsFunnelRow" key={f.stage}>
+                      <span className="organizaOsFunnelStage">{f.stage}</span>
+                      <div className="organizaOsFunnelBarTrack">
+                        <div className="organizaOsFunnelBar" style={{width:`${Math.min(100, f.leads * 2)}%`}} />
+                      </div>
+                      <span className="organizaOsFunnelMeta">{f.leads} leads</span>
+                      <span className="organizaOsFunnelVal">{f.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section className="organizaOsPanel">
+                <div className="organizaOsPanelHead">
+                  <h2>Tarefas pendentes</h2>
+                </div>
+                <ul className="organizaOsTasks">
+                  {tasks.map((t) => (
+                    <li key={t.title}>
+                      <div>
+                        <b>{t.title}</b>
+                        <span className={`organizaOsPrio organizaOsPrio--${t.prio.toLowerCase()}`}>{t.prio}</span>
+                      </div>
+                      <span className="organizaOsDue">{t.due}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section className="organizaOsPanel">
+                <div className="organizaOsPanelHead">
+                  <h2>Status dos leads</h2>
+                </div>
+                <div className="organizaOsStatusChart">
+                  <div className="organizaOsStatusBar">
+                    {leadStatus.map((s) => (
+                      <span
+                        key={s.label}
+                        className="organizaOsStatusSeg"
+                        style={{flexGrow:s.count, background:s.color}}
+                        title={`${s.label}: ${s.count}`}
+                      />
+                    ))}
+                  </div>
+                  <ul className="organizaOsStatusLegend">
+                    {leadStatus.map((s) => (
+                      <li key={s.label}>
+                        <i style={{background:s.color}} />
+                        <span>{s.label}</span>
+                        <strong>{s.count}</strong>
+                        <small>{statusTotal ? `${Math.round((s.count / statusTotal) * 100)}%` : '0%'}</small>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="organizaOsSiteFooter">
+        <Footer onSecretAdminClick={onSecretAdminClick}/>
+      </div>
+
+      <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
+      {testMode && <TestModePanel setTestMode={setTestMode}/>}
+    </main>
+  );
+}
+
 function OrganizaProPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,removeFromCart,addToCart,onLogoSecretClick,onSecretAdminClick,testMode,setTestMode,headerVariant}){
   const performance = products.find(p => p.id === 302);
 
@@ -907,6 +1144,9 @@ function OrganizaProPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpe
           <a className="organizaBtnPrimary" href="#organiza-lead">Quero o Diagnóstico Gratuito</a>
           <a className="organizaBtnGhost" href={waOrganizaPro()} target="_blank" rel="noreferrer">Falar no WhatsApp</a>
         </div>
+        <p className="organizaOsLandingLinkWrap">
+          <a className="organizaOsLandingLink" href="/organiza-pro-os">Ver OrganizaPro OS</a>
+        </p>
       </div>
       <div className="organizaHeroChart" aria-hidden="true">
         <div className="organizaChartShell">

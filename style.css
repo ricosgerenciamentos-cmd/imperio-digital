@@ -4973,3 +4973,97 @@ h1,h2,h3,.logo b,.headBtn,.primary,.secondary,.buy,.microR1Copy h2,.microR1Card 
     justify-content:center;
   }
 }
+
+/* Link landing → OrganizaPro OS */
+.organizaOsLandingLinkWrap{margin:18px 0 0}
+.organizaOsLandingLink{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:1000;color:#7dffb4!important;text-decoration:underline;text-underline-offset:4px}
+.organizaOsLandingLink:hover{color:#b8ffe0!important}
+
+/* OrganizaPro OS — vitrine /organiza-pro-os */
+.organizaOsPage{--os-bg:#0b0d10;--os-panel:#12161c;--os-border:rgba(148,163,184,.12);--os-text:#e2e8f0;--os-muted:#94a3b8;--os-neon:#34f5c5;--os-neon-dim:rgba(52,245,197,.15);min-height:100vh;display:flex;flex-direction:column;background:var(--os-bg);color:var(--os-text)}
+.organizaOsShell{display:flex;flex:1;min-height:0;width:100%}
+.organizaOsSidebar{width:248px;flex-shrink:0;background:linear-gradient(180deg,#0e1116 0%,#0a0c0f 100%);border-right:1px solid var(--os-border);display:flex;flex-direction:column;padding:20px 14px 16px}
+.organizaOsSidebarTop{margin-bottom:22px}
+.organizaOsBrand{display:flex;align-items:center;gap:12px;color:inherit!important;margin-bottom:12px}
+.organizaOsBrandMark{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--os-neon),#0d9f7e);color:#04120e;font-weight:1000;font-size:15px;display:grid;place-items:center;box-shadow:0 0 24px rgba(52,245,197,.35)}
+.organizaOsBrand b{display:block;font-size:16px;letter-spacing:-.02em}
+.organizaOsBrand small{font-size:10px;font-weight:1000;letter-spacing:.28em;color:var(--os-neon)}
+.organizaOsBadge{display:inline-block;font-size:10px;font-weight:1000;text-transform:uppercase;letter-spacing:.08em;padding:5px 10px;border-radius:999px;background:var(--os-neon-dim);color:var(--os-neon);border:1px solid rgba(52,245,197,.28)}
+.organizaOsNav{display:flex;flex-direction:column;gap:4px;flex:1;overflow-y:auto}
+.organizaOsNavItem{border:0;cursor:pointer;text-align:left;padding:11px 14px;border-radius:12px;font-weight:800;font-size:14px;color:var(--os-muted);background:transparent;transition:background .15s ease,color .15s ease}
+.organizaOsNavItem:hover{color:var(--os-text);background:rgba(148,163,184,.08)}
+.organizaOsNavItem.active{color:#04120e;background:linear-gradient(90deg,var(--os-neon),#2ee6a8);box-shadow:0 0 20px rgba(52,245,197,.2)}
+.organizaOsSidebarFoot{display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid var(--os-border);font-size:12px;font-weight:800}
+.organizaOsSidebarFoot a{color:var(--os-muted)!important}
+.organizaOsSidebarFoot a:hover{color:var(--os-neon)!important}
+.organizaOsMain{flex:1;display:flex;flex-direction:column;min-width:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(52,245,197,.08),transparent 55%),var(--os-bg)}
+.organizaOsHeader{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 22px;border-bottom:1px solid var(--os-border);background:rgba(10,12,15,.85);backdrop-filter:blur(12px);flex-shrink:0}
+.organizaOsHeaderLeft{display:flex;align-items:center;gap:10px;min-width:0;flex-wrap:wrap}
+.organizaOsHeaderBrand{font-size:16px;font-weight:1000;letter-spacing:-.02em;white-space:nowrap}
+.organizaOsHeaderSep{color:var(--os-muted);font-weight:800}
+.organizaOsHeaderTitle{font-size:14px;font-weight:800;color:var(--os-muted);letter-spacing:.01em}
+.organizaOsHeaderRight{display:flex;align-items:center;gap:12px;flex:1;justify-content:flex-end;min-width:0}
+.organizaOsSearch{display:flex;align-items:center;gap:10px;flex:1;max-width:420px;padding:10px 14px;border-radius:12px;background:var(--os-panel);border:1px solid var(--os-border);color:var(--os-muted)}
+.organizaOsSearch input{flex:1;border:0;background:transparent;color:var(--os-text);outline:none;min-width:0;font-size:14px}
+.organizaOsIconBtn{width:42px;height:42px;border-radius:12px;border:1px solid var(--os-border);background:var(--os-panel);cursor:pointer;font-size:18px;line-height:1}
+.organizaOsAvatar{width:42px;height:42px;border-radius:12px;border:0;cursor:pointer;font-weight:1000;font-size:13px;background:linear-gradient(135deg,#64748b,#334155);color:#fff}
+.organizaOsCartBtn{position:relative;width:42px;height:42px;border-radius:12px;border:1px solid var(--os-border);background:var(--os-panel);cursor:pointer;font-size:17px}
+.organizaOsCartBtn em{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--os-neon);color:#04120e;font-size:11px;font-style:normal;font-weight:1000;display:grid;place-items:center}
+.organizaOsScroll{flex:1;overflow-y:auto;padding:22px 22px 32px}
+.organizaOsDisclaimer{font-size:12px;color:var(--os-muted);margin:0 0 18px;padding:10px 14px;border-radius:10px;background:rgba(52,245,197,.06);border:1px solid rgba(52,245,197,.12)}
+.organizaOsMetricGrid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:22px}
+.organizaOsMetricCard{background:var(--os-panel);border:1px solid var(--os-border);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.organizaOsMetricCard:hover{border-color:rgba(52,245,197,.25)}
+.organizaOsMetricLabel{font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.08em;color:var(--os-muted)}
+.organizaOsMetricValue{font-size:clamp(20px,2.2vw,26px);font-weight:1000;letter-spacing:-.03em;color:var(--os-neon)}
+.organizaOsMetricHint{font-size:11px;color:var(--os-muted);font-weight:600}
+.organizaOsGrid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;align-items:start}
+.organizaOsPanel{background:var(--os-panel);border:1px solid var(--os-border);border-radius:18px;padding:18px;box-shadow:0 16px 48px rgba(0,0,0,.28)}
+.organizaOsPanelWide{grid-column:1/-1}
+.organizaOsPanelHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--os-border)}
+.organizaOsPanelHead h2{margin:0;font-size:15px;font-weight:1000;letter-spacing:.02em}
+.organizaOsPanelTag{font-size:10px;font-weight:1000;text-transform:uppercase;letter-spacing:.1em;color:var(--os-neon);padding:4px 10px;border-radius:999px;background:var(--os-neon-dim);border:1px solid rgba(52,245,197,.25)}
+.organizaOsLeadTableWrap{overflow-x:auto;border-radius:12px}
+.organizaOsLeadTable{width:100%;border-collapse:collapse;font-size:13px}
+.organizaOsLeadTable th{text-align:left;padding:10px 12px;color:var(--os-muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--os-border)}
+.organizaOsLeadTable td{padding:12px;border-bottom:1px solid rgba(148,163,184,.08)}
+.organizaOsLeadTable tr:last-child td{border-bottom:0}
+.organizaOsMono{font-variant-numeric:tabular-nums;font-weight:800;color:var(--os-neon)}
+.organizaOsPill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:1000;background:rgba(148,163,184,.15);color:var(--os-text)}
+.organizaOsPill--novo{background:rgba(34,211,238,.15);color:#7eeeff}
+.organizaOsPill--qualificado{background:rgba(52,245,197,.15);color:var(--os-neon)}
+.organizaOsPill--negociando{background:rgba(167,139,250,.18);color:#d4c4ff}
+.organizaOsPill--fechado{background:rgba(74,222,128,.15);color:#86efac}
+.organizaOsQuickActions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.organizaOsQuickBtn{border:1px solid var(--os-border);background:rgba(52,245,197,.05);color:var(--os-text);font-weight:800;font-size:13px;padding:12px;border-radius:12px;cursor:pointer;text-align:center;transition:border-color .15s ease,background .15s ease}
+.organizaOsQuickBtn:hover{border-color:rgba(52,245,197,.4);background:rgba(52,245,197,.1)}
+.organizaOsFunnel{display:flex;flex-direction:column;gap:12px}
+.organizaOsFunnelRow{display:grid;grid-template-columns:120px 1fr 90px 100px;gap:12px;align-items:center;font-size:13px}
+.organizaOsFunnelStage{font-weight:800;color:var(--os-text)}
+.organizaOsFunnelBarTrack{height:10px;border-radius:99px;background:rgba(148,163,184,.12);overflow:hidden}
+.organizaOsFunnelBar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--os-neon),#0d9f7e);box-shadow:0 0 12px rgba(52,245,197,.4)}
+.organizaOsFunnelMeta{color:var(--os-muted);font-weight:700;font-size:12px}
+.organizaOsFunnelVal{font-weight:800;color:var(--os-neon);font-size:12px;text-align:right}
+.organizaOsTasks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.organizaOsTasks li{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:12px;border-radius:12px;background:rgba(0,0,0,.2);border:1px solid var(--os-border)}
+.organizaOsTasks b{display:block;font-size:13px;margin-bottom:6px}
+.organizaOsPrio{font-size:10px;font-weight:1000;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:999px}
+.organizaOsPrio--alta{background:rgba(248,113,113,.2);color:#fca5a5}
+.organizaOsPrio--media{background:rgba(250,204,21,.15);color:#fde047}
+.organizaOsPrio--baixa{background:rgba(148,163,184,.2);color:#cbd5e1}
+.organizaOsDue{font-size:12px;font-weight:800;color:var(--os-muted);white-space:nowrap}
+.organizaOsStatusChart{display:flex;flex-direction:column;gap:16px}
+.organizaOsStatusBar{display:flex;height:14px;border-radius:99px;overflow:hidden;background:rgba(148,163,184,.1)}
+.organizaOsStatusSeg{min-width:4px;transition:flex-grow .3s ease}
+.organizaOsStatusLegend{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px}
+.organizaOsStatusLegend li{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--os-muted)}
+.organizaOsStatusLegend i{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.organizaOsStatusLegend strong{margin-left:auto;color:var(--os-text);font-weight:1000}
+.organizaOsStatusLegend small{width:36px;text-align:right;color:var(--os-neon);font-weight:800}
+.organizaOsSiteFooter{background:#050608;border-top:1px solid var(--os-border);padding:8px 16px 20px}
+.organizaOsSiteFooter footer{text-align:center;color:#64748b!important;font-size:13px}
+.organizaOsSiteFooter .footerSecretAdmin{color:#94a3b8!important}
+.organizaOsSiteFooter .footerSecretAdmin:hover{color:var(--os-neon)!important}
+.organizaOsSiteFooter footer b{color:#475569!important}
+@media(max-width:1100px){.organizaOsMetricGrid{grid-template-columns:repeat(3,1fr)}.organizaOsGrid{grid-template-columns:1fr}.organizaOsFunnelRow{grid-template-columns:1fr;gap:8px}.organizaOsFunnelBarTrack{order:3;grid-column:1/-1}}
+@media(max-width:760px){.organizaOsShell{flex-direction:column}.organizaOsSidebar{width:100%;flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px;border-right:0;border-bottom:1px solid var(--os-border)}.organizaOsNav{flex-direction:row;flex-wrap:wrap;width:100%}.organizaOsNavItem{flex:1;min-width:calc(50% - 4px);text-align:center;font-size:12px;padding:10px 8px}.organizaOsSidebarFoot{flex-direction:row;width:100%;justify-content:center;border-top:0;padding-top:0}.organizaOsMetricGrid{grid-template-columns:repeat(2,1fr)}.organizaOsHeaderRight{flex-wrap:wrap}.organizaOsSearch{max-width:none;width:100%;order:3}}
