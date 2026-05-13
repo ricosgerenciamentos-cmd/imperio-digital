@@ -257,6 +257,7 @@ function App(){
     <Best best={best} addToCart={addToCart}/>
     <FeaturedMicroEbook addToCart={addToCart}/>
     <MiniOSAndOrganizaCTA />
+    <LeadCaptureSection />
     <GoalLinks/>
     <FinalCTA/>
     <Footer onSecretAdminClick={handleFooterSecretAdminClick}/>
@@ -410,6 +411,148 @@ function FeaturedMicroEbook({addToCart}){
 }
 
 
+
+function leadInterestLabel(value){
+  if(value && String(value).includes(' ')) return String(value);
+  const labels = {
+    home:'Império Digital',
+    geral:'Geral',
+    mini_os:'Mini OS IA',
+    mini_os_workshop:'Workshop Mini OS IA',
+    organizapro:'OrganizaPro',
+    diagnostico:'Diagnóstico OrganizaPro',
+    performance:'Projeto de Performance',
+    quiz:'Quiz / Diagnóstico gratuito',
+    obrigado:'Pós-compra',
+    catalogo:'Catálogo'
+  };
+  return labels[value] || value || 'Geral';
+}
+
+/** WhatsApp wa.me: só dígitos, com DDI 55 (remove espaços, parênteses e traços). */
+function waLeadMeUrl(whatsapp){
+  const cleaned = String(whatsapp || '').replace(/[\s().-]/g, '');
+  const digits = cleaned.replace(/\D/g, '');
+  if(!digits) return '';
+  const full = digits.startsWith('55') ? digits : `55${digits}`;
+  return `https://wa.me/${full}`;
+}
+
+function LeadForm({
+  source = 'site',
+  interest = 'geral',
+  title = 'Quer receber mais informações?',
+  description,
+  subtitle,
+  button = 'Enviar',
+  compact = false,
+  notes: notesProp,
+  defaultNotes
+}){
+  const descText = description ?? subtitle ?? 'Preencha seus dados e vamos te chamar no WhatsApp com o próximo passo.';
+  const notesExtra = notesProp ?? defaultNotes ?? '';
+
+  const [form,setForm] = useState({name:'', email:'', whatsapp:''});
+  const [status,setStatus] = useState({type:'', message:''});
+  const [loading,setLoading] = useState(false);
+
+  function update(field,value){
+    setForm(current => ({...current,[field]:value}));
+  }
+
+  async function submitLead(e){
+    e.preventDefault();
+    setStatus({type:'', message:''});
+
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const whatsapp = form.whatsapp.trim();
+
+    if(!name){
+      setStatus({type:'error', message:'Informe seu nome.'});
+      return;
+    }
+    if(!whatsapp){
+      setStatus({type:'error', message:'Informe seu WhatsApp para recebermos você.'});
+      return;
+    }
+
+    try{
+      setLoading(true);
+      const notes =
+        notesExtra.trim() ||
+        `Lead capturado em ${source} com interesse em ${leadInterestLabel(interest)}`;
+
+      const response = await fetch('/api/save-lead', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          name,
+          email,
+          whatsapp,
+          source,
+          interest,
+          notes
+        })
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if(!response.ok || !data.ok){
+        throw new Error(data.error || 'Não foi possível salvar seus dados agora. Tente de novo em instantes.');
+      }
+
+      setForm({name:'', email:'', whatsapp:''});
+      setStatus({type:'success', message:'Recebido! Vamos te chamar no WhatsApp.'});
+    }catch(error){
+      setStatus({type:'error', message:error.message || 'Algo deu errado ao enviar. Verifique sua internet e tente de novo.'});
+    }finally{
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="leadFormBox">
+      <form className={compact ? 'leadForm leadFormCompact' : 'leadForm'} onSubmit={submitLead}>
+        <div className="leadFormHead">
+          <p className="red">CAPTURA DE INTERESSE</p>
+          <h2>{title}</h2>
+          <span>{descText}</span>
+        </div>
+
+        <div className="leadFormGrid">
+          <label>Nome<input value={form.name} onChange={e=>update('name', e.target.value)} placeholder="Seu nome" autoComplete="name"/></label>
+          <label>WhatsApp<input value={form.whatsapp} onChange={e=>update('whatsapp', e.target.value)} placeholder="(00) 00000-0000" inputMode="tel" autoComplete="tel"/></label>
+          <label>Email <small className="leadOptionalHint">(opcional)</small><input type="email" value={form.email} onChange={e=>update('email', e.target.value)} placeholder="seuemail@exemplo.com" autoComplete="email"/></label>
+        </div>
+
+        {status.message && <div className={`leadStatus ${status.type}`}>{status.message}</div>}
+
+        <button type="submit" disabled={loading}>{loading ? 'Enviando...' : button}</button>
+        <small>Ao enviar, você autoriza contato sobre {leadInterestLabel(interest)}. Seus dados não aparecem publicamente.</small>
+      </form>
+    </div>
+  );
+}
+
+function LeadCaptureSection(){
+  return <section className="leadCaptureHome">
+    <div>
+      <p className="red">NÃO SABE POR ONDE COMEÇAR?</p>
+      <h2>Receba o próximo passo ideal para você</h2>
+      <p>Escolha se quer começar por ebooks, criar um projeto com IA ou organizar seu negócio. Nós te chamamos com o caminho recomendado.</p>
+    </div>
+    <LeadForm
+      source="home"
+      interest="geral"
+      title="Quero orientação rápida"
+      description="Deixe seu contato e diga pelo WhatsApp qual caminho quer seguir."
+      button="Quero meu próximo passo"
+      compact
+    />
+  </section>
+}
+
 function MiniOSAndOrganizaCTA(){
   return <section className="doubleCTA upgradedDoubleCTA">
     <article>
@@ -478,6 +621,16 @@ function MiniOSPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,rem
       </div>
     </section>
 
+    <section className="leadBlock leadBlockMini">
+      <LeadForm
+        source="mini-os"
+        interest="Mini OS IA"
+        title="Quer entrar na turma beta ou tirar dúvidas?"
+        description="Deixe seu contato e vamos te chamar com detalhes do Mini OS IA, acesso, aulas e próximos passos."
+        button="Quero saber sobre o Mini OS IA"
+      />
+    </section>
+
     <section id="programa" className="miniOsProgram">
       <p className="red">O QUE VOCÊ VAI CONSTRUIR</p>
       <h2>Um mini computador dentro do navegador</h2>
@@ -517,6 +670,16 @@ function MiniOSPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,rem
         <strong>R$97</strong>
         <button onClick={()=>buyProduct(miniOS, addToCart)}>Garantir acesso</button>
       </div>
+    </section>
+
+    <section className="leadBlock leadBlockMiniWorkshop">
+      <LeadForm
+        source="mini-os"
+        interest="Workshop Mini OS IA com mentoria"
+        title="Quer mentoria para personalizar seu projeto?"
+        description="Deixe seu contato para receber informações do workshop com mentoria."
+        button="Quero informações da mentoria"
+      />
     </section>
 
     <section className="miniOsOffer miniOsOfferLight">
@@ -562,6 +725,16 @@ function OrganizaProPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpe
         <span>📞 Atendimento</span>
         <span>🚀 Plano de ação</span>
       </div>
+    </section>
+
+    <section className="leadBlock leadBlockOrganiza">
+      <LeadForm
+        source="organiza-pro"
+        interest="Diagnóstico OrganizaPro"
+        title="Quer que a gente analise seu negócio?"
+        description="Deixe seu contato e vamos te chamar para entender sua operação, vendas e próximos passos."
+        button="Quero meu diagnóstico"
+      />
     </section>
 
     <section className="organizaProblems">
@@ -610,6 +783,16 @@ function OrganizaProPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpe
         <strong>R$497</strong>
         <button onClick={()=>buyProduct(diagnostico, addToCart)}>Contratar diagnóstico</button>
       </div>
+    </section>
+
+    <section className="leadBlock leadBlockPerformance">
+      <LeadForm
+        source="organiza-pro"
+        interest="Projeto de Performance OrganizaPro"
+        title="Quer um projeto de performance para sua empresa?"
+        description="Deixe seu contato e vamos te chamar para entender tamanho do negócio, gargalos e objetivo de crescimento."
+        button="Quero falar sobre performance"
+      />
     </section>
 
     <section className="organizaOffer miniOsOfferLight">
@@ -1042,6 +1225,7 @@ function ThankYouPage(){
       </div>
 
       {canAccess && <div className="thanksUpsell"><p className="red">PRÓXIMO PASSO RECOMENDADO</p><h2>{upsell.title}</h2><p>{upsell.text}</p><a className="thanksBtn" href={upsell.href} target={upsell.href.startsWith('http') ? '_blank' : undefined} rel={upsell.href.startsWith('http') ? 'noreferrer' : undefined}>{upsell.cta}</a></div>}
+      {canAccess && <div className="thanksLeadBox"><LeadForm source="obrigado" interest="pós-compra" title="Quer ajuda com o próximo passo?" description="Deixe um contato atualizado para suporte, agendamento ou orientação depois da compra." button="Quero receber orientação" compact /></div>}
       {!canAccess && <a className="thanksBtn" href={wa()} target="_blank" rel="noreferrer">💬 Falar com suporte</a>}
       <a className="thanksBtn quizThanksBtn" href="/descobrir-negocio">🤖 Descobrir meu melhor caminho</a>
       <a className="thanksBtn" href="/">Voltar para o site</a>
@@ -1061,11 +1245,11 @@ function QuizProPage(){
   ];
 
   const data = {
-    digital:{title:"RENDA EXTRA E VENDAS DIGITAIS",text:"Você está no momento de começar simples, com materiais acessíveis e práticos para testar caminhos.",products:[15,3,16]},
-    programacao:{title:"PROGRAMAÇÃO E IA",text:"Você combina com um projeto visual e chamativo: criar um Mini Sistema Operacional com IA no navegador.",products:[401,402,5]},
-    consultoria:{title:"NEGÓCIO ESTRUTURADO",text:"Você precisa de clareza, processo e um plano para organizar captação, atendimento e vendas.",products:[301,302,11]},
-    tecnico:{title:"ASSISTÊNCIA TÉCNICA",text:"Você combina com serviços práticos, consertos e negócios com demanda local.",products:[1,101,102]},
-    beleza:{title:"BELEZA E ATENDIMENTO",text:"Você combina com negócios presenciais, barbearia, estética e relacionamento com clientes.",products:[2,201,202]}
+    digital:{title:"RENDA EXTRA E VENDAS DIGITAIS",text:"Você está no momento de começar simples, com materiais acessíveis e práticos para testar caminhos.",products:[15,3,16],interest:'catalogo'},
+    programacao:{title:"PROGRAMAÇÃO E IA",text:"Você combina com um projeto visual e chamativo: criar um Mini Sistema Operacional com IA no navegador.",products:[401,402,5],interest:'mini_os'},
+    consultoria:{title:"NEGÓCIO ESTRUTURADO",text:"Você precisa de clareza, processo e um plano para organizar captação, atendimento e vendas.",products:[301,302,11],interest:'diagnostico'},
+    tecnico:{title:"ASSISTÊNCIA TÉCNICA",text:"Você combina com serviços práticos, consertos e negócios com demanda local.",products:[1,101,102],interest:'catalogo'},
+    beleza:{title:"BELEZA E ATENDIMENTO",text:"Você combina com negócios presenciais, barbearia, estética e relacionamento com clientes.",products:[2,201,202],interest:'catalogo'}
   };
 
   function choose(type){
@@ -1094,7 +1278,29 @@ function QuizProPage(){
     const result = data[key] || data.digital;
     const primaryHref = key === 'programacao' ? '/mini-os' : key === 'consultoria' ? '/organiza-pro' : '/catalogo';
     const primaryLabel = key === 'programacao' ? 'Conhecer Mini OS IA' : key === 'consultoria' ? 'Conhecer OrganizaPro' : 'Ver catálogo';
-    return <main className="quizPro quizDark"><section className="quizResultPro"><div className="quizResultTop"><a href="/" className="quizResultLogo">♛ IMPÉRIO <span>DIGITAL</span></a><small>🛡️ Ambiente Seguro</small></div><div className="quizResultHero"><span>♕</span><p>SEU PERFIL COMBINA COM</p><h1>{result.title}</h1><small>{result.text}</small></div><div className="quizResultList"><b>Recomendamos que você comece por:</b>{result.products.map((id)=>{const p = products.find(item => item.id === id); if(!p) return null; return <article key={p.id}><img src={p.img} alt={p.title} loading="lazy" decoding="async"/><div><h3>{p.title}</h3><p>{p.desc}</p></div><strong>{p.price}</strong><button onClick={()=>goCheckout(p.id)}>Comprar</button></article>})}</div><a className="quizAllBtn" href={primaryHref}>{primaryLabel}</a><a className="quizAllBtn quizSecondaryBtn" href="/catalogo">Ver todos os produtos</a><button className="quizRedo" onClick={()=>{setStep(0);setAnswers([])}}>↻ Refazer teste</button></section></main>
+    const notes = `Resultado do quiz: ${result.title}. Respostas: ${answers.join(', ')}`;
+
+    return <main className="quizPro quizDark">
+      <section className="quizResultPro">
+        <div className="quizResultTop"><a href="/" className="quizResultLogo">♛ IMPÉRIO <span>DIGITAL</span></a><small>🛡️ Ambiente Seguro</small></div>
+        <div className="quizResultHero"><span>♕</span><p>SEU PERFIL COMBINA COM</p><h1>{result.title}</h1><small>{result.text}</small></div>
+        <div className="quizResultList"><b>Recomendamos que você comece por:</b>{result.products.map((id)=>{const p = products.find(item => item.id === id); if(!p) return null; return <article key={p.id}><img src={p.img} alt={p.title} loading="lazy" decoding="async"/><div><h3>{p.title}</h3><p>{p.desc}</p></div><strong>{p.price}</strong><button onClick={()=>goCheckout(p.id)}>Comprar</button></article>})}</div>
+        <div className="quizLeadBox">
+          <LeadForm
+            source="quiz"
+            interest={result.title}
+            title="Quer receber seu caminho recomendado no WhatsApp?"
+            description="Salve seu resultado e receba orientação do próximo passo com base no seu perfil."
+            button="Salvar meu resultado"
+            notes={notes}
+            compact
+          />
+        </div>
+        <a className="quizAllBtn" href={primaryHref}>{primaryLabel}</a>
+        <a className="quizAllBtn quizSecondaryBtn" href="/catalogo">Ver todos os produtos</a>
+        <button className="quizRedo" onClick={()=>{setStep(0);setAnswers([])}}>↻ Refazer teste</button>
+      </section>
+    </main>
   }
 
   const q = questions[step];
@@ -1188,9 +1394,33 @@ function AdminPage(){
   const [logged,setLogged] = useState(false);
   const [orders,setOrders] = useState([]);
   const [suggestions,setSuggestions] = useState([]);
+  const [leads,setLeads] = useState([]);
   const [loading,setLoading] = useState(false);
   const [error,setError] = useState('');
   const [suggestionsError,setSuggestionsError] = useState('');
+  const [leadsError,setLeadsError] = useState('');
+
+  async function loadLeads(pass = password){
+    setLeadsError('');
+
+    try{
+      const res = await fetch(`/api/admin-leads?password=${encodeURIComponent(pass)}`, {
+        method:'GET',
+        headers:{Accept:'application/json'}
+      });
+
+      const data = await res.json();
+
+      if(!res.ok || !data.ok){
+        throw new Error(data.error || 'Erro ao carregar leads.');
+      }
+
+      setLeads(data.leads || []);
+    }catch(err){
+      setLeadsError(err.message || 'Erro ao carregar leads.');
+      setLeads([]);
+    }
+  }
 
   async function loadSuggestions(pass = password){
     setSuggestionsError('');
@@ -1219,6 +1449,7 @@ function AdminPage(){
     setLoading(true);
     setError('');
     setSuggestionsError('');
+    setLeadsError('');
 
     try{
       const res = await fetch('/api/admin-orders',{
@@ -1237,7 +1468,7 @@ function AdminPage(){
       setLogged(true);
       sessionStorage.setItem('imperio_admin_logged', 'true');
       sessionStorage.setItem('imperio_admin_password', pass);
-      await loadSuggestions(pass);
+      await Promise.all([loadSuggestions(pass), loadLeads(pass)]);
 
     }catch(err){
       setError(err.message || 'Erro inesperado.');
@@ -1263,7 +1494,9 @@ function AdminPage(){
     setPassword('');
     setOrders([]);
     setSuggestions([]);
+    setLeads([]);
     setSuggestionsError('');
+    setLeadsError('');
   }
 
   function formatDate(value){
@@ -1290,6 +1523,11 @@ function AdminPage(){
   const pendingCount = orders.filter(order => order.status === 'pending').length;
   const approvedCount = orders.filter(order => order.status === 'approved').length;
   const suggestionCount = suggestions.length;
+  const leadCount = leads.length;
+  const hotLeadCount = leads.filter(lead => {
+    const i = String(lead.interest || '').toLowerCase();
+    return /organiza|mini os|workshop|diagn|performance|consultoria|programa/i.test(i);
+  }).length;
 
   if(!logged){
     return <main className="adminPage">
@@ -1297,7 +1535,7 @@ function AdminPage(){
         <a className="checkoutLogo" href="/">♛ IMPÉRIO <span>DIGITAL</span></a>
         <p className="red">PAINEL ADMIN</p>
         <h1>Acesso restrito</h1>
-        <span>Digite a senha administrativa para visualizar pedidos, status, produtos e tokens.</span>
+        <span>Digite a senha administrativa para visualizar pedidos, leads, sugestões, status, produtos e tokens.</span>
 
         <label>
           Senha
@@ -1327,38 +1565,67 @@ function AdminPage(){
         <div>
           <p className="red">PAINEL ADMIN</p>
           <h1>Painel do Império Digital</h1>
-          <span>Controle rápido de vendas, pagamentos, tokens de download e sugestões de novos ebooks.</span>
+          <span>Controle rápido de vendas, leads, sugestões, oportunidades e tokens de download.</span>
         </div>
 
         <div className="adminActions">
           <button onClick={()=>loadOrders()} disabled={loading}>
-            {loading ? 'Atualizando...' : 'Atualizar'}
+            {loading ? 'Atualizando...' : 'Atualizar tudo'}
           </button>
           <button onClick={logout}>Sair</button>
         </div>
       </div>
 
-      <div className="adminStats">
-        <article>
-          <span>Total aprovado</span>
-          <strong>R$ {totalApproved.toFixed(2).replace('.',',')}</strong>
-        </article>
-        <article>
-          <span>Pedidos aprovados</span>
-          <strong>{approvedCount}</strong>
-        </article>
-        <article>
-          <span>Pedidos pendentes</span>
-          <strong>{pendingCount}</strong>
-        </article>
-        <article>
-          <span>Sugestões recebidas</span>
-          <strong>{suggestionCount}</strong>
-        </article>
+      <div className="adminStats adminStatsV3">
+        <article><span>Total aprovado</span><strong>R$ {totalApproved.toFixed(2).replace('.',',')}</strong></article>
+        <article><span>Pedidos aprovados</span><strong>{approvedCount}</strong></article>
+        <article><span>Pedidos pendentes</span><strong>{pendingCount}</strong></article>
+        <article><span>Leads capturados</span><strong>{leadCount}</strong></article>
+        <article><span>Leads quentes</span><strong>{hotLeadCount}</strong></article>
+        <article><span>Sugestões recebidas</span><strong>{suggestionCount}</strong></article>
       </div>
 
       {error && <div className="checkoutError">{error}</div>}
       {suggestionsError && <div className="checkoutError">{suggestionsError}</div>}
+      {leadsError && <div className="checkoutError">{leadsError}</div>}
+
+      <div className="adminSectionTitle adminLeadsTitle">
+        <div>
+          <p className="red">LEADS / PISTAS</p>
+          <h2>Interessados capturados pelo site</h2>
+          <span>Leads vindos da home, Mini OS IA, OrganizaPro, quiz e página de obrigado.</span>
+        </div>
+        <button onClick={()=>loadLeads()} disabled={loading}>Atualizar leads</button>
+      </div>
+
+      <div className="adminLeads">
+        {leads.length === 0 ? (
+          <div className="adminEmpty">Nenhum lead capturado ainda.</div>
+        ) : leads.map(lead => {
+          const waUrl = waLeadMeUrl(lead.whatsapp);
+          return (
+            <article className="adminLeadCard" key={lead.id}>
+              <div className="adminLeadGrid">
+                <div className="adminLeadCell"><span className="adminLeadLabel">Nome</span><b>{lead.name || '—'}</b></div>
+                <div className="adminLeadCell"><span className="adminLeadLabel">WhatsApp</span><span>{lead.whatsapp || '—'}</span></div>
+                <div className="adminLeadCell"><span className="adminLeadLabel">Email</span><span>{lead.email || '—'}</span></div>
+                <div className="adminLeadCell"><span className="adminLeadLabel">Interesse</span><span>{lead.interest || '—'}</span></div>
+                <div className="adminLeadCell"><span className="adminLeadLabel">Origem</span><span>{lead.source || '—'}</span></div>
+                <div className="adminLeadCell"><span className="adminLeadLabel">Status</span><span>{lead.status || 'novo'}</span></div>
+                <div className="adminLeadCell adminLeadCellWide"><span className="adminLeadLabel">Data</span><span>{formatDate(lead.created_at)}</span></div>
+                <div className="adminLeadCell adminLeadCellAction">
+                  {waUrl ? (
+                    <a className="whatsLeadBtn" href={waUrl} target="_blank" rel="noreferrer">Chamar no WhatsApp</a>
+                  ) : (
+                    <span className="adminLeadNoWa">Sem WhatsApp</span>
+                  )}
+                </div>
+              </div>
+              {lead.notes && <p className="adminLeadNotes">{lead.notes}</p>}
+            </article>
+          );
+        })}
+      </div>
 
       <div className="adminSectionTitle">
         <div>
@@ -1375,15 +1642,10 @@ function AdminPage(){
         ) : suggestions.map(item => (
           <article className="adminSuggestionCard" key={item.id}>
             <div className="adminSuggestionHead">
-              <div>
-                <b>{item.theme || 'Tema sem título'}</b>
-                <span>{item.category || 'Sem categoria'} • {formatDate(item.created_at)}</span>
-              </div>
+              <div><b>{item.theme || 'Tema sem título'}</b><span>{item.category || 'Sem categoria'} • {formatDate(item.created_at)}</span></div>
               <strong>{item.status || 'nova'}</strong>
             </div>
-
             <p>{item.description || 'Sem descrição.'}</p>
-
             <div className="adminSuggestionMeta">
               <span><b>Nome:</b> {item.name || '-'}</span>
               <span><b>WhatsApp:</b> {item.whatsapp || '-'}</span>
@@ -1407,16 +1669,9 @@ function AdminPage(){
         ) : orders.map(order => (
           <article className="adminOrderCard" key={order.id}>
             <div className="adminOrderHead">
-              <div>
-                <b>{order.customer_name || 'Cliente sem nome'}</b>
-                <span>{order.email || 'Sem email'} • {order.whatsapp || 'Sem WhatsApp'}</span>
-              </div>
-
-              <strong className={`adminStatus ${order.status}`}>
-                {statusLabel(order.status)}
-              </strong>
+              <div><b>{order.customer_name || 'Cliente sem nome'}</b><span>{order.email || 'Sem email'} • {order.whatsapp || 'Sem WhatsApp'}</span></div>
+              <strong className={`adminStatus ${order.status}`}>{statusLabel(order.status)}</strong>
             </div>
-
             <div className="adminOrderMeta">
               <span><b>Pedido:</b> {order.id}</span>
               <span><b>Valor:</b> R$ {Number(order.amount || 0).toFixed(2).replace('.',',')}</span>
@@ -1425,39 +1680,13 @@ function AdminPage(){
               <span><b>MP Preference:</b> {order.mp_preference_id || '-'}</span>
               <span><b>MP Payment:</b> {order.mp_payment_id || '-'}</span>
             </div>
-
             <div className="adminProducts">
               <b>Produtos comprados</b>
-              {(order.items || []).length === 0 ? (
-                <p>Nenhum produto salvo neste pedido.</p>
-              ) : (
-                (order.items || []).map((item,index)=>(
-                  <div key={`${order.id}-${item.id}-${index}`}>
-                    <span>{item.title || `Produto ${item.id}`}</span>
-                    <strong>R$ {Number(item.price || 0).toFixed(2).replace('.',',')}</strong>
-                  </div>
-                ))
-              )}
+              {(order.items || []).length === 0 ? <p>Nenhum produto salvo neste pedido.</p> : (order.items || []).map((item,index)=><div key={`${order.id}-${item.id}-${index}`}><span>{item.title || `Produto ${item.id}`}</span><strong>R$ {Number(item.price || 0).toFixed(2).replace('.',',')}</strong></div>)}
             </div>
-
             <div className="adminTokenBox">
               <b>Token de download</b>
-              {order.token ? (
-                <>
-                  <code>{order.token.token}</code>
-                  <span>Expira em: {formatDate(order.token.expires_at)}</span>
-                  <span>Usado em: {order.token.used_at ? formatDate(order.token.used_at) : 'Ainda não usado'}</span>
-                  <a
-                    href={`/obrigado?order_id=${order.id}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Abrir página de obrigado
-                  </a>
-                </>
-              ) : (
-                <span>Token ainda não criado.</span>
-              )}
+              {order.token ? <><code>{order.token.token}</code><span>Expira em: {formatDate(order.token.expires_at)}</span><span>Usado em: {order.token.used_at ? formatDate(order.token.used_at) : 'Ainda não usado'}</span><a href={`/obrigado?order_id=${order.id}`} target="_blank" rel="noreferrer">Abrir página de obrigado</a></> : <span>Token ainda não criado.</span>}
             </div>
           </article>
         ))}
@@ -1465,7 +1694,5 @@ function AdminPage(){
     </section>
   </main>
 }
-
-function FloatingButtons(){return <><a className="floatZap" href={wa()} target="_blank" rel="noreferrer">💬</a><div className="mobile"><a href={wa()} target="_blank" rel="noreferrer">WhatsApp</a><a href="#best">Mais vendidos</a></div></>}
 
 createRoot(document.getElementById('root')).render(<App/>);
