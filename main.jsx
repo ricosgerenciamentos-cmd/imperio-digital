@@ -200,6 +200,7 @@ function App(){
     onSecretAdminClick={handleFooterSecretAdminClick}
     testMode={testMode}
     setTestMode={setTestMode}
+    headerVariant="miniOsPremium"
   />;
   if(rawPath === '/organiza-pro') return <OrganizaProPage
     search={search}
@@ -294,24 +295,34 @@ function StorePage({filter,list,search,setSearch,submitSearch,cart,cartOpen,setC
 
 function TopNotice(){return <div className="notice">🔥 Oferta especial de lançamento • Acesso imediato • Compra segura pelo Mercado Pago • Garantia 7 dias</div>}
 
-function Header({search,setSearch,submitSearch,cartCount,setCartOpen,onLogoSecretClick}){return <header className="header">
-  <a className="logo" href="/" onClick={onLogoSecretClick} title="Império Digital"><span>♛</span><div><b>IMPÉRIO</b><small>DIGITAL</small></div></a>
-  <nav>
-    <a href="/">Início</a>
-    <a href="/#best">Mais vendidos</a>
-    <a href="/#escolha">Escolher material</a>
-    <a href="/catalogo">Tudo</a>
-    <a href="/mini-os">Mini OS IA</a>
-    <a href="/organiza-pro">OrganizaPro</a>
-    <a href="/descobrir-negocio">Quiz</a>
-  </nav>
-  <form className="search" onSubmit={(e)=>{e.preventDefault(); submitSearch?.(search)}}>
-    <span>⌕</span>
-    <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar ebook"/>
-  </form>
-  <button className="cartBtn" onClick={()=>setCartOpen(true)}>🛒 <span>{cartCount}</span></button>
-  <a className="headBtn" href="/#ebook050">Começar por R$1,99</a>
-</header>}
+function Header({search,setSearch,submitSearch,cartCount,setCartOpen,onLogoSecretClick, variant}){
+  const miniPremium = variant === 'miniOsPremium';
+  return <header className={miniPremium ? 'header headerMiniOsPremium' : 'header'}>
+    <a className="logo" href="/" onClick={onLogoSecretClick} title="Império Digital"><span>♛</span><div><b>IMPÉRIO</b><small>DIGITAL</small></div></a>
+    <nav className={miniPremium ? 'navMiniOsPremium' : ''}>
+      {miniPremium ? <>
+        <a href="/">Início</a>
+        <a href="/catalogo">Catálogo</a>
+        <a href="/descobrir-negocio">Quiz</a>
+        <a href="/organiza-pro">OrganizaPro</a>
+      </> : <>
+        <a href="/">Início</a>
+        <a href="/#best">Mais vendidos</a>
+        <a href="/#escolha">Escolher material</a>
+        <a href="/catalogo">Tudo</a>
+        <a href="/mini-os">Mini OS IA</a>
+        <a href="/organiza-pro">OrganizaPro</a>
+        <a href="/descobrir-negocio">Quiz</a>
+      </>}
+    </nav>
+    {!miniPremium && <form className="search" onSubmit={(e)=>{e.preventDefault(); submitSearch?.(search)}}>
+      <span>⌕</span>
+      <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar ebook"/>
+    </form>}
+    <button type="button" className="cartBtn" onClick={()=>setCartOpen(true)}>🛒 <span>{cartCount}</span></button>
+    <a className="headBtn" href={miniPremium ? '#oferta' : '/#ebook050'}>{miniPremium ? 'Garantir vaga' : 'Começar por R$1,99'}</a>
+  </header>;
+}
 
 function Hero({best}){return <section id="top" className="hero heroPremium">
   <div className="copy">
@@ -578,46 +589,191 @@ function buyProduct(product, addToCart){
   window.location.href = '/checkout';
 }
 
-function MiniOSPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,removeFromCart,addToCart,onLogoSecretClick,onSecretAdminClick,testMode,setTestMode}){
+function MiniOSPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,removeFromCart,addToCart,onLogoSecretClick,onSecretAdminClick,testMode,setTestMode,headerVariant}){
   const miniOS = products.find(p => p.id === 401);
   const workshop = products.find(p => p.id === 402);
 
-  return <main>
+  const buildCards = [
+    { t: 'Terminal interativo', d: 'Comandos, histórico e respostas que simulam um shell real dentro do navegador.' },
+    { t: 'Sistema de janelas', d: 'Arrastar, empilhar e organizar apps como em um desktop moderno.' },
+    { t: 'Editor de código', d: 'Painel para escrever e testar scripts que controlam o seu mini mundo.' },
+    { t: 'Sistema de arquivos', d: 'Pastas e arquivos virtuais para dar corpo ao sistema e às tarefas.' },
+    { t: 'Agentes de IA', d: 'NPCs e assistentes com comportamento programável, memória simples e respostas.' },
+    { t: 'Arquitetura modular', d: 'Código organizado em módulos para evoluir, publicar e mostrar no portfólio.' }
+  ];
+
+  const audience = [
+    'Iniciantes em programação',
+    'Devs júnior',
+    'Estudantes',
+    'Criadores de conteúdo tech',
+    'Pessoas que querem portfólio visual'
+  ];
+
+  const trail = [
+    ['1','Fundamentos e arquitetura'],
+    ['2','Terminal interativo'],
+    ['3','Sistema de janelas'],
+    ['4','Sistema de arquivos'],
+    ['5','Editor de código'],
+    ['6','Agentes de IA'],
+    ['7','Integração e publicação']
+  ];
+
+  const offerBullets = [
+    '7 módulos práticos',
+    'Código-fonte',
+    'Template inicial',
+    'Desafio final',
+    'Certificado simples',
+    'Acesso vitalício à versão beta'
+  ];
+
+  const faqItems = [
+    { q: 'Preciso ser programador avançado?', a: 'Não. O material parte de bases simples e avança em passos curtos. Se você sabe usar o computador e tem vontade de aprender, consegue acompanhar.' },
+    { q: 'O sistema funciona de verdade?', a: 'Sim, no sentido de ser um projeto web completo: interface, lógica e fluxos rodam no navegador. É um mini OS educacional e de portfólio, não um substituto de Windows ou Linux.' },
+    { q: 'Vou receber o código?', a: 'Sim. Você recebe template inicial, código-fonte de referência e orientação para adaptar e publicar sua versão.' },
+    { q: 'Consigo usar como portfólio?', a: 'Sim. O objetivo é você ter um projeto visual forte para GitHub, LinkedIn e conversas com recrutadores ou clientes.' },
+    { q: 'Preciso de API paga de IA?', a: 'Não para o núcleo do curso. Os agentes são implementados como parte do projeto (comportamentos programáveis). Se quiser integrar API depois, fica como evolução opcional.' }
+  ];
+
+  return <main className="miniOsPremium">
     <TopNotice />
-    <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={onLogoSecretClick}/>
+    <Header search={search} setSearch={setSearch} submitSearch={submitSearch} cartCount={cart.length} setCartOpen={setCartOpen} onLogoSecretClick={onLogoSecretClick} variant={headerVariant}/>
 
-    <section className="miniOsHero miniOsHeroV2">
-      <div>
-        <p className="red">🚀 TURMA BETA • PROGRAMAÇÃO + IA</p>
-        <h1>Crie um projeto de portfólio que parece coisa de hacker de filme</h1>
-        <p>Em 7 dias, você constrói um mini sistema operacional no navegador com terminal, janelas, editor de código, sistema de arquivos simulado e agentes de IA. Não é teoria solta: é um projeto visual para mostrar.</p>
-
-        <div className="miniOsActions">
-          <button onClick={()=>buyProduct(miniOS, addToCart)}>Entrar na turma beta por R$97</button>
-          <a href="#programa">Ver o que vou construir</a>
+    <section className="miniOsHero" id="top">
+      <div className="miniOsHeroInner">
+        <div className="miniOsBadgeRow">
+          <span className="miniOsBadge">Turma Beta</span>
+          <span className="miniOsBadge">7 dias de conteúdo</span>
+          <span className="miniOsBadge">Projeto de portfólio</span>
+          <span className="miniOsBadge">Suporte inicial</span>
         </div>
-
-        <div className="miniProofLine">
-          <span>✅ Template base</span>
-          <span>✅ 7 aulas curtas</span>
-          <span>✅ Código-fonte</span>
-          <span>✅ Desafio final</span>
+        <h1>Construa Seu Próprio Sistema Operacional com IA</h1>
+        <p className="miniOsSubhead">Em 7 dias, você cria um mini OS completo no navegador: terminal interativo, sistema de janelas, editor de código, arquivos virtuais e agentes de IA.</p>
+        <div className="miniOsHeroCtas">
+          <button type="button" className="miniOsBtnPrimary" onClick={()=>buyProduct(miniOS, addToCart)}>Quero construir meu Mini OS</button>
+          <a className="miniOsBtnGhost" href="#o-que-vou-construir">Ver o que vou aprender</a>
         </div>
       </div>
 
-      <div className="miniOsScreen">
-        <div className="miniOsTop"><span></span><span></span><span></span></div>
-        <div className="miniOsDesktop">
-          <div className="miniWindow terminal">
-            <b>Terminal</b>
-            <code>$ boot imperio-os<br/>sistema iniciado ✅<br/>$ create robot<br/>agente online 🤖<br/>$ run world</code>
+      <div className="miniOsMockup" aria-hidden="true">
+        <div className="miniOsMockupFrame">
+          <div className="miniOsMockupTitleBar">
+            <span className="miniOsMockupDots"><i></i><i></i><i></i></span>
+            <span className="miniOsMockupTitle">imperio-os — preview</span>
           </div>
-          <div className="miniWindow editor">
-            <b>Editor</b>
-            <code>agent Robo {'{'}<br/>&nbsp;&nbsp;memory: true<br/>&nbsp;&nbsp;task: explore<br/>&nbsp;&nbsp;talk: smart<br/>{'}'}</code>
+          <div className="miniOsMockupBody">
+            <div className="miniOsWindow miniOsWindowTerminal">
+              <header>Terminal</header>
+              <code>{`$ boot imperio-os\n✓ kernel ready\n$ ls /apps\n  terminal  editor  files  agent\n$ agent start --name Atlas\n> online.`}</code>
+            </div>
+            <div className="miniOsWindow miniOsWindowEditor">
+              <header>Editor</header>
+              <code>{`// agente.ts\nexport const Atlas = {\n  memory: true,\n  task: "explore",\n  tone: "direto"\n};`}</code>
+            </div>
+            <div className="miniOsWindow miniOsWindowFiles">
+              <header>Explorador</header>
+              <ul>
+                <li>📁 /system</li>
+                <li>📁 /apps</li>
+                <li>📄 readme.md</li>
+                <li>📄 boot.config.json</li>
+              </ul>
+            </div>
+            <div className="miniOsWindow miniOsWindowAi">
+              <header>Agente IA</header>
+              <div className="miniOsAiBubble">Pronto para explorar o sistema e sugerir próximos passos.</div>
+              <div className="miniOsAiBubble miniOsAiBubbleMuted">Memória de sessão ativa • modo portfólio</div>
+            </div>
           </div>
-          <div className="miniOsDock"><span>Terminal</span><span>Editor</span><span>Files</span><span>AI</span></div>
+          <div className="miniOsMockupDock">
+            <span>Terminal</span>
+            <span>Editor</span>
+            <span>Arquivos</span>
+            <span>IA</span>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section className="miniOsCardsSection" id="o-que-vou-construir">
+      <p className="miniOsSectionKicker">O QUE VOCÊ VAI CONSTRUIR</p>
+      <h2 className="miniOsSectionTitle">Um desktop completo no navegador</h2>
+      <p className="miniOsSectionLead">Cada peça conversa com as outras: terminal, janelas, arquivos e IA no mesmo ambiente.</p>
+      <div className="miniOsCards">
+        {buildCards.map((c) => (
+          <article className="miniOsCard" key={c.t}>
+            <b>{c.t}</b>
+            <p>{c.d}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section className="miniOsAudience" id="para-quem">
+      <p className="miniOsSectionKicker">PARA QUEM É</p>
+      <h2 className="miniOsSectionTitle">Feito para quem quer sair do tutorial comum</h2>
+      <ul className="miniOsAudienceList">
+        {audience.map((line) => (
+          <li key={line}><span className="miniOsAudienceCheck">✓</span>{line}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section className="miniOsTimeline" id="trilha">
+      <p className="miniOsSectionKicker">TRILHA DE 7 DIAS</p>
+      <h2 className="miniOsSectionTitle">Do zero ao mini OS publicável</h2>
+      <div className="miniOsTimelineTrack">
+        {trail.map(([day, label]) => (
+          <article className="miniOsTimelineItem" key={day}>
+            <span className="miniOsTimelineDay">{day}</span>
+            <div>
+              <b>Dia {day}</b>
+              <p>{label}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section className="miniOsOffer miniOsOfferBeta" id="oferta">
+      <div className="miniOsOfferCopy">
+        <p className="red">ACESSO BETA</p>
+        <h2>Mini OS IA - Acesso Beta</h2>
+        <p className="miniOsOfferLead">Pagamento único. Acesso ao projeto, aulas, código-fonte e futuras melhorias da turma beta.</p>
+        <ul className="miniOsOfferBullets">
+          {offerBullets.map((b) => (
+            <li key={b}><span>✓</span>{b}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="miniOsOfferCard">
+        <small>Investimento beta</small>
+        <strong>R$97</strong>
+        <button type="button" onClick={()=>buyProduct(miniOS, addToCart)}>Garantir acesso agora</button>
+        <span className="miniOsOfferNote">Checkout seguro • Mercado Pago</span>
+      </div>
+    </section>
+
+    <section className="miniOsFaq" id="faq-mini-os">
+      <p className="miniOsSectionKicker">FAQ</p>
+      <h2 className="miniOsSectionTitle">Dúvidas frequentes</h2>
+      <div className="miniOsFaqList">
+        {faqItems.map((item) => (
+          <details className="miniOsFaqItem" key={item.q}>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section className="miniOsFinalCta">
+      <div className="miniOsFinalCtaInner">
+        <h2>Pronto para construir seu sistema operacional?</h2>
+        <p>Entre na turma beta, monte seu mini OS com IA e leve um projeto memorável para o seu portfólio.</p>
+        <button type="button" className="miniOsFinalCtaBtn" onClick={()=>buyProduct(miniOS, addToCart)}>Garantir minha vaga por R$97</button>
       </div>
     </section>
 
@@ -625,64 +781,13 @@ function MiniOSPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,rem
       <LeadForm
         source="mini-os"
         interest="Mini OS IA"
-        title="Quer entrar na turma beta ou tirar dúvidas?"
-        description="Deixe seu contato e vamos te chamar com detalhes do Mini OS IA, acesso, aulas e próximos passos."
-        button="Quero saber sobre o Mini OS IA"
+        title="Quer tirar dúvidas antes de entrar?"
+        description="Deixe seu contato e falamos no WhatsApp sobre a turma beta, acesso e próximos passos."
+        button="Quero falar sobre o Mini OS IA"
       />
     </section>
 
-    <section id="programa" className="miniOsProgram">
-      <p className="red">O QUE VOCÊ VAI CONSTRUIR</p>
-      <h2>Um mini computador dentro do navegador</h2>
-
-      <div className="miniOsGrid">
-        <article><b>🖥️ Desktop no navegador</b><p>Interface visual com janelas, área de trabalho e aparência de sistema próprio.</p></article>
-        <article><b>⌨️ Terminal funcional</b><p>Comandos simulados para criar arquivos, abrir apps e controlar agentes.</p></article>
-        <article><b>🧠 IA fake convincente</b><p>Agentes com respostas, memória simples e comportamento programável.</p></article>
-        <article><b>📁 Sistema de arquivos</b><p>Arquivos e pastas simulados para dar sensação real de sistema operacional.</p></article>
-        <article><b>🧩 Linguagem simples</b><p>Sintaxe própria para controlar robôs, tarefas e ações dentro do ambiente.</p></article>
-        <article><b>🚀 Publicação online</b><p>Você finaliza com um projeto compartilhável para portfólio, currículo e redes.</p></article>
-      </div>
-    </section>
-
-    <section className="miniLessonPlan">
-      <p className="red">PLANO EM 7 AULAS</p>
-      <h2>Roteiro simples para sair do zero ao projeto publicado</h2>
-      <div>
-        <article><span>1</span><b>Desktop</b><p>Criar a base visual do sistema.</p></article>
-        <article><span>2</span><b>Terminal</b><p>Comandos e respostas simuladas.</p></article>
-        <article><span>3</span><b>Linguagem fake</b><p>Sintaxe simples para controlar ações.</p></article>
-        <article><span>4</span><b>Arquivos</b><p>Sistema de arquivos virtual.</p></article>
-        <article><span>5</span><b>Agentes IA</b><p>NPCs e robôs com comportamento.</p></article>
-        <article><span>6</span><b>Publicação</b><p>Colocar o projeto online.</p></article>
-        <article><span>7</span><b>Portfólio</b><p>Personalizar e apresentar o projeto.</p></article>
-      </div>
-    </section>
-
-    <section className="miniOsOffer">
-      <div>
-        <p className="red">OFERTA DE LANÇAMENTO</p>
-        <h2>Turma beta Mini OS IA</h2>
-        <p>Receba template base, 7 aulas curtas, código-fonte, desafio final e acesso ao projeto para criar sua própria versão.</p>
-      </div>
-      <div>
-        <small>De R$297 por</small>
-        <strong>R$97</strong>
-        <button onClick={()=>buyProduct(miniOS, addToCart)}>Garantir acesso</button>
-      </div>
-    </section>
-
-    <section className="leadBlock leadBlockMiniWorkshop">
-      <LeadForm
-        source="mini-os"
-        interest="Workshop Mini OS IA com mentoria"
-        title="Quer mentoria para personalizar seu projeto?"
-        description="Deixe seu contato para receber informações do workshop com mentoria."
-        button="Quero informações da mentoria"
-      />
-    </section>
-
-    <section className="miniOsOffer miniOsOfferLight">
+    <section className="miniOsOffer miniOsOfferLight miniOsWorkshopUpsell">
       <div>
         <p className="red">VERSÃO COM MENTORIA</p>
         <h2>Workshop Mini OS IA</h2>
@@ -691,14 +796,14 @@ function MiniOSPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,rem
       <div>
         <small>De R$997 por</small>
         <strong>R$497</strong>
-        <button onClick={()=>buyProduct(workshop, addToCart)}>Comprar workshop</button>
+        <button type="button" onClick={()=>buyProduct(workshop, addToCart)}>Comprar workshop</button>
       </div>
     </section>
 
     <Footer onSecretAdminClick={onSecretAdminClick}/>
     <CartDrawer cart={cart} open={cartOpen} setOpen={setCartOpen} removeFromCart={removeFromCart}/>
-    {testMode && <TestModePanel setTestMode={setTestMode}/>} 
-  </main>
+    {testMode && <TestModePanel setTestMode={setTestMode}/>}
+  </main>;
 }
 
 function OrganizaProPage({search,setSearch,submitSearch,cart,cartOpen,setCartOpen,removeFromCart,addToCart,onLogoSecretClick,onSecretAdminClick,testMode,setTestMode}){

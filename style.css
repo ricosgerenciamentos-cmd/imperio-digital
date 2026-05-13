@@ -3581,3 +3581,617 @@ h1,h2,h3,.logo b,.headBtn,.primary,.secondary,.buy,.microR1Copy h2,.microR1Card 
   .adminLeadCellWide,.adminLeadCellAction{grid-column:span 1;}
   .adminLeadCellAction{justify-content:flex-start;}
 }
+
+/* =========================================================
+   Mini OS IA — landing premium (/mini-os)
+   Fundo claro + grid, vermelho/preto/branco, não remove CSS anterior
+   ========================================================= */
+.miniOsPremium{
+  --mini-os-red:#e50909;
+  --mini-os-black:#0a0a0a;
+  --mini-os-paper:#fafafa;
+  --mini-os-line:rgba(0,0,0,.06);
+  background-color:var(--mini-os-paper);
+  background-image:
+    linear-gradient(var(--mini-os-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--mini-os-line) 1px, transparent 1px);
+  background-size:56px 56px;
+  background-attachment:fixed;
+  color:#111;
+}
+
+.headerMiniOsPremium{
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:rgba(255,255,255,.92)!important;
+  backdrop-filter:saturate(1.2) blur(12px);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  box-shadow:0 8px 30px rgba(0,0,0,.04);
+}
+.navMiniOsPremium{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 18px;
+  align-items:center;
+  justify-content:center;
+}
+.navMiniOsPremium a{
+  font-weight:800;
+  font-size:14px;
+  color:#333!important;
+  opacity:.9;
+}
+.navMiniOsPremium a:hover{
+  color:var(--mini-os-red)!important;
+  opacity:1;
+}
+
+.miniOsPremium .miniOsHero{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:48px 24px 32px;
+  min-height:auto;
+  gap:40px;
+  background:transparent;
+  grid-template-columns:unset;
+  position:relative;
+  overflow:visible;
+}
+.miniOsPremium .miniOsHero:before{
+  display:none;
+}
+.miniOsHeroInner{
+  max-width:920px;
+  margin:0 auto;
+}
+.miniOsBadgeRow{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:22px;
+}
+.miniOsBadge{
+  display:inline-flex;
+  align-items:center;
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  box-shadow:0 6px 20px rgba(0,0,0,.04);
+  color:#222;
+}
+.miniOsPremium .miniOsHero h1{
+  font-size:clamp(36px,5vw,64px);
+  line-height:1.04;
+  letter-spacing:-.06em;
+  margin:0 0 18px;
+  font-weight:1000;
+  color:var(--mini-os-black);
+  max-width:18ch;
+  margin-left:auto;
+  margin-right:auto;
+}
+.miniOsSubhead,
+.miniOsPremium .miniOsHero .miniOsSubhead{
+  font-size:clamp(17px,2vw,20px);
+  line-height:1.65;
+  color:#3a3a3a;
+  margin:0 auto;
+  max-width:52rem;
+}
+.miniOsHeroCtas{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  justify-content:center;
+  margin-top:28px;
+}
+.miniOsBtnPrimary{
+  border:0;
+  cursor:pointer;
+  background:var(--mini-os-red);
+  color:#fff!important;
+  font-weight:1000;
+  font-size:16px;
+  padding:17px 26px;
+  border-radius:999px;
+  box-shadow:0 18px 44px rgba(229,9,9,.28);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.miniOsBtnPrimary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 22px 50px rgba(229,9,9,.35);
+}
+.miniOsBtnGhost{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:1000;
+  font-size:16px;
+  padding:17px 26px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.12);
+  background:#fff;
+  color:#111!important;
+  box-shadow:0 10px 28px rgba(0,0,0,.06);
+  transition:transform .2s ease, border-color .2s ease;
+}
+.miniOsBtnGhost:hover{
+  transform:translateY(-2px);
+  border-color:rgba(229,9,9,.35);
+}
+
+.miniOsMockup{
+  width:100%;
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 16px 8px;
+}
+.miniOsMockupFrame{
+  background:linear-gradient(165deg,#1a1a1a 0%,#050505 100%);
+  border-radius:28px;
+  padding:14px;
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.28),
+    0 0 0 1px rgba(255,255,255,.06);
+}
+.miniOsMockupTitleBar{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px 12px 14px;
+  color:#bbb;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.02em;
+}
+.miniOsMockupDots{
+  display:flex;
+  gap:7px;
+}
+.miniOsMockupDots i{
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:#ff5f57;
+  display:block;
+}
+.miniOsMockupDots i:nth-child(2){background:#febc2e;}
+.miniOsMockupDots i:nth-child(3){background:#28c840;}
+.miniOsMockupTitle{
+  flex:1;
+  text-align:center;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:11px;
+  color:#888;
+}
+.miniOsMockupBody{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:14px;
+  min-height:340px;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 0%, rgba(229,9,9,.18), transparent 55%),
+    #070707;
+  border-radius:20px;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.06);
+}
+.miniOsWindow{
+  background:rgba(255,255,255,.97);
+  border-radius:16px;
+  padding:14px 16px 16px;
+  text-align:left;
+  box-shadow:0 16px 40px rgba(0,0,0,.2);
+  border:1px solid rgba(0,0,0,.06);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-height:140px;
+}
+.miniOsWindow header{
+  font-size:11px;
+  font-weight:1000;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:#888;
+  border-bottom:1px solid #eee;
+  padding-bottom:8px;
+  margin:0;
+}
+.miniOsWindow code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:12px;
+  line-height:1.55;
+  white-space:pre-wrap;
+  color:#111;
+  margin:0;
+}
+.miniOsWindowTerminal{
+  background:#050505!important;
+  border-color:rgba(0,255,160,.25)!important;
+  color:#00ff9c;
+}
+.miniOsWindowTerminal header{color:#5dffc7;}
+.miniOsWindowTerminal code{color:#7dffd8;}
+.miniOsWindowFiles ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  font-size:13px;
+  line-height:1.65;
+  color:#333;
+  font-weight:600;
+}
+.miniOsWindowAi .miniOsAiBubble{
+  font-size:13px;
+  line-height:1.5;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#f3f4f6;
+  color:#111;
+  font-weight:600;
+}
+.miniOsAiBubbleMuted{
+  opacity:.85;
+  font-size:12px!important;
+  font-weight:600!important;
+}
+.miniOsMockupDock{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin-top:14px;
+  padding:10px 8px 4px;
+}
+.miniOsMockupDock span{
+  font-size:11px;
+  font-weight:1000;
+  color:#ddd;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.1);
+}
+
+.miniOsSectionKicker{
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:.14em;
+  color:var(--mini-os-red);
+  margin:0 0 12px;
+}
+.miniOsSectionTitle{
+  font-size:clamp(30px,3.6vw,48px);
+  line-height:1.08;
+  letter-spacing:-.04em;
+  font-weight:1000;
+  margin:0 auto 14px;
+  max-width:900px;
+}
+.miniOsSectionLead{
+  margin:0 auto 36px;
+  max-width:640px;
+  color:#444;
+  line-height:1.6;
+  font-size:17px;
+}
+
+.miniOsCardsSection{
+  padding:72px 24px 56px;
+  text-align:center;
+  background:linear-gradient(180deg, transparent 0%, rgba(255,255,255,.65) 30%, #fff 100%);
+  border-top:1px solid rgba(0,0,0,.05);
+}
+.miniOsCards{
+  max-width:1120px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  text-align:left;
+}
+.miniOsCard{
+  background:#fff;
+  border:1px solid rgba(0,0,0,.07);
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 18px 50px rgba(0,0,0,.055);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.miniOsCard:hover{
+  transform:translateY(-4px);
+  box-shadow:0 26px 60px rgba(229,9,9,.12);
+}
+.miniOsCard b{
+  display:block;
+  font-size:18px;
+  margin-bottom:10px;
+  font-weight:1000;
+  color:var(--mini-os-black);
+}
+.miniOsCard p{
+  margin:0;
+  color:#555;
+  line-height:1.55;
+  font-size:15px;
+}
+
+.miniOsAudience{
+  padding:64px 24px 72px;
+  max-width:800px;
+  margin:0 auto;
+  text-align:center;
+}
+.miniOsAudienceList{
+  list-style:none;
+  margin:28px auto 0;
+  padding:0;
+  text-align:left;
+  max-width:520px;
+}
+.miniOsAudienceList li{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:14px 18px;
+  margin-bottom:10px;
+  background:#fff;
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.06);
+  font-weight:700;
+  font-size:16px;
+  box-shadow:0 10px 28px rgba(0,0,0,.04);
+}
+.miniOsAudienceCheck{
+  flex-shrink:0;
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  background:var(--mini-os-red);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:13px;
+  font-weight:1000;
+}
+
+.miniOsTimeline{
+  padding:64px 24px 80px;
+  background:#fff;
+  text-align:center;
+  border-top:1px solid rgba(0,0,0,.06);
+}
+.miniOsTimelineTrack{
+  max-width:720px;
+  margin:36px auto 0;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  position:relative;
+  text-align:left;
+}
+.miniOsTimelineTrack::before{
+  content:"";
+  position:absolute;
+  left:22px;
+  top:8px;
+  bottom:8px;
+  width:3px;
+  background:linear-gradient(180deg, var(--mini-os-red), #111);
+  border-radius:99px;
+  opacity:.35;
+}
+.miniOsTimelineItem{
+  display:grid;
+  grid-template-columns:52px 1fr;
+  gap:16px;
+  padding:16px 0 16px 8px;
+  align-items:start;
+  position:relative;
+}
+.miniOsTimelineDay{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:var(--mini-os-black);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-weight:1000;
+  font-size:15px;
+  z-index:1;
+  box-shadow:0 0 0 6px #fff;
+}
+.miniOsTimelineItem b{
+  display:block;
+  font-size:15px;
+  margin-bottom:4px;
+}
+.miniOsTimelineItem p{
+  margin:0;
+  color:#555;
+  line-height:1.45;
+  font-size:14px;
+}
+
+.miniOsPremium .miniOsOffer{
+  margin:0 auto 48px;
+  max-width:1080px;
+  width:calc(100% - 48px);
+  border-radius:28px;
+  padding:40px;
+  gap:28px;
+}
+.miniOsOfferCopy{
+  text-align:left;
+}
+.miniOsOfferCopy h2{
+  font-size:clamp(28px,3vw,40px)!important;
+}
+.miniOsOfferLead{
+  color:#ccc!important;
+  font-size:16px!important;
+  line-height:1.6!important;
+  max-width:520px;
+}
+.miniOsOfferBullets{
+  list-style:none;
+  margin:22px 0 0;
+  padding:0;
+  display:grid;
+  gap:10px;
+}
+.miniOsOfferBullets li{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#eee;
+  font-weight:700;
+  font-size:15px;
+}
+.miniOsOfferBullets span{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:rgba(229,9,9,.25);
+  color:#ff9b9b;
+  display:grid;
+  place-items:center;
+  font-size:12px;
+  flex-shrink:0;
+}
+.miniOsOfferCard .miniOsOfferNote{
+  display:block;
+  margin-top:12px;
+  font-size:12px;
+  color:#666;
+  font-weight:700;
+}
+
+.miniOsFaq{
+  padding:64px 24px 56px;
+  max-width:760px;
+  margin:0 auto;
+}
+.miniOsFaqList{
+  margin-top:28px;
+  text-align:left;
+}
+.miniOsFaqItem{
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:16px;
+  padding:0 16px;
+  margin-bottom:12px;
+  background:#fff;
+  box-shadow:0 10px 28px rgba(0,0,0,.04);
+}
+.miniOsFaqItem summary{
+  cursor:pointer;
+  font-weight:1000;
+  padding:16px 8px 16px 0;
+  list-style:none;
+  font-size:16px;
+}
+.miniOsFaqItem summary::-webkit-details-marker{display:none;}
+.miniOsFaqItem p{
+  margin:0 0 16px;
+  color:#444;
+  line-height:1.6;
+  font-size:15px;
+  border-top:1px solid #f0f0f0;
+  padding-top:14px;
+}
+
+.miniOsFinalCta{
+  margin:0 24px 24px;
+  padding:56px 24px;
+  border-radius:28px;
+  background:linear-gradient(145deg,#0a0a0a 0%,#1f0505 55%,#111 100%);
+  color:#fff;
+  text-align:center;
+  box-shadow:0 30px 80px rgba(0,0,0,.25);
+}
+.miniOsFinalCtaInner{
+  max-width:640px;
+  margin:0 auto;
+}
+.miniOsFinalCta h2{
+  font-size:clamp(26px,3.4vw,40px);
+  line-height:1.1;
+  margin:0 0 14px;
+  font-weight:1000;
+  letter-spacing:-.03em;
+}
+.miniOsFinalCta p{
+  margin:0 0 24px;
+  color:#c9c9c9;
+  line-height:1.6;
+  font-size:16px;
+}
+.miniOsFinalCtaBtn{
+  border:0;
+  cursor:pointer;
+  background:var(--mini-os-red);
+  color:#fff!important;
+  font-weight:1000;
+  font-size:17px;
+  padding:18px 32px;
+  border-radius:999px;
+  box-shadow:0 20px 50px rgba(229,9,9,.35);
+  transition:transform .2s ease;
+}
+.miniOsFinalCtaBtn:hover{
+  transform:translateY(-2px);
+}
+
+.miniOsPremium .leadBlockMini{
+  background:transparent;
+  border:0;
+}
+.miniOsPremium .miniOsWorkshopUpsell{
+  margin-bottom:40px;
+}
+
+@media(max-width:900px){
+  .miniOsPremium .miniOsHero{
+    display:flex!important;
+    flex-direction:column!important;
+    grid-template-columns:unset!important;
+    padding:36px 16px 24px!important;
+  }
+  .miniOsMockupBody{
+    grid-template-columns:1fr;
+    min-height:auto;
+  }
+  .miniOsCards{
+    grid-template-columns:1fr;
+  }
+  .miniOsPremium .miniOsOffer{
+    width:calc(100% - 32px);
+    padding:28px 20px;
+  }
+  .miniOsFinalCta{
+    margin:0 16px 16px;
+    padding:44px 20px;
+  }
+  .miniOsHeroCtas{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .miniOsBtnPrimary,
+  .miniOsBtnGhost{
+    justify-content:center;
+    width:100%;
+  }
+}
